@@ -1,191 +1,191 @@
-# 13 — Naskah presentasi demo untuk klien (±15 menit)
+# 13 — Client demo presentation script (±15 minutes)
 
-Naskah ini untuk presenter. Bagian **"Ucapkan"** adalah poin bicara (boleh diparafrasekan); bagian **langkah** adalah klik persisnya. Skenario mengikuti `03-demo.md` §4 (D1–D8; D9 hanya test otomatis). Teks tombol di bawah sama dengan teks di UI versi Indonesia.
+This script is for the presenter. The **"Say"** sections are talking points (feel free to paraphrase); the **steps** sections are the exact clicks. The scenarios follow `03-demo.md` §4 (D1–D8; D9 is automated tests only). The button text below matches the text in the Indonesian version of the UI.
 
-> URL di naskah ini memakai `https://releve-demo.vercel.app` — ganti dengan URL demo yang sebenarnya (`12-deploy.md` §6). Untuk demo lokal: `http://localhost:3000`.
+> The URLs in this script use `https://releve-demo.vercel.app` — replace them with the actual demo URL (`12-deploy.md` §6). For a local demo: `http://localhost:3000`.
 
 ---
 
-## 0. Persiapan (30–60 menit sebelum meeting)
+## 0. Preparation (30–60 minutes before the meeting)
 
 ### Reset data
-- [ ] Seed ulang database demo (`12-deploy.md` §10):
+- [ ] Re-seed the demo database (`12-deploy.md` §10):
   ```bash
   DATABASE_URL="$NEON_URL" NEXT_PUBLIC_SITE_URL='https://releve-demo.vercel.app' ADMIN_PASSWORD='releve-demo' pnpm db:seed
   ```
-  Lokal: `pnpm db:seed` (atau `pnpm db:reset` jika skema berubah).
-- [ ] Pastikan `DEMO_MODE=true` dan `NEXT_PUBLIC_DEMO_MODE=true` (banner "Mode demo — pembayaran & pengiriman disimulasikan." terlihat).
-- [ ] Jam meeting: **GoSend Instant hanya muncul sebelum 16:00 WIB** (Grab Same Day sebelum 14:00 WIB) dan hanya untuk Jabodetabek (zona Z1). Jika meeting sore, D1 memakai JNE YES/Reguler — jelaskan aturan cutoff-nya sebagai fitur.
+  Local: `pnpm db:seed` (or `pnpm db:reset` if the schema changed).
+- [ ] Make sure `DEMO_MODE=true` and `NEXT_PUBLIC_DEMO_MODE=true` (the banner "Mode demo — pembayaran & pengiriman disimulasikan." (Demo mode — payment & shipping are simulated.) is visible).
+- [ ] Meeting time: **GoSend Instant only appears before 16:00 WIB** (Grab Same Day before 14:00 WIB) and only for Jabodetabek (zone Z1). If the meeting is in the afternoon, D1 uses JNE YES/Regular — present the cutoff rule as a feature.
 
-### Perangkat & tab
-- [ ] **HP (toko, tampilan pembeli)** — mode incognito / keranjang kosong:
+### Devices & tabs
+- [ ] **Phone (store, buyer view)** — incognito mode / empty cart:
   1. `https://releve-demo.vercel.app/id`
   2. `…/id/p/diamond-sd140`
-- [ ] **Laptop (admin + layar besar)**:
-  1. `…/admin/login` → login **admin@releve.test / releve-demo**, biarkan Dashboard terbuka
+- [ ] **Laptop (admin + big screen)**:
+  1. `…/admin/login` → log in as **admin@releve.test / releve-demo**, leave the Dashboard open
   2. `…/admin/outbox` (WA outbox)
   3. `…/admin/checkout-links`
-  4. `…/id/design-system` (showcase design system, untuk penutup/jika ditanya)
-- [ ] Mirror layar HP ke proyektor/Zoom (atau buka toko di laptop dengan DevTools mode mobile 390×844 sebagai cadangan).
-- [ ] WhatsApp di HP presenter siap (tombol "Tanya via WA" membuka wa.me ke `NEXT_PUBLIC_WA_NUMBER`).
-- [ ] Nomor WA pembeli contoh untuk diketik: `0812-3456-7890`. Alamat: DKI Jakarta → Kota Jakarta Selatan → Kebayoran Baru → 12160 → "Jl. Senopati No. 10".
+  4. `…/id/design-system` (design system showcase, for the closing / if asked)
+- [ ] Mirror the phone screen to the projector/Zoom (or open the store on the laptop with DevTools mobile mode 390×844 as a fallback).
+- [ ] WhatsApp ready on the presenter's phone (the "Tanya via WA" (Ask via WA) button opens wa.me to `NEXT_PUBLIC_WA_NUMBER`).
+- [ ] Sample buyer WA number to type: `0812-3456-7890`. Address: DKI Jakarta → Kota Jakarta Selatan → Kebayoran Baru → 12160 → "Jl. Senopati No. 10".
 
-### Produk yang dipakai (semua ada di `data/catalog/products.json`)
+### Products used (all in `data/catalog/products.json`)
 
-| Slug | Nama | Peran di demo |
+| Slug | Name | Role in the demo |
 |---|---|---|
-| `diamond-sd140` | Diamond SD140 (Rp660.000) | Hampir semua ukuran **ready** → happy path D1, D4 |
-| `alina-iv-pointe-shoe-p95` | Alina IV Pointe Shoe P95 | Stok tipis **"Sisa 1–3"** → D2, D6 |
-| `briar-sd110l`, `jaxon-jz86l`, `claudine-sd155` | Briar SD110L, Jaxon JZ86L, Claudine SD155 | Full **pre-order** (estimasi 4–6 minggu) → D4 |
-| `roy-bl104`, `elsie-sl248` | Roy BL104, Elsie SL248 | **Habis** semua ukuran → "Kabari Saya via WA" → D3 |
-| `claudia-satin-sd09`, `toshie-sd40vc` | Claudia Satin SD09, Toshie SD40VC | Pointe dengan pilihan **shank** → D8 |
+| `diamond-sd140` | Diamond SD140 (Rp660.000) | Almost every size **ready** → happy path D1, D4 |
+| `alina-iv-pointe-shoe-p95` | Alina IV Pointe Shoe P95 | Low stock **"Sisa 1–3"** (1–3 left) → D2, D6 |
+| `briar-sd110l`, `jaxon-jz86l`, `claudine-sd155` | Briar SD110L, Jaxon JZ86L, Claudine SD155 | Fully **pre-order** (estimate 4–6 weeks) → D4 |
+| `roy-bl104`, `elsie-sl248` | Roy BL104, Elsie SL248 | **Habis** (Sold out) in every size → "Kabari Saya via WA" (Notify Me via WA) → D3 |
+| `claudia-satin-sd09`, `toshie-sd40vc` | Claudia Satin SD09, Toshie SD40VC | Pointe with **shank** options → D8 |
 
-> Kredensial admin `admin@releve.test / releve-demo` **hanya untuk demo**. Untuk link yang ditinggalkan ke klien, seed ulang dengan password lain dan kirim terpisah.
+> The admin credentials `admin@releve.test / releve-demo` are **for the demo only**. For a link left with the client, re-seed with a different password and send it separately.
 
 ---
 
-## 1. Pembuka (1 menit)
+## 1. Opening (1 minute)
 
-**Ucapkan:**
-- "Ini Relevé Dance Supply — toko online sepatu dansa & dancewear Só Dança untuk pasar Indonesia, sebagai reseller independen. Nama dan logo masih nama kerja."
-- "Yang Bapak/Ibu lihat ini sudah berjalan sungguhan: katalog, stok per ukuran, order, dan admin pakai database asli. Yang **disimulasikan** hanya tiga hal: pembayaran, ongkir kurir, dan pengiriman pesan WhatsApp otomatis — karena akun Xendit, Biteship, dan WhatsApp Business belum dibuat. Kodenya sudah disiapkan untuk disambung."
-- "Kita coba seperti pembeli sungguhan, di HP."
+**Say:**
+- "This is Relevé Dance Supply — an online store for Só Dança dance shoes & dancewear for the Indonesian market, as an independent reseller. The name and logo are still working names."
+- "What you are seeing really works: the catalog, per-size stock, orders, and admin all use a real database. Only three things are **simulated**: payment, courier shipping rates, and automatic WhatsApp messages — because the Xendit, Biteship, and WhatsApp Business accounts have not been created yet. The code is already prepared to be connected."
+- "Let's try it like a real buyer, on a phone."
 
-## 2. D1 — Belanja sampai bayar dengan QRIS + kurir instan (3 menit)
+## 2. D1 — Shopping through to payment with QRIS + instant courier (3 minutes)
 
-**Langkah (HP):**
-1. Beranda `/id` → menu/kategori **Ballet** → **Diamond SD140**.
-2. Tunjukkan: harga Rp, label stok per ukuran (Ready / Sisa N / Habis).
-3. Pilih warna **Light Pink**, ukuran **7.0L (adult)**, width **C** → **Tambah ke Keranjang** → **Lihat keranjang** → Checkout.
-4. Isi **Nama lengkap**, **Nomor WhatsApp** `0812-3456-7890`, **Provinsi** DKI Jakarta, **Kabupaten/Kota** Kota Jakarta Selatan, **Kecamatan** Kebayoran Baru, **Kode pos** 12160, **Alamat lengkap** → **Lanjut ke Pengiriman**.
-5. Pilih **GoSend Instant** (atau kurir pertama jika sudah lewat 16:00 WIB) → tunjukkan **Asuransi pengiriman** → **Lanjut ke Pembayaran**.
-6. Di ringkasan, isi **Kode voucher** `RELEVE10` → **Pakai** → muncul "Voucher dipakai — hemat …" (diskon 10%, minimal belanja Rp500.000).
-7. Metode **QRIS** sudah terpilih → **Bayar Sekarang** → halaman bayar dengan QR & hitung mundur 30 menit.
-8. Klik **Simulasikan Bayar Berhasil** → halaman "Pembayaran berhasil".
-9. **Laptop:** buka **WA outbox** → pesan "Pembayaran diterima" untuk order itu. Buka **Dashboard** → order baru di "10 order terbaru".
+**Steps (phone):**
+1. Home `/id` → menu/category **Ballet** → **Diamond SD140**.
+2. Show: price in Rp, per-size stock labels (Ready / Sisa N (N left) / Habis (Sold out)).
+3. Choose color **Light Pink**, size **7.0L (adult)**, width **C** → **Tambah ke Keranjang** (Add to Cart) → **Lihat keranjang** (View cart) → Checkout.
+4. Fill in **Nama lengkap** (Full name), **Nomor WhatsApp** (WhatsApp number) `0812-3456-7890`, **Provinsi** (Province) DKI Jakarta, **Kabupaten/Kota** (Regency/City) Kota Jakarta Selatan, **Kecamatan** (District) Kebayoran Baru, **Kode pos** (Postal code) 12160, **Alamat lengkap** (Full address) → **Lanjut ke Pengiriman** (Continue to Shipping).
+5. Choose **GoSend Instant** (or the first courier if it is past 16:00 WIB) → show **Asuransi pengiriman** (Shipping insurance) → **Lanjut ke Pembayaran** (Continue to Payment).
+6. In the summary, enter **Kode voucher** (Voucher code) `RELEVE10` → **Pakai** (Apply) → "Voucher dipakai — hemat …" (Voucher applied — you save …) appears (10% discount, minimum spend Rp500.000).
+7. The **QRIS** method is already selected → **Bayar Sekarang** (Pay Now) → payment page with the QR & a 30-minute countdown.
+8. Click **Simulasikan Bayar Berhasil** (Simulate Successful Payment) → "Pembayaran berhasil" (Payment successful) page.
+9. **Laptop:** open **WA outbox** → a "Pembayaran diterima" (Payment received) message for that order. Open **Dashboard** → the new order in "10 order terbaru" (10 latest orders).
 
-**Ucapkan:**
-- "Pembeli tidak perlu bikin akun — cukup nama, nomor WA, dan alamat. **WhatsApp jadi saluran utama**: konfirmasi, status bayar, dan resi dikirim ke WA."
-- "Pengiriman **hanya Pulau Jawa**, dari gudang di **Jakarta**. Kurir instan otomatis muncul hanya untuk Jabodetabek dan sebelum jam cutoff."
-- "Pembayaran **digital penuh**: QRIS, e-wallet, Virtual Account, kartu. **Tidak ada COD** — sesuai keputusan untuk segmen menengah-atas, dan menghindari risiko paket ditolak."
-- "Harga dan total selalu dihitung ulang di server — tidak bisa diakali dari browser. Stok varian ini langsung berkurang 1."
-- "Tombol 'Simulasikan' ini hanya ada di mode demo. Nanti diganti notifikasi asli dari Xendit."
+**Say:**
+- "The buyer doesn't need to create an account — just a name, WA number, and address. **WhatsApp is the main channel**: confirmation, payment status, and tracking number are sent via WA."
+- "Shipping is **Java only**, from a warehouse in **Jakarta**. Instant couriers automatically appear only for Jabodetabek and before the cutoff time."
+- "Payment is **fully digital**: QRIS, e-wallets, Virtual Account, cards. **No COD** — in line with the decision for the upper-middle segment, and to avoid the risk of rejected parcels."
+- "Prices and totals are always recalculated on the server — they can't be tampered with from the browser. Stock for this variant immediately drops by 1."
+- "This 'Simulasikan' (Simulate) button only exists in demo mode. Later it will be replaced by the real notification from Xendit."
 
-## 3. D2 — Konsultasi ukuran via WA → admin kirim link checkout → bayar VA (3 menit)
+## 3. D2 — Size consultation via WA → admin sends a checkout link → pay by VA (3 minutes)
 
-**Langkah:**
-1. **HP:** buka **Alina IV Pointe Shoe P95** → tunjukkan callout "Pointe sebaiknya dicoba/difitting" dan banyak ukuran "Sisa 1–3".
-2. Klik **Tanya via WA** → WhatsApp terbuka dengan pesan terisi (nama produk + kode model). Tidak perlu dikirim; kembali ke browser.
-3. **Laptop:** **Checkout link** → **Produk**: ketik `P95` → pilih **Alina IV Pointe Shoe P95** → **Ukuran** 6.0L (adult) → **Width** C → **Tambah item**.
-4. Isi **Nama** "Sari Dewi" dan **Nomor WhatsApp** pembeli → **Buat checkout link**.
-5. Tunjukkan link `…/id/checkout?link=…` dan tombol kirim via WA (membuka WA ke pembeli dengan pesan + link). Salin link → buka di **HP**.
-6. **HP:** muncul "Pesanan disiapkan oleh admin Relevé", nama & WA sudah terisi. Isi alamat → **Lanjut ke Pengiriman** → pilih kurir → **Lanjut ke Pembayaran**.
-7. Pilih **BCA Virtual Account** → **Bayar Sekarang** → tunjukkan nomor VA (diawali 39108) → **Salin nomor Virtual Account** → buka panduan **ATM BCA**.
-8. **Simulasikan Bayar Berhasil** → sukses. **Laptop:** **Checkout link** → status link "Terpakai" dengan nomor ordernya.
+**Steps:**
+1. **Phone:** open **Alina IV Pointe Shoe P95** → show the callout "Pointe sebaiknya dicoba/difitting" (Pointe shoes should be tried on/fitted) and the many "Sisa 1–3" sizes.
+2. Click **Tanya via WA** → WhatsApp opens with a prefilled message (product name + model code). No need to send it; go back to the browser.
+3. **Laptop:** **Checkout link** → **Produk** (Product): type `P95` → choose **Alina IV Pointe Shoe P95** → **Ukuran** (Size) 6.0L (adult) → **Width** C → **Tambah item** (Add item).
+4. Fill in **Nama** (Name) "Sari Dewi" and the buyer's **Nomor WhatsApp** → **Buat checkout link** (Create checkout link).
+5. Show the link `…/id/checkout?link=…` and the send-via-WA button (opens WA to the buyer with a message + link). Copy the link → open it on the **phone**.
+6. **Phone:** "Pesanan disiapkan oleh admin Relevé" (Order prepared by Relevé admin) appears, with name & WA prefilled. Fill in the address → **Lanjut ke Pengiriman** → choose a courier → **Lanjut ke Pembayaran**.
+7. Choose **BCA Virtual Account** → **Bayar Sekarang** → show the VA number (starting with 39108) → **Salin nomor Virtual Account** (Copy Virtual Account number) → open the **ATM BCA** guide.
+8. **Simulasikan Bayar Berhasil** → success. **Laptop:** **Checkout link** → link status "Terpakai" (Used) with its order number.
 
-**Ucapkan:**
-- "Untuk pointe, pembeli biasanya tanya dulu soal ukuran. Alurnya kami desain **WA-first**: pembeli chat, admin bantu pilih size/width/shank, lalu **admin membuat link checkout** berisi produk yang tepat dan mengirimnya lewat WA."
-- "Link berlaku 48 jam dan hanya bisa dipakai sekali. Pembeli tinggal isi alamat dan bayar — tidak perlu cari produknya lagi."
-- "Stok yang ditampilkan **jujur per ukuran**: 'Sisa 1' artinya memang tinggal satu pasang di gudang."
+**Say:**
+- "For pointe shoes, buyers usually ask about sizing first. We designed the flow **WA-first**: the buyer chats, the admin helps choose size/width/shank, then **the admin creates a checkout link** containing the right product and sends it via WA."
+- "The link is valid for 48 hours and can only be used once. The buyer just fills in the address and pays — no need to search for the product again."
+- "The stock shown is **honest per size**: 'Sisa 1' (1 left) really means there is only one pair left in the warehouse."
 
-## 4. D3 — Stok habis → "Kabari Saya via WA" (2 menit)
+## 4. D3 — Out of stock → "Kabari Saya via WA" (2 minutes)
 
-**Langkah:**
-1. **HP:** buka **Roy BL104** (atau **Elsie SL248**) → semua ukuran **Habis**.
-2. Pilih warna **Black**, ukuran **7.0L (adult)**, width **Medium** → **Kabari Saya via WA** → isi nomor WA → **Kabari Saya** → "Siap! Kami kabari via WhatsApp saat … ready."
-3. **Laptop:** **Back-in-stock** → permintaan baru tampil (seed sudah berisi 2 permintaan Roy + 1 Elsie).
-4. **Produk & stok** → **Roy BL104** → pilih **Black** → di grid, isi stok varian 7.0L (adult) / Medium menjadi `2` → **Simpan stok** → "N pembeli dikabari via WA".
-5. **WA outbox** → pesan "Stok ready lagi" ke nomor tadi.
+**Steps:**
+1. **Phone:** open **Roy BL104** (or **Elsie SL248**) → every size is **Habis**.
+2. Choose color **Black**, size **7.0L (adult)**, width **Medium** → **Kabari Saya via WA** → enter a WA number → **Kabari Saya** (Notify Me) → "Siap! Kami kabari via WhatsApp saat … ready." (Done! We'll let you know via WhatsApp when … is ready.)
+3. **Laptop:** **Back-in-stock** → the new request appears (the seed already contains 2 Roy requests + 1 Elsie).
+4. **Produk & stok** (Products & stock) → **Roy BL104** → choose **Black** → in the grid, set the stock of variant 7.0L (adult) / Medium to `2` → **Simpan stok** (Save stock) → "N pembeli dikabari via WA" (N buyers notified via WA).
+5. **WA outbox** → a "Stok ready lagi" (Back in stock) message to that number.
 
-**Ucapkan:**
-- "Daripada pembeli pergi, kita simpan nomornya. Begitu admin menambah stok, semua yang menunggu **otomatis dikabari via WA** — masing-masing sekali saja."
-- "Ini juga data permintaan: admin bisa lihat model & ukuran apa yang paling dicari sebelum restock."
+**Say:**
+- "Instead of letting the buyer leave, we keep their number. As soon as the admin adds stock, everyone waiting is **automatically notified via WA** — each only once."
+- "This is also demand data: the admin can see which models & sizes are most wanted before restocking."
 
-## 5. D4 — Pre-order dicampur dengan barang ready (1,5 menit)
+## 5. D4 — Pre-order mixed with ready items (1.5 minutes)
 
-**Langkah:**
-1. **HP:** buka **Briar SD110L** (atau Jaxon JZ86L / Claudine SD155) → semua ukuran berlabel **Pre-order**. Pilih Pink 40, ukuran 7.0L (adult), width C → **Tambah ke Keranjang**.
-2. Tambah juga **Diamond SD140** ready.
-3. **Keranjang:** tunjukkan pemberitahuan "Keranjang berisi item pre-order. Semua item dikirim sekaligus setelah item pre-order tiba (estimasi 4–6 minggu)."
-4. Lanjut checkout sampai ringkasan → tunjukkan label pre-order lagi. (Bayar opsional; halaman sukses juga menampilkan "Estimasi tiba 4–6 minggu".)
+**Steps:**
+1. **Phone:** open **Briar SD110L** (or Jaxon JZ86L / Claudine SD155) → every size is labeled **Pre-order**. Choose Pink 40, size 7.0L (adult), width C → **Tambah ke Keranjang**.
+2. Also add a ready **Diamond SD140**.
+3. **Cart:** show the notice "Keranjang berisi item pre-order. Semua item dikirim sekaligus setelah item pre-order tiba (estimasi 4–6 minggu)." (Your cart contains pre-order items. All items ship together once the pre-order items arrive (estimate 4–6 weeks).)
+4. Continue checkout to the summary → show the pre-order label again. (Paying is optional; the success page also shows "Estimasi tiba 4–6 minggu" (Estimated arrival 4–6 weeks).)
 
-**Ucapkan:**
-- "Model yang belum ada di gudang tetap bisa dijual sebagai **pre-order**, dengan estimasi yang jelas sejak awal. Admin bisa mengaktifkan/mematikan pre-order per varian atau per produk."
-- "Untuk versi pertama, pesanan campuran dikirim sekaligus — sederhana dan hemat ongkir. Pengiriman terpisah bisa ditambah nanti."
+**Say:**
+- "Models not yet in the warehouse can still be sold as **pre-order**, with a clear estimate from the start. The admin can enable/disable pre-order per variant or per product."
+- "For the first version, mixed orders ship together — simple and saves on shipping. Split shipments can be added later."
 
-## 6. D5 — Alamat di luar Pulau Jawa (30 detik)
+## 6. D5 — Address outside Java (30 seconds)
 
-**Langkah:** di checkout, buka dropdown **Provinsi** → hanya 6 provinsi Jawa (DKI Jakarta, Banten, Jawa Barat, Jawa Tengah, DI Yogyakarta, Jawa Timur); **Bali tidak ada**. Tunjukkan link **"Di luar Pulau Jawa? Hubungi kami via WA"**.
+**Steps:** at checkout, open the **Provinsi** dropdown → only the 6 Java provinces (DKI Jakarta, Banten, Jawa Barat, Jawa Tengah, DI Yogyakarta, Jawa Timur); **Bali is not there**. Show the link **"Di luar Pulau Jawa? Hubungi kami via WA"** (Outside Java? Contact us via WA).
 
-**Ucapkan:** "Sesuai keputusan awal, checkout otomatis hanya untuk Jawa. Pembeli luar Jawa tidak ditolak — diarahkan ke WA untuk ditangani manual. Saat Biteship disambung, cakupannya bisa diperluas tinggal konfigurasi."
+**Say:** "As decided at the start, automatic checkout is for Java only. Buyers outside Java are not turned away — they are directed to WA to be handled manually. Once Biteship is connected, coverage can be expanded with just configuration."
 
-## 7. D6 — Pembayaran kedaluwarsa → stok kembali (1,5 menit)
+## 7. D6 — Payment expires → stock returns (1.5 minutes)
 
-**Langkah:**
-1. **HP:** buka **Alina IV Pointe Shoe P95** → pilih ukuran berlabel **Sisa 1** (mis. 7.5L (adult), width C) → **Tambah ke Keranjang** → checkout → **Bayar Sekarang** (metode apa saja).
-2. (Opsional) Buka PDP Alina di tab lain → ukuran itu sekarang **Habis** — stoknya sedang dipegang untuk pembeli ini.
-3. Klik **Simulasikan Kedaluwarsa** → "Pembayaran kedaluwarsa", "Stok sudah dilepas", tombol **Pesan lagi**.
-4. Refresh PDP → ukuran itu kembali **Sisa 1**. **Laptop:** WA outbox → "Pembayaran kedaluwarsa".
+**Steps:**
+1. **Phone:** open **Alina IV Pointe Shoe P95** → choose a size labeled **Sisa 1** (e.g. 7.5L (adult), width C) → **Tambah ke Keranjang** → checkout → **Bayar Sekarang** (any method).
+2. (Optional) Open the Alina PDP in another tab → that size is now **Habis** — its stock is being held for this buyer.
+3. Click **Simulasikan Kedaluwarsa** (Simulate Expiry) → "Pembayaran kedaluwarsa" (Payment expired), "Stok sudah dilepas" (Stock has been released), **Pesan lagi** (Order again) button.
+4. Refresh the PDP → that size is back to **Sisa 1**. **Laptop:** WA outbox → "Pembayaran kedaluwarsa".
 
-**Ucapkan:**
-- "Begitu pembeli menekan bayar, stok **dikunci** untuknya — tidak ada dua orang membayar sepasang sepatu terakhir yang sama. Kami sudah menguji skenario rebutan stok terakhir secara otomatis: satu berhasil, satu ditolak."
-- "Kalau tidak dibayar sampai batas waktu (QRIS 30 menit, VA 24 jam), order kedaluwarsa dan stok otomatis kembali dijual."
+**Say:**
+- "As soon as the buyer presses pay, the stock is **locked** for them — two people can't pay for the same last pair of shoes. We have tested the race for the last item automatically: one succeeds, one is rejected."
+- "If it isn't paid by the deadline (QRIS 30 minutes, VA 24 hours), the order expires and the stock automatically goes back on sale."
 
-**Opsional — kartu ditolak (30 detik):** di checkout pilih **Kartu kredit/debit** → **Bayar Sekarang** → **Nomor kartu** `4000 0000 0000 0002`, berlaku `12/30`, CVV `123` → **Bayar Rp…** → OTP 6 digit apa saja → **Verifikasi** → "Kartu ditolak oleh bank penerbit" → **Ganti metode pembayaran** → QRIS → **Pakai metode ini**. "Order tidak hilang; pembeli tinggal ganti metode."
+**Optional — card declined (30 seconds):** at checkout choose **Kartu kredit/debit** (Credit/debit card) → **Bayar Sekarang** → **Nomor kartu** (Card number) `4000 0000 0000 0002`, expiry `12/30`, CVV `123` → **Bayar Rp…** (Pay Rp…) → any 6-digit OTP → **Verifikasi** (Verify) → "Kartu ditolak oleh bank penerbit" (Card declined by the issuing bank) → **Ganti metode pembayaran** (Change payment method) → QRIS → **Pakai metode ini** (Use this method). "The order isn't lost; the buyer just switches methods."
 
-## 8. D7 — Admin memproses & mengirim, pembeli melacak (2 menit)
+## 8. D7 — Admin processes & ships, buyer tracks (2 minutes)
 
-**Langkah:**
-1. **Laptop:** **Order** → filter status **Dibayar** → buka order **Sekar Ayu Larasati** (order contoh dari seed; atau order D1 tadi).
-2. Tunjukkan detail: item, alamat, pembayaran, timeline, pesan WA, tombol **Chat pembeli**.
-3. **Ubah status ke** → **Proses pesanan** → status "Diproses".
-4. **Ubah status ke** → **Kirim (input resi)** → **Kurir** JNE → **Nomor resi (AWB)** mis. `JNE1234567890` → **Kirim (input resi)** → status "Dikirim"; timeline berisi resi; WA outbox berisi pesan dengan nomor resi.
-5. **HP:** `…/id/track` → **Nomor pesanan** (salin dari admin) + **4 digit terakhir nomor WA** (`5432` untuk Sekar; `7890` untuk order D1) → **Lacak** → timeline "Dikirim", nomor resi bisa disalin, tombol "Tanya pesanan ini".
+**Steps:**
+1. **Laptop:** **Order** → filter status **Dibayar** (Paid) → open the order for **Sekar Ayu Larasati** (a sample order from the seed; or the D1 order from earlier).
+2. Show the details: items, address, payment, timeline, WA messages, the **Chat pembeli** (Chat with buyer) button.
+3. **Ubah status ke** (Change status to) → **Proses pesanan** (Process order) → status "Diproses" (Processing).
+4. **Ubah status ke** → **Kirim (input resi)** (Ship (enter tracking number)) → **Kurir** (Courier) JNE → **Nomor resi (AWB)** (Tracking number (AWB)) e.g. `JNE1234567890` → **Kirim (input resi)** → status "Dikirim" (Shipped); the timeline contains the tracking number; the WA outbox contains a message with the tracking number.
+5. **Phone:** `…/id/track` → **Nomor pesanan** (Order number) (copy from admin) + **4 digit terakhir nomor WA** (Last 4 digits of WA number) (`5432` for Sekar; `7890` for the D1 order) → **Lacak** (Track) → timeline "Dikirim", the tracking number can be copied, "Tanya pesanan ini" (Ask about this order) button.
 
-**Ucapkan:**
-- "Admin hanya melihat tombol yang sah untuk status saat ini — tidak bisa langsung 'Dikirim' sebelum 'Diproses', dan resi wajib diisi."
-- "Status 'Dibayar' hanya bisa datang dari payment gateway, bukan diklik admin — mencegah kesalahan dan kecurangan."
-- "Pembeli melacak tanpa login: cukup nomor pesanan + 4 digit terakhir WA."
+**Say:**
+- "The admin only sees buttons that are valid for the current status — they can't jump straight to 'Dikirim' before 'Diproses', and the tracking number is mandatory."
+- "The 'Dibayar' status can only come from the payment gateway, not clicked by the admin — preventing mistakes and fraud."
+- "Buyers track without logging in: just the order number + the last 4 digits of their WA."
 
-## 9. D8 — Bilingual (1 menit)
+## 9. D8 — Bilingual (1 minute)
 
-**Langkah:** **HP:** buka **Claudia Satin SD09** (atau **Toshie SD40VC**) → tunjukkan pilihan **shank** (Full Normal / Full Extra Reinforced; Toshie punya 4 shank) → ketuk **EN** di header → UI berbahasa Inggris, harga tetap format **Rp**, istilah *pointe, shank, vamp* tidak diterjemahkan. Kembali ke **ID**.
+**Steps:** **Phone:** open **Claudia Satin SD09** (or **Toshie SD40VC**) → show the **shank** options (Full Normal / Full Extra Reinforced; Toshie has 4 shanks) → tap **EN** in the header → the UI is in English, prices stay in **Rp** format, the terms *pointe, shank, vamp* are not translated. Switch back to **ID**.
 
-**Ucapkan:** "Bahasa Indonesia default, Inggris untuk pelanggan ekspatriat dan studio internasional. Istilah dansa dibiarkan apa adanya karena penari memakainya begitu."
+**Say:** "Indonesian is the default, English for expatriate customers and international studios. Dance terms are left as they are because dancers use them that way."
 
-## 10. Penutup (1,5 menit)
+## 10. Closing (1.5 minutes)
 
-Tunjukkan sekilas **`/id/design-system`** di laptop: "Semua warna, tombol, dan komponen dikumpulkan di sini, jadi ganti nama/logo/warna merek nanti cepat dan konsisten."
+Briefly show **`/id/design-system`** on the laptop: "All the colors, buttons, and components are collected here, so changing the brand name/logo/colors later is quick and consistent."
 
-### Yang sudah siap disambung
-| Bagian | Di demo | Nanti | Yang dibutuhkan dari klien |
+### Ready to be connected
+| Part | In the demo | Later | Needed from the client |
 |---|---|---|---|
-| **Pembayaran — Xendit** | Simulasi QRIS, e-wallet, VA 5 bank, kartu (+3DS) | Xendit asli; webhook & tanda tangan sudah lewat jalur yang sama | Akun Xendit bisnis terverifikasi (KYC badan usaha/perorangan) |
-| **Ongkir & resi — Biteship** | Tarif dari tabel 7 layanan kurir | Tarif & area real-time, pelacakan resi | Akun Biteship, alamat gudang Jakarta |
-| **Notifikasi — WhatsApp Business API** | Pesan tersimpan di "WA outbox" | Terkirim otomatis lewat BSP (mis. Qontak/Wati/360dialog) | Nomor WA bisnis khusus, verifikasi Meta, template pesan disetujui |
+| **Payments — Xendit** | Simulated QRIS, e-wallets, VA for 5 banks, cards (+3DS) | Real Xendit; webhooks & signatures already go through the same path | A verified Xendit business account (KYC for a company/individual) |
+| **Shipping rates & tracking — Biteship** | Rates from a table of 7 courier services | Real-time rates & areas, tracking-number tracking | A Biteship account, the Jakarta warehouse address |
+| **Notifications — WhatsApp Business API** | Messages stored in the "WA outbox" | Sent automatically via a BSP (e.g. Qontak/Wati/360dialog) | A dedicated business WA number, Meta verification, approved message templates |
 
-"Ketiganya sudah dibuat sebagai 'colokan' di kode — mengganti simulasi ke asli adalah pekerjaan konfigurasi dan pengujian, bukan membangun ulang." (Detail teknis: `11-go-live-integrations.md`.)
+"All three are already built as 'plugs' in the code — switching from simulation to the real thing is configuration and testing work, not a rebuild." (Technical details: `11-go-live-integrations.md`.)
 
-### Keputusan yang dibutuhkan dari klien
-1. **Harga grosir (Q-01):** apakah Bapak/Ibu bisa mendapat harga grosir (±50% dari harga retail) dari Só Dança? Tanpa itu, harga jual kita sekitar 2× harga pasar.
-2. **Strategi pointe (Q-02):** pointe Só Dança di kisaran Rp3 juta, sementara Bloch lokal Rp1,1–1,6 juta. Pointe mau dijual normal, dijadikan pre-order/niche, atau margin diturunkan?
-3. **Nama & logo (Q-03):** apakah "Relevé Dance Supply" dipakai, atau ada nama & logo final?
-4. **Nomor WhatsApp bisnis (Q-04):** nomor mana yang dipakai untuk toko (sebaiknya nomor khusus, karena akan didaftarkan ke WhatsApp Business API)?
-5. **Alamat gudang Jakarta (Q-05):** alamat lengkapnya untuk titik jemput kurir instan dan footer toko.
-6. **Tabel ukuran (Q-06):** apakah ada tabel ukuran (cm) resmi per kategori? Saat ini kami salin dari size chart Só Dança dan perlu dicek.
-7. **Bea masuk & pajak impor (Q-07):** bisa bantu konfirmasi HS code, bea masuk, lartas, dan PPh 22 dengan PPJK/forwarder? Ini memengaruhi harga jual.
-8. **Retur & tukar ukuran (Q-08):** kebijakannya seperti apa? Sementara kami tulis "lewat WA, kasus per kasus".
-9. **Foto produk (Q-09):** kapan foto produk sendiri tersedia? Wajib sebelum toko live (demo memakai placeholder).
+### Decisions needed from the client
+1. **Wholesale price (Q-01):** can you get a wholesale price (±50% of the retail price) from Só Dança? Without it, our selling price is about 2× the market price.
+2. **Pointe strategy (Q-02):** Só Dança pointe shoes are around Rp3 million, while Bloch locally is Rp1,1–1,6 million. Should pointe shoes be sold normally, made pre-order/niche, or should the margin be lowered?
+3. **Name & logo (Q-03):** will "Relevé Dance Supply" be used, or is there a final name & logo?
+4. **Business WhatsApp number (Q-04):** which number will be used for the store (preferably a dedicated number, since it will be registered with the WhatsApp Business API)?
+5. **Jakarta warehouse address (Q-05):** the full address, for the instant-courier pickup point and the store footer.
+6. **Size chart (Q-06):** is there an official size chart (cm) per category? We currently copied it from the Só Dança size chart and it needs checking.
+7. **Import duties & taxes (Q-07):** can you help confirm the HS code, import duty, lartas (import restrictions), and PPh 22 with a PPJK/forwarder? This affects the selling price.
+8. **Returns & size exchanges (Q-08):** what is the policy? For now we have written "via WA, case by case".
+9. **Product photos (Q-09):** when will our own product photos be available? Required before the store goes live (the demo uses placeholders).
 
-**Tutup:** "Setelah keputusan ini dan akun-akun di atas siap, langkah berikutnya adalah menyambung integrasi asli, mengisi foto & harga final, lalu uji coba terbatas sebelum go-live."
+**Close:** "Once these decisions and the accounts above are ready, the next step is connecting the real integrations, filling in final photos & prices, then a limited trial before go-live."
 
 ---
 
-## Jika ada kendala saat demo
-| Gejala | Tindakan |
+## If something goes wrong during the demo
+| Symptom | Action |
 |---|---|
-| GoSend Instant tidak muncul | Sudah lewat 16:00 WIB atau kota bukan Jabodetabek — pakai JNE, jelaskan cutoff |
-| "Stok tidak cukup" di checkout | Data sudah terpakai sesi sebelumnya — pilih ukuran lain, atau seed ulang setelah meeting |
-| Keranjang berisi item lama | Buka tab incognito |
-| Admin terlempar ke login | Sesi 12 jam habis — login ulang |
-| Voucher "Minimal belanja …" | Subtotal di bawah Rp500.000 — tambah item |
+| GoSend Instant doesn't appear | It's past 16:00 WIB or the city is not Jabodetabek — use JNE, explain the cutoff |
+| "Stok tidak cukup" (Insufficient stock) at checkout | The data was used up by a previous session — choose another size, or re-seed after the meeting |
+| Cart contains old items | Open an incognito tab |
+| Admin kicked back to login | The 12-hour session expired — log in again |
+| Voucher "Minimal belanja …" (Minimum spend …) | Subtotal is below Rp500.000 — add an item |

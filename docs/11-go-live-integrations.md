@@ -1,157 +1,157 @@
-# 11 — Go-live integrasi (Xendit, Biteship, WhatsApp Business)
+# 11 — Integration go-live (Xendit, Biteship, WhatsApp Business)
 
-Demo memakai provider mock (`PAYMENT_PROVIDER=mock`, `SHIPPING_PROVIDER=mock`, `MESSAGING_PROVIDER=outbox`).
-Provider asli sudah ada di `src/lib/providers/**`; go-live = isi env + ganti 3 variabel. Tidak ada perubahan kode.
+The demo uses mock providers (`PAYMENT_PROVIDER=mock`, `SHIPPING_PROVIDER=mock`, `MESSAGING_PROVIDER=outbox`).
+The real providers already exist in `src/lib/providers/**`; going live = filling in env + switching 3 variables. No code changes.
 
-> **Secret tidak pernah di-commit.** Isi di `.env.local` (lokal) atau secret manager hosting. `.env.example` hanya berisi nama variabel (dikomentari).
+> **Secrets are never committed.** Put them in `.env.local` (local) or the hosting secret manager. `.env.example` only contains variable names (commented out).
 
-Bagian bertanda **VERIFIKASI** adalah asumsi bentuk API yang harus dicek di sandbox/test mode sebelum live.
+Sections marked **VERIFY** are assumptions about the API shape that must be checked in sandbox/test mode before going live.
 
 ---
 
-## 0. Checklist cepat
+## 0. Quick checklist
 
-| # | Langkah | Selesai |
+| # | Step | Done |
 |---|---|---|
-| 1 | Domain HTTPS publik (`NEXT_PUBLIC_SITE_URL=https://…`) — Xendit menolak return URL non-HTTPS | ☐ |
-| 2 | Xendit: akun terverifikasi, payment method aktif, secret key + webhook token, URL webhook | ☐ |
-| 3 | Uji Xendit di test mode (semua tile: QRIS, 4 e-wallet, 5 VA, kartu) | ☐ |
-| 4 | Biteship: API key, kode pos/area gudang + koordinat, saldo | ☐ |
-| 5 | Meta WABA: nomor bisnis, System User token, 7 template × 2 bahasa **Approved** | ☐ |
-| 6 | `validateProviderEnv()` tanpa masalah (lihat §5) | ☐ |
+| 1 | Public HTTPS domain (`NEXT_PUBLIC_SITE_URL=https://…`) — Xendit rejects non-HTTPS return URLs | ☐ |
+| 2 | Xendit: verified account, payment methods active, secret key + webhook token, webhook URL | ☐ |
+| 3 | Test Xendit in test mode (all tiles: QRIS, 4 e-wallets, 5 VAs, card) | ☐ |
+| 4 | Biteship: API key, warehouse postal code/area + coordinates, balance | ☐ |
+| 5 | Meta WABA: business number, System User token, 7 templates × 2 languages **Approved** | ☐ |
+| 6 | `validateProviderEnv()` reports no problems (see §5) | ☐ |
 | 7 | Set `PAYMENT_PROVIDER=xendit`, `SHIPPING_PROVIDER=biteship`, `MESSAGING_PROVIDER=waba`, `DEMO_MODE=false`, `NEXT_PUBLIC_DEMO_MODE=false` | ☐ |
-| 8 | Smoke test produksi dengan nominal kecil (QRIS Rp10.000) lalu refund manual di dashboard | ☐ |
+| 8 | Production smoke test with a small amount (QRIS Rp10.000), then a manual refund in the dashboard | ☐ |
 
-Provider bisa diganti satu per satu (mis. Biteship dulu, Xendit belakangan).
+Providers can be switched one at a time (e.g. Biteship first, Xendit later).
 
 ---
 
-## 1. Xendit (pembayaran)
+## 1. Xendit (payments)
 
-### 1.1 Integrasi yang dipakai
-Xendit **Payments API v3** (`POST /v3/payment_requests`, header `api-version: 2024-11-11`) — API terpadu yang
-menggantikan QR Codes API, E-Wallet Charges, dan Fixed VA API lama. Kartu memakai **Payment Session** hosted
-(`POST /sessions`, `mode: PAYMENT_LINK`, `allowed_payment_channels: ["CARDS"]`) sehingga data kartu tidak pernah
-menyentuh server kita (tidak perlu PCI DSS penuh).
+### 1.1 Integration used
+Xendit **Payments API v3** (`POST /v3/payment_requests`, header `api-version: 2024-11-11`) — the unified API that
+replaces the old QR Codes API, E-Wallet Charges, and Fixed VA API. Cards use a hosted **Payment Session**
+(`POST /sessions`, `mode: PAYMENT_LINK`, `allowed_payment_channels: ["CARDS"]`) so card data never
+touches our server (full PCI DSS is not required).
 
-| Tile | `channel_code` | Hasil |
+| Tile | `channel_code` | Result |
 |---|---|---|
-| QRIS | `QRIS` | `qrString` dari action `QR_STRING`, kedaluwarsa 30 mnt |
-| GoPay / OVO / DANA / ShopeePay | `GOPAY` / `OVO` / `DANA` / `SHOPEEPAY` | `redirectUrl` dari action `WEB_URL` (atau `DEEPLINK_URL`) |
-| VA BCA / Mandiri / BNI / BRI / Permata | `BCA_VIRTUAL_ACCOUNT`, `MANDIRI_…`, `BNI_…`, `BRI_…`, `PERMATA_…` | `vaNumber` dari action `VIRTUAL_ACCOUNT_NUMBER`; `type: PAY` = VA tertutup, sekali pakai, nominal pas; 24 jam |
-| Kartu | Payment Session | `redirectUrl` = `payment_link_url` (3DS di halaman Xendit), 15 mnt |
+| QRIS | `QRIS` | `qrString` from the `QR_STRING` action, expires in 30 min |
+| GoPay / OVO / DANA / ShopeePay | `GOPAY` / `OVO` / `DANA` / `SHOPEEPAY` | `redirectUrl` from the `WEB_URL` action (or `DEEPLINK_URL`) |
+| VA BCA / Mandiri / BNI / BRI / Permata | `BCA_VIRTUAL_ACCOUNT`, `MANDIRI_…`, `BNI_…`, `BRI_…`, `PERMATA_…` | `vaNumber` from the `VIRTUAL_ACCOUNT_NUMBER` action; `type: PAY` = closed, single-use VA with exact amount; 24 hours |
+| Card | Payment Session | `redirectUrl` = `payment_link_url` (3DS on the Xendit page), 15 min |
 
-`reference_id` = `<orderNo>-<METODE>-<acak>`; dikirim juga sebagai `idempotency-key`. `providerRef` = id Xendit (`pr-…` atau `ps-…`).
-Ganti metode → `POST /v3/payment_requests/{id}/cancel` atau `POST /sessions/{id}/cancel`.
+`reference_id` = `<orderNo>-<METODE>-<acak>` (order number, method, random); it is also sent as the `idempotency-key`. `providerRef` = the Xendit id (`pr-…` or `ps-…`).
+Changing method → `POST /v3/payment_requests/{id}/cancel` or `POST /sessions/{id}/cancel`.
 
-### 1.2 Akun & kunci
-1. Daftar di <https://dashboard.xendit.co>, lengkapi verifikasi bisnis (dokumen Indonesia), lalu aktifkan payment method: QRIS, GoPay, OVO, DANA, ShopeePay, VA BCA/Mandiri/BNI/BRI/Permata, Cards. Aktivasi beberapa channel (GoPay, kartu) butuh review partner — mulai lebih awal.
-2. **Settings → API keys** → *Generate secret key* dengan izin **Money-in: Write** (Payments API / Sessions). Test mode: `xnd_development_…`; live: `xnd_production_…`.
-3. **Settings → Webhooks** → salin **Webhook verification token** → `XENDIT_CALLBACK_TOKEN`.
-4. Di halaman Webhooks yang sama, isi URL untuk event **Payments API** (payment / payment_request) **dan** **Payment Session**:
+### 1.2 Account & keys
+1. Sign up at <https://dashboard.xendit.co>, complete business verification (Indonesian documents), then activate the payment methods: QRIS, GoPay, OVO, DANA, ShopeePay, VA BCA/Mandiri/BNI/BRI/Permata, Cards. Activating some channels (GoPay, cards) requires partner review — start early.
+2. **Settings → API keys** → *Generate secret key* with the **Money-in: Write** permission (Payments API / Sessions). Test mode: `xnd_development_…`; live: `xnd_production_…`.
+3. **Settings → Webhooks** → copy the **Webhook verification token** → `XENDIT_CALLBACK_TOKEN`.
+4. On the same Webhooks page, set the URL for the **Payments API** events (payment / payment_request) **and** **Payment Session**:
    `https://<domain>/api/webhooks/payment`
 
 ### 1.3 Env
-| Var | Wajib | Isi |
+| Var | Required | Value |
 |---|---|---|
 | `PAYMENT_PROVIDER` | ✓ | `xendit` |
-| `XENDIT_SECRET_KEY` | ✓ | secret key (Basic auth, password kosong) |
+| `XENDIT_SECRET_KEY` | ✓ | secret key (Basic auth, empty password) |
 | `XENDIT_CALLBACK_TOKEN` | ✓ | webhook verification token |
 | `XENDIT_BASE_URL` | – | default `https://api.xendit.co` |
 | `XENDIT_API_VERSION` | – | default `2024-11-11` |
 
-`WEBHOOK_SECRET` tetap diperlukan untuk mock/demo; tidak dipakai Xendit.
+`WEBHOOK_SECRET` is still required for mock/demo; Xendit does not use it.
 
-### 1.4 Webhook → status pesanan
-Header `x-callback-token` harus sama persis dengan `XENDIT_CALLBACK_TOKEN` (perbandingan constant-time), kalau tidak → 401.
+### 1.4 Webhook → order status
+The `x-callback-token` header must exactly match `XENDIT_CALLBACK_TOKEN` (constant-time comparison); otherwise → 401.
 
-| Event Xendit | Status kita | `eventId` (idempoten) |
+| Xendit event | Our status | `eventId` (idempotent) |
 |---|---|---|
 | `payment.capture` | PAID | `xendit:payment.capture:<payment_id>` |
-| `payment.failure` | FAILED (pesanan tetap menunggu, pembeli bisa ganti metode) | `xendit:payment.failure:<payment_id>` |
+| `payment.failure` | FAILED (the order stays pending; the buyer can switch methods) | `xendit:payment.failure:<payment_id>` |
 | `payment_request.expiry` | EXPIRED | `xendit:payment_request.expiry:<payment_request_id>` |
-| `payment_session.completed` | PAID (kartu) | `xendit:payment_session.completed:<payment_session_id>` |
-| `payment_session.expired` | EXPIRED (kartu) | `xendit:payment_session.expired:<payment_session_id>` |
-| event lain (refund, token, authorization…) | diabaikan, dijawab **200** | – |
+| `payment_session.completed` | PAID (card) | `xendit:payment_session.completed:<payment_session_id>` |
+| `payment_session.expired` | EXPIRED (card) | `xendit:payment_session.expired:<payment_session_id>` |
+| other events (refund, token, authorization…) | ignored, answered with **200** | – |
 
-Retry Xendit (hingga 6× dalam 24 jam) mengirim payload yang sama → `eventId` sama → `payment_events` menolak duplikat.
-Sweep kedaluwarsa lokal (`/api/cron/expire`) tetap berjalan sebagai jaring pengaman bila webhook expiry tidak datang.
+Xendit retries (up to 6× within 24 hours) send the same payload → same `eventId` → `payment_events` rejects the duplicate.
+The local expiry sweep (`/api/cron/expire`) keeps running as a safety net in case the expiry webhook never arrives.
 
-**VERIFIKASI di test mode**
-- QRIS & VA menerima `channel_properties.expires_at`; e-wallet memakai expiry partner (OVO 15 mnt, GoPay 30 mnt).
-- OVO butuh `channel_properties.account_mobile_number` (E.164) dan berupa push notification — bisa jadi **tanpa** `redirectUrl`; halaman bayar harus menampilkan "buka aplikasi OVO".
-- Payment request di dalam Payment Session kartu mewarisi `reference_id` session (`…-CARD-…`) sehingga event `payment.*`-nya diabaikan (yang dilacak `payment_session.completed`). Bila tidak mewarisi, event itu akan dijawab 404 (pembayaran tidak dikenal) dan di-retry Xendit — tidak merusak data, tapi perlu disesuaikan.
-- `idempotency-key` dihormati oleh kedua endpoint.
-- Objek `customer` inline di Payment Session diterima (reference_id `wa_<digit WA>`).
+**VERIFY in test mode**
+- QRIS & VA accept `channel_properties.expires_at`; e-wallets use the partner expiry (OVO 15 min, GoPay 30 min).
+- OVO requires `channel_properties.account_mobile_number` (E.164) and works via push notification — it may come **without** a `redirectUrl`; the payment page must show "open the OVO app".
+- The payment request inside a card Payment Session inherits the session's `reference_id` (`…-CARD-…`), so its `payment.*` events are ignored (what is tracked is `payment_session.completed`). If it does not inherit it, those events will be answered with 404 (unknown payment) and retried by Xendit — no data damage, but it needs adjusting.
+- `idempotency-key` is honored by both endpoints.
+- An inline `customer` object in the Payment Session is accepted (reference_id `wa_<digit WA>`).
 
-### 1.5 Uji di test mode
-1. Isi env dengan kunci `xnd_development_…`, `PAYMENT_PROVIDER=xendit`, jalankan app di URL HTTPS publik (mis. tunnel ngrok/cloudflared) dan set `NEXT_PUBLIC_SITE_URL` ke URL itu; daftarkan URL webhook tunnel di dashboard test mode.
-2. Buat pesanan untuk tiap tile. Simulasikan bayar:
-   - **QRIS / VA**: Dashboard (test mode) → transaksi → *Simulate payment*, atau endpoint simulasi Xendit untuk payment request (lihat docs.xendit.co → "Simulate payment").
-   - **E-wallet**: buka `redirectUrl`, halaman sandbox partner menyediakan tombol sukses/gagal.
-   - **Kartu**: halaman Payment Session dengan kartu uji Xendit (docs: "Simulate card scenarios (test cards)").
-3. Cek: pesanan → PAID, stok terpotong, pesan `PAYMENT_PAID` di WA Outbox; kirim ulang webhook dari Dashboard → respons `duplicate: true`.
-4. Biarkan satu QRIS kedaluwarsa → pesanan EXPIRED, stok dilepas.
-5. Ganti metode di halaman bayar → payment lama berstatus CANCELED di dashboard.
+### 1.5 Testing in test mode
+1. Fill env with the `xnd_development_…` key, `PAYMENT_PROVIDER=xendit`, run the app on a public HTTPS URL (e.g. an ngrok/cloudflared tunnel) and set `NEXT_PUBLIC_SITE_URL` to that URL; register the tunnel webhook URL in the test-mode dashboard.
+2. Create an order for each tile. Simulate payment:
+   - **QRIS / VA**: Dashboard (test mode) → transaction → *Simulate payment*, or the Xendit simulation endpoint for payment requests (see docs.xendit.co → "Simulate payment").
+   - **E-wallet**: open the `redirectUrl`; the partner sandbox page provides success/failure buttons.
+   - **Card**: the Payment Session page with Xendit test cards (docs: "Simulate card scenarios (test cards)").
+3. Check: order → PAID, stock deducted, a `PAYMENT_PAID` message in the WA Outbox; resend the webhook from the Dashboard → response `duplicate: true`.
+4. Let one QRIS expire → order EXPIRED, stock released.
+5. Change method on the payment page → the old payment shows status CANCELED in the dashboard.
 
 ---
 
-## 2. Biteship (ongkir & lacak)
+## 2. Biteship (shipping rates & tracking)
 
-### 2.1 Yang dipakai
-- `POST /v1/rates/couriers` dengan kurir `jne,jnt,sicepat,anteraja` berdasarkan **kode pos** (asal ↔ tujuan). Bila pembeli belum mengisi kode pos atau gudang memakai area id → `GET /v1/maps/areas?countries=ID&input=…&type=single` (di-cache).
-- Kurir instan `gojek,grab` dihitung dengan **koordinat**: pin gudang + titik tengah kota tujuan (`shipping/biteship-areas.ts`, hanya Z1). Harga instan = estimasi kota sampai checkout punya pin peta.
-- Aturan toko tetap berlaku di atas Biteship: instan hanya Z1, sebelum cutoff WIB (GoSend Instant 16:00 / ≤20 kg, Grab Same Day 14:00 / ≤7 kg), freight/cargo dibuang, urutan Instan → Express → Reguler.
-- Tipe: `service_type` `instant`/`same_day` → Instan (jam), `overnight` + `jne_yes`, `sicepat_best`, `anteraja_next_day` → Express, lainnya → Reguler. `serviceCode` = `<courier_code>_<service_code>` (mis. `jne_reg`).
-- Asuransi: default aturan kita max(Rp2.500, 0,25 % nilai barang). `BITESHIP_USE_COURIER_INSURANCE=true` → kirim `courier_insurance` dan pakai `insurance_fee` Biteship.
-- Lacak: `GET /v1/trackings/{awb}/couriers/{courier_code}` (nama kurir dari admin dinormalisasi: "J&T" → `jnt`, "GoSend" → `gojek`).
+### 2.1 What is used
+- `POST /v1/rates/couriers` with couriers `jne,jnt,sicepat,anteraja` based on **postal code** (origin ↔ destination). If the buyer has not entered a postal code or the warehouse uses an area id → `GET /v1/maps/areas?countries=ID&input=…&type=single` (cached).
+- Instant couriers `gojek,grab` are priced using **coordinates**: the warehouse pin + the center point of the destination city (`shipping/biteship-areas.ts`, Z1 only). Instant prices are city-level estimates until checkout has a map pin.
+- Store rules still apply on top of Biteship: instant only in Z1, before the WIB cutoff (GoSend Instant 16:00 / ≤20 kg, Grab Same Day 14:00 / ≤7 kg), freight/cargo dropped, ordering Instant → Express → Regular.
+- Types: `service_type` `instant`/`same_day` → Instant (hours), `overnight` + `jne_yes`, `sicepat_best`, `anteraja_next_day` → Express, everything else → Regular. `serviceCode` = `<courier_code>_<service_code>` (e.g. `jne_reg`).
+- Insurance: our rule by default, max(Rp2.500, 0,25 % of goods value). `BITESHIP_USE_COURIER_INSURANCE=true` → send `courier_insurance` and use Biteship's `insurance_fee`.
+- Tracking: `GET /v1/trackings/{awb}/couriers/{courier_code}` (courier names from admin are normalized: "J&T" → `jnt`, "GoSend" → `gojek`).
 
-### 2.2 Langkah
-1. Daftar di <https://dashboard.biteship.com>, verifikasi akun, isi saldo (dibutuhkan saat nanti membuat order pengiriman; cek tarif juga dikenai kuota/biaya API sesuai paket — cek <https://biteship.com/id/harga>).
-2. **Integrasi → API Key** → buat key test (`biteship_test.…`) dan live (`biteship_live.…`).
-3. Gudang Jakarta (asumsi demo: Kota Jakarta Selatan): isi kode pos gudang, dan ambil koordinat pin gudang (Google Maps → klik kanan → salin lat,lng).
-   Opsional: cari area id via `GET https://api.biteship.com/v1/maps/areas?countries=ID&input=<kode pos>&type=single` dengan header `authorization: <key>`.
-4. Aktifkan kurir JNE, J&T, SiCepat, AnterAja, GoSend, GrabExpress di dashboard.
+### 2.2 Steps
+1. Sign up at <https://dashboard.biteship.com>, verify the account, top up the balance (needed later when creating shipping orders; rate checks also consume API quota/fees depending on the plan — check <https://biteship.com/id/harga>).
+2. **Integrasi → API Key** (Integration → API Key) → create a test key (`biteship_test.…`) and a live key (`biteship_live.…`).
+3. Jakarta warehouse (demo assumption: Kota Jakarta Selatan): enter the warehouse postal code, and get the warehouse pin coordinates (Google Maps → right-click → copy lat,lng).
+   Optional: look up the area id via `GET https://api.biteship.com/v1/maps/areas?countries=ID&input=<kode pos>&type=single` with the header `authorization: <key>`.
+4. Enable the JNE, J&T, SiCepat, AnterAja, GoSend, GrabExpress couriers in the dashboard.
 
 ### 2.3 Env
-| Var | Wajib | Isi |
+| Var | Required | Value |
 |---|---|---|
 | `SHIPPING_PROVIDER` | ✓ | `biteship` |
 | `BITESHIP_API_KEY` | ✓ | API key |
-| `BITESHIP_ORIGIN_POSTAL_CODE` **atau** `BITESHIP_ORIGIN_AREA_ID` | ✓ | gudang |
-| `BITESHIP_ORIGIN_LATITUDE`, `BITESHIP_ORIGIN_LONGITUDE` | untuk instan | pin gudang; tanpa ini kurir instan tidak ditawarkan |
+| `BITESHIP_ORIGIN_POSTAL_CODE` **or** `BITESHIP_ORIGIN_AREA_ID` | ✓ | warehouse |
+| `BITESHIP_ORIGIN_LATITUDE`, `BITESHIP_ORIGIN_LONGITUDE` | for instant | warehouse pin; without these, instant couriers are not offered |
 | `BITESHIP_COURIERS` | – | default `jne,jnt,sicepat,anteraja,gojek,grab` |
 | `BITESHIP_USE_COURIER_INSURANCE` | – | default `false` |
 | `BITESHIP_BASE_URL` | – | default `https://api.biteship.com` |
 
-**VERIFIKASI dengan key test**: nilai `service_type`, format `shipment_duration_range` ("1 - 2"), `shipping_type` "parcel", dan isi `history[]` tracking (`status`, `note`, `updated_at`). Bandingkan daftar layanan yang muncul dengan tile checkout; tambah/kurangi kode di `EXPRESS_SERVICES` bila perlu.
+**VERIFY with a test key**: the `service_type` values, the `shipment_duration_range` format ("1 - 2"), `shipping_type` "parcel", and the contents of tracking `history[]` (`status`, `note`, `updated_at`). Compare the list of services returned with the checkout tiles; add/remove codes in `EXPRESS_SERVICES` if needed.
 
-### 2.4 Uji
-Checkout → isi alamat Jakarta Barat (Z1) jam < 14:00 WIB → muncul Instan, Express, Reguler. Alamat Semarang (Z3) → tanpa Instan. Kirim pesanan dengan resi asli → `getTracking` mengembalikan riwayat.
+### 2.4 Test
+Checkout → enter a Jakarta Barat (Z1) address before 14:00 WIB → Instant, Express, Regular appear. A Semarang (Z3) address → no Instant. Ship an order with a real tracking number → `getTracking` returns the history.
 
 ---
 
 ## 3. WhatsApp Business (Meta Cloud API)
 
-### 3.1 Yang dipakai
-`POST https://graph.facebook.com/{WABA_API_VERSION}/{WABA_PHONE_NUMBER_ID}/messages` dengan `Authorization: Bearer WABA_TOKEN`,
-pesan **template** (`type: template`) dengan parameter BODY posisional `{{1}}…{{n}}`, bahasa `id` / `en` sesuai locale pesanan.
-Setiap kiriman juga dicatat di `wa_outbox` (status `SENT` bila Meta mengembalikan `wamid`, `FAILED` bila error) → Admin → WA Outbox tetap jalan.
-Kegagalan WA tidak pernah menggagalkan pesanan (dicatat log `wa.failed`).
+### 3.1 What is used
+`POST https://graph.facebook.com/{WABA_API_VERSION}/{WABA_PHONE_NUMBER_ID}/messages` with `Authorization: Bearer WABA_TOKEN`,
+**template** messages (`type: template`) with positional BODY parameters `{{1}}…{{n}}`, language `id` / `en` according to the order locale.
+Every send is also recorded in `wa_outbox` (status `SENT` if Meta returns a `wamid`, `FAILED` on error) → Admin → WA Outbox keeps working.
+A WA failure never fails the order (logged as `wa.failed`).
 
-### 3.2 Setup Meta
-1. <https://business.facebook.com> → buat/verifikasi Business Portfolio (verifikasi bisnis menaikkan limit pesan).
-2. <https://developers.facebook.com> → *Create app* → tipe Business → tambah produk **WhatsApp**.
-3. WhatsApp → API Setup → tambahkan **nomor bisnis** (nomor yang belum terdaftar di aplikasi WhatsApp biasa; bisa nomor yang sama dengan `NEXT_PUBLIC_WA_NUMBER` setelah dimigrasi) → salin **Phone number ID** → `WABA_PHONE_NUMBER_ID`.
-4. Business Settings → Users → **System users** → buat system user (Admin) → *Assign assets*: app + WhatsApp account → *Generate token* dengan izin `whatsapp_business_messaging` dan `whatsapp_business_management`, masa berlaku *Never* → `WABA_TOKEN`. (Token sementara di API Setup kedaluwarsa 24 jam — jangan dipakai di produksi.)
-5. Set display name "Relevé Dance Supply" (tanpa klaim "Official/Resmi" — lihat `design-system/glossary.json`).
-6. WhatsApp Manager → **Message templates** → buat 7 template di bawah, masing-masing dengan bahasa **Indonesian (id)** dan **English (en)**.
+### 3.2 Meta setup
+1. <https://business.facebook.com> → create/verify a Business Portfolio (business verification raises the message limit).
+2. <https://developers.facebook.com> → *Create app* → type Business → add the **WhatsApp** product.
+3. WhatsApp → API Setup → add the **business number** (a number not yet registered in the regular WhatsApp app; it can be the same number as `NEXT_PUBLIC_WA_NUMBER` after migration) → copy the **Phone number ID** → `WABA_PHONE_NUMBER_ID`.
+4. Business Settings → Users → **System users** → create a system user (Admin) → *Assign assets*: app + WhatsApp account → *Generate token* with the `whatsapp_business_messaging` and `whatsapp_business_management` permissions, expiry *Never* → `WABA_TOKEN`. (The temporary token in API Setup expires in 24 hours — do not use it in production.)
+5. Set the display name "Relevé Dance Supply" (without an "Official/Resmi" claim — see `design-system/glossary.json`).
+6. WhatsApp Manager → **Message templates** → create the 7 templates below, each in **Indonesian (id)** and **English (en)**.
 
-### 3.3 Template
-Nama = `WABA_TEMPLATE_PREFIX` (default `releve_`) + nama di tabel. Kategori **Utility**, kecuali `back_in_stock` yang kemungkinan diklasifikasi Meta sebagai **Marketing** (biaya & aturan opt-in marketing).
-Isi sama dengan docs/05 §6. Meta menolak template yang **diakhiri parameter**, jadi template yang diakhiri URL diberi baris penutup `Relevé Dance Supply`.
+### 3.3 Templates
+Name = `WABA_TEMPLATE_PREFIX` (default `releve_`) + the name in the table. Category **Utility**, except `back_in_stock`, which Meta will likely classify as **Marketing** (marketing pricing & opt-in rules).
+Content matches docs/05 §6. Meta rejects templates that **end with a parameter**, so templates ending in a URL get a closing line `Relevé Dance Supply`.
 
-| Template (kode) | Nama Meta | Parameter |
+| Template (code) | Meta name | Parameters |
 |---|---|---|
 | ORDER_CREATED | `releve_order_created` | 1 name · 2 order_no · 3 total · 4 method · 5 expires · 6 pay_url |
 | PAYMENT_PAID | `releve_payment_paid` | 1 order_no · 2 total · 3 track_url |
@@ -161,13 +161,13 @@ Isi sama dengan docs/05 §6. Meta menolak template yang **diakhiri parameter**, 
 | BACK_IN_STOCK | `releve_back_in_stock` | 1 name · 2 variant · 3 url |
 | PAYMENT_INSTRUCTIONS | `releve_payment_instructions` | 1 order_no · 2 method · 3 va_or_qr_hint · 4 total · 5 expires |
 
-Urutan parameter ditetapkan di `src/lib/providers/messaging/waba-templates.ts`; satu bahasa boleh memakai urutan berbeda (`{{2}}` sebelum `{{1}}`).
+Parameter order is defined in `src/lib/providers/messaging/waba-templates.ts`; a language may use a different order (`{{2}}` before `{{1}}`).
 
-**Isi yang disarankan**
+**Suggested content**
 
 `releve_order_created`
-- id: `Terima kasih, {{1}}! Pesanan {{2}} sebesar {{3}} menunggu pembayaran via {{4}} sampai {{5}}. Bayar: {{6}}` + baris `Relevé Dance Supply`
-- en: `Thank you, {{1}}! Order {{2}} for {{3}} is awaiting payment via {{4}} until {{5}}. Pay: {{6}}` + baris `Relevé Dance Supply`
+- id: `Terima kasih, {{1}}! Pesanan {{2}} sebesar {{3}} menunggu pembayaran via {{4}} sampai {{5}}. Bayar: {{6}}` + line `Relevé Dance Supply`
+- en: `Thank you, {{1}}! Order {{2}} for {{3}} is awaiting payment via {{4}} until {{5}}. Pay: {{6}}` + line `Relevé Dance Supply`
 
 `releve_payment_paid`
 - id: `Pembayaran {{1}} sebesar {{2}} sudah kami terima. Pesanan sedang kami siapkan. Lacak: {{3}}` + `Relevé Dance Supply`
@@ -193,34 +193,34 @@ Urutan parameter ditetapkan di `src/lib/providers/messaging/waba-templates.ts`; 
 - id: `Instruksi bayar {{1}}: {{2}} {{3}}, total {{4}}, batas {{5}}.`
 - en: `Payment instructions for {{1}}: {{2}} {{3}}, total {{4}}, due {{5}}.`
 
-Saat mengajukan, isi contoh nilai (mis. `Siti`, `RDS-261105-AB12`, `Rp685.000`, `QRIS`, `5 Nov 2026 10.30 WIB`, `https://<domain>/id/pay/RDS-261105-AB12`).
-Parameter kosong dikirim sebagai `-`; baris baru/tab di parameter dibuang (aturan Meta).
+When submitting, fill in sample values (e.g. `Siti`, `RDS-261105-AB12`, `Rp685.000`, `QRIS`, `5 Nov 2026 10.30 WIB`, `https://<domain>/id/pay/RDS-261105-AB12`).
+Empty parameters are sent as `-`; newlines/tabs in parameters are stripped (Meta rule).
 
-### 3.4 Aturan opt-in (WA-05)
-- Notifikasi pesanan (`ORDER_CREATED`, `PAYMENT_PAID`, `PAYMENT_EXPIRED`, `ORDER_SHIPPED`, `ORDER_DELIVERED`) hanya dikirim bila pembeli mencentang opt-in WA di checkout (`notifyOrder` memeriksa `waOptIn`).
-- `PAYMENT_INSTRUCTIONS` dikirim karena pembeli menekan "Kirim instruksi ke WA"; `BACK_IN_STOCK` karena pembeli mendaftar "Kabari saya".
-- Teks opt-in di checkout harus menyebut nama bisnis dan bahwa pembeli akan menerima pesan WhatsApp (syarat kebijakan Meta). Hormati permintaan berhenti: balasan "STOP" saat ini ditangani manual oleh admin.
-- Pesan template boleh dikirim di luar jendela 24 jam; balasan bebas (non-template) dari admin tetap lewat `wa.me` / aplikasi WhatsApp Business.
+### 3.4 Opt-in rules (WA-05)
+- Order notifications (`ORDER_CREATED`, `PAYMENT_PAID`, `PAYMENT_EXPIRED`, `ORDER_SHIPPED`, `ORDER_DELIVERED`) are only sent if the buyer ticked the WA opt-in at checkout (`notifyOrder` checks `waOptIn`).
+- `PAYMENT_INSTRUCTIONS` is sent because the buyer pressed "Kirim instruksi ke WA" (Send instructions to WA); `BACK_IN_STOCK` because the buyer signed up via "Kabari saya" (Notify me).
+- The opt-in text at checkout must mention the business name and that the buyer will receive WhatsApp messages (a Meta policy requirement). Honor stop requests: "STOP" replies are currently handled manually by the admin.
+- Template messages may be sent outside the 24-hour window; free-form (non-template) replies from the admin still go through `wa.me` / the WhatsApp Business app.
 
 ### 3.5 Env
-| Var | Wajib | Isi |
+| Var | Required | Value |
 |---|---|---|
 | `MESSAGING_PROVIDER` | ✓ | `waba` |
 | `WABA_TOKEN` | ✓ | System User token |
 | `WABA_PHONE_NUMBER_ID` | ✓ | Phone number ID |
-| `WABA_API_VERSION` | – | default `v26.0` (Graph API terbaru per Juli 2026; **VERIFIKASI** di changelog Meta) |
+| `WABA_API_VERSION` | – | default `v26.0` (latest Graph API as of July 2026; **VERIFY** in the Meta changelog) |
 | `WABA_TEMPLATE_PREFIX` | – | default `releve_` |
-| `WABA_LANG_ID`, `WABA_LANG_EN` | – | default `id`, `en` (pakai `en_US` bila template dibuat sebagai English (US)) |
+| `WABA_LANG_ID`, `WABA_LANG_EN` | – | default `id`, `en` (use `en_US` if the template was created as English (US)) |
 
-### 3.6 Uji
-Di API Setup tambahkan nomor HP kamu sebagai penerima uji, buat pesanan dengan opt-in → pesan `releve_order_created` diterima, WA Outbox berstatus SENT.
-Template salah nama/bahasa → Outbox `FAILED`, log `wa.failed` berisi kode Meta (mis. `132001`).
+### 3.6 Test
+In API Setup, add your phone number as a test recipient, create an order with opt-in → the `releve_order_created` message is received, WA Outbox shows SENT.
+Wrong template name/language → Outbox `FAILED`, the `wa.failed` log contains the Meta code (e.g. `132001`).
 
-**VERIFIKASI**: status `SENT` = diterima Meta (ada `wamid`), belum tentu terkirim/dibaca; webhook status Meta belum dipasang.
+**VERIFY**: status `SENT` = accepted by Meta (has a `wamid`), not necessarily delivered/read; the Meta status webhook is not set up yet.
 
 ---
 
-## 4. Ringkasan env produksi
+## 4. Production env summary
 
 ```bash
 PAYMENT_PROVIDER=xendit
@@ -235,8 +235,8 @@ WABA_TOKEN=…                 WABA_PHONE_NUMBER_ID=…
 ```
 
 ## 5. Fail-fast & rollback
-- Nama provider tak dikenal (mis. `PAYMENT_PROVIDER=midtrans`) → error langsung saat dipanggil.
-- Provider asli tanpa env → `ProviderConfigError: "<provider> is not configured: missing X, Y"` pada panggilan pertama.
-- Cek semua sekaligus sebelum deploy: `validateProviderEnv()` dari `@/lib/providers` → `{ ok, problems[] }`, mis.
+- Unknown provider name (e.g. `PAYMENT_PROVIDER=midtrans`) → immediate error when called.
+- Real provider without env → `ProviderConfigError: "<provider> is not configured: missing X, Y"` on the first call.
+- Check everything at once before deploying: `validateProviderEnv()` from `@/lib/providers` → `{ ok, problems[] }`, e.g.
   `pnpm tsx --env-file=.env.local -e 'import("./src/lib/providers/config.ts").then(m => console.log(m.validateProviderEnv()))'`.
-- Rollback: kembalikan variabel ke `mock` / `outbox`. Pembayaran Xendit yang masih PENDING tetap bisa dibayar pembeli; webhooknya hanya diproses lagi setelah `PAYMENT_PROVIDER=xendit` (rekonsiliasi manual via dashboard bila rollback lama).
+- Rollback: set the variables back to `mock` / `outbox`. Xendit payments still PENDING can still be paid by the buyer; their webhooks are only processed again once `PAYMENT_PROVIDER=xendit` (manual reconciliation via the dashboard if the rollback lasts long).
