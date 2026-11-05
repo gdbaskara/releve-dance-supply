@@ -24,18 +24,345 @@
   "search": "Search",
   "seeAll": "See all",
   "menu": "Menu",
+  "breadcrumb": "Breadcrumb",
   "stock": {
     "ready": "Ready",
     "readyLong": "In stock · ships in 1–2 business days",
     "low": "Only {n} left",
     "preorder": "Pre-order",
+    "preorderWeeks": "Pre-order · {lead} weeks",
     "preorderLong": "Pre-order · est. {lead} weeks",
     "soldout": "Sold out"
+  },
+  "availability": {
+    "ready": "In stock · ships from Jakarta in 1–2 business days",
+    "low": "Only {n} left — selling fast",
+    "preorder": "Pre-order · estimated arrival in {lead} weeks",
+    "soldout": "Sold out in this size",
+    "select": "Choose a size to see availability"
   },
   "wa": {
     "chat": "Chat",
     "ask": "Ask on WhatsApp",
     "sizeConsult": "Size Consultation on WhatsApp",
-    "notifyMe": "Notify Me on WhatsApp"
+    "notifyMe": "Notify Me on WhatsApp",
+    "askOrder": "Ask about this order",
+    "help": "Need help? WhatsApp"
+  },
+  "price": {
+    "from": "From {price}"
+  },
+  "variant": {
+    "color": "Color",
+    "size": "Size",
+    "width": "Width",
+    "shank": "Shank",
+    "sizeGuide": "Size guide",
+    "preorderShort": "PO",
+    "colorCount": "{n} colors",
+    "moreColors": "+{n}",
+    "whatIs": "What is {term}?",
+    "choose": "Please choose a {option}"
+  },
+  "sizeGroups": {
+    "toddler": "Toddler",
+    "child": "Child",
+    "adult": "Adult"
+  },
+  "qty": {
+    "label": "Quantity",
+    "decrease": "Decrease quantity",
+    "increase": "Increase quantity"
+  },
+  "product": {
+    "modelCode": "Model {code}",
+    "placeholder": "Product photo coming soon",
+    "compareTitle": "Compare styles",
+    "sole": "Sole",
+    "material": "Material",
+    "price": "Price",
+    "current": "viewing"
+  },
+  "cartDrawer": {
+    "title": "Cart ({n})",
+    "checkout": "Checkout",
+    "shippingNote": "Shipping is calculated at checkout.",
+    "removeItem": "Remove {name}",
+    "empty": "Your cart is empty",
+    "emptyBody": "Pick your favourite shoes or dancewear — we'll help with sizing on WhatsApp.",
+    "mixedPreorder": "Your cart contains pre-order items. Everything ships together once the pre-order items arrive."
+  },
+  "empty": {
+    "continue": "Continue shopping"
+  },
+  "filter": {
+    "title": "Filter",
+    "clear": "Clear all",
+    "show": "Show {n} products",
+    "selectedCount": "{n} selected"
+  },
+  "loadMore": {
+    "label": "Load more",
+    "shown": "Showing {shown} of {total} products"
+  },
+  "combobox": {
+    "placeholder": "Type to search",
+    "noResults": "No results for “{q}”"
+  },
+  "toast": {
+    "region": "Notifications",
+    "close": "Dismiss notification"
+  },
+  "header": {
+    "home": "Relevé Dance Supply — home",
+    "nav": "Main navigation",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "search": "Search products",
+    "cartCount": "Cart, {n} items"
+  },
+  "footer": {
+    "payments": "Payment methods",
+    "couriers": "Couriers"
+  },
+  "lang": {
+    "label": "Choose language",
+    "id": "ID",
+    "en": "EN",
+    "idFull": "Bahasa Indonesia",
+    "enFull": "English"
+  },
+  "sizeGuide": {
+    "title": "Size Guide",
+    "howTitle": "How to measure your foot",
+    "how1": "Place paper on the floor with your heel against a wall.",
+    "how2": "Mark your longest toe, then measure from the wall to the mark (cm).",
+    "how3": "Measure both feet in the afternoon and use the larger number.",
+    "usSize": "US size",
+    "footLength": "Foot length (cm)",
+    "eu": "EU (approx.)",
+    "shoeCaption": "US size to foot length in cm",
+    "dancewearCaption": "Dancewear sizes by body measurements in cm",
+    "cols": {
+      "size": "Size",
+      "height": "Height",
+      "chest": "Chest",
+      "waist": "Waist",
+      "hip": "Hip"
+    },
+    "tabs": {
+      "balletJazz": "Ballet & Jazz",
+      "pointe": "Pointe",
+      "tapCharacter": "Tap & Character",
+      "ballroom": "Ballroom",
+      "dancewear": "Dancewear"
+    },
+    "notes": {
+      "balletJazz": "Ballet flats & jazz shoes should fit snugly with no room at the toes. Between sizes? Go smaller for canvas/stretch.",
+      "pointe": "Pointe sizes usually run 1–2 sizes smaller than street shoes, and box, vamp and shank all affect fit. Send us your foot photos & measurements on WhatsApp before buying.",
+      "tapCharacter": "Tap & Character shoes usually match your street size. Mind the heel height on Character shoes.",
+      "ballroom": "Latin/Ballroom shoes usually match your street size and stretch slightly with wear.",
+      "dancewear": "Choose by chest and hip. For a Leotard, torso length matters too."
+    },
+    "pointeCalloutTitle": "Pointe shoes should be fitted",
+    "approxNote": "Approximate chart. Each model can fit differently — ask us on WhatsApp if unsure.",
+    "consultBody": "Send us your foot length (cm) and a photo; we'll help you choose the right size & width."
+  },
+  "phone": {
+    "label": "WhatsApp number",
+    "help": "Order confirmation & updates go to this number",
+    "invalid": "Please enter a valid WhatsApp number, e.g. 812-3456-7890"
+  },
+  "address": {
+    "province": "Province",
+    "provincePlaceholder": "Choose province",
+    "city": "Regency/City",
+    "cityPlaceholder": "Type a regency/city",
+    "cityDisabled": "Choose a province first",
+    "district": "District (kecamatan)",
+    "postalCode": "Postal code",
+    "line": "Full address",
+    "linePlaceholder": "Street, house number, RT/RW, landmark",
+    "note": "Note for courier",
+    "notePlaceholder": "E.g. leave with security",
+    "outsideJava": "Outside Java? Contact us on WhatsApp"
+  },
+  "step": {
+    "stepN": "Step {n}",
+    "done": "completed",
+    "locked": "not available yet"
+  },
+  "courier": {
+    "groupLabel": "Choose shipping",
+    "instant": "Instant · Jabodetabek",
+    "express": "Express",
+    "regular": "Regular",
+    "etaDays": "Est. {eta} business days",
+    "etaHours": "Est. {eta} hours",
+    "cutoff": "Order & pay before {cutoff}",
+    "empty": "Enter your address to see shipping options."
+  },
+  "insurance": {
+    "label": "Shipping insurance",
+    "help": "Protects your parcel against damage or loss"
+  },
+  "payment": {
+    "legend": "Payment method",
+    "groups": {
+      "QRIS": "QRIS",
+      "EWALLET": "E-wallet",
+      "VA": "Virtual Account",
+      "CARD": "Credit/debit card"
+    },
+    "names": {
+      "QRIS": "QRIS",
+      "GOPAY": "GoPay",
+      "OVO": "OVO",
+      "DANA": "DANA",
+      "SHOPEEPAY": "ShopeePay",
+      "BCA": "BCA Virtual Account",
+      "MANDIRI": "Mandiri Virtual Account",
+      "BNI": "BNI Virtual Account",
+      "BRI": "BRI Virtual Account",
+      "PERMATA": "Permata Virtual Account",
+      "CARD": "Credit/debit card"
+    },
+    "banks": {
+      "BCA": "BCA",
+      "MANDIRI": "Mandiri",
+      "BNI": "BNI",
+      "BRI": "BRI",
+      "PERMATA": "Permata"
+    },
+    "desc": {
+      "QRIS": "Pay from any e-wallet or mobile banking app",
+      "EWALLET": "Complete payment in the {wallet} app",
+      "VA": "Transfer via ATM, mobile or internet banking",
+      "CARD": "Visa, Mastercard, JCB · full payment"
+    }
+  },
+  "summary": {
+    "title": "Order summary",
+    "show": "Show summary",
+    "hide": "Hide summary",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "shippingPending": "Calculated after address",
+    "insurance": "Insurance",
+    "discount": "Discount",
+    "total": "Total",
+    "qty": "Qty: {n}",
+    "voucher": "Voucher code",
+    "voucherApply": "Apply",
+    "voucherApplied": "Voucher {code} applied",
+    "voucherRemove": "Remove voucher"
+  },
+  "payBar": {
+    "payNow": "Pay Now"
+  },
+  "countdown": {
+    "label": "Pay within",
+    "warning": "Payment time is almost up",
+    "expired": "Payment time has expired",
+    "renew": "Create a new payment"
+  },
+  "pay": {
+    "amount": "Amount to pay",
+    "exactAmount": "Transfer the exact amount",
+    "copyAmount": "Copy amount",
+    "qrAlt": "QRIS code for a {amount} payment",
+    "downloadQr": "Download QR",
+    "qrisSteps": {
+      "1": "Open any e-wallet or mobile banking app.",
+      "2": "Choose Scan/Pay and scan the QR above (or upload the downloaded QR).",
+      "3": "Check the amount & store name, then confirm."
+    },
+    "supported": "Works with",
+    "vaNumber": "Virtual Account number",
+    "copyVa": "Copy Virtual Account number",
+    "howTo": "How to pay",
+    "atm": "{bank} ATM",
+    "mbanking": "{bank} mobile banking",
+    "ibanking": "{bank} internet banking",
+    "vaSteps": {
+      "atm": {
+        "1": "Insert your {bank} card & PIN.",
+        "2": "Choose Transfer › Virtual Account.",
+        "3": "Enter the Virtual Account number above.",
+        "4": "Check the name & amount, then confirm."
+      },
+      "mbanking": {
+        "1": "Open the {bank} mobile app and log in.",
+        "2": "Choose Transfer › Virtual Account.",
+        "3": "Paste the copied Virtual Account number.",
+        "4": "Check the details, then enter your PIN."
+      },
+      "ibanking": {
+        "1": "Log in to {bank} internet banking.",
+        "2": "Choose Transfer › Virtual Account.",
+        "3": "Enter the Virtual Account number above.",
+        "4": "Confirm with your token/OTP."
+      }
+    },
+    "openWallet": "Open {wallet}",
+    "finishIn": "Complete it in the app within {time}",
+    "ewalletNote": "App didn't open? Tap the button again or switch to QRIS.",
+    "switchQris": "Pay with QRIS instead"
+  },
+  "card": {
+    "number": "Card number",
+    "expiry": "Expiry (MM/YY)",
+    "cvv": "CVV",
+    "brand": "Card type: {brand}",
+    "notStored": "Card details are not stored by Relevé.",
+    "testCard": "Demo test card: {number} · any future MM/YY · CVV 123",
+    "invalidNumber": "Invalid card number",
+    "invalidExpiry": "Invalid expiry date",
+    "invalidCvv": "CVV must be 3–4 digits",
+    "pay": "Pay {amount}"
+  },
+  "paymentStatus": {
+    "waiting": {
+      "title": "Waiting for payment…",
+      "body": "This page updates automatically once your payment is received."
+    },
+    "paid": {
+      "title": "Payment successful",
+      "body": "Thank you! A confirmation has been sent to your WhatsApp."
+    },
+    "expired": {
+      "title": "Payment expired",
+      "body": "The payment window has closed and the stock was released. You can order again anytime."
+    },
+    "failed": {
+      "title": "Payment failed",
+      "body": "The payment couldn't be processed. Try again or choose another method."
+    }
+  },
+  "demo": {
+    "controlsTitle": "Demo controls",
+    "controlsNote": "Shown in demo mode only — simulates the payment gateway notification.",
+    "simulatePaid": "Simulate Successful Payment",
+    "simulateExpired": "Simulate Expiry"
+  },
+  "timeline": {
+    "title": "Order status",
+    "awb": "{courier} tracking no.",
+    "copyAwb": "Copy tracking number",
+    "steps": {
+      "PENDING_PAYMENT": "Order placed",
+      "PAID": "Paid",
+      "PROCESSING": "Processing",
+      "SHIPPED": "Shipped",
+      "DELIVERED": "Delivered",
+      "EXPIRED": "Expired",
+      "CANCELLED": "Cancelled",
+      "REFUND_PENDING": "Refund pending"
+    },
+    "state": {
+      "done": "done",
+      "current": "current step",
+      "upcoming": "upcoming"
+    }
   }
 }

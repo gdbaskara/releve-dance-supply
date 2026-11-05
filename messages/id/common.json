@@ -24,18 +24,345 @@
   "search": "Cari",
   "seeAll": "Lihat semua",
   "menu": "Menu",
+  "breadcrumb": "Navigasi halaman",
   "stock": {
     "ready": "Ready",
     "readyLong": "Ready · dikirim 1–2 hari kerja",
     "low": "Sisa {n}",
     "preorder": "Pre-order",
+    "preorderWeeks": "Pre-order · {lead} minggu",
     "preorderLong": "Pre-order · estimasi {lead} minggu",
     "soldout": "Habis"
+  },
+  "availability": {
+    "ready": "Ready · dikirim 1–2 hari kerja dari Jakarta",
+    "low": "Sisa {n} — segera habis",
+    "preorder": "Pre-order · estimasi tiba {lead} minggu",
+    "soldout": "Habis untuk ukuran ini",
+    "select": "Pilih ukuran untuk melihat ketersediaan"
   },
   "wa": {
     "chat": "Chat",
     "ask": "Tanya via WA",
     "sizeConsult": "Konsultasi Ukuran via WA",
-    "notifyMe": "Kabari Saya via WA"
+    "notifyMe": "Kabari Saya via WA",
+    "askOrder": "Tanya pesanan ini",
+    "help": "Butuh bantuan? WA"
+  },
+  "price": {
+    "from": "Mulai {price}"
+  },
+  "variant": {
+    "color": "Warna",
+    "size": "Size",
+    "width": "Width",
+    "shank": "Shank",
+    "sizeGuide": "Panduan ukuran",
+    "preorderShort": "PO",
+    "colorCount": "{n} warna",
+    "moreColors": "+{n}",
+    "whatIs": "Apa itu {term}?",
+    "choose": "Pilih {option} dulu"
+  },
+  "sizeGroups": {
+    "toddler": "Toddler (balita)",
+    "child": "Child (anak)",
+    "adult": "Adult (dewasa)"
+  },
+  "qty": {
+    "label": "Jumlah",
+    "decrease": "Kurangi jumlah",
+    "increase": "Tambah jumlah"
+  },
+  "product": {
+    "modelCode": "Kode {code}",
+    "placeholder": "Foto produk segera hadir",
+    "compareTitle": "Bandingkan model",
+    "sole": "Sol",
+    "material": "Material",
+    "price": "Harga",
+    "current": "sedang dilihat"
+  },
+  "cartDrawer": {
+    "title": "Keranjang ({n})",
+    "checkout": "Checkout",
+    "shippingNote": "Ongkir dihitung saat checkout.",
+    "removeItem": "Hapus {name}",
+    "empty": "Keranjangmu masih kosong",
+    "emptyBody": "Pilih sepatu atau dancewear favoritmu — kami bantu pilih ukuran via WA.",
+    "mixedPreorder": "Keranjang berisi item pre-order. Semua item dikirim sekaligus setelah item pre-order tiba."
+  },
+  "empty": {
+    "continue": "Lanjut belanja"
+  },
+  "filter": {
+    "title": "Filter",
+    "clear": "Hapus semua",
+    "show": "Tampilkan {n} produk",
+    "selectedCount": "{n} dipilih"
+  },
+  "loadMore": {
+    "label": "Muat lebih banyak",
+    "shown": "Menampilkan {shown} dari {total} produk"
+  },
+  "combobox": {
+    "placeholder": "Ketik untuk mencari",
+    "noResults": "Tidak ada hasil untuk “{q}”"
+  },
+  "toast": {
+    "region": "Notifikasi",
+    "close": "Tutup notifikasi"
+  },
+  "header": {
+    "home": "Relevé Dance Supply — beranda",
+    "nav": "Navigasi utama",
+    "openMenu": "Buka menu",
+    "closeMenu": "Tutup menu",
+    "search": "Cari produk",
+    "cartCount": "Keranjang, {n} item"
+  },
+  "footer": {
+    "payments": "Metode pembayaran",
+    "couriers": "Kurir pengiriman"
+  },
+  "lang": {
+    "label": "Pilih bahasa",
+    "id": "ID",
+    "en": "EN",
+    "idFull": "Bahasa Indonesia",
+    "enFull": "English"
+  },
+  "sizeGuide": {
+    "title": "Panduan Ukuran",
+    "howTitle": "Cara mengukur kaki",
+    "how1": "Letakkan kertas di lantai, tumit menempel ke dinding.",
+    "how2": "Tandai ujung jari terpanjang, lalu ukur dari dinding ke tanda (cm).",
+    "how3": "Ukur kedua kaki di sore hari dan pakai angka yang lebih besar.",
+    "usSize": "Size US",
+    "footLength": "Panjang kaki (cm)",
+    "eu": "EU (perkiraan)",
+    "shoeCaption": "Konversi size US ke panjang kaki dalam cm",
+    "dancewearCaption": "Ukuran dancewear berdasarkan ukuran badan dalam cm",
+    "cols": {
+      "size": "Size",
+      "height": "Tinggi",
+      "chest": "Dada",
+      "waist": "Pinggang",
+      "hip": "Pinggul"
+    },
+    "tabs": {
+      "balletJazz": "Ballet & Jazz",
+      "pointe": "Pointe",
+      "tapCharacter": "Tap & Character",
+      "ballroom": "Ballroom",
+      "dancewear": "Dancewear"
+    },
+    "notes": {
+      "balletJazz": "Ballet flats & jazz shoes sebaiknya pas di kaki tanpa ruang di ujung jari. Ragu di antara dua size? Pilih yang lebih kecil untuk canvas/stretch.",
+      "pointe": "Size pointe biasanya 1–2 size lebih kecil dari sepatu sehari-hari, dan box, vamp, serta shank sangat memengaruhi kecocokan. Kirim foto & ukuran kakimu via WA sebelum membeli.",
+      "tapCharacter": "Tap & Character shoes umumnya sama dengan size sepatu sehari-hari. Perhatikan tinggi heel pada Character.",
+      "ballroom": "Latin/Ballroom shoes umumnya sama dengan size sepatu sehari-hari dan sedikit melar setelah dipakai.",
+      "dancewear": "Pilih berdasarkan ukuran dada dan pinggul. Untuk Leotard, panjang torso juga berpengaruh."
+    },
+    "pointeCalloutTitle": "Pointe sebaiknya difitting",
+    "approxNote": "Tabel perkiraan. Ukuran tiap model bisa berbeda — konsultasikan via WA bila ragu.",
+    "consultBody": "Kirim panjang kakimu (cm) dan foto kaki, kami bantu pilih size & width yang pas."
+  },
+  "phone": {
+    "label": "Nomor WhatsApp",
+    "help": "Konfirmasi & update pesanan dikirim ke nomor ini",
+    "invalid": "Nomor WhatsApp belum valid. Contoh: 812-3456-7890"
+  },
+  "address": {
+    "province": "Provinsi",
+    "provincePlaceholder": "Pilih provinsi",
+    "city": "Kabupaten/Kota",
+    "cityPlaceholder": "Ketik nama kab/kota",
+    "cityDisabled": "Pilih provinsi dulu",
+    "district": "Kecamatan",
+    "postalCode": "Kode pos",
+    "line": "Alamat lengkap",
+    "linePlaceholder": "Nama jalan, nomor rumah, RT/RW, patokan",
+    "note": "Catatan untuk kurir",
+    "notePlaceholder": "Mis. titip ke satpam",
+    "outsideJava": "Di luar Pulau Jawa? Hubungi kami via WA"
+  },
+  "step": {
+    "stepN": "Langkah {n}",
+    "done": "selesai",
+    "locked": "belum bisa diisi"
+  },
+  "courier": {
+    "groupLabel": "Pilih pengiriman",
+    "instant": "Instan · Jabodetabek",
+    "express": "Express",
+    "regular": "Reguler",
+    "etaDays": "Estimasi {eta} hari kerja",
+    "etaHours": "Estimasi {eta} jam",
+    "cutoff": "Pesan & bayar sebelum {cutoff}",
+    "empty": "Isi alamat untuk melihat pilihan pengiriman."
+  },
+  "insurance": {
+    "label": "Asuransi pengiriman",
+    "help": "Lindungi paketmu dari kerusakan atau kehilangan"
+  },
+  "payment": {
+    "legend": "Metode pembayaran",
+    "groups": {
+      "QRIS": "QRIS",
+      "EWALLET": "E-wallet",
+      "VA": "Virtual Account",
+      "CARD": "Kartu kredit/debit"
+    },
+    "names": {
+      "QRIS": "QRIS",
+      "GOPAY": "GoPay",
+      "OVO": "OVO",
+      "DANA": "DANA",
+      "SHOPEEPAY": "ShopeePay",
+      "BCA": "BCA Virtual Account",
+      "MANDIRI": "Mandiri Virtual Account",
+      "BNI": "BNI Virtual Account",
+      "BRI": "BRI Virtual Account",
+      "PERMATA": "Permata Virtual Account",
+      "CARD": "Kartu kredit/debit"
+    },
+    "banks": {
+      "BCA": "BCA",
+      "MANDIRI": "Mandiri",
+      "BNI": "BNI",
+      "BRI": "BRI",
+      "PERMATA": "Permata"
+    },
+    "desc": {
+      "QRIS": "Bayar dari semua e-wallet & m-banking",
+      "EWALLET": "Lanjutkan pembayaran di aplikasi {wallet}",
+      "VA": "Transfer via ATM, m-banking, atau internet banking",
+      "CARD": "Visa, Mastercard, JCB · bayar penuh"
+    }
+  },
+  "summary": {
+    "title": "Ringkasan pesanan",
+    "show": "Lihat ringkasan",
+    "hide": "Sembunyikan ringkasan",
+    "subtotal": "Subtotal",
+    "shipping": "Ongkir",
+    "shippingPending": "Dihitung setelah alamat",
+    "insurance": "Asuransi",
+    "discount": "Diskon",
+    "total": "Total",
+    "qty": "Jumlah: {n}",
+    "voucher": "Kode voucher",
+    "voucherApply": "Pakai",
+    "voucherApplied": "Voucher {code} dipakai",
+    "voucherRemove": "Hapus voucher"
+  },
+  "payBar": {
+    "payNow": "Bayar Sekarang"
+  },
+  "countdown": {
+    "label": "Bayar dalam",
+    "warning": "Waktu pembayaran hampir habis",
+    "expired": "Waktu pembayaran habis",
+    "renew": "Buat pembayaran baru"
+  },
+  "pay": {
+    "amount": "Total pembayaran",
+    "exactAmount": "Transfer sesuai nominal",
+    "copyAmount": "Salin nominal",
+    "qrAlt": "Kode QRIS untuk pembayaran {amount}",
+    "downloadQr": "Unduh QR",
+    "qrisSteps": {
+      "1": "Buka aplikasi e-wallet atau m-banking apa saja.",
+      "2": "Pilih Scan/Bayar, lalu scan kode QR di atas (atau unggah QR yang diunduh).",
+      "3": "Periksa nominal & nama toko, lalu konfirmasi."
+    },
+    "supported": "Bisa dibayar dengan",
+    "vaNumber": "Nomor Virtual Account",
+    "copyVa": "Salin nomor Virtual Account",
+    "howTo": "Cara bayar",
+    "atm": "ATM {bank}",
+    "mbanking": "m-Banking {bank}",
+    "ibanking": "Internet Banking {bank}",
+    "vaSteps": {
+      "atm": {
+        "1": "Masukkan kartu & PIN ATM {bank}.",
+        "2": "Pilih Transfer › Virtual Account.",
+        "3": "Masukkan nomor Virtual Account di atas.",
+        "4": "Periksa nama & nominal, lalu konfirmasi."
+      },
+      "mbanking": {
+        "1": "Buka aplikasi m-banking {bank} dan login.",
+        "2": "Pilih Transfer › Virtual Account.",
+        "3": "Tempel nomor Virtual Account yang sudah disalin.",
+        "4": "Periksa detail, lalu masukkan PIN."
+      },
+      "ibanking": {
+        "1": "Login ke internet banking {bank}.",
+        "2": "Pilih Transfer › Virtual Account.",
+        "3": "Masukkan nomor Virtual Account di atas.",
+        "4": "Konfirmasi dengan token/OTP."
+      }
+    },
+    "openWallet": "Buka {wallet}",
+    "finishIn": "Selesaikan di aplikasi dalam {time}",
+    "ewalletNote": "Aplikasi tidak terbuka? Tekan tombol sekali lagi atau ganti ke QRIS.",
+    "switchQris": "Bayar pakai QRIS saja"
+  },
+  "card": {
+    "number": "Nomor kartu",
+    "expiry": "Berlaku hingga (MM/YY)",
+    "cvv": "CVV",
+    "brand": "Jenis kartu: {brand}",
+    "notStored": "Data kartu tidak disimpan oleh Relevé.",
+    "testCard": "Kartu uji demo: {number} · MM/YY di masa depan · CVV 123",
+    "invalidNumber": "Nomor kartu tidak valid",
+    "invalidExpiry": "Masa berlaku tidak valid",
+    "invalidCvv": "CVV harus 3–4 digit",
+    "pay": "Bayar {amount}"
+  },
+  "paymentStatus": {
+    "waiting": {
+      "title": "Menunggu pembayaran…",
+      "body": "Halaman ini diperbarui otomatis setelah pembayaran diterima."
+    },
+    "paid": {
+      "title": "Pembayaran berhasil",
+      "body": "Terima kasih! Konfirmasi sudah dikirim ke WhatsApp-mu."
+    },
+    "expired": {
+      "title": "Pembayaran kedaluwarsa",
+      "body": "Waktu pembayaran habis dan stok sudah dilepas. Kamu bisa pesan lagi kapan saja."
+    },
+    "failed": {
+      "title": "Pembayaran gagal",
+      "body": "Pembayaran tidak bisa diproses. Coba lagi atau pilih metode lain."
+    }
+  },
+  "demo": {
+    "controlsTitle": "Kontrol demo",
+    "controlsNote": "Hanya tampil di mode demo — mensimulasikan notifikasi dari payment gateway.",
+    "simulatePaid": "Simulasikan Bayar Berhasil",
+    "simulateExpired": "Simulasikan Kedaluwarsa"
+  },
+  "timeline": {
+    "title": "Status pesanan",
+    "awb": "Resi {courier}",
+    "copyAwb": "Salin nomor resi",
+    "steps": {
+      "PENDING_PAYMENT": "Pesanan dibuat",
+      "PAID": "Dibayar",
+      "PROCESSING": "Diproses",
+      "SHIPPED": "Dikirim",
+      "DELIVERED": "Terkirim",
+      "EXPIRED": "Kedaluwarsa",
+      "CANCELLED": "Dibatalkan",
+      "REFUND_PENDING": "Menunggu refund"
+    },
+    "state": {
+      "done": "selesai",
+      "current": "tahap saat ini",
+      "upcoming": "berikutnya"
+    }
   }
 }
