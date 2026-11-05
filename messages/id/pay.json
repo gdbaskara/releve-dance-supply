@@ -1,1 +1,59 @@
-{}
+{
+  "metaTitle": "Pembayaran {orderNo}",
+  "title": "Selesaikan pembayaran",
+  "orderNo": "Nomor pesanan",
+  "copyOrderNo": "Salin nomor pesanan",
+  "total": "Total pembayaran",
+  "method": "Metode: {method}",
+  "autoUpdate": "Status diperbarui otomatis setiap 5 detik.",
+  "changeMethod": "Ganti metode pembayaran",
+  "changeTitle": "Pilih metode lain",
+  "changeBody": "Pembayaran sebelumnya dibatalkan. Stok tetap kami simpan untukmu.",
+  "changeConfirm": "Pakai metode ini",
+  "changed": "Metode pembayaran diganti",
+  "changeError": "Metode belum bisa diganti. Coba lagi.",
+  "renewed": "Pembayaran baru sudah dibuat",
+  "sendWa": "Kirim instruksi ke WA saya",
+  "sent": "Instruksi pembayaran dikirim ke WhatsApp-mu",
+  "sendErrors": {
+    "RATE_LIMITED": "Instruksi baru saja dikirim. Tunggu sebentar sebelum kirim lagi.",
+    "NOT_PENDING": "Pesanan ini sudah tidak menunggu pembayaran.",
+    "NOT_FOUND": "Pesanan tidak ditemukan."
+  },
+  "ewallet": {
+    "screenTitle": "Konfirmasi di {wallet}",
+    "simNote": "Simulasi aplikasi {wallet} — di produksi kamu diarahkan ke aplikasi aslinya.",
+    "merchant": "Bayar ke",
+    "merchantName": "Relevé Dance Supply",
+    "confirm": "Bayar {amount}",
+    "cancel": "Kembali"
+  },
+  "threeDs": {
+    "title": "Verifikasi 3D Secure",
+    "body": "Bank penerbit kartumu meminta kode OTP untuk transaksi {amount} di Relevé Dance Supply.",
+    "card": "Kartu {brand} •••• {last4}",
+    "otp": "Kode OTP",
+    "otpHint": "Demo: masukkan 6 digit angka apa saja.",
+    "otpInvalid": "Kode OTP harus 6 digit",
+    "submit": "Verifikasi",
+    "cancel": "Batal"
+  },
+  "cardFailed": "Kartu ditolak oleh bank penerbit. Coba kartu lain atau pilih metode pembayaran lain.",
+  "cardError": "Pembayaran kartu belum bisa diproses. Coba lagi.",
+  "ewalletError": "Pembayaran belum bisa diproses. Coba lagi.",
+  "expired": {
+    "stockReleased": "Stok sudah dilepas",
+    "orderAgain": "Pesan lagi"
+  },
+  "cancelled": {
+    "title": "Pesanan dibatalkan",
+    "body": "Pesanan ini sudah dibatalkan. Hubungi kami via WA kalau ada pertanyaan."
+  },
+  "demoError": "Simulasi gagal. Coba lagi.",
+  "notFound": {
+    "title": "Pesanan tidak ditemukan",
+    "body": "Periksa lagi link pembayaranmu, atau hubungi kami via WA."
+  },
+  "summary": "Rincian pesanan",
+  "backToShop": "Kembali ke toko"
+}

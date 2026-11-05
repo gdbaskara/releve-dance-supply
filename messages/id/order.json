@@ -1,1 +1,54 @@
-{}
+{
+  "success": {
+    "metaTitle": "Pembayaran berhasil",
+    "title": "Pembayaran berhasil",
+    "thanks": "Terima kasih, {name}. Pesananmu sedang kami siapkan di Jakarta.",
+    "orderNo": "Nomor pesanan",
+    "copyOrderNo": "Salin nomor pesanan",
+    "waSent": "Konfirmasi sudah dikirim ke WA {wa}",
+    "shippingEta": "Dikirim dengan {courier} {service} · estimasi {eta}",
+    "etaDays": "{eta} hari kerja",
+    "etaHours": "{eta} jam",
+    "preorderEta": "Pesananmu berisi item pre-order. Estimasi tiba 4–6 minggu; semua item dikirim sekaligus setelah item pre-order tiba.",
+    "shipTo": "Dikirim ke",
+    "summary": "Ringkasan pesanan",
+    "track": "Lacak Pesanan",
+    "shop": "Lanjut Belanja"
+  },
+  "track": {
+    "metaTitle": "Lacak pesanan",
+    "title": "Lacak pesanan",
+    "intro": "Masukkan nomor pesanan dan 4 digit terakhir nomor WhatsApp yang kamu pakai saat checkout.",
+    "orderNo": "Nomor pesanan",
+    "orderNoPlaceholder": "RDS-261105-AB12",
+    "orderNoHelp": "Ada di pesan WA konfirmasi dan halaman sukses",
+    "waLast4": "4 digit terakhir nomor WA",
+    "waLast4Placeholder": "7890",
+    "submit": "Lacak",
+    "invalidOrderNo": "Format nomor pesanan: RDS-YYMMDD-XXXX",
+    "invalidLast4": "Isi 4 digit angka",
+    "notFound": "Pesanan tidak ditemukan. Periksa lagi nomor pesanan dan 4 digit terakhir nomor WA-mu.",
+    "rateLimited": "Terlalu banyak percobaan. Coba lagi dalam beberapa menit.",
+    "statusLabel": "Status",
+    "placedOn": "Dipesan {date}",
+    "items": "Item",
+    "courier": "Pengiriman",
+    "awb": "Nomor resi",
+    "copyAwb": "Salin nomor resi",
+    "awbPending": "Nomor resi muncul setelah paket dikirim.",
+    "total": "Total",
+    "another": "Lacak pesanan lain",
+    "payNow": "Lanjutkan pembayaran"
+  },
+  "status": {
+    "PENDING_PAYMENT": "Menunggu pembayaran",
+    "PAID": "Dibayar",
+    "PROCESSING": "Dikemas",
+    "SHIPPED": "Dikirim",
+    "DELIVERED": "Terkirim",
+    "EXPIRED": "Kedaluwarsa",
+    "CANCELLED": "Dibatalkan",
+    "REFUND_PENDING": "Menunggu refund"
+  },
+  "preorder": "Pre-order"
+}

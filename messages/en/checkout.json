@@ -1,1 +1,94 @@
-{}
+{
+  "metaTitle": "Checkout",
+  "title": "Checkout",
+  "secure": "Secure payment · prices & totals are recalculated by our system",
+  "steps": {
+    "contact": "Contact & Address",
+    "shipping": "Shipping",
+    "payment": "Payment"
+  },
+  "contact": {
+    "heading": "Contact",
+    "name": "Full name",
+    "namePlaceholder": "Recipient name",
+    "email": "Email",
+    "emailHelp": "For a copy of your payment receipt",
+    "waOptIn": "Send order updates via WhatsApp",
+    "waOptInHelp": "Confirmation, payment status and tracking number go to your WhatsApp",
+    "addressHeading": "Shipping address"
+  },
+  "next": {
+    "shipping": "Continue to Shipping",
+    "payment": "Continue to Payment"
+  },
+  "errors": {
+    "name": "Enter your full name (at least 2 letters)",
+    "wa": "That WhatsApp number isn't valid yet. Example: 812-3456-7890",
+    "email": "Check your email format",
+    "province": "Choose a province",
+    "city": "Choose a regency/city",
+    "district": "Enter your district",
+    "postalCode": "Postal code must be 5 digits",
+    "line": "Enter your full address (at least 5 characters)",
+    "courier": "Choose a shipping service",
+    "payment": "Choose a payment method"
+  },
+  "shipping": {
+    "insuranceNote": "Insurance is based on the item value.",
+    "outsideJava": "We currently ship within Java only.",
+    "unknownCity": "We don't recognise that regency/city. Pick one from the list.",
+    "error": "We couldn't calculate shipping yet. Please try again shortly.",
+    "retry": "Try again",
+    "weight": "Parcel weight {kg} kg (incl. packaging)",
+    "instantInfo": "Instant is for Greater Jakarta only, ordered & paid before 16:00 WIB."
+  },
+  "payment": {
+    "voucherErrors": {
+      "NOT_FOUND": "Voucher code not found",
+      "INACTIVE": "This voucher isn't active right now",
+      "EXPIRED": "This voucher has ended",
+      "MIN_SUBTOTAL": "Minimum spend {min} for this voucher",
+      "INVALID_INPUT": "Check the voucher code"
+    },
+    "voucherApplied": "Voucher applied — you save {amount}"
+  },
+  "terms": "By paying, you agree to Relevé's <link>Terms & Conditions</link>.",
+  "submitErrors": {
+    "OUT_OF_STOCK_TITLE": "Not enough stock",
+    "OUT_OF_STOCK": "Not enough stock for {items}. Update your cart to adjust the quantities.",
+    "updateCart": "Update cart",
+    "INVALID_INPUT": "Some details aren't right yet. Please check the form.",
+    "INVALID_VOUCHER": "This voucher can't be used for this order. Remove it and try again.",
+    "INVALID_SHIPPING": "This shipping service is no longer available. Choose another one.",
+    "LINK_EXPIRED": "This checkout link is no longer valid.",
+    "OUTSIDE_JAVA": "We currently ship within Java only.",
+    "RATE_LIMITED": "Too many attempts. Please wait a moment and try again.",
+    "generic": "We couldn't create your order. Please try again shortly."
+  },
+  "cartUpdated": "Your cart has been updated to the latest stock.",
+  "notices": {
+    "QTY_REDUCED": "{item} quantity was adjusted to {to} because stock is limited.",
+    "REMOVED_SOLD_OUT": "{item} is sold out and was removed from your cart.",
+    "NOW_PREORDER": "{item} is now a pre-order item.",
+    "UNKNOWN_SKU": "An item is no longer available and was removed from your cart."
+  },
+  "preorderNote": "Your order includes pre-order items (est. arrival {lead} weeks). Everything ships together once the pre-order items arrive.",
+  "empty": {
+    "title": "Your cart is empty",
+    "body": "Pick some shoes or dancewear first, then come back here to check out.",
+    "cta": "Back to shop"
+  },
+  "link": {
+    "banner": "Order prepared by the Relevé team",
+    "bannerBody": "Items and quantities are set as we discussed. Just add your address & payment.",
+    "locked": "Quantity locked",
+    "expiredTitle": "This checkout link isn't valid",
+    "expiredBody": "This link has been used or has expired (valid for 48 hours). Ask our team for a new link on WhatsApp.",
+    "askWa": "Ask for a new link on WhatsApp",
+    "loading": "Preparing your order…"
+  },
+  "loading": "Checking the latest stock & prices…",
+  "summaryContact": "{name} · {wa}",
+  "summaryPayment": "{method}",
+  "editCartHint": "Edit cart"
+}

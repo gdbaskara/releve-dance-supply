@@ -1,1 +1,59 @@
-{}
+{
+  "metaTitle": "Payment {orderNo}",
+  "title": "Complete your payment",
+  "orderNo": "Order number",
+  "copyOrderNo": "Copy order number",
+  "total": "Amount to pay",
+  "method": "Method: {method}",
+  "autoUpdate": "Status updates automatically every 5 seconds.",
+  "changeMethod": "Change payment method",
+  "changeTitle": "Choose another method",
+  "changeBody": "Your previous payment will be cancelled. We'll keep holding the stock for you.",
+  "changeConfirm": "Use this method",
+  "changed": "Payment method changed",
+  "changeError": "We couldn't change the method. Please try again.",
+  "renewed": "A new payment has been created",
+  "sendWa": "Send instructions to my WhatsApp",
+  "sent": "Payment instructions sent to your WhatsApp",
+  "sendErrors": {
+    "RATE_LIMITED": "Instructions were just sent. Please wait a moment before sending again.",
+    "NOT_PENDING": "This order is no longer awaiting payment.",
+    "NOT_FOUND": "Order not found."
+  },
+  "ewallet": {
+    "screenTitle": "Confirm in {wallet}",
+    "simNote": "Simulated {wallet} app — in production you'll be taken to the real app.",
+    "merchant": "Pay to",
+    "merchantName": "Relevé Dance Supply",
+    "confirm": "Pay {amount}",
+    "cancel": "Back"
+  },
+  "threeDs": {
+    "title": "3D Secure verification",
+    "body": "Your card issuer is asking for an OTP code for a {amount} transaction at Relevé Dance Supply.",
+    "card": "{brand} card •••• {last4}",
+    "otp": "OTP code",
+    "otpHint": "Demo: enter any 6 digits.",
+    "otpInvalid": "The OTP code must be 6 digits",
+    "submit": "Verify",
+    "cancel": "Cancel"
+  },
+  "cardFailed": "Your card was declined by the issuer. Try another card or choose a different payment method.",
+  "cardError": "We couldn't process the card payment. Please try again.",
+  "ewalletError": "We couldn't process the payment. Please try again.",
+  "expired": {
+    "stockReleased": "Stock has been released",
+    "orderAgain": "Order again"
+  },
+  "cancelled": {
+    "title": "Order cancelled",
+    "body": "This order has been cancelled. Message us on WhatsApp if you have any questions."
+  },
+  "demoError": "Simulation failed. Please try again.",
+  "notFound": {
+    "title": "Order not found",
+    "body": "Check your payment link again, or message us on WhatsApp."
+  },
+  "summary": "Order details",
+  "backToShop": "Back to shop"
+}

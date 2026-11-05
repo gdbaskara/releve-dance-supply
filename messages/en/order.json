@@ -1,1 +1,54 @@
-{}
+{
+  "success": {
+    "metaTitle": "Payment successful",
+    "title": "Payment successful",
+    "thanks": "Thank you, {name}. We're getting your order ready in Jakarta.",
+    "orderNo": "Order number",
+    "copyOrderNo": "Copy order number",
+    "waSent": "Confirmation sent to WhatsApp {wa}",
+    "shippingEta": "Shipping with {courier} {service} · est. {eta}",
+    "etaDays": "{eta} business days",
+    "etaHours": "{eta} hours",
+    "preorderEta": "Your order includes pre-order items. Estimated arrival 4–6 weeks; everything ships together once the pre-order items arrive.",
+    "shipTo": "Shipping to",
+    "summary": "Order summary",
+    "track": "Track Order",
+    "shop": "Continue Shopping"
+  },
+  "track": {
+    "metaTitle": "Track order",
+    "title": "Track your order",
+    "intro": "Enter your order number and the last 4 digits of the WhatsApp number you used at checkout.",
+    "orderNo": "Order number",
+    "orderNoPlaceholder": "RDS-261105-AB12",
+    "orderNoHelp": "It's in your WhatsApp confirmation and on the success page",
+    "waLast4": "Last 4 digits of your WhatsApp number",
+    "waLast4Placeholder": "7890",
+    "submit": "Track",
+    "invalidOrderNo": "Order number format: RDS-YYMMDD-XXXX",
+    "invalidLast4": "Enter 4 digits",
+    "notFound": "Order not found. Check your order number and the last 4 digits of your WhatsApp number.",
+    "rateLimited": "Too many attempts. Please try again in a few minutes.",
+    "statusLabel": "Status",
+    "placedOn": "Ordered {date}",
+    "items": "Items",
+    "courier": "Shipping",
+    "awb": "Tracking number",
+    "copyAwb": "Copy tracking number",
+    "awbPending": "The tracking number appears once the parcel ships.",
+    "total": "Total",
+    "another": "Track another order",
+    "payNow": "Continue payment"
+  },
+  "status": {
+    "PENDING_PAYMENT": "Awaiting payment",
+    "PAID": "Paid",
+    "PROCESSING": "Packing",
+    "SHIPPED": "Shipped",
+    "DELIVERED": "Delivered",
+    "EXPIRED": "Expired",
+    "CANCELLED": "Cancelled",
+    "REFUND_PENDING": "Refund pending"
+  },
+  "preorder": "Pre-order"
+}

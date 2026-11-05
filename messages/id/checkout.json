@@ -1,1 +1,94 @@
-{}
+{
+  "metaTitle": "Checkout",
+  "title": "Checkout",
+  "secure": "Pembayaran aman · harga & total dihitung ulang oleh sistem",
+  "steps": {
+    "contact": "Kontak & Alamat",
+    "shipping": "Pengiriman",
+    "payment": "Pembayaran"
+  },
+  "contact": {
+    "heading": "Kontak",
+    "name": "Nama lengkap",
+    "namePlaceholder": "Nama penerima",
+    "email": "Email",
+    "emailHelp": "Untuk salinan bukti pembayaran",
+    "waOptIn": "Kirim update pesanan via WhatsApp",
+    "waOptInHelp": "Konfirmasi, status bayar, dan nomor resi dikirim ke WA-mu",
+    "addressHeading": "Alamat pengiriman"
+  },
+  "next": {
+    "shipping": "Lanjut ke Pengiriman",
+    "payment": "Lanjut ke Pembayaran"
+  },
+  "errors": {
+    "name": "Isi nama lengkap (minimal 2 huruf)",
+    "wa": "Nomor WhatsApp belum valid. Contoh: 812-3456-7890",
+    "email": "Format email belum benar",
+    "province": "Pilih provinsi",
+    "city": "Pilih kabupaten/kota",
+    "district": "Isi kecamatan",
+    "postalCode": "Kode pos harus 5 digit",
+    "line": "Isi alamat lengkap (minimal 5 karakter)",
+    "courier": "Pilih layanan pengiriman",
+    "payment": "Pilih metode pembayaran"
+  },
+  "shipping": {
+    "insuranceNote": "Asuransi dihitung dari nilai barang.",
+    "outsideJava": "Kami baru melayani pengiriman ke Pulau Jawa.",
+    "unknownCity": "Kab/kota belum dikenali. Pilih dari daftar.",
+    "error": "Ongkir belum bisa dihitung. Coba lagi sebentar.",
+    "retry": "Coba lagi",
+    "weight": "Berat kiriman {kg} kg (termasuk kemasan)",
+    "instantInfo": "Instan hanya untuk Jabodetabek, dipesan & dibayar sebelum 16:00 WIB."
+  },
+  "payment": {
+    "voucherErrors": {
+      "NOT_FOUND": "Kode voucher tidak ditemukan",
+      "INACTIVE": "Voucher ini sedang tidak aktif",
+      "EXPIRED": "Voucher ini sudah berakhir",
+      "MIN_SUBTOTAL": "Minimal belanja {min} untuk voucher ini",
+      "INVALID_INPUT": "Kode voucher belum benar"
+    },
+    "voucherApplied": "Voucher dipakai — hemat {amount}"
+  },
+  "terms": "Dengan membayar, kamu menyetujui <link>Syarat & Ketentuan</link> Relevé.",
+  "submitErrors": {
+    "OUT_OF_STOCK_TITLE": "Stok tidak cukup",
+    "OUT_OF_STOCK": "Stok {items} tidak cukup. Perbarui keranjang untuk menyesuaikan jumlah.",
+    "updateCart": "Perbarui keranjang",
+    "INVALID_INPUT": "Ada data yang belum benar. Periksa lagi formulirnya.",
+    "INVALID_VOUCHER": "Voucher tidak bisa dipakai untuk pesanan ini. Hapus voucher lalu coba lagi.",
+    "INVALID_SHIPPING": "Layanan pengiriman ini sudah tidak tersedia. Pilih layanan lain.",
+    "LINK_EXPIRED": "Link checkout sudah tidak berlaku.",
+    "OUTSIDE_JAVA": "Kami baru melayani pengiriman ke Pulau Jawa.",
+    "RATE_LIMITED": "Terlalu banyak percobaan. Tunggu sebentar lalu coba lagi.",
+    "generic": "Pesanan belum bisa dibuat. Coba lagi sebentar."
+  },
+  "cartUpdated": "Keranjang sudah diperbarui sesuai stok terbaru.",
+  "notices": {
+    "QTY_REDUCED": "Jumlah {item} disesuaikan menjadi {to} karena stok terbatas.",
+    "REMOVED_SOLD_OUT": "{item} habis dan dihapus dari keranjang.",
+    "NOW_PREORDER": "{item} sekarang berstatus pre-order.",
+    "UNKNOWN_SKU": "Ada item yang sudah tidak tersedia dan dihapus dari keranjang."
+  },
+  "preorderNote": "Pesananmu berisi item pre-order (estimasi tiba {lead} minggu). Semua item dikirim sekaligus setelah item pre-order tiba.",
+  "empty": {
+    "title": "Keranjangmu masih kosong",
+    "body": "Pilih sepatu atau dancewear dulu, lalu kembali ke sini untuk checkout.",
+    "cta": "Kembali belanja"
+  },
+  "link": {
+    "banner": "Pesanan disiapkan oleh admin Relevé",
+    "bannerBody": "Item dan jumlah sudah diatur sesuai obrolan kita. Lengkapi alamat & pembayaran.",
+    "locked": "Jumlah terkunci",
+    "expiredTitle": "Link checkout tidak berlaku",
+    "expiredBody": "Link ini sudah dipakai atau kedaluwarsa (berlaku 48 jam). Minta link baru ke admin kami via WA.",
+    "askWa": "Minta link baru via WA",
+    "loading": "Menyiapkan pesananmu…"
+  },
+  "loading": "Memeriksa stok & harga terbaru…",
+  "summaryContact": "{name} · {wa}",
+  "summaryPayment": "{method}",
+  "editCartHint": "Ubah keranjang"
+}
