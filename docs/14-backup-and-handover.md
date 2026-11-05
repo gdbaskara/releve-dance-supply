@@ -34,11 +34,11 @@ What is **not** in the bundle (intentionally): `node_modules/`, `.next/`, `.env.
    ```bash
    cd releve
    git remote remove origin          # origin points to the bundle file
-   git remote add origin git@github.com:<akun>/releve-dance-supply.git
+   git remote add origin git@github.com:<account>/releve-dance-supply.git
    git push -u origin main
    git push origin --tags            # if there are tags
    ```
-   Or with the GitHub CLI: `gh repo create <akun>/releve-dance-supply --private --source=. --push`.
+   Or with the GitHub CLI: `gh repo create <account>/releve-dance-supply --private --source=. --push`.
 3. Make sure no secrets are included: `git ls-files | grep -E '^\.env'` must only show `.env.example`.
 4. Connect to Vercel: [`12-deploy.md`](12-deploy.md) §4.
 

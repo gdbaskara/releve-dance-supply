@@ -148,7 +148,7 @@ Every FR has testable acceptance criteria (AC). Agents must reference the FR ID 
 |---|---|
 | NFR-01 | **Mobile-first**; tested at 360×800, 390×844, 768×1024, 1280×800. No horizontal scroll |
 | NFR-02 | **WCAG 2.1 AA**: contrast (tokens already checked), visible focus, keyboard navigation, form labels, touch targets ≥ 44px, `prefers-reduced-motion` |
-| NFR-03 | Performance (Lighthouse mobile, listing pages & PDP): Performance ≥ 85, LCP < 2,5 s, CLS < 0,1 |
+| NFR-03 | Performance (Lighthouse mobile, listing pages & PDP): Performance ≥ 85, LCP < 2.5 s, CLS < 0.1 |
 | NFR-04 | SEO: per-page metadata, `hreflang` id/en, sitemap, JSON-LD `Product` (offers IDR, availability) |
 | NFR-05 | Security: prices & totals **always calculated on the server**; Zod validation on all input; webhooks verified; card data never stored; rate limiting on create-order & tracking |
 | NFR-06 | Privacy (UU PDP, Indonesia's Personal Data Protection Law): WA numbers used only for orders & opted-in notifications; Privacy Policy page |

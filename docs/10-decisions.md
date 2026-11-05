@@ -16,7 +16,7 @@
 | D-10 | 5 Nov 2026 | Returns/size exchanges: **postponed**, handled via WA for now | Owner |
 | D-11 | 5 Nov 2026 | B2B (studios/sanggar): not in the demo | Owner undecided |
 | D-12 | 5 Nov 2026 | Demo catalog of 40 models (30 shoes/tights + 10 dancewear), dummy stock per variant | Owner asked for ≥ 30, dancewear included |
-| D-13 | 5 Nov 2026 | Price = official import landed cost × multiplier (pointe 1,45 / shoes 1,65 / dancewear & tights 1,8), planning exchange rate Rp18.500 | `06-pricing.md` |
+| D-13 | 5 Nov 2026 | Price = official import landed cost × multiplier (pointe 1.45 / shoes 1.65 / dancewear & tights 1.8), planning exchange rate Rp18.500 | `06-pricing.md` |
 | D-14 | 5 Nov 2026 | Tech stack `04-tech-stack.md` | Locked |
 | D-15 | 5 Nov 2026 | Light mode only in v1 | Simple, matches the reference |
 | D-16 | 5 Nov 2026 | Guest checkout, single admin | Demo |
@@ -40,7 +40,7 @@
 | # | Question | Interim default | Impact |
 |---|---|---|---|
 | Q-01 | Can the client get **wholesale pricing** (±50% MSRP) from Só Dança? | Assumed yes | Without it, prices are ±2× higher than the market (`06` §6) |
-| Q-02 | **Pointe** strategy (Rp3 jt vs local Bloch Rp1,1–1,6 jt) | Multiplier 1,45, displayed normally | Could become niche/pre-order, or margin drops |
+| Q-02 | **Pointe** strategy (Rp3 jt vs local Bloch Rp1,1–1,6 jt) | Multiplier 1.45, displayed normally | Could become niche/pre-order, or margin drops |
 | Q-03 | Final name & logo | Relevé Dance Supply | Replace wordmark & copy |
 | Q-04 | Demo WA number | `NEXT_PUBLIC_WA_NUMBER` placeholder | — |
 | Q-05 | Jakarta warehouse address (for instant couriers & footer) | Kota Jakarta Selatan | Instant rates |

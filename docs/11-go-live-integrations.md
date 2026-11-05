@@ -41,7 +41,7 @@ touches our server (full PCI DSS is not required).
 | VA BCA / Mandiri / BNI / BRI / Permata | `BCA_VIRTUAL_ACCOUNT`, `MANDIRI_…`, `BNI_…`, `BRI_…`, `PERMATA_…` | `vaNumber` from the `VIRTUAL_ACCOUNT_NUMBER` action; `type: PAY` = closed, single-use VA with exact amount; 24 hours |
 | Card | Payment Session | `redirectUrl` = `payment_link_url` (3DS on the Xendit page), 15 min |
 
-`reference_id` = `<orderNo>-<METODE>-<acak>` (order number, method, random); it is also sent as the `idempotency-key`. `providerRef` = the Xendit id (`pr-…` or `ps-…`).
+`reference_id` = `<orderNo>-<METHOD>-<random>`; it is also sent as the `idempotency-key`. `providerRef` = the Xendit id (`pr-…` or `ps-…`).
 Changing method → `POST /v3/payment_requests/{id}/cancel` or `POST /sessions/{id}/cancel`.
 
 ### 1.2 Account & keys
@@ -82,7 +82,7 @@ The local expiry sweep (`/api/cron/expire`) keeps running as a safety net in cas
 - OVO requires `channel_properties.account_mobile_number` (E.164) and works via push notification — it may come **without** a `redirectUrl`; the payment page must show "open the OVO app".
 - The payment request inside a card Payment Session inherits the session's `reference_id` (`…-CARD-…`), so its `payment.*` events are ignored (what is tracked is `payment_session.completed`). If it does not inherit it, those events will be answered with 404 (unknown payment) and retried by Xendit — no data damage, but it needs adjusting.
 - `idempotency-key` is honored by both endpoints.
-- An inline `customer` object in the Payment Session is accepted (reference_id `wa_<digit WA>`).
+- An inline `customer` object in the Payment Session is accepted (reference_id `wa_<WA digits>`).
 
 ### 1.5 Testing in test mode
 1. Fill env with the `xnd_development_…` key, `PAYMENT_PROVIDER=xendit`, run the app on a public HTTPS URL (e.g. an ngrok/cloudflared tunnel) and set `NEXT_PUBLIC_SITE_URL` to that URL; register the tunnel webhook URL in the test-mode dashboard.
@@ -103,14 +103,14 @@ The local expiry sweep (`/api/cron/expire`) keeps running as a safety net in cas
 - Instant couriers `gojek,grab` are priced using **coordinates**: the warehouse pin + the center point of the destination city (`shipping/biteship-areas.ts`, Z1 only). Instant prices are city-level estimates until checkout has a map pin.
 - Store rules still apply on top of Biteship: instant only in Z1, before the WIB cutoff (GoSend Instant 16:00 / ≤20 kg, Grab Same Day 14:00 / ≤7 kg), freight/cargo dropped, ordering Instant → Express → Regular.
 - Types: `service_type` `instant`/`same_day` → Instant (hours), `overnight` + `jne_yes`, `sicepat_best`, `anteraja_next_day` → Express, everything else → Regular. `serviceCode` = `<courier_code>_<service_code>` (e.g. `jne_reg`).
-- Insurance: our rule by default, max(Rp2.500, 0,25 % of goods value). `BITESHIP_USE_COURIER_INSURANCE=true` → send `courier_insurance` and use Biteship's `insurance_fee`.
+- Insurance: our rule by default, max(Rp2.500, 0.25% of goods value). `BITESHIP_USE_COURIER_INSURANCE=true` → send `courier_insurance` and use Biteship's `insurance_fee`.
 - Tracking: `GET /v1/trackings/{awb}/couriers/{courier_code}` (courier names from admin are normalized: "J&T" → `jnt`, "GoSend" → `gojek`).
 
 ### 2.2 Steps
 1. Sign up at <https://dashboard.biteship.com>, verify the account, top up the balance (needed later when creating shipping orders; rate checks also consume API quota/fees depending on the plan — check <https://biteship.com/id/harga>).
 2. **Integrasi → API Key** (Integration → API Key) → create a test key (`biteship_test.…`) and a live key (`biteship_live.…`).
 3. Jakarta warehouse (demo assumption: Kota Jakarta Selatan): enter the warehouse postal code, and get the warehouse pin coordinates (Google Maps → right-click → copy lat,lng).
-   Optional: look up the area id via `GET https://api.biteship.com/v1/maps/areas?countries=ID&input=<kode pos>&type=single` with the header `authorization: <key>`.
+   Optional: look up the area id via `GET https://api.biteship.com/v1/maps/areas?countries=ID&input=<postal_code>&type=single` with the header `authorization: <key>`.
 4. Enable the JNE, J&T, SiCepat, AnterAja, GoSend, GrabExpress couriers in the dashboard.
 
 ### 2.3 Env

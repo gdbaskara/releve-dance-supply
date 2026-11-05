@@ -58,7 +58,7 @@ If this Mac **already has a tunnel** for Reel Studio, just add a new hostname to
 
 ```bash
 cloudflared tunnel list                       # see the name of the tunnel used by reel
-cloudflared tunnel route dns <NAMA_TUNNEL> releve.gdbaskara.dev
+cloudflared tunnel route dns <TUNNEL_NAME> releve.gdbaskara.dev
 ```
 
 Then add to `~/.cloudflared/config.yml` (above the `http_status:404` rule):
