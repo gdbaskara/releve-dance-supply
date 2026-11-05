@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 // Usage: BASE=http://localhost:3000 OUT=/path node scripts/qa-screenshots.mjs
 // Walks the demo happy path (D1) + key pages and saves screenshots (mobile 390x844 @2x, desktop 1280x800 @2x).
 const { chromium } = require("playwright");
