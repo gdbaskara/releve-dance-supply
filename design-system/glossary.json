@@ -1,5 +1,5 @@
 {
-  "$description": "Istilah yang TIDAK diterjemahkan di locale id maupun en. Tooltip penjelas (id/en) dipakai di WidthSelector, ShankSelector, SizeGuide, dan deskripsi produk.",
+  "$description": "Terms that are NOT translated in either the id or en locale. The explanatory tooltips (id/en) are used in WidthSelector, ShankSelector, SizeGuide and product descriptions.",
   "keep_as_is": {
     "disciplines": [
       "Ballet",
@@ -33,7 +33,7 @@
       "Ready",
       "Pre-order",
       "Checkout",
-      "Sold out (hanya en)",
+      "Sold out (en only)",
       "Size",
       "Width"
     ],

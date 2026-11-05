@@ -115,15 +115,15 @@ for i, (title, disc, aud) in enumerate(PICK):
         "source_url": "https://www.sodanca.com/products/" + p['handle'],
         "stock_profile": prof, "stock_total": tot,
         "variant_count": len(variants), "variants": variants})
-meta = {"_note": "DATA DEMO. Model/warna/ukuran dari katalog publik sodanca.com (5 Nov 2026). Stok = DUMMY. Harga IDR = hasil model markup di docs/06-pricing.md (asumsi, belum diverifikasi broker/konsultan pajak). Foto/deskripsi hanya referensi internal, jangan dipakai di produksi tanpa izin.", "pricing_config": CFG,
+meta = {"_note": "DEMO DATA. Models/colors/sizes from the public sodanca.com catalog (5 Nov 2026). Stock = DUMMY. IDR prices = output of the markup model in docs/06-pricing.md (assumptions, not yet verified by a customs broker/tax advisor). Photos/descriptions are internal reference only; do not use in production without permission.", "pricing_config": CFG,
         "products": products}
 json.dump(meta, open(out + '/products.json', 'w'), ensure_ascii=False, indent=2)
 with open(out + '/variants.csv', 'w', newline='') as f:
     w = csv.DictWriter(f, fieldnames=list(rows[0].keys())); w.writeheader(); w.writerows(rows)
 # summary
 from collections import Counter
-L = ["# Demo Catalog — 40 model (30 sepatu / tights + 10 dancewear)\n", meta["_note"] + "\n",
-     "| # | Kode | Nama | Disiplin | Untuk | MSRP US | Modal landed | Harga jual | × MSRP | Est. net | Varian | Stok | Ready / Sisa / PO / Habis |",
+L = ["# Demo Catalog — 40 models (30 shoes / tights + 10 dancewear)\n", meta["_note"] + "\n",
+     "| # | Code | Name | Discipline | For | US MSRP | Landed cost | Selling price | × MSRP | Est. net | Variants | Stock | Ready / Low / PO / Sold out |",
      "|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
 def rp(x): return "Rp " + f"{x:,}".replace(",", ".")
 for i, p in enumerate(products, 1):
@@ -131,8 +131,8 @@ for i, p in enumerate(products, 1):
     q = p['pricing']
     L.append(f"| {i} | {p['model_code']} | {p['name']} | {p['discipline']} | {p['audience']} | ${q['msrp_usd']:.2f} | {rp(q['landed_cost_idr'])} | **{rp(q['price_idr'])}** | {q['price_vs_msrp_idr']}× | {q['est_net_margin_pct']}% | {p['variant_count']} | {p['stock_total']} | {c['READY']} / {c['LOW']} / {c['PREORDER']} / {c['SOLD_OUT']} |")
 allc = Counter(r['stock_status'] for r in rows)
-L += ["", f"**Total:** {len(products)} model, {len(rows)} SKU varian, {sum(r['stock_qty'] for r in rows)} pcs stok. "
-      f"Status SKU: READY {allc['READY']}, LOW {allc['LOW']}, PREORDER {allc['PREORDER']}, SOLD_OUT {allc['SOLD_OUT']}.",
-      "", "Aturan status: `READY` stok > 3 · `LOW` 1–3 (tampil \"Sisa N\") · `PREORDER` 0 tapi bisa dipesan (4–6 minggu) · `SOLD_OUT` 0 dan tidak bisa dipesan (tampil \"Kabari saya via WA\")."]
+L += ["", f"**Total:** {len(products)} models, {len(rows)} variant SKUs, {sum(r['stock_qty'] for r in rows)} units in stock. "
+      f"SKU status: READY {allc['READY']}, LOW {allc['LOW']}, PREORDER {allc['PREORDER']}, SOLD_OUT {allc['SOLD_OUT']}.",
+      "", "Status rules: `READY` stock > 3 · `LOW` 1–3 (shows \"Sisa N\") · `PREORDER` 0 but orderable (4–6 weeks) · `SOLD_OUT` 0 and not orderable (shows \"Kabari Saya via WA\")."]
 open(out + '/README.md', 'w').write("\n".join(L) + "\n")
 print("\n".join(L[-3:]))

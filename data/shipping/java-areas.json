@@ -1,5 +1,5 @@
 {
-  "_note": "Data wilayah untuk DEMO (provinsi + kab/kota Pulau Jawa, 119 kab/kota). Kecamatan & kode pos diisi bebas di demo; produksi pakai Biteship Area API.",
+  "_note": "Area data for the DEMO (provinces + regencies/cities of Java, 119 in total). District & postal code are free-text in the demo; production uses the Biteship Area API.",
   "origin": {
     "province": "DKI Jakarta",
     "city": "Kota Jakarta Selatan",

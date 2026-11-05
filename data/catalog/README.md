@@ -1,8 +1,8 @@
-# Demo Catalog — 40 model (30 sepatu / tights + 10 dancewear)
+# Demo Catalog — 40 models (30 shoes / tights + 10 dancewear)
 
-DATA DEMO. Model/warna/ukuran dari katalog publik sodanca.com (5 Nov 2026). Stok = DUMMY. Harga IDR = hasil model markup di docs/06-pricing.md (asumsi, belum diverifikasi broker/konsultan pajak). Foto/deskripsi hanya referensi internal, jangan dipakai di produksi tanpa izin.
+DEMO DATA. Models/colors/sizes from the public sodanca.com catalog (5 Nov 2026). Stock = DUMMY. IDR prices = output of the markup model in docs/06-pricing.md (assumptions, not yet verified by a customs broker/tax advisor). Photos/descriptions are internal reference only; do not use in production without permission.
 
-| # | Kode | Nama | Disiplin | Untuk | MSRP US | Modal landed | Harga jual | × MSRP | Est. net | Varian | Stok | Ready / Sisa / PO / Habis |
+| # | Code | Name | Discipline | For | US MSRP | Landed cost | Selling price | × MSRP | Est. net | Variants | Stock | Ready / Low / PO / Sold out |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | 1 | SD16 | Bliss Stretch Canvas | Ballet | Kids | $27.50 | Rp 406.695 | **Rp 675.000** | 1.35× | 20.2% | 156 | 821 | 113 / 16 / 0 / 27 |
 | 2 | SD140 | Diamond | Ballet | Adult | $27.00 | Rp 399.300 | **Rp 660.000** | 1.35× | 20.0% | 240 | 1476 | 193 / 23 / 0 / 24 |
@@ -45,6 +45,6 @@ DATA DEMO. Model/warna/ukuran dari katalog publik sodanca.com (5 Nov 2026). Stok
 | 39 | SL222 | Naya Top | Tops | Adult | $28.00 | Rp 414.089 | **Rp 750.000** | 1.48× | 25.3% | 35 | 161 | 23 / 6 / 0 / 6 |
 | 40 | SL220 | Sloane Kid's Top | Tops | Kids | $30.00 | Rp 443.667 | **Rp 800.000** | 1.47× | 25.0% | 21 | 124 | 16 / 2 / 0 / 3 |
 
-**Total:** 40 model, 2903 SKU varian, 8515 pcs stok. Status SKU: READY 1023, LOW 680, PREORDER 582, SOLD_OUT 618.
+**Total:** 40 models, 2903 variant SKUs, 8515 units in stock. SKU status: READY 1023, LOW 680, PREORDER 582, SOLD_OUT 618.
 
-Aturan status: `READY` stok > 3 · `LOW` 1–3 (tampil "Sisa N") · `PREORDER` 0 tapi bisa dipesan (4–6 minggu) · `SOLD_OUT` 0 dan tidak bisa dipesan (tampil "Kabari saya via WA").
+Status rules: `READY` stock > 3 · `LOW` 1–3 (shows "Sisa N") · `PREORDER` 0 but orderable (4–6 weeks) · `SOLD_OUT` 0 and not orderable (shows "Kabari Saya via WA").

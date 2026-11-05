@@ -1,7 +1,7 @@
 {
-  "_note": "DATA DEMO. Model/warna/ukuran dari katalog publik sodanca.com (5 Nov 2026). Stok = DUMMY. Harga IDR = hasil model markup di docs/06-pricing.md (asumsi, belum diverifikasi broker/konsultan pajak). Foto/deskripsi hanya referensi internal, jangan dipakai di produksi tanpa izin.",
+  "_note": "DEMO DATA. Models/colors/sizes from the public sodanca.com catalog (5 Nov 2026). Stock = DUMMY. IDR prices = output of the markup model in docs/06-pricing.md (assumptions, not yet verified by a customs broker/tax advisor). Photos/descriptions are internal reference only; do not use in production without permission.",
   "pricing_config": {
-    "_doc": "Asumsi model harga. Lihat docs/06-pricing.md. Ubah angka di sini lalu generate ulang.",
+    "_doc": "Pricing model assumptions. See docs/06-pricing.md. Change the numbers here, then regenerate the catalog.",
     "kurs_spot": 18140,
     "kurs_planning": 18500,
     "buy_price_pct_of_msrp": 0.5,

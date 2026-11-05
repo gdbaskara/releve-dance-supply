@@ -1,6 +1,6 @@
 /* Relevé Dance Supply — design tokens v1.0 (light only).
-   Diturunkan dari design-system/tokens.json. Jika berbeda, tokens.json yang benar.
-   Tailwind v4: import file ini lalu petakan di @theme (lihat docs/07-design-system.md §9). */
+   Derived from design-system/tokens.json; if they differ, tokens.json wins.
+   Tailwind v4: the theme is mapped in src/app/globals.css (see docs/07-design-system.md §9). */
 :root {
   /* color */
   --color-bg: #FFFFFF;

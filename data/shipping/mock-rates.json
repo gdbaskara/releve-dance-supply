@@ -1,5 +1,5 @@
 {
-  "_note": "Tarif ongkir SIMULASI untuk demo (bukan tarif asli kurir). Berat ditagih per kg, dibulatkan ke atas, min 1 kg. Berat volumetrik = P×L×T/6000.",
+  "_note": "SIMULATED shipping rates for the demo (not real courier rates). Weight billed per kg, rounded up, min 1 kg. Volumetric weight = L×W×H/6000.",
   "zones": {
     "Z1": "Jabodetabek",
     "Z2": "Jawa Barat & Banten (luar Jabodetabek), Kep. Seribu",
