@@ -1,1 +1,62 @@
-{}
+{
+  "brand": "Só Dança",
+  "originalLabel": "Original Só Dança product (imported)",
+  "addToCart": "Add to Cart",
+  "added": "Added to cart",
+  "addedBody": "{name} · {variant}",
+  "viewCart": "View cart",
+  "selectFirst": "Choose a {option} first",
+  "maxQtyNote": "Max. {n} per order for this variant",
+  "preorderNote": "Pre-order items ship together with the rest of your order once stock arrives.",
+  "pointeCalloutTitle": "Pointe shoes are best fitted in person",
+  "pointeCallout": "Consult us on WhatsApp first — send a photo & your foot length and we'll help you choose the size, width & shank.",
+  "askWa": "Ask on WhatsApp",
+  "notify": {
+    "cta": "Notify Me on WhatsApp",
+    "title": "Get notified when it's back",
+    "body": "Size {variant} is sold out. Leave your WhatsApp number and we'll message you as soon as it's back in stock.",
+    "label": "WhatsApp number",
+    "help": "Only used to tell you about this product's stock.",
+    "submit": "Notify Me",
+    "success": "Done! We'll message you on WhatsApp when {variant} is back.",
+    "already": "This number is already on the list for this variant. We'll let you know.",
+    "invalidWa": "That WhatsApp number isn't valid yet. Example: 812-3456-7890",
+    "error": "Couldn't save. Please try again or chat with us on WhatsApp."
+  },
+  "sections": {
+    "description": "Description",
+    "features": "Features",
+    "material": "Material & care",
+    "shipping": "Shipping",
+    "payment": "Payment",
+    "descriptionEnNote": "Original description from Só Dança:"
+  },
+  "care": {
+    "shoes": "Air out after wearing; keep out of direct sun. Wipe dirt off with a damp cloth. Store in a cloth bag to keep the shape.",
+    "pointe": "Dry in an airy place after every class so the shank & box don't soften too quickly. Never machine wash.",
+    "apparel": "Hand wash cold, do not wring, line dry. Do not iron directly.",
+    "tights": "Hand wash cold in a laundry bag, line dry."
+  },
+  "shippingInfo": "Shipped from our Jakarta warehouse across Java. Ready items ship in 1–2 business days; instant & same-day delivery available in Greater Jakarta. Shipping is calculated at checkout.",
+  "paymentInfo": "Pay in full, digitally: QRIS, e-wallets (GoPay, OVO, DANA, ShopeePay), Virtual Account (BCA, Mandiri, BNI, BRI, Permata) or credit/debit card.",
+  "infoLink": "Learn more",
+  "relatedTitle": "You may also like",
+  "compareTitle": "Compare similar styles",
+  "sole": {
+    "split": "Split sole",
+    "full": "Full sole",
+    "suede": "Suede sole",
+    "rubber": "Rubber sole",
+    "pointe": "Shank & platform",
+    "unknown": "—"
+  },
+  "material": {
+    "unknown": "—"
+  },
+  "gallery": {
+    "label": "{name} photo gallery",
+    "slide": "Photo {n} of {total}",
+    "goTo": "View photo {n}"
+  },
+  "metaDescription": "{name} ({code}) — original Só Dança product. {price}. Stock per size, shipped from Jakarta, pay with QRIS, VA & e-wallets."
+}

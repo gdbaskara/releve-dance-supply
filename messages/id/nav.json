@@ -1,1 +1,59 @@
-{}
+{
+  "items": {
+    "shoes": "Sepatu",
+    "pointe": "Pointe",
+    "dancewear": "Dancewear",
+    "kids": "Kids",
+    "track": "Lacak Pesanan"
+  },
+  "mega": {
+    "disciplines": "Sepatu per disiplin",
+    "allShoes": "Semua sepatu",
+    "kids": "Kids",
+    "kidsAll": "Semua produk anak",
+    "kidsBallet": "Ballet anak",
+    "kidsTap": "Tap anak",
+    "kidsDancewear": "Dancewear anak",
+    "consultTitle": "Konsultasi ukuran via WA",
+    "consultBody": "Kirim panjang kakimu, kami bantu pilih size & width.",
+    "consultCta": "Chat sekarang"
+  },
+  "footer": {
+    "shop": "Belanja",
+    "help": "Bantuan",
+    "about": "Tentang",
+    "contact": "Kontak",
+    "sizeGuide": "Panduan ukuran",
+    "shipping": "Pengiriman",
+    "payment": "Pembayaran",
+    "faq": "FAQ",
+    "track": "Lacak pesanan",
+    "aboutUs": "Tentang Relevé",
+    "terms": "Syarat & Ketentuan",
+    "privacy": "Kebijakan Privasi",
+    "waChat": "Chat WhatsApp",
+    "address": "Gudang: Kota Jakarta Selatan, DKI Jakarta",
+    "hours": "Senin–Sabtu, 09.00–18.00 WIB"
+  },
+  "search": {
+    "title": "Cari produk",
+    "label": "Cari nama atau kode model",
+    "placeholder": "Mis. Bliss, SD16, pointe",
+    "submit": "Cari",
+    "resultsFor": "Hasil untuk “{q}”",
+    "count": "{n, plural, =0 {Tidak ada produk} other {# produk}}",
+    "hint": "Ketik nama model, kode (mis. SD140), atau disiplin.",
+    "emptyTitle": "Belum ketemu “{q}”",
+    "emptyBody": "Coba kata lain atau tanya kami via WhatsApp — kami bantu carikan.",
+    "popular": "Pencarian populer",
+    "metaTitle": "Cari",
+    "metaDescription": "Cari sepatu dansa & dancewear Só Dança berdasarkan nama atau kode model."
+  },
+  "notFound": {
+    "title": "Halaman tidak ditemukan",
+    "body": "Halaman yang kamu cari tidak ada atau sudah dipindahkan.",
+    "home": "Kembali ke beranda",
+    "shop": "Lihat semua sepatu"
+  },
+  "skipToContent": "Langsung ke konten"
+}

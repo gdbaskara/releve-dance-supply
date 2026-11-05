@@ -1,1 +1,69 @@
-{}
+{
+  "nav": "Information",
+  "updated": "Last updated 5 Nov 2026",
+  "askWa": "Still have questions? Chat with us on WhatsApp",
+  "pages": {
+    "shipping": {
+      "title": "Shipping",
+      "description": "We ship from our Jakarta warehouse across Java with local couriers.",
+      "sections": [
+        { "title": "Where we ship", "body": "We currently ship within Java only: DKI Jakarta, Banten, West Java, Central Java, DI Yogyakarta and East Java. Outside Java? Chat with us on WhatsApp first." },
+        { "title": "Processing time", "body": "Ready items are packed and handed to the courier within 1–2 business days after payment. Orders with pre-order items ship together once everything arrives (est. 4–6 weeks)." },
+        { "title": "Courier options", "body": "Instant & same-day (GoSend, GrabExpress) in Greater Jakarta only, for orders paid before the daily cutoff. Express & Regular (JNE, J&T, SiCepat, AnterAja) across Java. Prices & estimates appear at checkout based on your address and parcel weight." },
+        { "title": "Insurance & tracking", "body": "Shipping insurance is on by default and can be turned off at checkout. Your tracking number is sent on WhatsApp and can be checked on the Track Order page." }
+      ]
+    },
+    "payment": {
+      "title": "Payment",
+      "description": "All payments are digital and paid in full when you place the order.",
+      "sections": [
+        { "title": "Available methods", "body": "QRIS (from any e-wallet & mobile banking app), GoPay, OVO, DANA, ShopeePay, Virtual Account BCA, Mandiri, BNI, BRI, Permata, and credit/debit cards (Visa, Mastercard, JCB)." },
+        { "title": "Payment window", "body": "QRIS 30 minutes, e-wallets & cards 15 minutes, Virtual Account 24 hours. We hold your size for that time. After that, the order expires and the stock is released." },
+        { "title": "Security", "body": "Payment totals are always recalculated by our system. Card details are never stored by Relevé." },
+        { "title": "Changing method", "body": "Haven't paid yet? You can switch payment method on the payment page without losing your stock reservation." }
+      ]
+    },
+    "faq": {
+      "title": "FAQ",
+      "description": "Our most frequently asked questions.",
+      "sections": [
+        { "title": "Are the products original?", "body": "Yes. Every product is an original Só Dança product that we import. Relevé Dance Supply is an independent store and is not affiliated with Só Dança." },
+        { "title": "How do I choose my size?", "body": "See the Size Guide and measure your foot length in cm. Between two sizes, or buying pointe shoes? Send us a photo & your measurements on WhatsApp — the consultation is free." },
+        { "title": "What do Ready, Only N left and Pre-order mean?", "body": "Ready: in our Jakarta warehouse, ships in 1–2 business days. Only N left: low stock. Pre-order: we order it for you, est. arrival 4–6 weeks. Sold out: tap “Notify Me on WhatsApp” and we'll tell you when it's back." },
+        { "title": "Can I exchange sizes or return?", "body": "Size exchanges and returns are handled case by case on WhatsApp. Contact us within 2 days of receiving your parcel, with the product unworn outdoors and in its complete packaging." },
+        { "title": "Do you ship outside Java?", "body": "Not through the website yet. Chat with us on WhatsApp and we'll check what's possible." },
+        { "title": "Do I need an account?", "body": "No. Just enter your name, WhatsApp number and address at checkout. Check your order on Track Order with your order number and the last 4 digits of your WhatsApp number." }
+      ]
+    },
+    "terms": {
+      "title": "Terms & Conditions",
+      "description": "Terms for shopping at Relevé Dance Supply.",
+      "sections": [
+        { "title": "About the store", "body": "Relevé Dance Supply is an independent reseller of Só Dança products and is not affiliated with Só Dança. The Só Dança name and brand belong to their owner." },
+        { "title": "Prices & payment", "body": "Prices are in Rupiah and include import costs. Orders are processed once full digital payment is received within the stated time." },
+        { "title": "Stock & pre-orders", "body": "Stock is shown per variant and held during the payment window. Pre-order estimates are 4–6 weeks and may change; we'll let you know on WhatsApp if they do." },
+        { "title": "Shipping", "body": "We ship within Java only, from Jakarta. Shipping risk is covered by insurance when enabled." },
+        { "title": "Size exchanges & returns", "body": "Handled case by case on WhatsApp. Products must be unworn outdoors, clean and in complete packaging." }
+      ]
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "description": "How we use your personal data, in line with Indonesia's Personal Data Protection Law.",
+      "sections": [
+        { "title": "Data we collect", "body": "The name, WhatsApp number, email (optional) and shipping address you enter at checkout, plus your WhatsApp number when you ask for a stock alert." },
+        { "title": "What we use it for", "body": "Only to process & ship your order, and to send order updates and stock alerts on WhatsApp when you agree to it. We never sell your personal data." },
+        { "title": "Payments", "body": "Payments are processed by our payment provider. Card details are never stored by Relevé." },
+        { "title": "Your rights", "body": "You can ask for a copy, correction or deletion of your data, and stop receiving messages at any time, by contacting us on WhatsApp." }
+      ]
+    },
+    "about": {
+      "title": "About Relevé",
+      "description": "An independent dance store in Jakarta for Só Dança shoes & dancewear.",
+      "sections": [
+        { "title": "Who we are", "body": "Relevé Dance Supply is an independent store in Jakarta selling original Só Dança products (imported). We are not affiliated with Só Dança." },
+        { "title": "How we work", "body": "Honest stock per size, size consultations on WhatsApp, digital payments (QRIS, e-wallets, Virtual Account, cards), and shipping from Jakarta across Java." },
+        { "title": "For studios", "body": "Need several pairs for your students? Chat with us on WhatsApp and we'll help put the order together." }
+      ]
+    }
+  }
+}

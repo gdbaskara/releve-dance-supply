@@ -1,1 +1,59 @@
-{}
+{
+  "items": {
+    "shoes": "Shoes",
+    "pointe": "Pointe",
+    "dancewear": "Dancewear",
+    "kids": "Kids",
+    "track": "Track Order"
+  },
+  "mega": {
+    "disciplines": "Shoes by discipline",
+    "allShoes": "All shoes",
+    "kids": "Kids",
+    "kidsAll": "All kids' products",
+    "kidsBallet": "Kids' Ballet",
+    "kidsTap": "Kids' Tap",
+    "kidsDancewear": "Kids' Dancewear",
+    "consultTitle": "Size consultation on WhatsApp",
+    "consultBody": "Send us your foot length and we'll help you pick the size & width.",
+    "consultCta": "Chat now"
+  },
+  "footer": {
+    "shop": "Shop",
+    "help": "Help",
+    "about": "About",
+    "contact": "Contact",
+    "sizeGuide": "Size guide",
+    "shipping": "Shipping",
+    "payment": "Payment",
+    "faq": "FAQ",
+    "track": "Track order",
+    "aboutUs": "About Relevé",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy",
+    "waChat": "Chat on WhatsApp",
+    "address": "Warehouse: South Jakarta, DKI Jakarta",
+    "hours": "Mon–Sat, 09:00–18:00 WIB"
+  },
+  "search": {
+    "title": "Search products",
+    "label": "Search by name or model code",
+    "placeholder": "E.g. Bliss, SD16, pointe",
+    "submit": "Search",
+    "resultsFor": "Results for “{q}”",
+    "count": "{n, plural, =0 {No products} one {# product} other {# products}}",
+    "hint": "Type a model name, code (e.g. SD140) or discipline.",
+    "emptyTitle": "Nothing found for “{q}”",
+    "emptyBody": "Try another word or ask us on WhatsApp — we'll help you find it.",
+    "popular": "Popular searches",
+    "metaTitle": "Search",
+    "metaDescription": "Search Só Dança dance shoes & dancewear by name or model code."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "body": "The page you're looking for doesn't exist or has moved.",
+    "home": "Back to home",
+    "shop": "Browse all shoes"
+  },
+  "skipToContent": "Skip to content"
+}

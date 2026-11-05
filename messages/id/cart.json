@@ -1,1 +1,27 @@
-{}
+{
+  "title": "Keranjang",
+  "metaTitle": "Keranjang",
+  "count": "{n, plural, =0 {Kosong} other {# item}}",
+  "validating": "Memeriksa stok terbaru…",
+  "notices": {
+    "QTY_REDUCED": "Stok {item} tinggal {to}. Jumlah kami sesuaikan dari {from} ke {to}.",
+    "REMOVED_SOLD_OUT": "{item} sudah habis dan kami hapus dari keranjang.",
+    "NOW_PREORDER": "{item} sekarang berstatus pre-order (estimasi 4–6 minggu).",
+    "UNKNOWN_SKU": "Ada item yang sudah tidak tersedia dan kami hapus dari keranjang.",
+    "unknownItem": "Item"
+  },
+  "preorderNotice": "Keranjang berisi item pre-order. Semua item dikirim sekaligus setelah item pre-order tiba (estimasi 4–6 minggu).",
+  "summary": "Ringkasan",
+  "subtotal": "Subtotal",
+  "shipping": "Ongkir",
+  "shippingAtCheckout": "Dihitung di checkout",
+  "total": "Total",
+  "totalNote": "Belum termasuk ongkir. Harga & stok dipastikan ulang saat checkout.",
+  "checkout": "Checkout",
+  "askWa": "Tanya keranjang ini via WA",
+  "continue": "Lanjut belanja",
+  "emptyTitle": "Keranjangmu masih kosong",
+  "emptyBody": "Pilih sepatu atau dancewear favoritmu — kami bantu pilih ukuran via WA.",
+  "javaOnly": "Pengiriman khusus Pulau Jawa, dari Jakarta.",
+  "itemsLabel": "Item di keranjang"
+}

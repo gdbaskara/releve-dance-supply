@@ -1,1 +1,69 @@
-{}
+{
+  "nav": "Informasi",
+  "updated": "Terakhir diperbarui 5 Nov 2026",
+  "askWa": "Masih ada pertanyaan? Chat kami via WA",
+  "pages": {
+    "shipping": {
+      "title": "Pengiriman",
+      "description": "Kami mengirim dari gudang di Jakarta ke seluruh Pulau Jawa dengan kurir lokal.",
+      "sections": [
+        { "title": "Area pengiriman", "body": "Saat ini kami hanya mengirim ke Pulau Jawa: DKI Jakarta, Banten, Jawa Barat, Jawa Tengah, DI Yogyakarta, dan Jawa Timur. Di luar Pulau Jawa? Chat kami via WA dulu." },
+        { "title": "Waktu proses", "body": "Item ready dikemas dan diserahkan ke kurir dalam 1–2 hari kerja setelah pembayaran diterima. Pesanan yang berisi item pre-order dikirim sekaligus setelah semua item tiba (estimasi 4–6 minggu)." },
+        { "title": "Pilihan kurir", "body": "Instan & same-day (GoSend, GrabExpress) khusus Jabodetabek dan untuk pesanan yang dibayar sebelum batas waktu harian. Express & Reguler (JNE, J&T, SiCepat, AnterAja) untuk seluruh Pulau Jawa. Harga & estimasi tampil di checkout sesuai alamat dan berat paket." },
+        { "title": "Asuransi & resi", "body": "Asuransi pengiriman aktif secara default dan bisa kamu matikan di checkout. Nomor resi dikirim via WhatsApp dan bisa dicek di halaman Lacak Pesanan." }
+      ]
+    },
+    "payment": {
+      "title": "Pembayaran",
+      "description": "Semua pembayaran digital dan dibayar penuh saat pesanan dibuat.",
+      "sections": [
+        { "title": "Metode yang tersedia", "body": "QRIS (dari semua e-wallet & m-banking), e-wallet GoPay, OVO, DANA, ShopeePay, Virtual Account BCA, Mandiri, BNI, BRI, Permata, serta kartu kredit/debit (Visa, Mastercard, JCB)." },
+        { "title": "Batas waktu bayar", "body": "QRIS 30 menit, e-wallet & kartu 15 menit, Virtual Account 24 jam. Stok ukuranmu kami tahan selama batas waktu tersebut. Lewat dari itu, pesanan kedaluwarsa dan stok dilepas." },
+        { "title": "Keamanan", "body": "Total pembayaran selalu dihitung ulang oleh sistem kami. Data kartu tidak disimpan oleh Relevé." },
+        { "title": "Ganti metode", "body": "Belum sempat bayar? Kamu bisa ganti metode pembayaran di halaman bayar tanpa kehilangan reservasi stok." }
+      ]
+    },
+    "faq": {
+      "title": "FAQ",
+      "description": "Pertanyaan yang paling sering ditanyakan.",
+      "sections": [
+        { "title": "Apakah produknya original?", "body": "Ya. Semua produk adalah produk original Só Dança yang kami impor. Relevé Dance Supply adalah toko independen dan tidak berafiliasi dengan Só Dança." },
+        { "title": "Bagaimana memilih ukuran?", "body": "Lihat Panduan Ukuran dan ukur panjang kakimu dalam cm. Ragu di antara dua size, atau membeli pointe? Kirim foto & ukuran kakimu via WA — konsultasinya gratis." },
+        { "title": "Apa artinya Ready, Sisa N, dan Pre-order?", "body": "Ready: ada di gudang Jakarta, dikirim 1–2 hari kerja. Sisa N: stok tinggal sedikit. Pre-order: kami pesankan khusus, estimasi tiba 4–6 minggu. Habis: tekan “Kabari Saya via WA” dan kami kabari saat ready." },
+        { "title": "Bisa tukar ukuran atau retur?", "body": "Tukar ukuran dan retur ditangani kasus per kasus via WhatsApp. Hubungi kami maksimal 2 hari setelah paket diterima, dengan produk belum dipakai di luar ruangan dan kemasan lengkap." },
+        { "title": "Apakah bisa kirim ke luar Pulau Jawa?", "body": "Untuk saat ini belum melalui website. Chat kami via WA, kami bantu cek kemungkinannya." },
+        { "title": "Perlu membuat akun?", "body": "Tidak. Cukup isi nama, nomor WhatsApp, dan alamat saat checkout. Status pesanan bisa dicek di Lacak Pesanan dengan nomor order dan 4 digit terakhir nomor WA." }
+      ]
+    },
+    "terms": {
+      "title": "Syarat & Ketentuan",
+      "description": "Ketentuan belanja di Relevé Dance Supply.",
+      "sections": [
+        { "title": "Tentang toko", "body": "Relevé Dance Supply adalah reseller independen produk Só Dança dan tidak berafiliasi dengan Só Dança. Nama dan merek Só Dança adalah milik pemiliknya." },
+        { "title": "Harga & pembayaran", "body": "Harga dalam Rupiah dan sudah termasuk biaya impor. Pesanan diproses setelah pembayaran digital penuh diterima dalam batas waktu yang tertera." },
+        { "title": "Stok & pre-order", "body": "Stok ditampilkan per varian dan ditahan selama batas waktu pembayaran. Estimasi pre-order 4–6 minggu dan dapat berubah; kami kabari via WhatsApp bila ada perubahan." },
+        { "title": "Pengiriman", "body": "Pengiriman hanya ke Pulau Jawa dari Jakarta. Risiko pengiriman ditanggung asuransi bila diaktifkan." },
+        { "title": "Tukar ukuran & retur", "body": "Ditangani kasus per kasus via WhatsApp. Produk harus belum dipakai di luar ruangan, bersih, dan dengan kemasan lengkap." }
+      ]
+    },
+    "privacy": {
+      "title": "Kebijakan Privasi",
+      "description": "Bagaimana kami menggunakan data pribadimu, sesuai UU Pelindungan Data Pribadi.",
+      "sections": [
+        { "title": "Data yang kami kumpulkan", "body": "Nama, nomor WhatsApp, email (opsional), dan alamat pengiriman yang kamu isi saat checkout, serta nomor WA bila kamu meminta kabar stok." },
+        { "title": "Untuk apa", "body": "Hanya untuk memproses & mengirim pesananmu, serta mengirim update pesanan dan kabar stok via WhatsApp bila kamu menyetujuinya. Kami tidak menjual data pribadimu." },
+        { "title": "Pembayaran", "body": "Pembayaran diproses oleh penyedia pembayaran. Data kartu tidak disimpan oleh Relevé." },
+        { "title": "Hak kamu", "body": "Kamu bisa meminta salinan, perbaikan, atau penghapusan datamu, dan berhenti menerima pesan kapan saja dengan menghubungi kami via WhatsApp." }
+      ]
+    },
+    "about": {
+      "title": "Tentang Relevé",
+      "description": "Toko dansa independen di Jakarta untuk sepatu & dancewear Só Dança.",
+      "sections": [
+        { "title": "Siapa kami", "body": "Relevé Dance Supply adalah toko independen di Jakarta yang menjual produk original Só Dança (impor). Kami tidak berafiliasi dengan Só Dança." },
+        { "title": "Cara kami bekerja", "body": "Stok jujur per ukuran, konsultasi ukuran via WhatsApp, pembayaran digital (QRIS, e-wallet, Virtual Account, kartu), dan pengiriman dari Jakarta ke seluruh Pulau Jawa." },
+        { "title": "Untuk studio & sanggar", "body": "Butuh banyak pasang untuk murid? Chat kami via WhatsApp untuk dibantu menyiapkan pesanannya." }
+      ]
+    }
+  }
+}

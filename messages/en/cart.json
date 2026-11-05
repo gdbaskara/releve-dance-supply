@@ -1,1 +1,27 @@
-{}
+{
+  "title": "Cart",
+  "metaTitle": "Cart",
+  "count": "{n, plural, =0 {Empty} one {# item} other {# items}}",
+  "validating": "Checking the latest stock…",
+  "notices": {
+    "QTY_REDUCED": "Only {to} left of {item}. We changed the quantity from {from} to {to}.",
+    "REMOVED_SOLD_OUT": "{item} sold out and was removed from your cart.",
+    "NOW_PREORDER": "{item} is now on pre-order (est. 4–6 weeks).",
+    "UNKNOWN_SKU": "An item is no longer available and was removed from your cart.",
+    "unknownItem": "Item"
+  },
+  "preorderNotice": "Your cart has pre-order items. Everything ships together once the pre-order items arrive (est. 4–6 weeks).",
+  "summary": "Summary",
+  "subtotal": "Subtotal",
+  "shipping": "Shipping",
+  "shippingAtCheckout": "Calculated at checkout",
+  "total": "Total",
+  "totalNote": "Shipping not included. Prices & stock are re-checked at checkout.",
+  "checkout": "Checkout",
+  "askWa": "Ask about this cart on WhatsApp",
+  "continue": "Continue shopping",
+  "emptyTitle": "Your cart is empty",
+  "emptyBody": "Pick your favourite shoes or dancewear — we'll help you choose the size on WhatsApp.",
+  "javaOnly": "We ship within Java only, from Jakarta.",
+  "itemsLabel": "Items in cart"
+}

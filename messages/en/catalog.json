@@ -1,1 +1,89 @@
-{}
+{
+  "collections": {
+    "ballet": { "title": "Ballet", "description": "Canvas, leather & stretch ballet flats for daily class, exams and the stage." },
+    "pointe": { "title": "Pointe", "description": "Só Dança pointe shoes with width & shank options — consult us on WhatsApp before you buy." },
+    "jazz": { "title": "Jazz", "description": "Lightweight jazz shoes & sneakers with a split sole for quick moves on studio floors." },
+    "tap": { "title": "Tap", "description": "Tap shoes with attached taps for a clear, consistent sound." },
+    "character": { "title": "Character", "description": "Character shoes with a stable heel for character class and musical theatre." },
+    "latin-ballroom": { "title": "Latin/Ballroom", "description": "Latin/Ballroom shoes with suede soles for controlled turns." },
+    "contemporary": { "title": "Contemporary", "description": "Contemporary shoes that follow the shape of the foot for floor work." },
+    "leotards": { "title": "Leotards", "description": "Comfortable leotards and body liners for class and performance." },
+    "skirts": { "title": "Skirts", "description": "Light skirts that fall beautifully as you move." },
+    "tops": { "title": "Tops", "description": "Light, close-fitting tops for class." },
+    "tights": { "title": "Tights", "description": "Smooth, stretchy tights — footed and convertible." },
+    "shoes": { "title": "Shoes", "description": "All Só Dança dance shoes: Ballet, Pointe, Jazz, Tap, Character, Latin/Ballroom & Contemporary." },
+    "dancewear": { "title": "Dancewear", "description": "Só Dança leotards, skirts, tops & tights for class and the stage." },
+    "kids": { "title": "Kids", "description": "Dance shoes & dancewear in kids' sizes — from toddler to child." }
+  },
+  "listing": {
+    "count": "{n, plural, =0 {No products} one {# product} other {# products}}",
+    "sort": "Sort by",
+    "sortOptions": {
+      "newest": "Newest",
+      "price_asc": "Price: low to high",
+      "price_desc": "Price: high to low"
+    },
+    "home": "Home",
+    "facets": {
+      "discipline": "Discipline",
+      "audience": "For",
+      "size": "Size",
+      "width": "Width",
+      "color": "Color",
+      "price": "Price",
+      "availability": "Availability"
+    },
+    "audience": {
+      "Adult": "Adult",
+      "Kids": "Kids",
+      "Men": "Men"
+    },
+    "availability": {
+      "READY": "Ready",
+      "PREORDER": "Pre-order"
+    },
+    "price": {
+      "under1m": "Under Rp 1 m",
+      "1m-2m": "Rp 1–2 m",
+      "2m-3m": "Rp 2–3 m",
+      "over3m": "Over Rp 3 m"
+    },
+    "activeFilters": "Active filters",
+    "removeFilter": "Remove filter {label}",
+    "reset": "Reset filters",
+    "emptyTitle": "No matching products",
+    "emptyBody": "Try removing a filter, or ask us on WhatsApp — your size may be available to order.",
+    "loadingMore": "Loading products…"
+  },
+  "home": {
+    "metaTitle": "Original Só Dança dance shoes & dancewear",
+    "metaDescription": "Original Só Dança ballet, pointe, jazz, tap shoes & dancewear. Honest stock per size, shipped from Jakarta across Java, pay with QRIS, VA & e-wallets.",
+    "heroEyebrow": "Só Dança · Original",
+    "heroTagline": "Every step begins with the right shoe.",
+    "heroBody": "Só Dança dance shoes & dancewear, honest stock per size, shipped from Jakarta.",
+    "heroCta": "Shop Shoes",
+    "heroConsult": "Size Consultation",
+    "byDiscipline": "Shop by discipline",
+    "disciplineCount": "{n, plural, =0 {Coming soon} one {# style} other {# styles}}",
+    "readyTitle": "Ready in Jakarta",
+    "readyBody": "Ships in 1–2 business days. Instant delivery in Greater Jakarta.",
+    "seeAllReady": "See everything in stock",
+    "consultTitle": "Not sure about your size?",
+    "consultBody": "Measure your foot, send it to us, and we'll help you choose.",
+    "consultCta": "Size Consultation on WhatsApp",
+    "consultGuide": "View the size guide",
+    "kidsTitle": "For little dancers",
+    "kidsBody": "Shoes & dancewear in kids' sizes.",
+    "seeAllKids": "See all Kids",
+    "stepsTitle": "How to shop",
+    "steps": {
+      "1": { "title": "Pick your size", "body": "Stock is shown per size & width. Not sure? Ask on WhatsApp." },
+      "2": { "title": "Pay with QRIS/VA/e-wallet", "body": "QRIS, GoPay, OVO, DANA, ShopeePay, Virtual Account or card." },
+      "3": { "title": "Shipped from Jakarta", "body": "Across Java. Instant & same-day in Greater Jakarta." }
+    },
+    "tiles": {
+      "dancewear": "Dancewear",
+      "ballroom": "Ballroom"
+    }
+  }
+}
