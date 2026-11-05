@@ -11,3 +11,5 @@ if (process.env.NODE_ENV !== "production") globalForDb.pgClient = client;
 export const db = drizzle(client, { schema });
 export type DB = typeof db;
 export { schema };
+/** Raw postgres.js client (used by seed/reset scripts and tests to close the pool). */
+export const pgClient = client;
