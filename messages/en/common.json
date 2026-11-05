@@ -62,6 +62,7 @@
     "preorderShort": "PO",
     "colorCount": "{n} colors",
     "moreColors": "+{n}",
+    "previewColor": "Show in {color}",
     "whatIs": "What is {term}?",
     "choose": "Please choose a {option}"
   },

@@ -6,7 +6,7 @@ import { getCollections } from "@/lib/services/catalog";
 import { buildWaLink } from "@/lib/wa";
 import { COLLECTIONS, type Locale } from "@/lib/contracts";
 import { Button } from "@/components/ui/button";
-import { ProductCard } from "@/components/store/product-card";
+import { ColorPreviewCard } from "@/components/store/containers/color-preview-card";
 import { ProductImage, ShoePlaceholderArt } from "@/components/store/product-image";
 import { pickImage } from "@/lib/services/home-images";
 import { cn } from "@/lib/utils/cn";
@@ -143,7 +143,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
           <ul className="relative -mx-[var(--gutter)] flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-[var(--gutter)] px-[var(--gutter)] pb-4 lg:gap-8">
             {readyStock.map((p, i) => (
               <li key={p.slug} className="w-[44%] shrink-0 snap-start md:w-[30%] lg:w-[calc(25%-1.5rem)]">
-                <ProductCard product={p} href={`/p/${p.slug}`} linkAs={Link} priority={i < 2} />
+                <ColorPreviewCard product={p} priority={i < 2} />
               </li>
             ))}
           </ul>
@@ -192,7 +192,7 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
           <ul className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6 lg:gap-8">
             {kids.slice(0, 4).map((p) => (
               <li key={p.slug}>
-                <ProductCard product={p} href={`/p/${p.slug}`} linkAs={Link} />
+                <ColorPreviewCard product={p} />
               </li>
             ))}
           </ul>

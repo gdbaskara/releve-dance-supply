@@ -1,6 +1,5 @@
-import { Link } from "@/i18n/navigation";
 import type { ProductSummary } from "@/lib/contracts";
-import { ProductCard } from "@/components/store/product-card";
+import { ColorPreviewCard } from "./color-preview-card";
 
 /** Listing grid: 2 cols mobile · 3 tablet · 4 desktop (3 next to the filter sidebar). */
 export function ProductGrid({ items, withSidebar = true }: { items: ProductSummary[]; withSidebar?: boolean }) {
@@ -14,7 +13,7 @@ export function ProductGrid({ items, withSidebar = true }: { items: ProductSumma
     >
       {items.map((p, i) => (
         <li key={p.slug} className="relative">
-          <ProductCard product={p} href={p.matchedColor ? `/p/${p.slug}?color=${encodeURIComponent(p.matchedColor)}` : `/p/${p.slug}`} linkAs={Link} priority={i < 2} />
+          <ColorPreviewCard product={p} priority={i < 2} />
         </li>
       ))}
     </ul>

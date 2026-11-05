@@ -22,6 +22,11 @@ export interface ProductCardProps {
   /** Link component. Default "a"; pass next-intl `Link` from a client/server parent. */
   linkAs?: React.ElementType;
   priority?: boolean;
+  /**
+   * Interactive colour row (e.g. preview swatch buttons). Rendered outside the link, in place of the
+   * decorative swatches, so the card never nests a button inside its anchor.
+   */
+  colorPicker?: React.ReactNode;
   className?: string;
 }
 
@@ -29,16 +34,22 @@ export interface ProductCardProps {
  * Listing card. Whole card is one link; no add-to-cart (size must be chosen on PDP).
  * 1:1 image · eyebrow discipline · name (2 lines) · model code · price · swatches (5 + "+N") · stock badge.
  */
-export function ProductCard({ product, href, lowStockCount, hoverImageUrl, priceFrom, tag, linkAs: LinkComp = "a", priority, className }: ProductCardProps) {
+export function ProductCard({ product, href, lowStockCount, hoverImageUrl, priceFrom, tag, linkAs: LinkComp = "a", priority, colorPicker, className }: ProductCardProps) {
   const t = useTranslations("common");
   const discipline = product.audience === "Kids" ? `${product.discipline} · Kids` : product.discipline;
-  return (
+  const footer = (
+    <div className="mt-1 flex flex-wrap items-center justify-between gap-2">
+      {colorPicker ?? (product.colors.length > 0 ? <ColorSwatches colors={product.colors} /> : <span />)}
+      {product.status === "READY" ? <StockBadge status="READY" /> : null}
+    </div>
+  );
+  const card = (
     <LinkComp
       href={href}
       className={cn(
         "group flex flex-col gap-3 rounded-sm text-ink",
         "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-focus",
-        className,
+        colorPicker ? undefined : className,
       )}
     >
       <div className="relative">
@@ -61,11 +72,15 @@ export function ProductCard({ product, href, lowStockCount, hoverImageUrl, price
         </span>
         <span className="text-xs text-ink-muted">{t("product.modelCode", { code: product.modelCode })}</span>
         <Price value={product.priceIdr} size="sm" from={priceFrom} className="mt-1" />
-        <div className="mt-1 flex flex-wrap items-center justify-between gap-2">
-          {product.colors.length > 0 ? <ColorSwatches colors={product.colors} /> : <span />}
-          {product.status === "READY" ? <StockBadge status="READY" /> : null}
-        </div>
+        {colorPicker ? null : footer}
       </div>
     </LinkComp>
+  );
+  if (!colorPicker) return card;
+  return (
+    <div className={cn("flex flex-col", className)}>
+      {card}
+      {footer}
+    </div>
   );
 }
