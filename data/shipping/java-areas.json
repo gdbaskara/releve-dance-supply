@@ -1,0 +1,516 @@
+{
+  "_note": "Data wilayah untuk DEMO (provinsi + kab/kota Pulau Jawa, 119 kab/kota). Kecamatan & kode pos diisi bebas di demo; produksi pakai Biteship Area API.",
+  "origin": {
+    "province": "DKI Jakarta",
+    "city": "Kota Jakarta Selatan",
+    "note": "Gudang sementara (asumsi demo)"
+  },
+  "provinces": [
+    {
+      "name": "DKI Jakarta",
+      "cities": [
+        {
+          "name": "Kota Jakarta Pusat",
+          "zone": "Z1"
+        },
+        {
+          "name": "Kota Jakarta Utara",
+          "zone": "Z1"
+        },
+        {
+          "name": "Kota Jakarta Barat",
+          "zone": "Z1"
+        },
+        {
+          "name": "Kota Jakarta Selatan",
+          "zone": "Z1"
+        },
+        {
+          "name": "Kota Jakarta Timur",
+          "zone": "Z1"
+        },
+        {
+          "name": "Kab. Kepulauan Seribu",
+          "zone": "Z2"
+        }
+      ]
+    },
+    {
+      "name": "Banten",
+      "cities": [
+        {
+          "name": "Kab. Serang",
+          "zone": "Z2"
+        },
+        {
+          "name": "Kab. Lebak",
+          "zone": "Z2"
+        },
+        {
+          "name": "Kab. Pandeglang",
+          "zone": "Z2"
+        },
+        {
+          "name": "Kab. Tangerang",
+          "zone": "Z1"
+        },
+        {
+          "name": "Kota Serang",
+          "zone": "Z2"
+        },
+        {
+          "name": "Kota Cilegon",
+          "zone": "Z2"
+        },
+        {
+          "name": "Kota Tangerang",
+          "zone": "Z1"
+        },
+        {
+          "name": "Kota Tangerang Selatan",
+          "zone": "Z1"
+        }
+      ]
+    },
+    {
+      "name": "Jawa Barat",
+      "cities": [
+        {
+          "name": "Kab. Bogor",
+          "zone": "Z1"
+        },
+        {
+          "name": "Kab. Sukabumi",
+          "zone": "Z2"
+        },
+        {
+          "name": "Kab. Cianjur",
+          "zone": "Z2"
+        },
+        {
+          "name": "Kab. Bandung",
+          "zone": "Z2"
+        },
+        {
+          "name": "Kab. Garut",
+          "zone": "Z2"
+        },
+        {
+          "name": "Kab. Tasikmalaya",
+          "zone": "Z2"
+        },
+        {
+          "name": "Kab. Ciamis",
+          "zone": "Z2"
+        },
+        {
+          "name": "Kab. Kuningan",
+          "zone": "Z2"
+        },
+        {
+          "name": "Kab. Cirebon",
+          "zone": "Z2"
+        },
+        {
+          "name": "Kab. Majalengka",
+          "zone": "Z2"
+        },
+        {
+          "name": "Kab. Sumedang",
+          "zone": "Z2"
+        },
+        {
+          "name": "Kab. Indramayu",
+          "zone": "Z2"
+        },
+        {
+          "name": "Kab. Subang",
+          "zone": "Z2"
+        },
+        {
+          "name": "Kab. Purwakarta",
+          "zone": "Z2"
+        },
+        {
+          "name": "Kab. Karawang",
+          "zone": "Z2"
+        },
+        {
+          "name": "Kab. Bekasi",
+          "zone": "Z1"
+        },
+        {
+          "name": "Kab. Bandung Barat",
+          "zone": "Z2"
+        },
+        {
+          "name": "Kab. Pangandaran",
+          "zone": "Z2"
+        },
+        {
+          "name": "Kota Bogor",
+          "zone": "Z1"
+        },
+        {
+          "name": "Kota Sukabumi",
+          "zone": "Z2"
+        },
+        {
+          "name": "Kota Bandung",
+          "zone": "Z2"
+        },
+        {
+          "name": "Kota Cirebon",
+          "zone": "Z2"
+        },
+        {
+          "name": "Kota Bekasi",
+          "zone": "Z1"
+        },
+        {
+          "name": "Kota Depok",
+          "zone": "Z1"
+        },
+        {
+          "name": "Kota Cimahi",
+          "zone": "Z2"
+        },
+        {
+          "name": "Kota Tasikmalaya",
+          "zone": "Z2"
+        },
+        {
+          "name": "Kota Banjar",
+          "zone": "Z2"
+        }
+      ]
+    },
+    {
+      "name": "Jawa Tengah",
+      "cities": [
+        {
+          "name": "Kab. Cilacap",
+          "zone": "Z3"
+        },
+        {
+          "name": "Kab. Banyumas",
+          "zone": "Z3"
+        },
+        {
+          "name": "Kab. Purbalingga",
+          "zone": "Z3"
+        },
+        {
+          "name": "Kab. Banjarnegara",
+          "zone": "Z3"
+        },
+        {
+          "name": "Kab. Kebumen",
+          "zone": "Z3"
+        },
+        {
+          "name": "Kab. Purworejo",
+          "zone": "Z3"
+        },
+        {
+          "name": "Kab. Wonosobo",
+          "zone": "Z3"
+        },
+        {
+          "name": "Kab. Magelang",
+          "zone": "Z3"
+        },
+        {
+          "name": "Kab. Boyolali",
+          "zone": "Z3"
+        },
+        {
+          "name": "Kab. Klaten",
+          "zone": "Z3"
+        },
+        {
+          "name": "Kab. Sukoharjo",
+          "zone": "Z3"
+        },
+        {
+          "name": "Kab. Wonogiri",
+          "zone": "Z3"
+        },
+        {
+          "name": "Kab. Karanganyar",
+          "zone": "Z3"
+        },
+        {
+          "name": "Kab. Sragen",
+          "zone": "Z3"
+        },
+        {
+          "name": "Kab. Grobogan",
+          "zone": "Z3"
+        },
+        {
+          "name": "Kab. Blora",
+          "zone": "Z3"
+        },
+        {
+          "name": "Kab. Rembang",
+          "zone": "Z3"
+        },
+        {
+          "name": "Kab. Pati",
+          "zone": "Z3"
+        },
+        {
+          "name": "Kab. Kudus",
+          "zone": "Z3"
+        },
+        {
+          "name": "Kab. Jepara",
+          "zone": "Z3"
+        },
+        {
+          "name": "Kab. Demak",
+          "zone": "Z3"
+        },
+        {
+          "name": "Kab. Semarang",
+          "zone": "Z3"
+        },
+        {
+          "name": "Kab. Temanggung",
+          "zone": "Z3"
+        },
+        {
+          "name": "Kab. Kendal",
+          "zone": "Z3"
+        },
+        {
+          "name": "Kab. Batang",
+          "zone": "Z3"
+        },
+        {
+          "name": "Kab. Pekalongan",
+          "zone": "Z3"
+        },
+        {
+          "name": "Kab. Pemalang",
+          "zone": "Z3"
+        },
+        {
+          "name": "Kab. Tegal",
+          "zone": "Z3"
+        },
+        {
+          "name": "Kab. Brebes",
+          "zone": "Z3"
+        },
+        {
+          "name": "Kota Magelang",
+          "zone": "Z3"
+        },
+        {
+          "name": "Kota Surakarta",
+          "zone": "Z3"
+        },
+        {
+          "name": "Kota Salatiga",
+          "zone": "Z3"
+        },
+        {
+          "name": "Kota Semarang",
+          "zone": "Z3"
+        },
+        {
+          "name": "Kota Pekalongan",
+          "zone": "Z3"
+        },
+        {
+          "name": "Kota Tegal",
+          "zone": "Z3"
+        }
+      ]
+    },
+    {
+      "name": "DI Yogyakarta",
+      "cities": [
+        {
+          "name": "Kab. Bantul",
+          "zone": "Z3"
+        },
+        {
+          "name": "Kab. Gunungkidul",
+          "zone": "Z3"
+        },
+        {
+          "name": "Kab. Kulon Progo",
+          "zone": "Z3"
+        },
+        {
+          "name": "Kab. Sleman",
+          "zone": "Z3"
+        },
+        {
+          "name": "Kota Yogyakarta",
+          "zone": "Z3"
+        }
+      ]
+    },
+    {
+      "name": "Jawa Timur",
+      "cities": [
+        {
+          "name": "Kab. Pacitan",
+          "zone": "Z4"
+        },
+        {
+          "name": "Kab. Ponorogo",
+          "zone": "Z4"
+        },
+        {
+          "name": "Kab. Trenggalek",
+          "zone": "Z4"
+        },
+        {
+          "name": "Kab. Tulungagung",
+          "zone": "Z4"
+        },
+        {
+          "name": "Kab. Blitar",
+          "zone": "Z4"
+        },
+        {
+          "name": "Kab. Kediri",
+          "zone": "Z4"
+        },
+        {
+          "name": "Kab. Malang",
+          "zone": "Z4"
+        },
+        {
+          "name": "Kab. Lumajang",
+          "zone": "Z4"
+        },
+        {
+          "name": "Kab. Jember",
+          "zone": "Z4"
+        },
+        {
+          "name": "Kab. Banyuwangi",
+          "zone": "Z4"
+        },
+        {
+          "name": "Kab. Bondowoso",
+          "zone": "Z4"
+        },
+        {
+          "name": "Kab. Situbondo",
+          "zone": "Z4"
+        },
+        {
+          "name": "Kab. Probolinggo",
+          "zone": "Z4"
+        },
+        {
+          "name": "Kab. Pasuruan",
+          "zone": "Z4"
+        },
+        {
+          "name": "Kab. Sidoarjo",
+          "zone": "Z4"
+        },
+        {
+          "name": "Kab. Mojokerto",
+          "zone": "Z4"
+        },
+        {
+          "name": "Kab. Jombang",
+          "zone": "Z4"
+        },
+        {
+          "name": "Kab. Nganjuk",
+          "zone": "Z4"
+        },
+        {
+          "name": "Kab. Madiun",
+          "zone": "Z4"
+        },
+        {
+          "name": "Kab. Magetan",
+          "zone": "Z4"
+        },
+        {
+          "name": "Kab. Ngawi",
+          "zone": "Z4"
+        },
+        {
+          "name": "Kab. Bojonegoro",
+          "zone": "Z4"
+        },
+        {
+          "name": "Kab. Tuban",
+          "zone": "Z4"
+        },
+        {
+          "name": "Kab. Lamongan",
+          "zone": "Z4"
+        },
+        {
+          "name": "Kab. Gresik",
+          "zone": "Z4"
+        },
+        {
+          "name": "Kab. Bangkalan",
+          "zone": "Z4"
+        },
+        {
+          "name": "Kab. Sampang",
+          "zone": "Z4"
+        },
+        {
+          "name": "Kab. Pamekasan",
+          "zone": "Z4"
+        },
+        {
+          "name": "Kab. Sumenep",
+          "zone": "Z4"
+        },
+        {
+          "name": "Kota Kediri",
+          "zone": "Z4"
+        },
+        {
+          "name": "Kota Blitar",
+          "zone": "Z4"
+        },
+        {
+          "name": "Kota Malang",
+          "zone": "Z4"
+        },
+        {
+          "name": "Kota Probolinggo",
+          "zone": "Z4"
+        },
+        {
+          "name": "Kota Pasuruan",
+          "zone": "Z4"
+        },
+        {
+          "name": "Kota Mojokerto",
+          "zone": "Z4"
+        },
+        {
+          "name": "Kota Madiun",
+          "zone": "Z4"
+        },
+        {
+          "name": "Kota Surabaya",
+          "zone": "Z4"
+        },
+        {
+          "name": "Kota Batu",
+          "zone": "Z4"
+        }
+      ]
+    }
+  ]
+}

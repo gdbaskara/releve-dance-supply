@@ -1,0 +1,132 @@
+{
+  "_note": "Tarif ongkir SIMULASI untuk demo (bukan tarif asli kurir). Berat ditagih per kg, dibulatkan ke atas, min 1 kg. Berat volumetrik = P×L×T/6000.",
+  "zones": {
+    "Z1": "Jabodetabek",
+    "Z2": "Jawa Barat & Banten (luar Jabodetabek), Kep. Seribu",
+    "Z3": "Jawa Tengah & DI Yogyakarta",
+    "Z4": "Jawa Timur"
+  },
+  "services": [
+    {
+      "code": "jne_reg",
+      "courier": "JNE",
+      "service": "REG",
+      "type": "regular",
+      "per_kg": {
+        "Z1": 10000,
+        "Z2": 14000,
+        "Z3": 18000,
+        "Z4": 22000
+      },
+      "eta_days": {
+        "Z1": "1-2",
+        "Z2": "2-3",
+        "Z3": "2-4",
+        "Z4": "3-5"
+      }
+    },
+    {
+      "code": "jne_yes",
+      "courier": "JNE",
+      "service": "YES",
+      "type": "express",
+      "per_kg": {
+        "Z1": 18000,
+        "Z2": 26000,
+        "Z3": 32000,
+        "Z4": 38000
+      },
+      "eta_days": {
+        "Z1": "1",
+        "Z2": "1",
+        "Z3": "1-2",
+        "Z4": "1-2"
+      }
+    },
+    {
+      "code": "jnt_ez",
+      "courier": "J&T",
+      "service": "EZ",
+      "type": "regular",
+      "per_kg": {
+        "Z1": 9000,
+        "Z2": 13000,
+        "Z3": 17000,
+        "Z4": 21000
+      },
+      "eta_days": {
+        "Z1": "1-2",
+        "Z2": "2-3",
+        "Z3": "2-4",
+        "Z4": "3-5"
+      }
+    },
+    {
+      "code": "sicepat_reg",
+      "courier": "SiCepat",
+      "service": "REG",
+      "type": "regular",
+      "per_kg": {
+        "Z1": 9500,
+        "Z2": 13500,
+        "Z3": 17500,
+        "Z4": 21500
+      },
+      "eta_days": {
+        "Z1": "1-2",
+        "Z2": "2-3",
+        "Z3": "2-3",
+        "Z4": "3-4"
+      }
+    },
+    {
+      "code": "anteraja_nd",
+      "courier": "AnterAja",
+      "service": "Next Day",
+      "type": "express",
+      "per_kg": {
+        "Z1": 16000,
+        "Z2": 24000,
+        "Z3": 30000,
+        "Z4": 36000
+      },
+      "eta_days": {
+        "Z1": "1",
+        "Z2": "1",
+        "Z3": "1-2",
+        "Z4": "1-2"
+      }
+    },
+    {
+      "code": "gosend_instant",
+      "courier": "GoSend",
+      "service": "Instant",
+      "type": "instant",
+      "flat": {
+        "Z1": 45000
+      },
+      "eta_hours": "1-3",
+      "max_kg": 20,
+      "cutoff": "16:00 WIB"
+    },
+    {
+      "code": "grab_sameday",
+      "courier": "GrabExpress",
+      "service": "Same Day",
+      "type": "instant",
+      "flat": {
+        "Z1": 28000
+      },
+      "eta_hours": "6-8",
+      "max_kg": 7,
+      "cutoff": "14:00 WIB"
+    }
+  ],
+  "insurance": {
+    "default_on": true,
+    "rate_pct": 0.25,
+    "min_idr": 2500,
+    "note": "Simulasi: 0,25% dari nilai barang, minimal Rp2.500"
+  },
+  "packaging_add_grams": 150
+}

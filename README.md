@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Relevé Dance Supply — spesifikasi demo
 
-## Getting Started
+Web toko sepatu dansa & dancewear **Só Dança** untuk pasar Indonesia (reseller independen). Repo ini saat ini berisi **paket spesifikasi lengkap — belum ada kode aplikasi.**
 
-First, run the development server:
+**Mulai di sini:** [`docs/00-brief.md`](docs/00-brief.md). Untuk agent: [`AGENTS.md`](AGENTS.md).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+docs/
+  00-brief.md               ringkasan & keputusan kunci
+  01-research.md            riset Só Dança, pasar, pembayaran, pengiriman
+  02-requirements.md        FR & NFR dengan acceptance criteria
+  03-demo.md                lingkup demo, mock vs asli, skenario D1–D9
+  04-tech-stack.md          stack terkunci, struktur repo, env
+  05-data-and-contracts.md  skema DB, state machine, kontrak provider, template WA
+  06-pricing.md             kurs, pajak impor, markup, harga pasar
+  07-design-system.md       prinsip, token, komponen, copy
+  08-pages-and-flows.md     sitemap & spesifikasi halaman
+  09-work-plan.md           workstream multi-agent, milestone, DoD
+  10-decisions.md           log keputusan & pertanyaan terbuka
+design-system/
+  tokens.json · tokens.css · glossary.json
+data/
+  catalog/    products.json (40 model, 2.903 SKU) · variants.csv · pricing_config.json · README.md
+  shipping/   java-areas.json (6 provinsi, 119 kab/kota) · mock-rates.json
+scripts/
+  build_catalog.py          regenerasi katalog & harga dari pricing_config.json
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Regenerasi katalog
+Membutuhkan dump katalog publik Só Dança (`products.json?page=N`) di satu folder:
+```bash
+python3 -I scripts/build_catalog.py <folder-dump> data/catalog data/catalog/pricing_config.json
+```

@@ -1,0 +1,111 @@
+{
+  "$description": "Istilah yang TIDAK diterjemahkan di locale id maupun en. Tooltip penjelas (id/en) dipakai di WidthSelector, ShankSelector, SizeGuide, dan deskripsi produk.",
+  "keep_as_is": {
+    "disciplines": [
+      "Ballet",
+      "Pointe",
+      "Jazz",
+      "Tap",
+      "Character",
+      "Latin",
+      "Ballroom",
+      "Latin/Ballroom",
+      "Contemporary",
+      "Broadway",
+      "Cabaret"
+    ],
+    "products": [
+      "Ballet Flats",
+      "Pointe Shoes",
+      "Jazz Shoes",
+      "Tap Shoes",
+      "Character Shoes",
+      "Leotard",
+      "Unitard",
+      "Tights",
+      "Body Liner",
+      "Skirt",
+      "Top",
+      "Warm-up",
+      "Booties"
+    ],
+    "ui_words_common_in_id": [
+      "Ready",
+      "Pre-order",
+      "Checkout",
+      "Sold out (hanya en)",
+      "Size",
+      "Width"
+    ],
+    "brand": [
+      "Só Dança",
+      "BE YOU®",
+      "Alina"
+    ],
+    "sodanca_colors": [
+      "Ballet Pink",
+      "Theatrical Pink",
+      "Light Pink",
+      "Pink",
+      "Suntan",
+      "Sand",
+      "Caramel",
+      "Mocha",
+      "Espresso",
+      "Black",
+      "White",
+      "Light Grey",
+      "Tan",
+      "Nude"
+    ]
+  },
+  "terms": {
+    "shank": {
+      "id": "Bagian keras di sol pointe yang menopang lengkung kaki. Di Só Dança: Full Soft, Full Normal, Full Reinforced, Full Extra Reinforced.",
+      "en": "The stiff insole of a pointe shoe that supports the arch. Só Dança options: Full Soft, Full Normal, Full Reinforced, Full Extra Reinforced."
+    },
+    "box": {
+      "id": "Bagian ujung pointe yang keras tempat jari kaki bertumpu.",
+      "en": "The hardened toe of a pointe shoe that the toes rest in."
+    },
+    "vamp": {
+      "id": "Panjang bagian atas sepatu dari ujung ke bukaan.",
+      "en": "The length of the upper from the tip to the opening."
+    },
+    "platform": {
+      "id": "Permukaan datar di ujung pointe untuk berdiri.",
+      "en": "The flat tip of a pointe shoe you stand on."
+    },
+    "split sole": {
+      "id": "Sol terbagi dua (depan & tumit) — lebih lentur, kaki terlihat lebih melengkung.",
+      "en": "Two-part sole (ball & heel) — more flexible, accentuates the arch."
+    },
+    "full sole": {
+      "id": "Sol utuh — lebih kokoh, cocok untuk pemula & anak.",
+      "en": "One-piece sole — more support, good for beginners & kids."
+    },
+    "demi-pointe": {
+      "id": "Posisi berjinjit setengah; juga sebutan sepatu transisi sebelum pointe.",
+      "en": "Half-toe position; also a pre-pointe shoe."
+    },
+    "drawstring": {
+      "id": "Tali serut di bukaan sepatu untuk menyesuaikan kekencangan.",
+      "en": "Cord around the opening to adjust the fit."
+    },
+    "width": {
+      "id": "Lebar sepatu. Narrow/Medium/Wide atau A (sempit) – EE (sangat lebar), tergantung model.",
+      "en": "Shoe width. Narrow/Medium/Wide or A (narrow) – EE (extra wide), depending on the model."
+    }
+  },
+  "forbidden_strings": [
+    "Official",
+    "Authorized",
+    "Resmi Só Dança",
+    "Só Dança Indonesia",
+    "COD",
+    "Cash on Delivery",
+    "Bayar di tempat",
+    "Bayar di Tempat",
+    "Cicilan"
+  ]
+}

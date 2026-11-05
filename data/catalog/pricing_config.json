@@ -1,0 +1,25 @@
+{
+  "_doc": "Asumsi model harga. Lihat docs/06-pricing.md. Ubah angka di sini lalu generate ulang.",
+  "kurs_spot": 18140,
+  "kurs_planning": 18500,
+  "buy_price_pct_of_msrp": 0.5,
+  "freight_insurance_pct": 0.12,
+  "bea_masuk": {"pointe": 0.25, "shoes": 0.25, "apparel": 0.25, "tights": 0.25},
+  "ppn_impor_effective": 0.11,
+  "ppn_jual_effective": 0.11,
+  "pph22_impor_api": 0.025,
+  "ppjk_handling_pct": 0.04,
+  "pkp": false,
+  "pph_final_umkm": 0.005,
+  "multiplier": {"pointe": 1.45, "shoes": 1.65, "apparel": 1.8, "tights": 1.8},
+  "category_groups": {
+    "pointe": ["Pointe"],
+    "shoes": ["Ballet", "Jazz", "Tap", "Character", "Latin/Ballroom", "Contemporary"],
+    "apparel": ["Leotards", "Skirts", "Tops"],
+    "tights": ["Tights"]
+  },
+  "payment_fee_pct": 0.02,
+  "overhead_pct": 0.12,
+  "stock_risk_pct": 0.05,
+  "round_to": 5000
+}
