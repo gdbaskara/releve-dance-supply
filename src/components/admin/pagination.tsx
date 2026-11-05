@@ -8,7 +8,7 @@ export function Pagination({ page, pageSize, total, hrefFor }: { page: number; p
   if (pages <= 1) return null;
   const btn = "inline-flex size-9 items-center justify-center rounded-sm border border-border-strong bg-surface text-ink hover:bg-surface-alt";
   return (
-    <nav aria-label="Halaman" className="flex items-center justify-between gap-3 px-4 py-3 text-sm text-ink-muted">
+    <nav aria-label="Halaman" className="flex items-center justify-between gap-3 border-t border-border px-4 py-3 text-sm text-ink-muted">
       <span className="tabular">
         {(page - 1) * pageSize + 1}–{Math.min(page * pageSize, total)} dari {total}
       </span>

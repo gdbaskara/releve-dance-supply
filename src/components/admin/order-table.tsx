@@ -6,14 +6,14 @@ import { DataTable, type Column } from "./data-table";
 import { OrderStatusBadge } from "./status-badge";
 
 const columns: Column<OrderAdminRow>[] = [
-  { key: "orderNo", header: "No. order", cell: (o) => <span className="font-mono text-sm tracking-[0.04em]">{o.orderNo}</span> },
+  { key: "orderNo", header: "No. order", cell: (o) => <span className="whitespace-nowrap font-mono text-sm tracking-[0.04em]">{o.orderNo}</span> },
   {
     key: "customer",
     header: "Pembeli",
     cell: (o) => (
       <span className="flex flex-col">
         <span>{o.customerName}</span>
-        <span className="text-xs text-ink-muted">{formatPhoneID(o.customerWa)}</span>
+        <span className="whitespace-nowrap text-xs text-ink-muted">{formatPhoneID(o.customerWa)}</span>
       </span>
     ),
   },
@@ -27,7 +27,7 @@ const columns: Column<OrderAdminRow>[] = [
       </span>
     ),
   },
-  { key: "items", header: "Item", align: "right", cell: (o) => <span className="tabular">{o.itemCount}</span>, hideOnMobile: true },
+  { key: "items", header: "Item", align: "right", cell: (o) => <span className="tabular">{o.itemCount}</span>, hideOnMobile: true, className: "hidden xl:table-cell" },
   {
     key: "payment",
     header: "Bayar",
@@ -35,8 +35,8 @@ const columns: Column<OrderAdminRow>[] = [
     hideOnMobile: true,
   },
   { key: "ship", header: "Kurir", cell: (o) => `${o.courier} ${o.service}`, hideOnMobile: true },
-  { key: "total", header: "Total", align: "right", cell: (o) => <span className="tabular font-semibold">{formatIDR(o.totalIdr)}</span> },
-  { key: "createdAt", header: "Dibuat", cell: (o) => <span className="whitespace-nowrap text-ink-muted">{formatDateTimeWIB(o.createdAt)}</span> },
+  { key: "total", header: "Total", align: "right", cell: (o) => <span className="tabular whitespace-nowrap font-semibold">{formatIDR(o.totalIdr)}</span> },
+  { key: "createdAt", header: "Dibuat", cell: (o) => <span className="text-ink-muted">{formatDateTimeWIB(o.createdAt)}</span> },
 ];
 
 export function OrderTable({ rows, empty }: { rows: OrderAdminRow[]; empty?: string }) {
