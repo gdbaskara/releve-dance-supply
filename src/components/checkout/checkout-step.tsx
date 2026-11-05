@@ -51,8 +51,8 @@ export function CheckoutStep({ number, title, status, summary, onEdit, children,
             <h2 id={headingId} className={cn("eyebrow", status === "locked" ? "text-ink-subtle" : "text-ink")}>
               <span className="sr-only">{t("step.stepN", { n: number })}: </span>
               {title}
-              {status === "done" ? <span className="sr-only"> — {t("step.done")}</span> : null}
-              {status === "locked" ? <span className="sr-only"> — {t("step.locked")}</span> : null}
+              {status === "done" ? <span className="sr-only">, {t("step.done")}</span> : null}
+              {status === "locked" ? <span className="sr-only">, {t("step.locked")}</span> : null}
             </h2>
             {status === "done" && onEdit ? (
               <button

@@ -50,7 +50,7 @@
       "MIN_SUBTOTAL": "Minimal belanja {min} untuk voucher ini",
       "INVALID_INPUT": "Kode voucher belum benar"
     },
-    "voucherApplied": "Voucher dipakai — hemat {amount}"
+    "voucherApplied": "Voucher dipakai: hemat {amount}"
   },
   "terms": "Dengan membayar, kamu menyetujui <link>Syarat & Ketentuan</link> Relevé.",
   "submitErrors": {

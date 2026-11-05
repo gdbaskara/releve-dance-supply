@@ -47,7 +47,7 @@ export function OrderTimeline({ entries, tracking, className }: OrderTimelinePro
             <div className="flex min-w-0 flex-1 flex-col gap-0.5 pt-0.5">
               <span className={cn("text-sm font-semibold", state === "upcoming" ? "text-ink-muted" : "text-ink")}>
                 {t(`timeline.steps.${e.status}`)}
-                <span className="sr-only"> — {t(`timeline.state.${state}`)}</span>
+                <span className="sr-only">, {t(`timeline.state.${state}`)}</span>
               </span>
               {e.at ? <span className="text-xs text-ink-muted">{formatDateTimeWIB(new Date(e.at), locale)}</span> : null}
               {e.note ? <span className="text-sm text-ink-muted">{e.note}</span> : null}

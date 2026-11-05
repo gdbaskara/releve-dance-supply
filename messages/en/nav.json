@@ -44,7 +44,7 @@
     "count": "{n, plural, =0 {No products} one {# product} other {# products}}",
     "hint": "Type a model name, code (e.g. SD140) or discipline.",
     "emptyTitle": "Nothing found for “{q}”",
-    "emptyBody": "Try another word or ask us on WhatsApp — we'll help you find it.",
+    "emptyBody": "Try another word or ask us on WhatsApp and we'll help you find it.",
     "popular": "Popular searches",
     "metaTitle": "Search",
     "metaDescription": "Search Só Dança dance shoes & dancewear by name or model code."

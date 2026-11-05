@@ -11,7 +11,7 @@
     "eyebrow": "Relevé · Design system v1.0",
     "title": "The Relevé visual language",
     "tagline": "Every step begins with the right shoe.",
-    "intro": "Monochrome, precise and calm — the product takes the stage. This page shows every token, component and pattern used by the store, with all states and sample data from the catalogue.",
+    "intro": "Monochrome, precise and calm: the product takes the stage. This page shows every token, component and pattern used by the store, with all states and sample data from the catalogue.",
     "language": "Language",
     "principles": {
       "p1": "The product is the stage",
@@ -28,7 +28,7 @@
     },
     "primitives": {
       "title": "Primitives",
-      "description": "Building blocks in src/components/ui — keyboard accessible, touch targets ≥ 44px, always-visible focus."
+      "description": "Building blocks in src/components/ui, keyboard accessible, touch targets ≥ 44px, always-visible focus."
     },
     "store": {
       "title": "Store components",
@@ -36,7 +36,7 @@
     },
     "checkout": {
       "title": "Checkout components",
-      "description": "One-page, three-step checkout and the pay page — QRIS, Virtual Account, e-wallet, card. Digital payments only."
+      "description": "One-page, three-step checkout and the pay page: QRIS, Virtual Account, e-wallet, card. Digital payments only."
     },
     "patterns": {
       "title": "Patterns",
@@ -159,7 +159,7 @@
       "province": "Province",
       "choose": "Choose…",
       "city": "Regency/City",
-      "cityHelp": "{n} regencies/cities — type to search",
+      "cityHelp": "{n} regencies/cities, type to search",
       "address": "Full address"
     },
     "choice": {
@@ -190,7 +190,7 @@
       "soldOut": "Sold out",
       "tabsLabel": "Product info",
       "tabDesc": "Description",
-      "tabDescBody": "Satin, medium box, standard vamp — suits Egyptian & Greek feet.",
+      "tabDescBody": "Satin, medium box, standard vamp, suits Egyptian & Greek feet.",
       "tabFit": "Fit",
       "tabFitBody": "Go 1–2 sizes below your street size. Ask us on WhatsApp first.",
       "tabCare": "Care",
@@ -212,12 +212,12 @@
       "sheetTitle": "Bottom sheet (mobile) / modal (desktop)",
       "sheetBody": "The responsive variant powers SizeGuide and FilterSheet.",
       "drawerTitle": "Drawer",
-      "drawerBody": "Right 420px on desktop, bottom on mobile — used by CartDrawer.",
+      "drawerBody": "Right 420px on desktop, bottom on mobile. Used by CartDrawer.",
       "toastSuccess": "Added to cart",
       "toastError": "Not enough stock",
       "toastErrorBody": "We've updated your cart.",
       "toastInfo": "VA number copied",
-      "tooltip": "Supplementary info only — never essential",
+      "tooltip": "Supplementary info only, never essential",
       "infoTip": "What is a shank?",
       "shankExplain": "The stiff insole of a pointe shoe that supports the arch."
     },
@@ -230,7 +230,7 @@
       "stockTitle": "Stock changed",
       "stockBody": "Not enough stock for Jive III (Black · 7L). We've updated your cart.",
       "updateCart": "Update cart",
-      "voucher": "Voucher RELEVE10 applied — 10% off.",
+      "voucher": "Voucher RELEVE10 applied: 10% off.",
       "loading": "Loading shipping rates…",
       "breadcrumb": "Breadcrumb",
       "home": "Home"
@@ -240,7 +240,7 @@
     "identity": {
       "title": "Identity & page shell",
       "description": "Our own wordmark (never the Só Dança logo), sticky header, surface-alt footer with the independent-store disclaimer.",
-      "header": "Header — 56px mobile / 72px desktop",
+      "header": "Header: 56px mobile / 72px desktop",
       "track": "Track order"
     },
     "footer": {
@@ -258,7 +258,7 @@
     },
     "product": {
       "title": "Product",
-      "description": "1:1 cards without an add button — size must be chosen on the PDP. Aggregate stock badge, max 5 swatches + N.",
+      "description": "1:1 cards without an add button, size must be chosen on the PDP. Aggregate stock badge, max 5 swatches + N.",
       "new": "New"
     },
     "picker": {
@@ -274,7 +274,7 @@
       "reset": "Reset sample",
       "notice": "Farfalla quantity was reduced to 2 because stock changed.",
       "emptyTitle": "Nothing matches yet",
-      "emptyBody": "Try removing some filters, or ask us — we'll help you find it."
+      "emptyBody": "Try removing some filters, or ask us and we'll help you find it."
     },
     "filter": {
       "title": "Filters & comparison",
@@ -317,13 +317,13 @@
   },
   "patterns": {
     "stock": {
-      "title": "Honest stock — 4 states",
+      "title": "Honest stock: 4 states",
       "description": "Ready · Only N left · Pre-order · Sold out, consistent on cards, PDP and size chips. Sold out → the CTA becomes “Notify Me on WhatsApp”.",
-      "chips": "Size chips — all states"
+      "chips": "Size chips: all states"
     },
     "price": {
       "title": "Price",
-      "description": "Always formatIDR (Rp 1.250.000), tabular-nums, ink — never red or accent.",
+      "description": "Always formatIDR (Rp 1.250.000), tabular-nums, ink, never red or accent.",
       "card": "Card",
       "pdp": "PDP",
       "listingFrom": "Listing · from",
@@ -355,6 +355,6 @@
     }
   },
   "footer": {
-    "note": "Design system demo — all sample data. Relevé Dance Supply is an independent store and is not affiliated with Só Dança."
+    "note": "Design system demo: all sample data. Relevé Dance Supply is an independent store and is not affiliated with Só Dança."
   }
 }

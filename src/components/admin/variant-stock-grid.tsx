@@ -30,7 +30,7 @@ function buildGroups(variants: VariantAdminView[], widthOrder: string[], fallbac
       g = { key, label: [v.color, v.shank].filter(Boolean).join(" · ") || fallbackLabel, sizes: [], widths: [], cells: new Map(), skus: [] };
       groups.set(key, g);
     }
-    const size = v.size ?? "—";
+    const size = v.size ?? "-";
     if (!g.sizes.includes(size)) g.sizes.push(size);
     if (!g.widths.includes(v.width)) g.widths.push(v.width);
     g.cells.set(cellKey(size, v.width), v);
@@ -157,7 +157,7 @@ export function VariantStockGrid({ variants, widthOrder }: { variants: VariantAd
               </th>
               {group.widths.map((w) => (
                 <th key={w ?? "_"} scope="col" className="px-2 py-2 text-left text-xs font-semibold text-ink-muted">
-                  {w ?? (singleColumn ? t("stock") : "—")}
+                  {w ?? (singleColumn ? t("stock") : "-")}
                 </th>
               ))}
             </tr>
@@ -170,7 +170,7 @@ export function VariantStockGrid({ variants, widthOrder }: { variants: VariantAd
                 </th>
                 {group.widths.map((w) => {
                   const v = group.cells.get(cellKey(size, w));
-                  if (!v) return <td key={w ?? "_"} className="px-2 py-1.5 text-ink-subtle">—</td>;
+                  if (!v) return <td key={w ?? "_"} className="px-2 py-1.5 text-ink-subtle">-</td>;
                   const raw = edits[v.sku];
                   const isChanged = changedSet.has(v.sku);
                   const err = errors[v.sku] ?? (isChanged ? localError(v, raw) : null);

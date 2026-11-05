@@ -36,7 +36,7 @@ function orderColumns(t: Translate, locale: Locale): Column<OrderAdminRow>[] {
     {
       key: "payment",
       header: t("colPayment"),
-      cell: (o) => (o.paymentMethod ? paymentMethodLabel(o.paymentMethod, o.paymentChannel, locale) : "—"),
+      cell: (o) => (o.paymentMethod ? paymentMethodLabel(o.paymentMethod, o.paymentChannel, locale) : "-"),
       hideOnMobile: true,
     },
     { key: "ship", header: t("colCourier"), cell: (o) => `${o.courier} ${o.service}`, hideOnMobile: true },

@@ -1,7 +1,7 @@
 {
   "collections": {
     "ballet": { "title": "Ballet", "description": "Ballet flats canvas, kulit & stretch untuk latihan harian, ujian, sampai panggung." },
-    "pointe": { "title": "Pointe", "description": "Pointe shoes Só Dança dengan pilihan width & shank — konsultasi dulu via WA sebelum membeli." },
+    "pointe": { "title": "Pointe", "description": "Pointe shoes Só Dança dengan pilihan width & shank. Konsultasi dulu via WA sebelum membeli." },
     "jazz": { "title": "Jazz", "description": "Jazz shoes & sneakers ringan dengan split sole untuk gerak cepat di lantai studio." },
     "tap": { "title": "Tap", "description": "Tap shoes dengan taps terpasang untuk bunyi yang jernih dan konsisten." },
     "character": { "title": "Character", "description": "Character shoes dengan heel stabil untuk kelas karakter dan teater musikal." },
@@ -10,10 +10,10 @@
     "leotards": { "title": "Leotards", "description": "Leotard dan body liner yang nyaman untuk kelas maupun pertunjukan." },
     "skirts": { "title": "Skirts", "description": "Skirt ringan yang jatuh rapi saat bergerak." },
     "tops": { "title": "Tops", "description": "Top latihan yang ringan dan pas di badan." },
-    "tights": { "title": "Tights", "description": "Tights halus dan elastis — footed maupun convertible." },
+    "tights": { "title": "Tights", "description": "Tights halus dan elastis, footed maupun convertible." },
     "shoes": { "title": "Sepatu", "description": "Semua sepatu dansa Só Dança: Ballet, Pointe, Jazz, Tap, Character, Latin/Ballroom & Contemporary." },
     "dancewear": { "title": "Dancewear", "description": "Leotard, skirt, top & tights Só Dança untuk kelas dan panggung." },
-    "kids": { "title": "Kids", "description": "Sepatu dansa & dancewear ukuran anak — dari toddler sampai child." }
+    "kids": { "title": "Kids", "description": "Sepatu dansa & dancewear ukuran anak, dari toddler sampai child." }
   },
   "listing": {
     "count": "{n, plural, =0 {Tidak ada produk} other {# produk}}",
@@ -52,7 +52,7 @@
     "removeFilter": "Hapus filter {label}",
     "reset": "Reset filter",
     "emptyTitle": "Tidak ada produk yang cocok",
-    "emptyBody": "Coba kurangi filter, atau tanya kami via WhatsApp — mungkin ukuranmu bisa dipesan.",
+    "emptyBody": "Coba kurangi filter, atau tanya kami via WhatsApp, mungkin ukuranmu bisa dipesan.",
     "loadingMore": "Memuat produk…"
   },
   "home": {

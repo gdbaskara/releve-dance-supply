@@ -206,7 +206,7 @@ export default async function AdminOrderDetail({ params }: PageProps<"/admin/ord
               <dl className="mt-4 grid grid-cols-2 gap-3 border-t border-border pt-3">
                 <Meta label={t("courier")}>{order.tracking.courier}</Meta>
                 <Meta label={t("awb")}>
-                  <span className="font-mono">{order.tracking.awb || "—"}</span>
+                  <span className="font-mono">{order.tracking.awb || "-"}</span>
                 </Meta>
                 {order.tracking.shippedAt ? <Meta label={t("shippedAt")}>{date(order.tracking.shippedAt)}</Meta> : null}
                 {order.tracking.deliveredAt ? <Meta label={t("deliveredAt")}>{date(order.tracking.deliveredAt)}</Meta> : null}

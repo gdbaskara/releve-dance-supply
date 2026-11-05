@@ -1,7 +1,7 @@
 {
   "brand": "Relevé",
   "brandSub": "Dance Supply",
-  "demoBanner": "Demo mode — payments & shipping are simulated.",
+  "demoBanner": "Demo mode: payments & shipping are simulated.",
   "trust": {
     "original": "Original Só Dança products",
     "jakarta": "Ships from Jakarta",
@@ -37,7 +37,7 @@
   },
   "availability": {
     "ready": "In stock · ships from Jakarta in 1–2 business days",
-    "low": "Only {n} left — selling fast",
+    "low": "Only {n} left, selling fast",
     "preorder": "Pre-order · estimated arrival in {lead} weeks",
     "soldout": "Sold out in this size",
     "select": "Choose your options to see availability"
@@ -91,7 +91,7 @@
     "shippingNote": "Shipping is calculated at checkout.",
     "removeItem": "Remove {name}",
     "empty": "Your cart is empty",
-    "emptyBody": "Pick your favourite shoes or dancewear — we'll help with sizing on WhatsApp.",
+    "emptyBody": "Pick your favourite shoes or dancewear, and we'll help with sizing on WhatsApp.",
     "mixedPreorder": "Your cart contains pre-order items. Everything ships together once the pre-order items arrive."
   },
   "empty": {
@@ -116,7 +116,7 @@
     "close": "Dismiss notification"
   },
   "header": {
-    "home": "Relevé Dance Supply — home",
+    "home": "Relevé Dance Supply, home",
     "nav": "Main navigation",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
@@ -169,7 +169,7 @@
       "dancewear": "Choose by chest and hip. For a Leotard, torso length matters too."
     },
     "pointeCalloutTitle": "Pointe shoes should be fitted",
-    "approxNote": "Approximate chart. Each model can fit differently — ask us on WhatsApp if unsure.",
+    "approxNote": "Approximate chart. Each model can fit differently, so ask us on WhatsApp if unsure.",
     "consultBody": "Send us your foot length (cm) and a photo; we'll help you choose the right size & width.",
     "shoeTitle": "Shoe size chart",
     "contemporaryTitle": "Contemporary (half soles, letter sizes)",
@@ -370,7 +370,7 @@
   },
   "demo": {
     "controlsTitle": "Demo controls",
-    "controlsNote": "Shown in demo mode only — simulates the payment gateway notification.",
+    "controlsNote": "Shown in demo mode only. Simulates the payment gateway notification.",
     "simulatePaid": "Simulate Successful Payment",
     "simulateExpired": "Simulate Expiry"
   },
@@ -393,5 +393,13 @@
       "current": "current step",
       "upcoming": "upcoming"
     }
+  },
+  "errorPage": {
+    "title": "This page could not load",
+    "body": "Something went wrong on our side, not on your device. Try again in a moment, or ask us on WhatsApp if it keeps failing.",
+    "retry": "Try again",
+    "home": "Back to home",
+    "adminHome": "Back to dashboard",
+    "wa": "Ask on WhatsApp"
   }
 }
