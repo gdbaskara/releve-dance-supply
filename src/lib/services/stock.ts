@@ -12,6 +12,7 @@ import {
 } from "@/lib/contracts";
 import { normalizePhoneID } from "@/lib/format/phone";
 import { notifyBackInStock } from "./stock-ops";
+import { notifyLowStock } from "./low-stock-notify";
 import { variantLabel } from "./labels";
 import { log } from "./notify";
 
@@ -71,6 +72,9 @@ export async function adjustStock(
   const wasOut = res.before.onHand - res.before.reserved <= 0;
   const nowIn = res.after.onHand - res.after.reserved > 0;
   const notified = wasOut && nowIn ? await notifyBackInStock([sku]) : 0;
+  await notifyLowStock([
+    { sku, before: res.before.onHand - res.before.reserved, after: res.after.onHand - res.after.reserved },
+  ]);
   log("stock.adjusted", { sku, delta: res.delta, actor, notified });
   return { ok: true, variant: toAdminView(res.after), delta: res.delta, notified };
 }

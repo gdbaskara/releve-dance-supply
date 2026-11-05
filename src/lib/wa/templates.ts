@@ -33,6 +33,11 @@ export const NOTIFICATION_TEMPLATES: Record<MessageTemplate, Record<Locale, stri
     id: "Instruksi bayar {order_no}: {method} {va_or_qr_hint}, total {total}, batas {expires}.",
     en: "Payment instructions for {order_no}: {method} {va_or_qr_hint}, total {total}, due {expires}.",
   },
+  // Store -> admin (not a buyer): sent when a variant crosses into the low-stock band or sells out.
+  LOW_STOCK_ALERT: {
+    id: "{state}: {product} ({code}) {variant}, sisa {available}. Restock: {admin_url}",
+    en: "{state}: {product} ({code}) {variant}, {available} left. Restock: {admin_url}",
+  },
 };
 
 export function fillTemplate(template: string, vars: Record<string, string | number | undefined>): string {

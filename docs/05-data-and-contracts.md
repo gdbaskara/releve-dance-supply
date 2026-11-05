@@ -113,6 +113,8 @@ PENDING_PAYMENT ──paid──▶ PAID ──admin──▶ PROCESSING ──a
 
 **adminAdjustStock(sku, newOnHand)** — reject if `newOnHand < reserved`; movement; if available rises from 0 → process `back_in_stock_requests` (BACK_IN_STOCK event).
 
+**Low-stock alert (STK-09)** — after an order reserves stock or an admin edit commits: if a variant's available goes from > 3 into 1–3 (LOW) or from > 0 to 0 (OUT), send `LOW_STOCK_ALERT` to `ADMIN_WA_NUMBER` (fallback `NEXT_PUBLIC_WA_NUMBER`, language `ADMIN_WA_LOCALE`). Crossing only, so ordinary sales never message the admin.
+
 ## 5. Provider contracts (`src/lib/contracts`)
 
 ```ts
@@ -160,7 +162,7 @@ export interface ShippingProvider {
 }
 
 export type MessageTemplate = 'ORDER_CREATED' | 'PAYMENT_PAID' | 'PAYMENT_EXPIRED'
-  | 'ORDER_SHIPPED' | 'ORDER_DELIVERED' | 'BACK_IN_STOCK' | 'PAYMENT_INSTRUCTIONS';
+  | 'ORDER_SHIPPED' | 'ORDER_DELIVERED' | 'BACK_IN_STOCK' | 'PAYMENT_INSTRUCTIONS' | 'LOW_STOCK_ALERT';
 export interface MessagingProvider {
   readonly name: 'outbox' | 'waba';
   send(to: string, template: MessageTemplate, locale: 'id'|'en', vars: Record<string, string>): Promise<void>;
@@ -199,6 +201,7 @@ The equivalent `en` versions live in `messages/en.json` ("Hi Relevé, I'd like t
 | ORDER_DELIVERED | `Pesanan {order_no} sudah sampai. Semoga cocok di kaki! Ada kendala ukuran? Balas pesan ini.` |
 | BACK_IN_STOCK | `Kabar baik! {name} {variant} sudah ready lagi. Pesan sekarang: {url}` |
 | PAYMENT_INSTRUCTIONS | `Instruksi bayar {order_no}: {method} {va_or_qr_hint}, total {total}, batas {expires}.` |
+| LOW_STOCK_ALERT (to admin) | `{state}: {product} ({code}) {variant}, sisa {available}. Restock: {admin_url}` — `state` = "Stok menipis" / "Stok habis" |
 
 ## 7. Endpoints / Server Actions
 

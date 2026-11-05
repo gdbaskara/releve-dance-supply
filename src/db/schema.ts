@@ -25,7 +25,7 @@ export const movementReasonEnum = pgEnum("movement_reason", [
 ]);
 export const messageTemplateEnum = pgEnum("message_template", [
   "ORDER_CREATED", "PAYMENT_PAID", "PAYMENT_EXPIRED", "ORDER_SHIPPED", "ORDER_DELIVERED",
-  "BACK_IN_STOCK", "PAYMENT_INSTRUCTIONS",
+  "BACK_IN_STOCK", "PAYMENT_INSTRUCTIONS", "LOW_STOCK_ALERT",
 ]);
 export const outboxStatusEnum = pgEnum("outbox_status", ["QUEUED", "SENT", "FAILED"]);
 export const voucherTypeEnum = pgEnum("voucher_type", ["percent", "fixed"]);

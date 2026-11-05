@@ -14,6 +14,7 @@ export const WABA_TEMPLATES: Record<MessageTemplate, { name: string; params: str
   ORDER_DELIVERED: { name: "order_delivered", params: ["order_no"] },
   BACK_IN_STOCK: { name: "back_in_stock", params: ["name", "variant", "url"] },
   PAYMENT_INSTRUCTIONS: { name: "payment_instructions", params: ["order_no", "method", "va_or_qr_hint", "total", "expires"] },
+  LOW_STOCK_ALERT: { name: "low_stock_alert", params: ["state", "product", "code", "variant", "available", "admin_url"] },
 };
 
 /**

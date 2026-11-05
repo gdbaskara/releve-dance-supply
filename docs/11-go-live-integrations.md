@@ -160,6 +160,7 @@ Content matches docs/05 §6. Meta rejects templates that **end with a parameter*
 | ORDER_DELIVERED | `releve_order_delivered` | 1 order_no |
 | BACK_IN_STOCK | `releve_back_in_stock` | 1 name · 2 variant · 3 url |
 | PAYMENT_INSTRUCTIONS | `releve_payment_instructions` | 1 order_no · 2 method · 3 va_or_qr_hint · 4 total · 5 expires |
+| LOW_STOCK_ALERT | `releve_low_stock_alert` (category *Utility*, sent to the admin) | 1 state · 2 product · 3 code · 4 variant · 5 available · 6 admin_url |
 
 Parameter order is defined in `src/lib/providers/messaging/waba-templates.ts`; a language may use a different order (`{{2}}` before `{{1}}`).
 
@@ -198,6 +199,7 @@ Empty parameters are sent as `-`; newlines/tabs in parameters are stripped (Meta
 
 ### 3.4 Opt-in rules (WA-05)
 - Order notifications (`ORDER_CREATED`, `PAYMENT_PAID`, `PAYMENT_EXPIRED`, `ORDER_SHIPPED`, `ORDER_DELIVERED`) are only sent if the buyer ticked the WA opt-in at checkout (`notifyOrder` checks `waOptIn`).
+- `LOW_STOCK_ALERT` goes to the store's own number (`ADMIN_WA_NUMBER`), not to buyers. Testing with the Cloud API test number: add that number as a test recipient in API Setup. Suggested body (id): `{{1}}: {{2}} ({{3}}) {{4}}, sisa {{5}}. Restock: {{6}}` · (en): `{{1}}: {{2}} ({{3}}) {{4}}, {{5}} left. Restock: {{6}}`.
 - `PAYMENT_INSTRUCTIONS` is sent because the buyer pressed "Kirim instruksi ke WA" (Send instructions to WA); `BACK_IN_STOCK` because the buyer signed up via "Kabari saya" (Notify me).
 - The opt-in text at checkout must mention the business name and that the buyer will receive WhatsApp messages (a Meta policy requirement). Honor stop requests: "STOP" replies are currently handled manually by the admin.
 - Template messages may be sent outside the 24-hour window; free-form (non-template) replies from the admin still go through `wa.me` / the WhatsApp Business app.

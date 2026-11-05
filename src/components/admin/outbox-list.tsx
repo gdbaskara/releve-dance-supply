@@ -5,6 +5,7 @@ import { CheckCheck, Clock, X } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import type { Locale } from "@/lib/contracts";
 import { WhatsAppIcon } from "@/components/store/whatsapp-button";
+import { waMeLink } from "@/lib/services/low-stock";
 import { TemplateBadge } from "./status-badge";
 
 const STATUS = {
@@ -66,6 +67,17 @@ export function OutboxList({ items }: { items: OutboxRow[] }) {
                 <Icon size={14} strokeWidth={2} aria-label={t(`outboxStatus.${m.status}`)} className={st.cls} />
               </p>
             </div>
+            {/* Demo: hand-send the stored message from your own WhatsApp (no WhatsApp Business API needed). */}
+            <a
+              href={waMeLink(m.toWa, m.body)}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={t("outbox.openInWaLabel", { to: formatPhoneID(m.toWa) })}
+              className="inline-flex min-h-11 items-center gap-1.5 self-start px-1 text-xs font-medium text-whatsapp-ink underline underline-offset-2 hover:text-ink"
+            >
+              <WhatsAppIcon size={14} />
+              {t("outbox.openInWa")}
+            </a>
           </li>
         );
       })}

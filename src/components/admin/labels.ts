@@ -35,10 +35,12 @@ export const TEMPLATE_TONE: Record<MessageTemplate, BadgeTone> = {
   ORDER_SHIPPED: "info",
   ORDER_DELIVERED: "success",
   BACK_IN_STOCK: "accent",
+  LOW_STOCK_ALERT: "error",
 };
 
 export const TEMPLATES: readonly MessageTemplate[] = [
   "ORDER_CREATED", "PAYMENT_INSTRUCTIONS", "PAYMENT_PAID", "PAYMENT_EXPIRED", "ORDER_SHIPPED", "ORDER_DELIVERED", "BACK_IN_STOCK",
+  "LOW_STOCK_ALERT",
 ];
 
 /** SHP-03 couriers offered when marking an order SHIPPED (brand names, not translated). */
