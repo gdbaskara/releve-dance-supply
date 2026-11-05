@@ -6,6 +6,8 @@
 import { asc, eq } from "drizzle-orm";
 import { db } from "@/db";
 import { products, variants } from "@/db/schema";
+import { firstImageByDiscipline, pickHeroImage, type DisciplineImages } from "./home-images";
+
 import {
   aggregateStockStatus,
   deriveStockStatus,
@@ -23,6 +25,9 @@ import {
   type VariantView,
 } from "@/lib/contracts";
 import { maybeSweepExpiredOrders } from "./expiry";
+
+/** Disciplines the home hero photo is taken from, in order of preference. */
+const HERO_DISCIPLINES = ["Pointe", "Ballet"] as const;
 
 type ProductRow = typeof products.$inferSelect;
 type VariantRow = typeof variants.$inferSelect;
@@ -247,15 +252,22 @@ export interface HomeCollections {
   kids: ProductSummary[];
   /** product count per discipline (for "shop by discipline" tiles) */
   disciplineCounts: Facet[];
+  /** first product photo per discipline (hero + tiles); empty when products have no photos */
+  disciplineImages: DisciplineImages;
+  /** hero photo (a pointe/ballet product other than the tile's), null when products have no photos */
+  heroImage: ProductImage | null;
 }
 
 /** Home page helpers (CAT-07). readyStock = products with ≥ 1 READY variant (not just LOW), in catalog order. */
 export async function getCollections(limit = 8): Promise<HomeCollections> {
   const all = await loadAll();
   const isReady = (s: StockStatus) => s === "READY";
+  const imageSources = all.map((p) => ({ discipline: p.row.discipline, image: p.summary.image }));
   return {
     readyStock: all.filter((p) => p.variants.some((v) => isReady(v.status))).slice(0, limit).map((p) => p.summary),
     kids: all.filter((p) => p.row.audience === "Kids").slice(0, limit).map((p) => p.summary),
     disciplineCounts: DISCIPLINE_ORDER.map((d) => ({ value: d, count: all.filter((p) => p.row.discipline === d).length })),
+    disciplineImages: firstImageByDiscipline(imageSources),
+    heroImage: pickHeroImage(imageSources, HERO_DISCIPLINES),
   };
 }

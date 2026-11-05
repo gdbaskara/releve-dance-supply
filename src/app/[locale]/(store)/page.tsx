@@ -7,7 +7,9 @@ import { buildWaLink } from "@/lib/wa";
 import { COLLECTIONS, type Locale } from "@/lib/contracts";
 import { Button } from "@/components/ui/button";
 import { ProductCard } from "@/components/store/product-card";
-import { ShoePlaceholderArt } from "@/components/store/product-image";
+import { ProductImage, ShoePlaceholderArt } from "@/components/store/product-image";
+import { pickImage } from "@/lib/services/home-images";
+import { cn } from "@/lib/utils/cn";
 import { TrustStrip } from "@/components/store/trust-strip";
 import { WhatsAppButton } from "@/components/store/whatsapp-button";
 import { pageMetadata, jsonLd, siteUrl } from "@/components/store/containers/seo";
@@ -32,7 +34,9 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("catalog");
-  const { readyStock, kids, disciplineCounts } = await getCollections(8);
+  const { readyStock, kids, disciplineCounts, disciplineImages, heroImage } = await getCollections(8);
+  // Product photos when the catalog has them (DEMO_USE_REFERENCE_IMAGES); placeholder art otherwise.
+  const tileImage = (ds: readonly string[]) => pickImage(disciplineImages, ds);
   const consultHref = buildWaLink("general", undefined, locale as Locale);
   const countFor = (ds: readonly string[]) => disciplineCounts.filter((f) => ds.includes(f.value)).reduce((n, f) => n + f.count, 0);
   const tileLabel = (key: (typeof TILES)[number]["key"]) =>
@@ -68,9 +72,20 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
               </Button>
             </div>
           </div>
-          <div aria-hidden className="relative hidden aspect-[4/3] items-center justify-center bg-surface-alt text-ink-subtle md:flex">
-            <ShoePlaceholderArt className="w-3/4 text-accent-strong" />
-            <span className="eyebrow absolute bottom-4 left-4 text-ink-subtle">Só Dança</span>
+          <div
+            aria-hidden
+            className={cn(
+              "relative aspect-[4/3] items-center justify-center overflow-hidden bg-surface-alt text-ink-subtle md:flex",
+              // A real photo is worth the space on phones too; the line-art placeholder is desktop-only as before.
+              heroImage ? "flex" : "hidden",
+            )}
+          >
+            {heroImage ? (
+              <ProductImage src={heroImage.url} alt="" priority aspectClassName="absolute inset-0" sizes="(min-width: 768px) 50vw, 100vw" />
+            ) : (
+              <ShoePlaceholderArt className="w-3/4 text-accent-strong" />
+            )}
+            <span className="eyebrow absolute bottom-4 left-4 bg-surface px-2 py-1 text-ink-subtle">Só Dança</span>
           </div>
         </div>
       </section>
@@ -87,8 +102,18 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
                 href={tile.href}
                 className="group flex flex-col gap-3 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-focus"
               >
-                <div className="flex aspect-square items-center justify-center bg-surface-alt text-ink-subtle transition-colors group-hover:bg-accent">
-                  <ShoePlaceholderArt className="w-2/3" />
+                <div className="relative flex aspect-square items-center justify-center overflow-hidden bg-surface-alt text-ink-subtle transition-colors group-hover:bg-accent">
+                  {tileImage(tile.disciplines) ? (
+                    <ProductImage
+                      src={tileImage(tile.disciplines)?.url}
+                      alt=""
+                      aspectClassName="absolute inset-0"
+                      className="transition-transform duration-300 motion-safe:group-hover:scale-105"
+                      sizes="(min-width: 1024px) 16vw, (min-width: 768px) 33vw, 50vw"
+                    />
+                  ) : (
+                    <ShoePlaceholderArt className="w-2/3" />
+                  )}
                 </div>
                 <div className="flex items-baseline justify-between gap-2">
                   <span className="eyebrow text-ink group-hover:underline group-hover:underline-offset-4">{tileLabel(tile.key)}</span>
