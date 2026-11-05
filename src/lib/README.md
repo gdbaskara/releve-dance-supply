@@ -173,7 +173,7 @@ Every action calls `requireAdmin()` first.
 ## Data (`@/lib/data`)
 - `areas.ts` (client-safe): `JAVA_PROVINCES`, `JAVA_AREAS`, `getCities(province)`, `resolveZone(province, city)`, `isJavaProvince`, `ORIGIN`
 - `rates.ts`: `MOCK_RATES`
-- `catalog.ts`: `loadRawCatalog()`, used by the seed only.
+- `catalog.ts`: `loadRawCatalog()`, used by the seed only. Sizes pass through `size-normalize.ts` (`normalizeRawSize`: source typos such as `11.5s (child))`).
 
 ## Routes
 | Route | Notes |

@@ -74,6 +74,10 @@ def price(usd, disc):
             "price_vs_msrp_idr": round(sell / (msrp * c["kurs_spot"]), 2),
             "gross_margin_pct": round((net_sales - landed) / net_sales * 100, 1),
             "est_net_profit_idr": round(profit), "est_net_margin_pct": round(profit / net_sales * 100, 1)}
+def clean_size(s):
+    """Same rules as src/lib/data/size-normalize.ts: drop stray ')' and add the missing adult 'L'."""
+    s = re.sub(r'\)+$', ')', s.strip())
+    return re.sub(r'^(\d+(?:\.\d+)?)\s+\(adult\)$', r'\1L (adult)', s)
 def strip_html(h): return re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', h or '')).strip()
 products, rows = [], []
 KIDS_DUP = {"SD140"}
@@ -88,6 +92,7 @@ for i, (title, disc, aud) in enumerate(PICK):
     for v in p['variants']:
         vals = [x.strip() for x in v['option1'].split('//')] if combined else [v.get('option%d' % k) for k in range(1, len(names)+1)]
         attrs = {n.lower(): val for n, val in zip(names, vals) if val}
+        if 'size' in attrs: attrs['size'] = clean_size(attrs['size'])
         r = rnd.random()
         if prof == "ready":   q = 0 if r < .15 else rnd.randint(3, 10)
         elif prof == "low":   q = 0 if r < .5 else rnd.randint(1, 3)
