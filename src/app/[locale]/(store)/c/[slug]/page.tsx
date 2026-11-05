@@ -51,6 +51,7 @@ export default async function ListingPage({ params, searchParams }: PageProps<"/
       audience: (a) => t(`listing.audience.${a as "Adult"}`),
       price: (k) => t(`listing.price.${k as "under1m"}`),
       availability: (a) => t(`listing.availability.${a as "READY"}`),
+    sizeGroup: (g) => tc(`sizeGroups.${g}`),
     },
     { showDiscipline: col.aggregate, showAudience: !col.fixedAudience },
   );

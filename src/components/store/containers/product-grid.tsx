@@ -14,7 +14,7 @@ export function ProductGrid({ items, withSidebar = true }: { items: ProductSumma
     >
       {items.map((p, i) => (
         <li key={p.slug} className="relative">
-          <ProductCard product={p} href={`/p/${p.slug}`} linkAs={Link} priority={i < 2} />
+          <ProductCard product={p} href={p.matchedColor ? `/p/${p.slug}?color=${encodeURIComponent(p.matchedColor)}` : `/p/${p.slug}`} linkAs={Link} priority={i < 2} />
         </li>
       ))}
     </ul>

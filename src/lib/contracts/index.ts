@@ -80,6 +80,8 @@ export interface ProductSummary {
   colors: string[];
   status: StockStatus;   // aggregate
   image: ProductImage | null;
+  /** Listing colour filter: the filtered colour the card photo shows (PDP link pre-selects it). */
+  matchedColor?: string | null;
 }
 
 export interface ProductDetail extends ProductSummary {
