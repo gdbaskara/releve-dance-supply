@@ -1,12 +1,12 @@
-# 15 — Deploy demo ke `releve.gdbaskara.dev` (Mac + Cloudflare Tunnel + Access)
+# 15 — Demo deploy to `releve.gdbaskara.dev` (Mac + Cloudflare Tunnel + Access)
 
-Pola yang sama dengan `reel.gdbaskara.dev`: aplikasi jalan di Mac, diekspos lewat **Cloudflare Tunnel**, dan dilindungi **Cloudflare Access** (login dulu sebelum bisa buka).
+Same pattern as `reel.gdbaskara.dev`: the app runs on a Mac, is exposed through **Cloudflare Tunnel**, and is protected by **Cloudflare Access** (log in first before it can be opened).
 
 ```
-Browser ──▶ Cloudflare (releve.gdbaskara.dev) ──Access login──▶ Tunnel ──▶ Mac: Next.js :3000 ──▶ Postgres 16 (lokal)
+Browser ──▶ Cloudflare (releve.gdbaskara.dev) ──Access login──▶ Tunnel ──▶ Mac: Next.js :3000 ──▶ Postgres 16 (local)
 ```
 
-## 1. Siapkan Mac (sekali saja)
+## 1. Prepare the Mac (one time only)
 
 ```bash
 brew install node@22 pnpm postgresql@16 cloudflared
@@ -15,7 +15,7 @@ createuser -s releve && psql postgres -c "ALTER USER releve WITH PASSWORD 'relev
 createdb -O releve releve
 ```
 
-## 2. Ambil kode & konfigurasi
+## 2. Get the code & configure
 
 ```bash
 git clone https://github.com/gdbaskara/releve-dance-supply.git ~/apps/releve
@@ -23,15 +23,15 @@ cd ~/apps/releve
 cp .env.example .env.local
 ```
 
-Ubah di `.env.local`:
+Change in `.env.local`:
 
-| Var | Nilai |
+| Var | Value |
 |---|---|
 | `NEXT_PUBLIC_SITE_URL` | `https://releve.gdbaskara.dev` |
-| `AUTH_SECRET`, `WEBHOOK_SECRET`, `CRON_SECRET` | masing-masing `openssl rand -hex 32` |
-| `ADMIN_PASSWORD` | password admin demo (bukan `releve-demo`) |
-| `NEXT_PUBLIC_WA_NUMBER` | nomor WA bisnis, format `628…` |
-| `DEMO_MODE`, `NEXT_PUBLIC_DEMO_MODE` | `true` (tombol simulasi bayar) |
+| `AUTH_SECRET`, `WEBHOOK_SECRET`, `CRON_SECRET` | each `openssl rand -hex 32` |
+| `ADMIN_PASSWORD` | demo admin password (not `releve-demo`) |
+| `NEXT_PUBLIC_WA_NUMBER` | business WA number, format `628…` |
+| `DEMO_MODE`, `NEXT_PUBLIC_DEMO_MODE` | `true` (payment simulation buttons) |
 
 ```bash
 pnpm install
@@ -40,28 +40,28 @@ pnpm db:seed
 pnpm build
 ```
 
-## 3. Jalankan terus-menerus (pm2)
+## 3. Keep it running (pm2)
 
 ```bash
 npm i -g pm2
 pm2 start "pnpm start -p 3000" --name releve --cwd ~/apps/releve
-pm2 save && pm2 startup   # ikuti perintah yang dicetak agar auto-start saat Mac nyala
+pm2 save && pm2 startup   # follow the printed command so it auto-starts when the Mac boots
 ```
 
-Cek: `curl -I http://localhost:3000/id` → 200.
+Check: `curl -I http://localhost:3000/id` → 200.
 
-> Mac jangan sleep saat demo: System Settings → Energy → "Prevent automatic sleeping when the display is off".
+> Don't let the Mac sleep during the demo: System Settings → Energy → "Prevent automatic sleeping when the display is off".
 
 ## 4. Cloudflare Tunnel
 
-Kalau Mac ini **sudah punya tunnel** untuk Reel Studio, cukup tambah hostname baru ke tunnel yang sama:
+If this Mac **already has a tunnel** for Reel Studio, just add a new hostname to the same tunnel:
 
 ```bash
-cloudflared tunnel list                       # lihat nama tunnel yang dipakai reel
+cloudflared tunnel list                       # see the name of the tunnel used by reel
 cloudflared tunnel route dns <NAMA_TUNNEL> releve.gdbaskara.dev
 ```
 
-Lalu tambahkan ke `~/.cloudflared/config.yml` (di atas aturan `http_status:404`):
+Then add to `~/.cloudflared/config.yml` (above the `http_status:404` rule):
 
 ```yaml
 ingress:
@@ -73,25 +73,25 @@ ingress:
 ```
 
 ```bash
-sudo launchctl kickstart -k system/com.cloudflare.cloudflared   # atau: brew services restart cloudflared
+sudo launchctl kickstart -k system/com.cloudflare.cloudflared   # or: brew services restart cloudflared
 ```
 
-Kalau tunnel dikelola dari **dashboard** (Zero Trust → Networks → Tunnels): buka tunnel reel → *Public Hostname* → *Add*: subdomain `releve`, domain `gdbaskara.dev`, service `HTTP` → `localhost:3000`.
+If the tunnel is managed from the **dashboard** (Zero Trust → Networks → Tunnels): open the reel tunnel → *Public Hostname* → *Add*: subdomain `releve`, domain `gdbaskara.dev`, service `HTTP` → `localhost:3000`.
 
-## 5. Cloudflare Access (proteksi login)
+## 5. Cloudflare Access (login protection)
 
 Zero Trust → Access → Applications → *Add an application* → Self-hosted:
 - Domain: `releve.gdbaskara.dev`
-- Policy: salin policy dari aplikasi **reel** (email yang diizinkan, mis. email kamu + email klien).
-- **Bypass** untuk webhook (nanti saat Xendit live): path `releve.gdbaskara.dev/api/webhooks/*` dengan action *Bypass*, karena Xendit tidak bisa login Access.
+- Policy: copy the policy from the **reel** application (allowed emails, e.g. your email + the client's email).
+- **Bypass** for webhooks (later, when Xendit goes live): path `releve.gdbaskara.dev/api/webhooks/*` with the *Bypass* action, because Xendit cannot log in through Access.
 
-## 6. Update demo
+## 6. Updating the demo
 
 ```bash
 cd ~/apps/releve && git pull && pnpm install && pnpm db:push && pnpm build && pm2 restart releve
-pnpm db:reset    # data demo bersih sebelum presentasi (hanya DB lokal)
+pnpm db:reset    # clean demo data before a presentation (local DB only)
 ```
 
-## Catatan
-- Expired order dibersihkan otomatis saat dibaca; untuk sweep berkala tambahkan cron Mac: `*/5 * * * * curl -s -H "Authorization: Bearer $CRON_SECRET" http://localhost:3000/api/cron/expire`.
-- Backup DB: `pg_dump releve > releve-$(date +%F).sql`.
+## Notes
+- Expired orders are cleaned up automatically when read; for a periodic sweep add a Mac cron: `*/5 * * * * curl -s -H "Authorization: Bearer $CRON_SECRET" http://localhost:3000/api/cron/expire`.
+- DB backup: `pg_dump releve > releve-$(date +%F).sql`.
