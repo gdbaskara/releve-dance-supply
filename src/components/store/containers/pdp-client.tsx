@@ -9,6 +9,7 @@ import { PREORDER_MAX_QTY, type Locale, type ProductDetail, type ProductImage as
 import { useCart } from "@/lib/cart/store";
 import { buildWaLink } from "@/lib/wa";
 import { cn } from "@/lib/utils/cn";
+import { imageForColor } from "@/lib/utils/image-for-color";
 import { Button } from "@/components/ui/button";
 import { Notice } from "@/components/ui/notice";
 import { AvailabilityLine } from "@/components/store/availability-line";
@@ -144,7 +145,7 @@ export function PdpClient({ product, productUrl, initialColor, header, children 
         modelCode: product.modelCode,
         variantLabel: label,
         priceIdr: product.priceIdr,
-        imageUrl: product.images.find((i) => i.color === real.color)?.url ?? product.images[0]?.url ?? null,
+        imageUrl: imageForColor(product.images, real.color)?.url ?? null,
         isPreorder: status === "PREORDER",
       },
       maxQty,
@@ -162,7 +163,14 @@ export function PdpClient({ product, productUrl, initialColor, header, children 
     <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,440px)] lg:gap-12 xl:gap-16">
       <div className="-mx-[var(--gutter)] md:mx-0">
         <div className="lg:sticky lg:top-[calc(var(--header-h)+1.5rem)]">
-          <PdpGallery images={product.images} name={product.name} modelCode={product.modelCode} color={state.selection.color} />
+          {/* key: a new colour remounts the gallery so the slide index and scroll position start at photo 1. */}
+          <PdpGallery
+            key={state.selection.color ?? "all"}
+            images={product.images}
+            name={product.name}
+            modelCode={product.modelCode}
+            color={state.selection.color}
+          />
         </div>
       </div>
       <div className="flex min-w-0 flex-col gap-6">

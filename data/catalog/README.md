@@ -48,3 +48,19 @@ DEMO DATA. Models/colors/sizes from the public sodanca.com catalog (5 Nov 2026).
 **Total:** 40 models, 2903 variant SKUs, 8515 units in stock. SKU status: READY 1023, LOW 680, PREORDER 582, SOLD_OUT 618.
 
 Status rules: `READY` stock > 3 · `LOW` 1–3 (shows "Sisa N") · `PREORDER` 0 but orderable (4–6 weeks) · `SOLD_OUT` 0 and not orderable (shows "Kabari Saya via WA").
+
+## Per-colour photos (`color_media.json`)
+
+Reference photos per colour, used by the seed only when `DEMO_USE_REFERENCE_IMAGES=true` (internal reference, AGENTS.md rule 10). Each product image is stored with its `color`, so the PDP gallery, cart and order thumbnails follow the selected colour.
+
+sodanca.com answers non-browser clients with HTTP 429, so collection runs in a browser:
+
+```bash
+python3 -I scripts/build_color_media.py --print-catalog-colors   # copy the printed JSON
+# In a browser tab on https://www.sodanca.com: paste scripts/collect_color_media.js into the console,
+# run `copy(await collectColorMedia(<printed JSON>))` and save the clipboard as dump.json
+python3 -I scripts/build_color_media.py dump.json                 # writes data/catalog/color_media.json
+pnpm db:seed                                                      # images are written at seed time
+```
+
+`build_color_media.py` also cleans source-data mistakes (a photo of another colour attached to a variant, colour-named photos left untagged). Swatch fills in `src/components/store/swatch-colors.ts` are sampled from the same site's swatch images.

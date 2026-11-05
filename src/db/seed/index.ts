@@ -8,6 +8,7 @@ import { sql } from "drizzle-orm";
 import { db, pgClient, type DB } from "@/db";
 import { adminUsers, backInStockRequests, products, stockMovements, variants, vouchers, waOutbox } from "@/db/schema";
 import { loadRawCatalog } from "@/lib/data/catalog";
+import { buildProductImages, loadColorMedia } from "@/lib/data/color-media";
 import { referenceImagesEnabled } from "@/lib/providers/env";
 import { buildProductCopy } from "./content";
 import { seedOrders } from "./orders";
@@ -28,6 +29,7 @@ export async function truncateAll(conn: DB = db): Promise<void> {
 export async function seedCatalog(conn: DB = db): Promise<{ products: number; variants: number; movements: number }> {
   const raw = loadRawCatalog();
   const refImages = referenceImagesEnabled();
+  const colorMedia = refImages ? loadColorMedia() : {};
   const now = new Date();
   const productRows = raw.map((p, i) => {
     const copy = buildProductCopy(p);
@@ -49,7 +51,7 @@ export async function seedCatalog(conn: DB = db): Promise<{ products: number; va
       colors: p.colors ?? [],
       widths: p.widths ?? [],
       options: p.options ?? [],
-      images: refImages && p.reference_image_url ? [{ url: p.reference_image_url, alt: `${p.name} ${p.model_code}` }] : [],
+      images: refImages ? buildProductImages(p, colorMedia[p.slug]) : [],
       referenceImageUrl: p.reference_image_url,
       sortOrder: i,
       createdAt: now,
