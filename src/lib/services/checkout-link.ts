@@ -6,6 +6,7 @@ import { checkoutLinks, orders, variants } from "@/db/schema";
 import type { CartItemInput, Locale, ValidatedCart } from "@/lib/contracts";
 import { normalizePhoneID } from "@/lib/format/phone";
 import { buildWaLinkTo } from "@/lib/wa/link";
+import { checkoutLinkShareText } from "@/lib/wa/admin-text";
 import { mergeItems, validateCart } from "./cart";
 import { urls } from "./notify";
 
@@ -42,12 +43,7 @@ export async function createCheckoutLink(
   });
   const locale = input.locale ?? "id";
   const url = urls.checkoutLink(locale, token);
-  const greeting = input.customerName?.trim() ? `Halo ${input.customerName.trim()}, ` : "Halo, ";
-  const waLink = wa
-    ? buildWaLinkTo(wa, locale === "id"
-        ? `${greeting}ini link checkout pesanan kamu dari Relevé Dance Supply (berlaku 48 jam): ${url}`
-        : `${greeting.replace("Halo", "Hi")}here is your checkout link from Relevé Dance Supply (valid for 48 hours): ${url}`)
-    : null;
+  const waLink = wa ? buildWaLinkTo(wa, checkoutLinkShareText(locale, { name: input.customerName, url })) : null;
   return { ok: true, token, url, expiresAt, waLink };
 }
 

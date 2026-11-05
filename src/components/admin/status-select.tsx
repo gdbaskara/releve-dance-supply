@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import type { OrderStatus } from "@/lib/contracts";
 import { transitionOrderAction } from "@/lib/actions/admin";
 import { Button } from "@/components/ui/button";
@@ -10,14 +11,10 @@ import { Input } from "@/components/ui/input";
 import { Notice } from "@/components/ui/notice";
 import { Select } from "@/components/ui/select";
 import { useToast } from "@/components/ui/toast";
-import { COURIERS, ORDER_STATUS_LABEL, TRANSITION_LABEL } from "./labels";
+import { COURIERS, TRANSITION_TARGETS } from "./labels";
 
-const ERROR_TEXT: Record<string, string> = {
-  TRACKING_REQUIRED: "Kurir dan nomor resi wajib diisi.",
-  INVALID_TRANSITION: "Status order sudah berubah. Muat ulang halaman.",
-  NOT_FOUND: "Order tidak ditemukan.",
-  INVALID_INPUT: "Data tidak valid.",
-};
+/** Server error codes that have a message in admin.json `statusSelect.errors`. */
+const KNOWN_ERRORS = ["TRACKING_REQUIRED", "INVALID_TRANSITION", "NOT_FOUND", "INVALID_INPUT"] as const;
 
 const DESTRUCTIVE: OrderStatus[] = ["CANCELLED", "REFUND_PENDING"];
 
@@ -35,6 +32,10 @@ export function StatusSelect({
 }) {
   const router = useRouter();
   const { toast } = useToast();
+  const t = useTranslations("admin.statusSelect");
+  const tStatus = useTranslations("admin.orderStatus");
+  const tTransition = useTranslations("admin.transition");
+  const actionLabel = (s: OrderStatus) => (TRANSITION_TARGETS.includes(s) ? tTransition(s) : tStatus(s));
   const [to, setTo] = React.useState<OrderStatus | "">(allowed.find((s) => !DESTRUCTIVE.includes(s)) ?? "");
   const [courier, setCourier] = React.useState<string>(COURIERS.includes(defaultCourier as (typeof COURIERS)[number]) ? defaultCourier! : "");
   const [awb, setAwb] = React.useState("");
@@ -44,7 +45,7 @@ export function StatusSelect({
   const [pending, startTransition] = React.useTransition();
 
   if (allowed.length === 0) {
-    return <p className="text-sm text-ink-muted">Tidak ada aksi lanjutan untuk status {ORDER_STATUS_LABEL[status].toLowerCase()}.</p>;
+    return <p className="text-sm text-ink-muted">{t("noActions", { status: tStatus(status).toLowerCase() })}</p>;
   }
 
   const run = () => {
@@ -60,14 +61,13 @@ export function StatusSelect({
       if (res.ok) {
         toast({
           variant: "success",
-          title: `Status: ${ORDER_STATUS_LABEL[res.status]}`,
-          description:
-            res.status === "SHIPPED" || res.status === "DELIVERED" ? "Notifikasi WA untuk pembeli masuk ke outbox." : undefined,
+          title: t("toastTitle", { status: tStatus(res.status) }),
+          description: res.status === "SHIPPED" || res.status === "DELIVERED" ? t("toastWaQueued") : undefined,
         });
         setAwb("");
         router.refresh();
       } else {
-        setError(ERROR_TEXT[res.error] ?? "Gagal mengubah status.");
+        setError((KNOWN_ERRORS as readonly string[]).includes(res.error) ? t(`errors.${res.error}`) : t("errors.failed"));
       }
     });
   };
@@ -76,9 +76,10 @@ export function StatusSelect({
     e.preventDefault();
     if (!to) return;
     if (to === "SHIPPED") {
-      const fe: typeof fieldErr = {};
-      if (!courier) fe.courier = "Pilih kurir";
-      if (!awb.trim()) fe.awb = "Isi nomor resi";
+      const fe: typeof fieldErr = {
+        ...(courier ? {} : { courier: t("courierRequired") }),
+        ...(awb.trim() ? {} : { awb: t("awbRequired") }),
+      };
       setFieldErr(fe);
       if (fe.courier || fe.awb) return;
     }
@@ -89,36 +90,36 @@ export function StatusSelect({
   const destructive = to !== "" && DESTRUCTIVE.includes(to);
 
   return (
-    <form onSubmit={submit} className="flex flex-col gap-3" aria-label="Ubah status order">
+    <form onSubmit={submit} className="flex flex-col gap-3" aria-label={t("formLabel")}>
       <Select
-        label="Ubah status ke"
+        label={t("changeTo")}
         value={to}
         onChange={(e) => {
           setTo(e.target.value as OrderStatus);
           setError(null);
         }}
-        placeholder="Pilih aksi…"
-        options={allowed.map((s) => ({ value: s, label: `${TRANSITION_LABEL[s] ?? ORDER_STATUS_LABEL[s]} → ${ORDER_STATUS_LABEL[s]}` }))}
+        placeholder={t("pickAction")}
+        options={allowed.map((s) => ({ value: s, label: t("option", { action: actionLabel(s), status: tStatus(s) }) }))}
         className="h-10"
         name="to"
       />
       {to === "SHIPPED" ? (
         <>
           <Select
-            label="Kurir"
+            label={t("courier")}
             value={courier}
             onChange={(e) => {
               setCourier(e.target.value);
               setFieldErr((f) => ({ ...f, courier: undefined }));
             }}
-            placeholder="Pilih kurir"
+            placeholder={t("pickCourier")}
             options={COURIERS.map((c) => ({ value: c, label: c }))}
             error={fieldErr.courier}
             className="h-10"
             name="courier"
           />
           <Input
-            label="Nomor resi (AWB)"
+            label={t("awb")}
             value={awb}
             onChange={(e) => {
               setAwb(e.target.value);
@@ -138,35 +139,35 @@ export function StatusSelect({
         </Notice>
       ) : null}
       <Button type="submit" size="sm" variant={destructive ? "danger" : "primary"} loading={pending && !confirmOpen} disabled={!to}>
-        {to ? (TRANSITION_LABEL[to] ?? "Terapkan") : "Terapkan"}
+        {to && TRANSITION_TARGETS.includes(to) ? tTransition(to) : t("apply")}
       </Button>
 
       <Dialog open={confirmOpen} onOpenChange={setConfirmOpen}>
         <DialogContent
           variant="responsive"
           size="sm"
-          title={to === "REFUND_PENDING" ? "Batalkan & refund order?" : "Batalkan order?"}
+          title={to === "REFUND_PENDING" ? t("confirmRefundTitle") : t("confirmCancelTitle")}
           footer={
             <div className="flex justify-end gap-2">
               <DialogClose asChild>
                 <Button size="sm" variant="ghost">
-                  Kembali
+                  {t("back")}
                 </Button>
               </DialogClose>
               <Button size="sm" variant="danger" onClick={run} loading={pending}>
-                Ya, batalkan
+                {t("confirm")}
               </Button>
             </div>
           }
         >
           <p className="text-sm text-ink">
-            Order <span className="font-mono font-semibold">{orderNo}</span> akan berstatus{" "}
-            <strong>{to ? ORDER_STATUS_LABEL[to] : ""}</strong>.{" "}
-            {status === "PENDING_PAYMENT"
-              ? "Reservasi stok dilepas dan pembayaran yang menunggu dibatalkan."
-              : to === "REFUND_PENDING"
-                ? "Stok dikembalikan ke gudang. Proses refund ke pembeli dilakukan manual."
-                : "Tindakan ini tidak bisa dibatalkan."}
+            {t.rich("confirmBody", {
+              orderNo,
+              status: to ? tStatus(to) : "",
+              mono: (chunks) => <span className="font-mono font-semibold">{chunks}</span>,
+              strong: (chunks) => <strong>{chunks}</strong>,
+            })}{" "}
+            {status === "PENDING_PAYMENT" ? t("releaseReservation") : to === "REFUND_PENDING" ? t("restockRefund") : t("irreversible")}
           </p>
         </DialogContent>
       </Dialog>

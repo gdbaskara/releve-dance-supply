@@ -1,6 +1,7 @@
 import Link from "next/link";
 import * as React from "react";
 import { ArrowDown, ArrowUp, ArrowUpDown } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils/cn";
 
 export interface Column<T> {
@@ -22,7 +23,7 @@ export interface DataTableProps<T> {
   /** Column used as the card title on mobile (and stretched link target). Default: first column. */
   primaryKey?: string;
   rowHref?: (row: T) => string;
-  /** Accessible label for the row link, e.g. "Buka order RDS-…". */
+  /** Accessible label for the row link, e.g. t("orders.openRow"). */
   rowLinkLabel?: (row: T) => string;
   empty?: React.ReactNode;
   caption?: string;
@@ -39,11 +40,12 @@ const alignCls = { left: "text-left", right: "text-right", center: "text-center"
  * Pure render — usable from Server Components; sorting works when rendered inside a Client Component with `onSort`.
  */
 export function DataTable<T>({ rows, columns, rowKey, primaryKey, rowHref, rowLinkLabel, empty, caption, sort, onSort, rowProps }: DataTableProps<T>) {
+  const t = useTranslations("admin.table");
   const primary = columns.find((c) => c.key === primaryKey) ?? columns[0];
   const rest = columns.filter((c) => c !== primary && !c.hideOnMobile);
 
   if (rows.length === 0) {
-    return <div className="px-4 py-10 text-center text-sm text-ink-muted">{empty ?? "Belum ada data."}</div>;
+    return <div className="px-4 py-10 text-center text-sm text-ink-muted">{empty ?? t("empty")}</div>;
   }
 
   const wrapLink = (row: T, content: React.ReactNode) =>

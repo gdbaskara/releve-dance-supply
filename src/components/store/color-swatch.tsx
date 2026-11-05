@@ -95,7 +95,8 @@ export function ColorSelector({ options, value, onChange, label, className }: Co
               "disabled:cursor-not-allowed disabled:opacity-30",
             )}
           >
-            <span className="rounded-pill p-0.5 ring-ink group-data-[state=checked]:ring-2">
+            {/* inline-flex: as a plain block the inline-block swatch left a line-height gap, so the ring was an oval. */}
+            <span className="inline-flex rounded-pill p-0.5 ring-ink group-data-[state=checked]:ring-2">
               <ColorSwatch color={o.value} soldOut={o.status === "soldout"} />
             </span>
           </RRadio.Item>

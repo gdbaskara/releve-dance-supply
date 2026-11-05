@@ -1,7 +1,8 @@
 /** Builds OrderPublicView (contracts) from DB rows. Server-only. */
 import { desc, eq, inArray } from "drizzle-orm";
 import { db } from "@/db";
-import { orderItems, orders, payments, products } from "@/db/schema";
+import { orderItems, orders, payments, products, variants } from "@/db/schema";
+import { imageForColor } from "@/lib/utils/image-for-color";
 import type {
   Locale,
   OrderPublicView,
@@ -44,11 +45,16 @@ export async function loadOrderBundle(orderNo: string, conn: DbOrTx = db) {
     conn.select().from(orderItems).where(eq(orderItems.orderId, o.id)),
     conn.select().from(payments).where(eq(payments.orderId, o.id)).orderBy(desc(payments.createdAt)),
   ]);
-  const productIds = [...new Set(items.map((i) => i.productId))];
-  const imgs = productIds.length
-    ? await conn.select({ id: products.id, images: products.images }).from(products).where(inArray(products.id, productIds))
+  const skus = [...new Set(items.map((i) => i.sku))];
+  const imgs = skus.length
+    ? await conn
+        .select({ sku: variants.sku, color: variants.color, images: products.images })
+        .from(variants)
+        .innerJoin(products, eq(products.id, variants.productId))
+        .where(inArray(variants.sku, skus))
     : [];
-  const imageMap = new Map(imgs.map((p) => [p.id, ((p.images ?? []) as ProductImage[])[0]?.url ?? null]));
+  // Keyed by SKU so each line shows the photo of the colour that was ordered.
+  const imageMap = new Map(imgs.map((r) => [r.sku, imageForColor((r.images ?? []) as ProductImage[], r.color)?.url ?? null]));
   return { order: o, items, payments: pays, imageMap };
 }
 
@@ -81,7 +87,7 @@ export function buildOrderView(b: OrderBundle): OrderPublicView {
       qty: i.qty,
       priceIdr: i.priceIdr,
       isPreorder: i.isPreorder,
-      imageUrl: b.imageMap.get(i.productId) ?? null,
+      imageUrl: b.imageMap.get(i.sku) ?? null,
     })),
     subtotalIdr: o.subtotalIdr,
     shippingIdr: o.shippingIdr,

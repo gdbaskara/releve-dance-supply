@@ -1,0 +1,722 @@
+{
+ "_note": "DEMO DATA. Per-colour reference photos from the public sodanca.com product JSON. Internal reference only (AGENTS.md rule 10); used by the seed only when DEMO_USE_REFERENCE_IMAGES=true. Regenerate with scripts/collect_color_media.js + scripts/build_color_media.py.",
+ "products": {
+  "bliss-stretch-canvas-sd16-kids": {
+   "colors": {
+    "Black": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD16-Black-Child_ff622905-2619-4437-aad8-0692b1be4bd3.jpg"
+    ],
+    "Light Grey": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD16s-lt-gray-1.jpg"
+    ],
+    "Light Pink": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD16-LightPink-Child_1_1_1_1.jpg"
+    ],
+    "Mocha": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD16-Mocha-Child_1edd8025-32c9-403e-ae3d-353fe4cb4200.jpg"
+    ],
+    "Sand": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD16-Sand-Child-1.jpg"
+    ],
+    "Suntan": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD16-SunTan-Child_8789714b-d2a6-48cc-9105-69c05a7676c8.jpg"
+    ],
+    "White": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD16-White-Child_2e93e446-cd0b-4d0b-924b-48871ce7e8b3.jpg"
+    ]
+   },
+   "shared": []
+  },
+  "diamond-sd140": {
+   "colors": {
+    "Black": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD140-BLACK_1.png"
+    ],
+    "Light Pink": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD140-light-pink.jpg"
+    ],
+    "Sand": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD140-sand-1.jpg"
+    ],
+    "Suntan": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD140-Suntan-1.jpg"
+    ],
+    "White": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD140_-_White.png"
+    ]
+   },
+   "shared": []
+  },
+  "diamond-sd140-kids": {
+   "colors": {
+    "Black": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD140-BLACK_1.png"
+    ],
+    "Light Pink": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD140-light-pink.jpg"
+    ],
+    "Sand": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD140-sand-1.jpg"
+    ],
+    "Suntan": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD140-Suntan-1.jpg"
+    ],
+    "White": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD140_-_White.png"
+    ]
+   },
+   "shared": []
+  },
+  "briar-sd110l": {
+   "colors": {
+    "Black": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD110-Black-Child.jpg"
+    ],
+    "Pink 40": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD110-Pink40-Adult-Women.jpg"
+    ],
+    "Sand": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD110-Sand-Child.jpg"
+    ],
+    "White": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/products/SD110-White-Child_1.jpg"
+    ]
+   },
+   "shared": []
+  },
+  "sd60l-leather-sd60l": {
+   "colors": {
+    "Mocha": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD60-Mocha_1.jpg"
+    ],
+    "Sand": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD60S-Sand_68254081-ee1e-42a9-b0f1-6789d74d193c.jpg"
+    ],
+    "White": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD60-White_2.jpg"
+    ]
+   },
+   "shared": []
+  },
+  "brio-sd120-kids": {
+   "colors": {
+    "Black": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD120-black-1_4288c2ab-9a83-4fee-8395-1ec58c674fd2.jpg"
+    ],
+    "Light Pink": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD120-Light-Pink_1_07d29f77-2210-42b7-ab7a-7d68d0b4d30b.jpg"
+    ],
+    "Mocha": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD120-Mocha_bf62b8e1-42c4-443c-85c7-7f71911c460e.jpg"
+    ],
+    "Sand": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD120-sand_bb9bf909-07c1-4b25-90aa-2b64cf5b092c.jpg"
+    ],
+    "Suntan": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD120-suntan_77068b0d-4d47-4823-be04-7a4e2e69c2cd.jpg"
+    ],
+    "White": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD120-white-1_1c49705c-9c58-443d-b453-5ff32dbe96e9.jpg"
+    ]
+   },
+   "shared": []
+  },
+  "verde-sd122vg-kids": {
+   "colors": {
+    "Light Pink": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD122-LightPink-Child.jpg"
+    ],
+    "Sand": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD122-Sand-Child_18185fc7-d28e-4781-860e-992d130368b9.jpg"
+    ]
+   },
+   "shared": []
+  },
+  "alina-i-pointe-shoe-p88": {
+   "colors": {
+    "Light Pink": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/P88-light-pink-1_131a8225-f01b-4a8a-b5e5-d0ecf0a64bce.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/P88_P90_Alina1_Alina2-light-pink_product5.jpg"
+    ]
+   },
+   "shared": []
+  },
+  "alina-ii-pointe-shoe-p90": {
+   "colors": {
+    "Light Pink": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/P90-pink-1_695c921a-fb56-446d-9b21-a3e0529d4158.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/P88_P90_Alina1_Alina2-light-pink_product5.jpg"
+    ]
+   },
+   "shared": []
+  },
+  "alina-iii-pointe-shoe-p93": {
+   "colors": {
+    "Light Pink": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/P93_LIGHT_PINK_1600x1600_SHOPIFY_2025_ALINA_III_BRAZIL_1.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/P93_LIGHT_PINK_1600x1600_SHOPIFY_2025_ALINA_III_BRAZIL_2.jpg"
+    ]
+   },
+   "shared": []
+  },
+  "alina-iv-pointe-shoe-p95": {
+   "colors": {
+    "Light Pink": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/P95_LIGHTPINK_1600x1600_SHOPIFY_2025_ALINA_IV_BRAZIL.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/P95_LIGHTPINK_1600x1600_SHOPIFY_2025_ALINA_IV_BRAZIL_2.jpg"
+    ]
+   },
+   "shared": []
+  },
+  "claudia-satin-sd09": {
+   "colors": {
+    "Black": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD09-Black_f8e30f56-2cbb-4220-a888-ef7f52455ded.jpg"
+    ],
+    "Mocha": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD09-Mocha_a27fe9b3-116f-48c6-b771-8fedccbcac94.jpg"
+    ],
+    "Pink": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD09-Pink.jpg"
+    ],
+    "Red": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD09-Red.jpg"
+    ]
+   },
+   "shared": []
+  },
+  "toshie-sd40vc": {
+   "colors": {
+    "Sand": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD40-Sand_1_9b0dc796-fb2a-40b0-9497-f1889ce2bcbf.jpg"
+    ]
+   },
+   "shared": []
+  },
+  "jocelyn-jz45a": {
+   "colors": {
+    "Black": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/JZ45A-black-1_4eddf31a-6d81-4175-bde7-3748cb464c1b.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/JZ45-black-1-2_d9ae3755-6048-4f68-a1b4-aede98fbdc12.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/JZ45A-black-3_7eb9f3c2-e77e-49bf-b355-c37ea469d001.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/JZ45A-black-5_49b10f42-b576-4d17-a422-e4864564436d.jpg"
+    ],
+    "Caramel": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/JZ45A-caramel-1_e8051521-d3e0-4291-9840-fe31deeac9ef.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/JZ45A-caramel-2_c9df1903-87cd-45eb-9ad6-7c1cb3f326f5.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/JZ45A-caramel-5_aa7398ab-c550-4900-bc59-4780c0dfd09b.jpg"
+    ],
+    "Tan": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/JZ45A-tan-1_770598d4-0fc4-4631-b37c-fd7a9e7638fd.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/JZ45A-tan-3_2f0bce77-6d95-4584-a7ec-bcc6264671e1.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/JZ45A-tan-5_1274324b-0af3-49ec-bd8e-413c9033cfa8.jpg"
+    ]
+   },
+   "shared": []
+  },
+  "janus-jz45": {
+   "colors": {
+    "Tan": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/JZ45-tan-9_1_37823c30-2d10-4c58-b62d-536bdecf1cdc.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/JZ45-tan-1_34607dcc-ab2b-4bb5-8866-545ab7122fdb.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/JZ45-tan-3_abbf559b-b982-4009-8bfa-eecfe5e33310.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/JZ45-tan-4_311a8423-b671-4dd9-9d64-8e90df751235.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/JZ45-tan-5_037d856a-a7e2-41a7-8347-4b5fcbb7a6ac.jpg"
+    ]
+   },
+   "shared": []
+  },
+  "jaxon-jz86l": {
+   "colors": {
+    "Black": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/Gemini_Generated_Image_z4c09dz4c09dz4c0.png"
+    ],
+    "Caramel": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/jz86-caramel-1.jpg"
+    ]
+   },
+   "shared": []
+  },
+  "jace-jz85": {
+   "colors": {
+    "Black": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/JZ85-black-1.jpg"
+    ],
+    "Caramel": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/JZ85-caramel-1.jpg"
+    ]
+   },
+   "shared": []
+  },
+  "theo-ta75": {
+   "colors": {
+    "Black": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/TA74-TA75_BLACK_pe_1_bc47049f-428e-42e0-88d0-fa2c6fd628d3.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/TA75-blackmatte-1.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/TA75-blackmatte-2.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/TA75-blackmatte-3.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/TA75-blackmatte-4.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/TA75-blackmatte-5.jpg"
+    ],
+    "Caramel": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/TA74-TA75_Caramel_pe_3c44e223-5b7f-4dd0-ade8-4f6c3d17a452.jpg"
+    ],
+    "Tan": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/TA74-tan-test.jpg"
+    ]
+   },
+   "shared": []
+  },
+  "teo-ta74-kids": {
+   "colors": {
+    "Black": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/TA74-TA75_BLACK_pe_1.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/TA75-blackmatte-1.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/TA75-blackmatte-2.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/TA75-blackmatte-3.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/TA75-blackmatte-4.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/TA75-blackmatte-5.jpg"
+    ],
+    "Caramel": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/TA74-TA75_Caramel_pe.jpg"
+    ],
+    "Tan": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/TA74-tan-test.jpg"
+    ]
+   },
+   "shared": []
+  },
+  "tazer-ta88": {
+   "colors": {
+    "Black Patent": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/TA87_88_Classic_1600x1600-black-patten.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/TA88-blackpatent-1.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/TA88-blackpatent-2.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/TA88-blackpatent-3.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/TA88-blackpatent-4.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/TA88-blackpatent-5.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/TA87-blackpatent-5.jpg"
+    ],
+    "Caramel": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/TA87-88_CARAMEL_1600x1600x.jpg"
+    ],
+    "Matte Black": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/TA87_88_Classic_1600x1600_1.jpg"
+    ],
+    "White": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/TA87_88_Classic_1600x1600-white.jpg"
+    ]
+   },
+   "shared": []
+  },
+  "tate-ta28l": {
+   "colors": {
+    "Black": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/products/TA28-black-1.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/TA28-Black-2_1.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/products/TA28-black-3.jpg"
+    ],
+    "Caramel": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/TA28-caramel-1.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/TA28-caramel-11.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/TA28-caramel-3_Edit_with_AI.jpg"
+    ]
+   },
+   "shared": []
+  },
+  "courtney-ch95": {
+   "colors": {
+    "Black": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/products/CH95-black-1.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/products/CH95-black-2-_1.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/products/CH95-black-2.jpg"
+    ]
+   },
+   "shared": []
+  },
+  "claudine-sd155": {
+   "colors": {
+    "Black": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD155_Black_2026_Classic_1600x1600_d925222b-de1c-404d-8902-b0a67eef233d.png",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD155-BLACK-3.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD155-BLACK-4.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD155-BLACK-8.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD155-BLACK-5.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD155-BLACK-7.jpg"
+    ],
+    "Caramel": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD155_Caramel_2026_Classic_1600x1600_26542812-53fa-4888-8ab9-55ad1e060e5d.png"
+    ]
+   },
+   "shared": [
+    "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SD155-Maddie-C95A6487-Edit_1.jpg"
+   ]
+  },
+  "jive-iii-bl302": {
+   "colors": {
+    "Hot Pink": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/BL302-Hot-Pink-1_aac37ffb-30fc-4508-b1c1-07ec86cfb55f.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/BL302-Hot-Pink-2_facb6e46-2d3f-4178-83ab-9e5078a8e8be.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/BL302-Hot-Pink-3_47e510c7-7546-4170-ab2b-f3414682336b.jpg"
+    ],
+    "Lava": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/BL302-Lava-1_fd298b04-d4a7-4fcb-9bd9-ab7a214de45a.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/BL302-Lava-2_a0a471bb-53b2-4074-866d-0abf2f5a231e.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/BL302-Lava-3_eb4017ba-ce09-4775-99b2-ea085c840190.jpg"
+    ]
+   },
+   "shared": []
+  },
+  "bolero-ii-bl308": {
+   "colors": {
+    "Hot Pink": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/BL308-pink-1_9944ca9e-2c6b-4577-9afd-cdac0858040d.jpg"
+    ],
+    "Lilac": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/BL308-lilac-1_f37fe176-f860-4e55-b1fa-59d3e68296d3.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/BL308-lilac-2_e644b494-50e6-4bfb-bc8e-4a994cbd70ea.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/BL308-lilac-6_afccfb3c-2d2b-4e72-9753-3882e5b02145.jpg"
+    ]
+   },
+   "shared": []
+  },
+  "raphaela-bl504": {
+   "colors": {
+    "Sparkle Black": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/BL504-SPKblack-1.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/BL504-SPKblack-2.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/BL504-SPKblack-3.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/BL504-SPKblack-4.jpg"
+    ],
+    "Sparkle Gold": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/BL504-SPKgold-1.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/BL504-SPKgold-2.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/BL504-SPKgold-3.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/BL504-SPKgold-4.jpg"
+    ],
+    "Sparkle Silver": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/BL504-SPKsilver-1.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/BL504-SPKsilver-2.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/BL504-SPKsilver-3.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/BL504-SPKsilver-4.jpg"
+    ]
+   },
+   "shared": []
+  },
+  "roy-bl104": {
+   "colors": {
+    "Black": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/BL104-black-1.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/BL104-black-2.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/BL104-black-3.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/BL104-black-4.jpg"
+    ],
+    "Black-White": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/BL104-black-white-1.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/BL104-black-white-2.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/BL104-black-white-3.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/BL104-black-white-4.jpg"
+    ]
+   },
+   "shared": []
+  },
+  "vernon-md22": {
+   "colors": {
+    "Mocha": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/MD22-mocha-4_cbc73db8-ad27-42b5-af62-ba52a3bc20f2.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/MD22-mocha-1_bf064393-dd5c-4a31-b119-fbc2c57193a3.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/MD22-mocha-2.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/MD22-mocha-3.jpg"
+    ],
+    "Suntan": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/MD22-suntan-4.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/MD22-suntan-2.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/MD22-suntan-3.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/MD22-suntan-1_a6acb427-e291-4959-9cf3-35cf2aedfb49.jpg"
+    ],
+    "Tan": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/MD22-Tan-4.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/MD22-Tan-1_9f77db04-22ab-4245-a0fe-a660cedf7dec.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/MD22-Tan-2.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/MD22-Tan-3.jpg"
+    ]
+   },
+   "shared": [
+    "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/MD22-1.jpg",
+    "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/MD22-2.jpg"
+   ]
+  },
+  "adult-shimmer-footed-tights-ts102": {
+   "colors": {
+    "Light Toast": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/TS101-TS102-light-toast-1600-1_bb2d2b8d-2874-4213-9f63-277571509ba5.jpg"
+    ],
+    "Toast": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/TS101-TS102-toast-1600-1_79922327-6da7-42de-893d-fee2e39a2fe3.jpg"
+    ]
+   },
+   "shared": []
+  },
+  "adult-mock-seamed-convertible-tights-ts100": {
+   "colors": {
+    "04-Pink": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/TS100-pink-2.jpg"
+    ],
+    "1615-Perfect Pink": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/TS100-perfect-pink-2.jpg"
+    ]
+   },
+   "shared": []
+  },
+  "elsie-sl248": {
+   "colors": {
+    "Black": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL248-black-1_ProductBeautifier.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL248-black-2_ProductBeautifier.jpg"
+    ],
+    "Burgundy": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL248-burgundy-1_ProductBeautifier.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL248-burgundy-2_ProductBeautifier.jpg"
+    ],
+    "Emerald Green": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL248-emerald-green-1_ProductBeautifier.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL248-emerald-green-2_ProductBeautifier.jpg"
+    ],
+    "Hunter Green": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL248-hunter-green-1_ProductBeautifier.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL248-hunter-green-2_ProductBeautifier.jpg"
+    ],
+    "Lilac": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL248-lilac-1_ProductBeautifier.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL248-lilac-2_ProductBeautifier.jpg"
+    ],
+    "Navy": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL248-navy-1_ProductBeautifier.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL248-navy-2_ProductBeautifier.jpg"
+    ],
+    "Raspberry": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL248-raspberry-1_ProductBeautifier.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL248-raspberry-2_ProductBeautifier.jpg"
+    ],
+    "Tropic Green": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL248-tropic-green-1_ProductBeautifier.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL248-tropic-green-2_ProductBeautifier.jpg"
+    ]
+   },
+   "shared": []
+  },
+  "elise-sl247": {
+   "colors": {
+    "Black": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL247-black-1_ProductBeautifier.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL247-black-2_ProductBeautifier.jpg"
+    ],
+    "Burgundy": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL247-burgundy-1_ProductBeautifier.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL247-burgundy-2_ProductBeautifier.jpg"
+    ],
+    "Emerald Green": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL247-emerald-green-2_ProductBeautifier.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL247-emerald-green-1_ProductBeautifier.jpg"
+    ],
+    "Hunter Green": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL247-huntergreen-1_ProductBeautifier.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL247-huntergreen-2_ProductBeautifier.jpg"
+    ],
+    "Lilac": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL247-lilac-1_ProductBeautifier.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL247-lilac-2_ProductBeautifier.jpg"
+    ],
+    "Navy": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL247-navy-1_ProductBeautifier.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL247-navy-2_ProductBeautifier.jpg"
+    ],
+    "Raspberry": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL247-raspberry-1_ProductBeautifier.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL247-raspberry-2_ProductBeautifier.jpg"
+    ],
+    "Tropic Green": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL247-tropic-green-1_ProductBeautifier.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL247-tropic-green-2_ProductBeautifier.jpg"
+    ]
+   },
+   "shared": []
+  },
+  "farfalla-sl243": {
+   "colors": {
+    "Antique Rose": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL243-antique-rose-SB2589-2.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL243-antique-rose-SB2589-1.jpg"
+    ],
+    "Black": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL243-black-SB848-2.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL243-black-SB848-1.jpg"
+    ],
+    "Burgundy": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL243-burgundy-SB772-2.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL243-burgundy-SB772-1.jpg"
+    ],
+    "Mint Green": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL243-mint-green-SB849-2.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL243-mint-green-SB849-1.jpg"
+    ],
+    "Navy": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL243-navy-SB2588-2.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL243-navy-SB2588-1.jpg"
+    ]
+   },
+   "shared": []
+  },
+  "kiki-sl240": {
+   "colors": {
+    "Black": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL240-black-1_1.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL240-black-2_1.jpg"
+    ],
+    "Burgundy": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL240-burgundy-1_1.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL240-burgundy-2_1.jpg"
+    ],
+    "Peacock": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL240-peacock-1_1_Recolor.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL240-peacock-2_1_Recolor.jpg"
+    ]
+   },
+   "shared": []
+  },
+  "deborah-sl239": {
+   "colors": {
+    "Black": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL239-black-2.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL239-black-1.jpg"
+    ],
+    "Burgundy": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL239-burgundy-2.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL239-burgundy-1.jpg"
+    ],
+    "Dark Purple": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL239-dark-purple-2.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL239-dark-purple-1.jpg"
+    ],
+    "Emerald Green": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL239-emerald-green-2.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL239-emerald-green-1.jpg"
+    ],
+    "Oxford Blue": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL239-oxford-blue-2.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL239-oxford-blue-1.jpg"
+    ]
+   },
+   "shared": []
+  },
+  "bess-body-liner-d345": {
+   "colors": {
+    "Beige": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/D345-beige-1.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/D345-beige-3.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/D345-beige-4.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/D345-beige-2.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/D345-beige-5.jpg"
+    ],
+    "Tan": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/D345-tan-1.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/D345-tan-2.jpg"
+    ]
+   },
+   "shared": []
+  },
+  "be-you-alicia-pull-on-skirt-by75": {
+   "colors": {
+    "Black": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/BY75_Black_1.jpg"
+    ],
+    "Hot Chocolate": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/BY75-TILER-PECK-Hot-Chocolate-1_1.jpg"
+    ],
+    "Maltese Lagoon": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/BY75_1663_1.jpg"
+    ],
+    "Petal Pink": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/BY75-TILER-PECK-petal-pink-1-original_1.jpg"
+    ],
+    "Ube": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/BY75_1662_1.jpg"
+    ],
+    "Vintage Mauve": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/BY75_Vintage_Mauve_1_1.jpg"
+    ]
+   },
+   "shared": []
+  },
+  "be-you-elis-wrap-skirt-by97": {
+   "colors": {},
+   "shared": []
+  },
+  "naya-top-sl222": {
+   "colors": {
+    "Black": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL222-SL82-black-1_7293e300-f42f-4277-96f3-ba0f1d9e1e71.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL222-SL82-black-2_2c138f50-fbb1-4106-89eb-405aa2003e98.jpg"
+    ],
+    "Burgundy": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL222-burgundy-1_c537eae3-8f62-4b62-800d-cbb9826a3c10.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL222-burgundy-2_1ba402fb-ef3a-497b-b0b3-00a598b672f4.jpg"
+    ],
+    "Dark Pink": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL222-SL82-dark-pink-1_14a73e9f-e1ac-4eb7-82b5-2632f7423f2f.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL222-SL82-dark-pink-2_86a02d04-0625-4f7a-8637-2a093bf7fdb8.jpg"
+    ],
+    "Mint Green": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL222-SL82-mint-green-1_67f2d69a-5d66-4b2c-8dc3-7f29d0324714.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL222-SL82-mint-green-2_f3d0a5a9-1014-4f42-b9c6-8e43cd195cb6.jpg"
+    ],
+    "Peacock": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL222-SL82-peacock-1_Recolor_4fe2b577-e5a2-4d8b-9772-ed6915931bab.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL222-SL82-peacock-2_Recolor_f02c0791-a87a-41c7-963d-34c175ed180f.jpg"
+    ],
+    "Raspberry": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL222-raspberry2-1_601bdfa2-4670-49d4-b737-b469cf0747d8.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL222-raspberry2-2_e66db21f-8225-47c7-a5cb-eb506d608d70.jpg"
+    ],
+    "Sky Blue": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL222-sky-blue-1_0301863c-5253-4092-a553-1debf7bfb1e0.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL222-sky-blue-2_00cc279c-6596-4d1d-87fc-cee7344c424b.jpg"
+    ]
+   },
+   "shared": []
+  },
+  "sloane-kid-s-top-sl220-kids": {
+   "colors": {
+    "Black": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL220-SL225-black-1.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL220-SL225-black-2.jpg"
+    ],
+    "Burgundy": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL220-SL225-raspeberry2-1_Recolor.jpg"
+    ],
+    "Dark Pink": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL220-SL225-dark-pink-1.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL220-SL225-dark-pink-2.jpg"
+    ],
+    "Mint Green": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL220-SL225-sky-blue-1_Recolor.jpg"
+    ],
+    "Peacock": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL220-peacock-1_Recolor.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL220-peacock-2_Recolor.jpg"
+    ],
+    "Raspberry": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL220-SL225-raspeberry2-1.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL220-SL225-raspeberry2-2.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL220-SL225-raspeberry2-2_Recolor.jpg"
+    ],
+    "Sky Blue": [
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL220-SL225-sky-blue-1.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL220-SL225-sky-blue-2_Recolor.jpg",
+     "https://cdn.shopify.com/s/files/1/0525/4542/1474/files/SL220-SL225-sky-blue-2.jpg"
+    ]
+   },
+   "shared": []
+  }
+ }
+}

@@ -14,6 +14,7 @@ import {
 } from "@/lib/contracts";
 import type { DbOrTx } from "./db-types";
 import { variantLabel } from "./labels";
+import { imageForColor } from "@/lib/utils/image-for-color";
 import { maybeSweepExpiredOrders } from "./expiry";
 
 export interface CartValidateItem extends CartItemInput {
@@ -91,7 +92,7 @@ export function lineFor(v: VariantWithProduct, qty: number): { line: CartLineVie
       name: v.name,
       modelCode: v.modelCode,
       variantLabel: variantLabel(v),
-      imageUrl: v.images[0]?.url ?? null,
+      imageUrl: imageForColor(v.images, v.color)?.url ?? null,
       priceIdr: v.priceIdr,
       qty: Math.min(qty, maxQty),
       maxQty,
