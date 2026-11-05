@@ -1,61 +1,61 @@
-# Relevé Dance Supply — spesifikasi demo
+# Relevé Dance Supply — demo specification
 
-Web toko sepatu dansa & dancewear **Só Dança** untuk pasar Indonesia (reseller independen). Repo ini berisi **paket spesifikasi lengkap** dan **aplikasi demo** (Next.js 16 + PostgreSQL).
+Online store for **Só Dança** dance shoes & dancewear for the Indonesian market (independent reseller). This repo contains the **complete specification package** and the **demo application** (Next.js 16 + PostgreSQL).
 
-**Mulai di sini:** [`docs/00-brief.md`](docs/00-brief.md). Untuk agent: [`AGENTS.md`](AGENTS.md).
+**Start here:** [`docs/00-brief.md`](docs/00-brief.md). For agents: [`AGENTS.md`](AGENTS.md).
 
 ```
 docs/
-  00-brief.md               ringkasan & keputusan kunci
-  01-research.md            riset Só Dança, pasar, pembayaran, pengiriman
-  02-requirements.md        FR & NFR dengan acceptance criteria
-  03-demo.md                lingkup demo, mock vs asli, skenario D1–D9
-  04-tech-stack.md          stack terkunci, struktur repo, env
-  05-data-and-contracts.md  skema DB, state machine, kontrak provider, template WA
-  06-pricing.md             kurs, pajak impor, markup, harga pasar
-  07-design-system.md       prinsip, token, komponen, copy
-  08-pages-and-flows.md     sitemap & spesifikasi halaman
-  09-work-plan.md           workstream multi-agent, milestone, DoD
-  10-decisions.md           log keputusan & pertanyaan terbuka
-  11-go-live-integrations.md  menyambung Xendit, Biteship, WhatsApp Business API
-  12-deploy.md              deploy demo ke Vercel + Neon
-  13-demo-script.md         naskah presentasi klien (±15 menit)
-  14-backup-and-handover.md backup bundle, repo baru, setup lokal, test
+  00-brief.md               summary & key decisions
+  01-research.md            research on Só Dança, market, payments, shipping
+  02-requirements.md        FRs & NFRs with acceptance criteria
+  03-demo.md                demo scope, mock vs real, scenarios D1–D9
+  04-tech-stack.md          locked stack, repo structure, env
+  05-data-and-contracts.md  DB schema, state machine, provider contracts, WA templates
+  06-pricing.md             exchange rate, import taxes, markup, market prices
+  07-design-system.md       principles, tokens, components, copy
+  08-pages-and-flows.md     sitemap & page specifications
+  09-work-plan.md           multi-agent workstreams, milestones, DoD
+  10-decisions.md           decision log & open questions
+  11-go-live-integrations.md  connecting Xendit, Biteship, WhatsApp Business API
+  12-deploy.md              deploying the demo to Vercel + Neon
+  13-demo-script.md         client presentation script (±15 minutes)
+  14-backup-and-handover.md backup bundle, new repo, local setup, tests
 design-system/
   tokens.json · tokens.css · glossary.json
 data/
-  catalog/    products.json (40 model, 2.903 SKU) · variants.csv · pricing_config.json · README.md
-  shipping/   java-areas.json (6 provinsi, 119 kab/kota) · mock-rates.json
+  catalog/    products.json (40 models, 2.903 SKUs) · variants.csv · pricing_config.json · README.md
+  shipping/   java-areas.json (6 provinces, 119 Kab./Kota (regencies/cities)) · mock-rates.json
 scripts/
-  build_catalog.py          regenerasi katalog & harga dari pricing_config.json
+  build_catalog.py          regenerates catalog & prices from pricing_config.json
 ```
 
-## Regenerasi katalog
-Membutuhkan dump katalog publik Só Dança (`products.json?page=N`) di satu folder:
+## Regenerating the catalog
+Requires a dump of the public Só Dança catalog (`products.json?page=N`) in a single folder:
 ```bash
 python3 -I scripts/build_catalog.py <folder-dump> data/catalog data/catalog/pricing_config.json
 ```
 
-## Menjalankan secara lokal
+## Running locally
 
-Butuh Node 22, pnpm 10 (`corepack enable`), dan PostgreSQL 16 (atau Docker).
+Requires Node 22, pnpm 10 (`corepack enable`), and PostgreSQL 16 (or Docker).
 
 ```bash
 docker compose up -d          # postgres:16 — db releve + releve_test (user/pass releve)
-cp .env.example .env.local    # ganti AUTH_SECRET, WEBHOOK_SECRET, CRON_SECRET: openssl rand -hex 32
+cp .env.example .env.local    # replace AUTH_SECRET, WEBHOOK_SECRET, CRON_SECRET: openssl rand -hex 32
 pnpm install
-pnpm db:push                  # skema (Drizzle)
-pnpm db:seed                  # katalog, admin, voucher RELEVE10, order contoh
+pnpm db:push                  # schema (Drizzle)
+pnpm db:seed                  # catalog, admin, voucher RELEVE10, sample orders
 pnpm dev                      # http://localhost:3000/id · admin: /admin/login
 ```
 
-Admin demo: `admin@releve.test` / `releve-demo` (dari `.env.local`, hanya untuk demo). Test: `pnpm test` (butuh DB `releve_test`), `pnpm test:e2e` (Playwright, terhadap dev server yang berjalan). Detail: [`docs/14-backup-and-handover.md`](docs/14-backup-and-handover.md).
+Demo admin: `admin@releve.test` / `releve-demo` (from `.env.local`, demo only). Tests: `pnpm test` (requires the `releve_test` DB), `pnpm test:e2e` (Playwright, against a running dev server). Details: [`docs/14-backup-and-handover.md`](docs/14-backup-and-handover.md).
 
-## Deploy, demo & serah terima
+## Deploy, demo & handover
 
-| Dokumen | Isi |
+| Document | Contents |
 |---|---|
-| [`docs/11-go-live-integrations.md`](docs/11-go-live-integrations.md) | Menyambung integrasi asli: Xendit, Biteship, WhatsApp Business API |
-| [`docs/12-deploy.md`](docs/12-deploy.md) | Deploy demo ke Vercel + Neon Postgres, env vars, cron, proteksi URL, seed ulang |
-| [`docs/13-demo-script.md`](docs/13-demo-script.md) | Naskah presentasi klien D1–D8 + keputusan yang dibutuhkan dari klien |
-| [`docs/14-backup-and-handover.md`](docs/14-backup-and-handover.md) | Git bundle, push ke GitHub baru, setup lokal dari nol, menjalankan test |
+| [`docs/11-go-live-integrations.md`](docs/11-go-live-integrations.md) | Connecting the real integrations: Xendit, Biteship, WhatsApp Business API |
+| [`docs/12-deploy.md`](docs/12-deploy.md) | Deploying the demo to Vercel + Neon Postgres, env vars, cron, URL protection, re-seeding |
+| [`docs/13-demo-script.md`](docs/13-demo-script.md) | Client presentation script D1–D8 + decisions needed from the client |
+| [`docs/14-backup-and-handover.md`](docs/14-backup-and-handover.md) | Git bundle, pushing to a new GitHub repo, local setup from scratch, running tests |

@@ -1,50 +1,50 @@
-# 10 — Log keputusan & pertanyaan terbuka
+# 10 — Decision log & open questions
 
-## Keputusan (dikunci)
+## Decisions (locked)
 
-| # | Tanggal | Keputusan | Alasan / sumber |
+| # | Date | Decision | Reason / source |
 |---|---|---|---|
-| D-01 | 5 Nov 2026 | Produk: sepatu dansa & dancewear Só Dança (bukan ice skating) | Konfirmasi owner |
-| D-02 | 5 Nov 2026 | Reseller **tidak resmi** → tanpa klaim official/authorized, logo & nama sendiri | Konfirmasi owner |
-| D-03 | 5 Nov 2026 | Tone visual mirip Só Dança (rasa, bukan salinan) | Permintaan klien |
-| D-04 | 5 Nov 2026 | Nama kerja: **Relevé Dance Supply** | Sementara |
-| D-05 | 5 Nov 2026 | Bilingual ID (default) + EN; istilah dansa tidak diterjemahkan | Konfirmasi owner |
-| D-06 | 5 Nov 2026 | **Tanpa COD** selamanya; digital only; cicilan/paylater ditunda | Owner: segmen menengah–atas |
-| D-07 | 5 Nov 2026 | Payment gateway: **Xendit** (demo: mock) | Semua metode 1 API, payment link untuk WA |
-| D-08 | 5 Nov 2026 | Pengiriman Pulau Jawa, gudang **Jakarta**, instan Jabodetabek | Konfirmasi owner |
-| D-09 | 5 Nov 2026 | 1 nomor WA bisnis; WA-first; email opsional | Konfirmasi owner |
-| D-10 | 5 Nov 2026 | Retur/tukar ukuran: **ditunda**, sementara lewat WA | Owner |
-| D-11 | 5 Nov 2026 | B2B (studio/sanggar): tidak di demo | Owner belum tahu |
-| D-12 | 5 Nov 2026 | Demo katalog 40 model (30 sepatu/tights + 10 dancewear), stok dummy per varian | Owner minta ≥ 30, dancewear ikut |
-| D-13 | 5 Nov 2026 | Harga = modal landed impor resmi × multiplier (pointe 1,45 / sepatu 1,65 / dancewear & tights 1,8), kurs perencanaan Rp18.500 | `06-pricing.md` |
-| D-14 | 5 Nov 2026 | Tech stack `04-tech-stack.md` | Dikunci |
-| D-15 | 5 Nov 2026 | Light mode saja di v1 | Sederhana, sesuai referensi |
-| D-16 | 5 Nov 2026 | Guest checkout, admin tunggal | Demo |
-| D-17 | 5 Nov 2026 | Keranjang campuran ready + pre-order dikirim sekaligus (v1) | Sederhana; split shipment nanti |
-| D-18 | 5 Nov 2026 | Next.js 16.4: `cacheComponents`/`partialPrefetching` **dimatikan**; semua halaman dinamis | Stok harus selalu segar; lebih sederhana untuk demo |
-| D-19 | 5 Nov 2026 | Auth admin: **session cookie bertanda tangan (jose) + bcryptjs**, bukan Auth.js | 1 admin, lebih sedikit dependensi di Next 16 |
-| D-20 | 5 Nov 2026 | Dev/demo lokal: PostgreSQL 16 di container; `drizzle-kit push` untuk skema (migrasi file saat menuju produksi) | Docker tidak diperlukan |
-| D-21 | 5 Nov 2026 | Next 16: `middleware` → `src/proxy.ts`; layout akar terpisah untuk `[locale]` dan `admin` | Konvensi Next 16 |
-| D-22 | 5 Nov 2026 | Order kedaluwarsa = `expires_at` pembayaran + 5 mnt grace (sama dengan reservasi); webhook EXPIRED langsung expire jika payment itu yang terbaru | `05` §4; webhook PAID dalam masa grace tetap diterima |
-| D-23 | 5 Nov 2026 | Admin tidak bisa memicu PAID/EXPIRED manual (hanya webhook/expiry). Batal dari PAID/PROCESSING → REFUND_PENDING mengembalikan stok (movement `order_cancel`) | Barang belum keluar gudang; refund manual v1 |
-| D-24 | 5 Nov 2026 | Webhook FAILED (kartu tes 4000…0002) → payment FAILED, order tetap PENDING agar pembeli bisa ganti metode | PAY-05/PAY-10 |
-| D-25 | 5 Nov 2026 | Item varian available=0 & pre-order aktif otomatis jadi pre-order saat createOrder (maks 5); varian dengan stok parsial yang kurang → OUT_OF_STOCK | `05` §4 langkah 3 |
-| D-26 | 5 Nov 2026 | Template WA (link & notifikasi) di kode `src/lib/wa` (client-safe), bukan di `messages/*/wa.json` | Dipakai server (outbox) & klien (wa.me) tanpa next-intl |
-| D-27 | 5 Nov 2026 | Showcase page /[locale]/design-system replaces Storybook for the demo | WS-1; tanpa dependensi Storybook, tampil di app yang sama (ID/EN) |
-| D-28 | 5 Nov 2026 | Vercel Cron `/api/cron/expire` **harian** (`0 20 * * *` = 03:00 WIB) di `vercel.json`; di paket Pro boleh `*/5 * * * *`, tidak tiap menit | Hobby hanya mengizinkan cron harian; order juga di-expire lazy saat dibaca & pada getProduct/validateCart (`12-deploy.md` §7) |
-| D-29 | 5 Nov 2026 | Fungsi Vercel di region `sin1`, Neon di `ap-southeast-1`; app memakai connection string Neon **pooled** tanpa `channel_binding` | Latensi DB rendah dari Indonesia; postgres.js meneruskan parameter URL yang tidak dikenal |
-| D-30 | 5 Nov 2026 | `docker-compose.yml` (postgres:16 + DB `releve_test`) disediakan untuk setup lokal; `.env.example` di-whitelist di `.gitignore`, `*.bundle` di-ignore | Serah terima dari nol (`14-backup-and-handover.md`); D-20 tetap: Docker opsional |
+| D-01 | 5 Nov 2026 | Products: Só Dança dance shoes & dancewear (not ice skating) | Owner confirmation |
+| D-02 | 5 Nov 2026 | **Unofficial** reseller → no official/authorized claims, own logo & name | Owner confirmation |
+| D-03 | 5 Nov 2026 | Visual tone similar to Só Dança (the feel, not a copy) | Client request |
+| D-04 | 5 Nov 2026 | Working name: **Relevé Dance Supply** | Temporary |
+| D-05 | 5 Nov 2026 | Bilingual ID (default) + EN; dance terms not translated | Owner confirmation |
+| D-06 | 5 Nov 2026 | **No COD** ever; digital only; installments/paylater postponed | Owner: upper-middle segment |
+| D-07 | 5 Nov 2026 | Payment gateway: **Xendit** (demo: mock) | All methods in 1 API, payment links for WA |
+| D-08 | 5 Nov 2026 | Shipping within Java, warehouse in **Jakarta**, instant in Jabodetabek | Owner confirmation |
+| D-09 | 5 Nov 2026 | 1 WA business number; WA-first; email optional | Owner confirmation |
+| D-10 | 5 Nov 2026 | Returns/size exchanges: **postponed**, handled via WA for now | Owner |
+| D-11 | 5 Nov 2026 | B2B (studios/sanggar): not in the demo | Owner undecided |
+| D-12 | 5 Nov 2026 | Demo catalog of 40 models (30 shoes/tights + 10 dancewear), dummy stock per variant | Owner asked for ≥ 30, dancewear included |
+| D-13 | 5 Nov 2026 | Price = official import landed cost × multiplier (pointe 1,45 / shoes 1,65 / dancewear & tights 1,8), planning exchange rate Rp18.500 | `06-pricing.md` |
+| D-14 | 5 Nov 2026 | Tech stack `04-tech-stack.md` | Locked |
+| D-15 | 5 Nov 2026 | Light mode only in v1 | Simple, matches the reference |
+| D-16 | 5 Nov 2026 | Guest checkout, single admin | Demo |
+| D-17 | 5 Nov 2026 | Mixed ready + pre-order cart ships all at once (v1) | Simple; split shipments later |
+| D-18 | 5 Nov 2026 | Next.js 16.4: `cacheComponents`/`partialPrefetching` **disabled**; all pages dynamic | Stock must always be fresh; simpler for the demo |
+| D-19 | 5 Nov 2026 | Admin auth: **signed session cookie (jose) + bcryptjs**, not Auth.js | 1 admin, fewer dependencies on Next 16 |
+| D-20 | 5 Nov 2026 | Local dev/demo: PostgreSQL 16 in a container; `drizzle-kit push` for the schema (migration files when moving to production) | Docker not required |
+| D-21 | 5 Nov 2026 | Next 16: `middleware` → `src/proxy.ts`; separate root layouts for `[locale]` and `admin` | Next 16 convention |
+| D-22 | 5 Nov 2026 | Order expiry = payment `expires_at` + 5 min grace (same as the reservation); an EXPIRED webhook expires immediately if that payment is the latest one | `05` §4; a PAID webhook within the grace period is still accepted |
+| D-23 | 5 Nov 2026 | Admin cannot trigger PAID/EXPIRED manually (webhook/expiry only). Cancelling from PAID/PROCESSING → REFUND_PENDING returns the stock (movement `order_cancel`) | Goods have not left the warehouse; manual refunds in v1 |
+| D-24 | 5 Nov 2026 | FAILED webhook (test card 4000…0002) → payment FAILED, order stays PENDING so the buyer can switch methods | PAY-05/PAY-10 |
+| D-25 | 5 Nov 2026 | Items for variants with available=0 & pre-order enabled automatically become pre-orders at createOrder (max 5); variants with insufficient partial stock → OUT_OF_STOCK | `05` §4 step 3 |
+| D-26 | 5 Nov 2026 | WA templates (links & notifications) live in code `src/lib/wa` (client-safe), not in `messages/*/wa.json` | Used by the server (outbox) & client (wa.me) without next-intl |
+| D-27 | 5 Nov 2026 | Showcase page /[locale]/design-system replaces Storybook for the demo | WS-1; no Storybook dependency, shown in the same app (ID/EN) |
+| D-28 | 5 Nov 2026 | Vercel Cron `/api/cron/expire` **daily** (`0 20 * * *` = 03:00 WIB) in `vercel.json`; on the Pro plan `*/5 * * * *` is allowed, not every minute | Hobby only allows daily crons; orders are also expired lazily on read & in getProduct/validateCart (`12-deploy.md` §7) |
+| D-29 | 5 Nov 2026 | Vercel functions in region `sin1`, Neon in `ap-southeast-1`; the app uses the **pooled** Neon connection string without `channel_binding` | Low DB latency from Indonesia; postgres.js passes through unrecognized URL parameters |
+| D-30 | 5 Nov 2026 | `docker-compose.yml` (postgres:16 + DB `releve_test`) provided for local setup; `.env.example` whitelisted in `.gitignore`, `*.bundle` ignored | Handover from scratch (`14-backup-and-handover.md`); D-20 still holds: Docker optional |
 
-## Terbuka (tidak menghalangi demo)
+## Open (not blocking the demo)
 
-| # | Pertanyaan | Default sementara | Dampak |
+| # | Question | Interim default | Impact |
 |---|---|---|---|
-| Q-01 | Apakah klien bisa dapat **harga grosir** (±50% MSRP) dari Só Dança? | Diasumsikan ya | Tanpa itu harga ±2× lebih mahal dari pasar (`06` §6) |
-| Q-02 | Strategi **pointe** (Rp3 jt vs Bloch lokal Rp1,1–1,6 jt) | Multiplier 1,45, ditampilkan normal | Bisa jadi niche/pre-order atau margin turun |
-| Q-03 | Nama & logo final | Relevé Dance Supply | Ganti wordmark & copy |
-| Q-04 | Nomor WA demo | `NEXT_PUBLIC_WA_NUMBER` placeholder | — |
-| Q-05 | Alamat gudang Jakarta (untuk kurir instan & footer) | Kota Jakarta Selatan | Tarif instan |
-| Q-06 | Tabel ukuran cm resmi per kategori | Disalin dari size chart Só Dança (gambar) saat build — perlu dicek manual | Akurasi size guide |
-| Q-07 | Verifikasi HS code, bea masuk, lartas, PPh 22 ke PPJK | Asumsi `06` §2 | Harga live |
-| Q-08 | Kebijakan retur/tukar ukuran | Via WA, kasus per kasus | Halaman FAQ/terms |
-| Q-09 | Foto produk sendiri | Placeholder | Wajib sebelum live |
+| Q-01 | Can the client get **wholesale pricing** (±50% MSRP) from Só Dança? | Assumed yes | Without it, prices are ±2× higher than the market (`06` §6) |
+| Q-02 | **Pointe** strategy (Rp3 jt vs local Bloch Rp1,1–1,6 jt) | Multiplier 1,45, displayed normally | Could become niche/pre-order, or margin drops |
+| Q-03 | Final name & logo | Relevé Dance Supply | Replace wordmark & copy |
+| Q-04 | Demo WA number | `NEXT_PUBLIC_WA_NUMBER` placeholder | — |
+| Q-05 | Jakarta warehouse address (for instant couriers & footer) | Kota Jakarta Selatan | Instant rates |
+| Q-06 | Official cm size table per category | Copied from the Só Dança size chart (image) during build — needs manual checking | Size guide accuracy |
+| Q-07 | Verify HS code, import duty, lartas (import restrictions), PPh 22 (import income-tax prepayment) with a PPJK (customs broker) | Assumptions in `06` §2 | Live prices |
+| Q-08 | Return/size exchange policy | Via WA, case by case | FAQ/terms page |
+| Q-09 | Own product photos | Placeholder | Required before going live |

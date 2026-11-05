@@ -1,50 +1,50 @@
-# 01 — Riset
+# 01 — Research
 
-Tanggal riset: 5 Nov 2026. Angka pasar banyak dari blog vendor → anggap estimasi.
+Research date: 5 Nov 2026. Many market figures come from vendor blogs → treat them as estimates.
 
-## 1. Referensi: Só Dança (sodanca.com)
+## 1. Reference: Só Dança (sodanca.com)
 
-- Brand **sepatu & dancewear dansa** (US/Brasil): ballet, pointe, jazz, tap, character, latin/ballroom, contemporary + leotard, tights, skirt, warm-up.
-- Website Shopify. Navigasi top-level: **Shoes · Dancewear · Children · Sale** + blog/loyalty, B2B login, store locator ("Find a Retailer").
-- Katalog per **disiplin**; filter: gender, availability, price, color (nama warna sepatu: Ballet Pink, Theatrical Pink, Suntan, Caramel, Mocha…).
-- Varian **color × size × width** (pointe + **shank**); SKU & barcode per varian; label **backorder** ("delivery in 4–6 weeks"); tabel **Compare Similar Styles**; size chart (gambar).
-- Copy: hangat, aspiratif, inklusif ("Everything you need to move, grow, and find your place in ballet"); product copy teknis & benefit-led.
-- Foto: produk di latar polos (square) + lifestyle studio/kelas.
+- A **dance shoe & dancewear** brand (US/Brazil): ballet, pointe, jazz, tap, character, latin/ballroom, contemporary + leotards, tights, skirts, warm-ups.
+- Shopify website. Top-level navigation: **Shoes · Dancewear · Children · Sale** + blog/loyalty, B2B login, store locator ("Find a Retailer").
+- Catalog by **discipline**; filters: gender, availability, price, color (shoe color names: Ballet Pink, Theatrical Pink, Suntan, Caramel, Mocha…).
+- Variants are **color × size × width** (pointe + **shank**); SKU & barcode per variant; **backorder** label ("delivery in 4–6 weeks"); **Compare Similar Styles** table; size chart (image).
+- Copy: warm, aspirational, inclusive ("Everything you need to move, grow, and find your place in ballet"); product copy is technical & benefit-led.
+- Photos: products on plain backgrounds (square) + studio/class lifestyle shots.
 
-Sumber: [sodanca.com](https://www.sodanca.com/), [FAQ](https://www.sodanca.com/pages/faq), [Store locator](https://www.sodanca.com/pages/store-locator-2), katalog publik `products.json` (dipakai untuk `data/catalog`).
+Sources: [sodanca.com](https://www.sodanca.com/), [FAQ](https://www.sodanca.com/pages/faq), [Store locator](https://www.sodanca.com/pages/store-locator-2), public catalog `products.json` (used for `data/catalog`).
 
-## 2. Pasar Indonesia
+## 2. Indonesian market
 
-- Sepatu balet dominan dijual di **marketplace** (Tokopedia/Shopee/Lazada), mayoritas generik murah (Rp100–400rb). Toko spesialis dansa premium dengan web sendiri **hampir tidak ada** → celah.
-- Ada distributor merek (contoh: Ballet and Dance Shop Indonesia untuk Bloch) dengan harga pointe Bloch/Capezio **Rp1,1–1,6 jt**.
-- Só Dança SD16 dijual reseller marketplace **Rp460–555rb**.
-- Target: **kelas menengah–atas** — orang tua murid sanggar/sekolah balet, penari dewasa, guru. Literasi digital "menengah": paham QRIS/m-banking, tidak suka UI ruwet.
-- **Mobile >70%** belanja online → mobile-first.
-- **WhatsApp** = kanal utama penjual–pembeli di Indonesia (email lemah).
+- Ballet shoes are mostly sold on **marketplaces** (Tokopedia/Shopee/Lazada), mostly cheap generics (Rp100–400rb; rb = thousand). Premium specialist dance stores with their own website **barely exist** → a gap.
+- There are brand distributors (example: Ballet and Dance Shop Indonesia for Bloch) with Bloch/Capezio pointe prices of **Rp1,1–1,6 jt** (jt = million).
+- Só Dança SD16 is sold by marketplace resellers for **Rp460–555rb**.
+- Target: **upper-middle class** — parents of students at sanggar (dance studios)/ballet schools, adult dancers, teachers. "Intermediate" digital literacy: comfortable with QRIS/mobile banking, dislikes cluttered UIs.
+- **Mobile >70%** of online shopping → mobile-first.
+- **WhatsApp** = the main seller–buyer channel in Indonesia (email is weak).
 
-Sumber: [Tokopedia "balet"](https://www.tokopedia.com/find/balet), [Tokopedia "bloch"](https://www.tokopedia.com/find/bloch), [Tokopedia SD16](https://www.tokopedia.com/mainstream/sepatu-ballet-so-danca-canvas-elastic-premium-6-5-c-standart), [BDS Indonesia](https://www.tokopedia.com/bdsindonesiaofficial), [Mekari Qontak](https://mekari.com/en/qontak/whatsapp-business-api/).
+Sources: [Tokopedia "balet"](https://www.tokopedia.com/find/balet), [Tokopedia "bloch"](https://www.tokopedia.com/find/bloch), [Tokopedia SD16](https://www.tokopedia.com/mainstream/sepatu-ballet-so-danca-canvas-elastic-premium-6-5-c-standart), [BDS Indonesia](https://www.tokopedia.com/bdsindonesiaofficial), [Mekari Qontak](https://mekari.com/en/qontak/whatsapp-business-api/).
 
-## 3. Pembayaran digital
+## 3. Digital payments
 
-- E-wallet ±35–42% transaksi e-commerce, transfer bank / Virtual Account ±23–34%, kartu ±10%. **QRIS** = standar QR Bank Indonesia, bisa dibayar dari semua e-wallet & m-banking.
-- COD masih ada di pasar massal — **sengaja tidak dipakai** (segmen premium, keputusan owner).
+- E-wallets ±35–42% of e-commerce transactions, bank transfer / Virtual Account ±23–34%, cards ±10%. **QRIS** = Bank Indonesia's QR standard, payable from any e-wallet & mobile banking app.
+- COD still exists in the mass market — **deliberately not used** (premium segment, owner's decision).
 
-Sumber: [Antom](https://www.antom.com/markets/indonesia), [Shoplazza](https://www.shoplazza.com/blog/indonesian-payment-methods), [Xendit](https://www.xendit.co/en-id/blog/7-most-popular-payment-methods-in-indonesia/), [Tazapay](https://tazapay.com/en-sg/blog/local-payment-methods-in-indonesia-dana).
+Sources: [Antom](https://www.antom.com/markets/indonesia), [Shoplazza](https://www.shoplazza.com/blog/indonesian-payment-methods), [Xendit](https://www.xendit.co/en-id/blog/7-most-popular-payment-methods-in-indonesia/), [Tazapay](https://tazapay.com/en-sg/blog/local-payment-methods-in-indonesia-dana).
 
-## 4. Pengiriman
+## 4. Shipping
 
-- Agregator **Biteship**: satu API untuk JNE, J&T, SiCepat, AnterAja, GoSend, Grab (rates, order, tracking, Area API). Sumber: [Biteship](https://biteship.com/en/produk/shipping), [panduan](https://help.biteship.com/hc/id/articles/58144517272089).
+- **Biteship** aggregator: one API for JNE, J&T, SiCepat, AnterAja, GoSend, Grab (rates, orders, tracking, Area API). Sources: [Biteship](https://biteship.com/en/produk/shipping), [guide](https://help.biteship.com/hc/id/articles/58144517272089).
 
-## 5. Lokalisasi: "lokal, bukan clone"
+## 5. Localization: "local, not a clone"
 
-iBox/Erafone mirip Apple karena reseller resmi yang terikat brand guideline. Kita **reseller tidak resmi** → tidak boleh mengaku resmi, dan tidak perlu meniru 1:1. Yang dilokalkan adalah **perilaku belanja**:
+iBox/Erafone look like Apple because they are official resellers bound by brand guidelines. We are an **unofficial reseller** → we may not claim to be official, and there is no need to copy 1:1. What we localize is **shopping behavior**:
 
-| Area | Gaya global | Versi kita |
+| Area | Global style | Our version |
 |---|---|---|
-| Bahasa | English | **ID default + EN**, istilah dansa tidak diterjemahkan |
-| Kontak | Email | **WhatsApp di setiap titik keputusan** |
-| Bayar | Kartu | **QRIS, e-wallet, VA, kartu** — tanpa COD |
-| Ukuran | US size chart | Size chart + **cm** + konsultasi ukuran via WA |
-| Kirim | Flat rate | Ongkir per kurir, **instan Jabodetabek** |
-| Harga | USD | **Rp 1.250.000** |
-| Trust | Nama brand | Barang original impor resmi, stok jujur, alamat Jakarta, testimoni sanggar |
+| Language | English | **ID default + EN**, dance terms not translated |
+| Contact | Email | **WhatsApp at every decision point** |
+| Payment | Cards | **QRIS, e-wallets, VA, cards** — no COD |
+| Sizing | US size chart | Size chart + **cm** + size consultation via WA |
+| Shipping | Flat rate | Per-courier shipping cost, **instant in Jabodetabek** |
+| Pricing | USD | **Rp 1.250.000** |
+| Trust | Brand name | Genuine officially imported goods, honest stock, Jakarta address, testimonials from sanggar |

@@ -1,39 +1,39 @@
-# 00 — Brief (baca ini dulu)
+# 00 — Brief (read this first)
 
-**Proyek:** Web toko **Relevé Dance Supply** (nama kerja) — reseller **tidak resmi** produk **Só Dança** (sepatu dansa & dancewear) di Indonesia.
-**Fase:** **Demo untuk klien.** Fungsional end-to-end, tapi pembayaran, ongkir, dan WhatsApp **disimulasikan** (siap disambung ke layanan asli).
-**Status dokumen:** v1.0 — 5 Nov 2026. Requirement terkunci kecuali yang ada di `10-decisions.md` → "Terbuka".
+**Project:** Online store for **Relevé Dance Supply** (working name) — an **unofficial** reseller of **Só Dança** products (dance shoes & dancewear) in Indonesia.
+**Phase:** **Client demo.** Functional end to end, but payments, shipping costs, and WhatsApp are **simulated** (ready to be connected to the real services).
+**Document status:** v1.0 — 5 Nov 2026. Requirements are locked except those listed in `10-decisions.md` → "Open".
 
-## Satu kalimat
-Toko dansa premium yang terasa seperti Só Dança (bersih, monokrom, foto besar, katalog per disiplin), tapi cara belanjanya Indonesia: Bahasa Indonesia/English, WhatsApp-first, QRIS/VA/e-wallet, ongkir kurir lokal se-Pulau Jawa dari Jakarta, stok jujur per ukuran.
+## In one sentence
+A premium dance store that feels like Só Dança (clean, monochrome, large photos, catalog by discipline), but shops the Indonesian way: Bahasa Indonesia/English, WhatsApp-first, QRIS/VA/e-wallets, local courier shipping across Java from Jakarta, and honest per-size stock.
 
-## Keputusan kunci (non-negotiable)
+## Key decisions (non-negotiable)
 
-1. **Tanpa COD.** Tidak di UI, tidak di backend, tidak di roadmap.
-2. **Pembayaran 100% digital:** QRIS, e-wallet (GoPay, OVO, DANA, ShopeePay), Virtual Account (BCA, Mandiri, BNI, BRI, Permata), kartu kredit/debit (bayar penuh). **Tanpa cicilan/paylater** di v1.
-3. **WhatsApp-first:** tombol WA di produk, size guide, keranjang, checkout, halaman bayar, lacak pesanan. Nomor WA wajib di checkout; email opsional.
-4. **Pengiriman Pulau Jawa saja**, gudang **Jakarta**. Instan/same-day khusus Jabodetabek.
-5. **Bilingual ID (default) + EN.** Istilah dansa **tidak diterjemahkan** (glosarium di `07-design-system.md` §8).
-6. **Reseller tidak resmi:** dilarang klaim "Official", "Authorized", "Só Dança Indonesia"; dilarang memakai logo Só Dança sebagai logo toko. Boleh menyebut "Produk original Só Dança (impor)".
-7. **Stok per varian** (model × warna × size × width × shank), reservasi saat bayar, potong saat lunas.
-8. **Guest checkout** (tanpa akun pembeli). Admin login.
-9. **Light mode saja** di v1.
-10. Harga = **markup dari modal impor resmi** (lihat `06-pricing.md`).
+1. **No COD.** Not in the UI, not in the backend, not on the roadmap.
+2. **100% digital payments:** QRIS, e-wallets (GoPay, OVO, DANA, ShopeePay), Virtual Accounts (BCA, Mandiri, BNI, BRI, Permata), credit/debit cards (paid in full). **No installments/paylater** in v1.
+3. **WhatsApp-first:** WA buttons on the product page, size guide, cart, checkout, payment page, and order tracking. WA number is required at checkout; email is optional.
+4. **Shipping within Java only**, warehouse in **Jakarta**. Instant/same-day for Jabodetabek (Greater Jakarta) only.
+5. **Bilingual ID (default) + EN.** Dance terms are **not translated** (glossary in `07-design-system.md` §8).
+6. **Unofficial reseller:** claims of "Official", "Authorized", "Só Dança Indonesia" are prohibited; the Só Dança logo may not be used as the store logo. Saying "Produk original Só Dança (impor)" (Original Só Dança product (imported)) is allowed.
+7. **Per-variant stock** (model × color × size × width × shank), reserved at payment, deducted once paid.
+8. **Guest checkout** (no shopper accounts). Admin login.
+9. **Light mode only** in v1.
+10. Price = **markup on the official import landed cost** (see `06-pricing.md`).
 
-## Isi paket
+## Package contents
 
-| File | Isi |
+| File | Contents |
 |---|---|
-| `01-research.md` | Riset Só Dança, pasar, pembayaran, pengiriman, prinsip lokalisasi |
-| `02-requirements.md` | Requirement fungsional (ID `FR-*`) + non-fungsional (`NFR-*`) + acceptance criteria |
-| `03-demo.md` | Ruang lingkup demo, apa yang di-mock, 8 skenario demo |
-| `04-tech-stack.md` | Stack terkunci, struktur repo, konvensi kode, environment |
-| `05-data-and-contracts.md` | Skema DB, state machine order, logika stok, interface provider, API |
-| `06-pricing.md` | Kurs, pajak impor, markup, cek harga pasar |
-| `07-design-system.md` | Prinsip, token, tipografi, komponen + state, copy & glosarium |
-| `08-pages-and-flows.md` | Sitemap, spesifikasi per halaman, alur checkout |
-| `09-work-plan.md` | Workstream (siap multi-agent), urutan, dependency, Definition of Done |
-| `10-decisions.md` | Log keputusan + pertanyaan terbuka |
-| `../messages/{id,en}/<namespace>.json` | Teks UI per namespace (owner per namespace: `09`) |
-| `../data/` | Katalog 40 model / 2.903 SKU, wilayah Jawa, tarif ongkir simulasi |
+| `01-research.md` | Research on Só Dança, market, payments, shipping, localization principles |
+| `02-requirements.md` | Functional requirements (IDs `FR-*`) + non-functional (`NFR-*`) + acceptance criteria |
+| `03-demo.md` | Demo scope, what is mocked, 8 demo scenarios |
+| `04-tech-stack.md` | Locked stack, repo structure, code conventions, environment |
+| `05-data-and-contracts.md` | DB schema, order state machine, stock logic, provider interfaces, API |
+| `06-pricing.md` | Exchange rate, import taxes, markup, market price check |
+| `07-design-system.md` | Principles, tokens, typography, components + states, copy & glossary |
+| `08-pages-and-flows.md` | Sitemap, per-page specifications, checkout flow |
+| `09-work-plan.md` | Workstreams (multi-agent ready), order, dependencies, Definition of Done |
+| `10-decisions.md` | Decision log + open questions |
+| `../messages/{id,en}/<namespace>.json` | UI text per namespace (owner per namespace: `09`) |
+| `../data/` | Catalog of 40 models / 2.903 SKUs, Java regions, simulated shipping rates |
 | `../design-system/` | `tokens.json`, `tokens.css`, `glossary.json` |
