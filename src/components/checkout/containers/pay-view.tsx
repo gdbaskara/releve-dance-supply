@@ -76,7 +76,7 @@ export function PayView({ order, locale, demo }: PayViewProps) {
     window.history.pushState(null, "", url);
   };
 
-  /* ---------- polling (PAY-06) ---------- */
+  // Polling (PAY-06)
 
   const refresh = React.useCallback(async () => {
     // A poll can be aborted by navigation / a redeploy — the next tick retries.
@@ -96,7 +96,7 @@ export function PayView({ order, locale, demo }: PayViewProps) {
     return () => clearInterval(id);
   }, [status, refresh]);
 
-  /* ---------- actions ---------- */
+  // Actions
 
   const changeMethod = async (sel: PaymentSelection, opts: { silent?: boolean } = {}) => {
     const res = await changePaymentMethodAction(orderNo, sel.method, sel.channel);
@@ -202,7 +202,7 @@ export function PayView({ order, locale, demo }: PayViewProps) {
     setCardError(res.ok ? t("cardFailed") : t("cardError"));
   };
 
-  /* ---------- terminal states ---------- */
+  // Terminal states
 
   const waOrderHref = buildWaLink("order", { orderNo }, locale);
 
@@ -242,7 +242,7 @@ export function PayView({ order, locale, demo }: PayViewProps) {
     );
   }
 
-  /* ---------- simulated provider screens ---------- */
+  // Simulated provider screens
 
   if (payment?.method === "EWALLET" && payment.channel && step === "ewallet" && payment.status === "PENDING") {
     const wallet = tc(`payment.names.${payment.channel}`);
@@ -338,7 +338,7 @@ export function PayView({ order, locale, demo }: PayViewProps) {
     );
   }
 
-  /* ---------- main pay page ---------- */
+  // Main pay page
 
   const failed = payment?.status === "FAILED";
   let panel: React.ReactNode = null;

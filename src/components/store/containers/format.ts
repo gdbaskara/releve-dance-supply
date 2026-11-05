@@ -42,7 +42,7 @@ export function prettifyVariantLabel(label: string): string {
     .join(" · ");
 }
 
-/* ---------- Collections (listing slugs) ---------- */
+// Collections (listing slugs)
 
 export type CollectionSlug = keyof typeof DISCIPLINE_SLUGS | "shoes" | "dancewear" | "kids";
 
@@ -81,7 +81,7 @@ export function disciplineSlug(d: Discipline): string {
 /** Query-string keys of the listing filters (values are comma-separated). */
 export const FILTER_KEYS = ["discipline", "audience", "size", "width", "color", "price", "availability"] as const;
 
-/* ---------- Price buckets (CAT-03 price range) ---------- */
+// Price buckets (CAT-03 price range)
 
 export const PRICE_BUCKETS = [
   { key: "under1m", min: 0, max: 999_999 },
@@ -100,7 +100,7 @@ export function priceRangeFor(keys: string[]): { minPrice?: number; maxPrice?: n
   return { minPrice: min || undefined, maxPrice: max };
 }
 
-/* ---------- PDP comparison helpers ---------- */
+// PDP comparison helpers
 
 type CopySource = Pick<ProductDetail, "group" | "descriptionEn" | "featuresEn" | "featuresId">;
 
@@ -123,7 +123,7 @@ export function materialOf(p: CopySource, locale: "id" | "en"): string | null {
   return f ? f.replace(/^Material:\s*/i, "") : null;
 }
 
-/* ---------- Info pages ---------- */
+// Info pages
 
 export const INFO_SLUGS = ["shipping", "payment", "faq", "terms", "privacy", "about"] as const;
 export type InfoSlug = (typeof INFO_SLUGS)[number];

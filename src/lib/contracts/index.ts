@@ -6,7 +6,7 @@
 
 export type Locale = "id" | "en";
 
-/* ---------- Catalog ---------- */
+// Catalog
 
 export type Discipline =
   | "Ballet" | "Pointe" | "Jazz" | "Tap" | "Character" | "Latin/Ballroom" | "Contemporary"
@@ -125,7 +125,7 @@ export interface CatalogResult {
   priceRange: { min: number; max: number };
 }
 
-/* ---------- Cart / checkout ---------- */
+// Cart / checkout
 
 export interface CartItemInput { sku: string; qty: number }
 
@@ -179,7 +179,7 @@ export interface Contact {
   waOptIn: boolean;
 }
 
-/* ---------- Payment ---------- */
+// Payment
 
 export type PaymentMethod = "QRIS" | "EWALLET" | "VA" | "CARD"; // NO cash-on-delivery, NO installments (v1)
 export type EwalletChannel = "GOPAY" | "OVO" | "DANA" | "SHOPEEPAY";
@@ -245,7 +245,7 @@ export interface PaymentProvider {
   verifyAndParseWebhook(req: Request): Promise<PaymentWebhookResult>;
 }
 
-/* ---------- Shipping ---------- */
+// Shipping
 
 export type ShippingType = "instant" | "express" | "regular";
 
@@ -274,7 +274,7 @@ export interface ShippingProvider {
   getTracking?(courier: string, awb: string): Promise<{ status: string; at: Date; note?: string }[]>;
 }
 
-/* ---------- Messaging (WhatsApp) ---------- */
+// Messaging (WhatsApp)
 
 export type MessageTemplate =
   | "ORDER_CREATED" | "PAYMENT_PAID" | "PAYMENT_EXPIRED" | "ORDER_SHIPPED"
@@ -288,7 +288,7 @@ export interface MessagingProvider {
 /** Contexts for buyer → store wa.me links (docs/05 §6) */
 export type WaLinkContext = "pdp" | "sizeGuide" | "cart" | "outsideJava" | "order" | "soldOut" | "general";
 
-/* ---------- Orders ---------- */
+// Orders
 
 export type OrderStatus =
   | "PENDING_PAYMENT" | "PAID" | "PROCESSING" | "SHIPPED" | "DELIVERED"

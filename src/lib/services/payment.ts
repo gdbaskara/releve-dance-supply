@@ -100,7 +100,7 @@ export async function processPaymentEvent(providerName: string, ev: PaymentWebho
   return outcome;
 }
 
-/* ---------- demo simulation (PAY-05/07) — same signed webhook path as production ---------- */
+// Demo simulation (PAY-05/07): same signed webhook path as production
 
 export type SimulateResult = WebhookOutcome | { ok: false; error: "NOT_FOUND" | "NO_PENDING_PAYMENT" | "NOT_MOCK" };
 

@@ -47,7 +47,7 @@ import { OrderSummary, VoucherField } from "../order-summary";
 import { StickyPayBar } from "../sticky-pay-bar";
 import { dashRange, lineToCartItem, useCartHydrated, useMediaQuery } from "./use-checkout-helpers";
 
-/* ---------- form schema (messages are i18n keys under checkout.errors) ---------- */
+// Form schema (messages are i18n keys under checkout.errors)
 
 const formSchema = z.object({
   name: z.string().trim().min(2, "name").max(100, "name"),
@@ -160,7 +160,7 @@ export function CheckoutForm({ locale, linkToken }: CheckoutFormProps) {
     [lines],
   );
 
-  /* ---------- load: cart (validated) or checkout link ---------- */
+  // Load: cart (validated) or checkout link
 
   const noticeText = React.useCallback(
     (n: CartNotice, ls: CartLineView[], before: { sku: string; name: string; variantLabel: string }[]) => {
@@ -208,7 +208,7 @@ export function CheckoutForm({ locale, linkToken }: CheckoutFormProps) {
     fetchValidated().then(({ v, current }) => applyValidated(v, current));
   }, [hydrated, linkToken, setValue, applyValidated]);
 
-  /* ---------- shipping rates (CHK-04) ---------- */
+  // Shipping rates (CHK-04)
 
   const zone = isJavaProvince(address.province) && address.city ? resolveZone(address.province, address.city) : null;
   const postal = /^\d{5}$/.test(address.postalCode) ? address.postalCode : undefined;
@@ -243,7 +243,7 @@ export function CheckoutForm({ locale, linkToken }: CheckoutFormProps) {
   const discountIdr = voucher?.discountIdr ?? 0;
   const totalIdr = Math.max(0, subtotalIdr + (selectedRate?.priceIdr ?? 0) + insuranceIdr - discountIdr);
 
-  /* ---------- voucher (CHK-09) ---------- */
+  // Voucher (CHK-09)
 
   const applyVoucher = async (code: string) => {
     setVoucherLoading(true);
@@ -279,7 +279,7 @@ export function CheckoutForm({ locale, linkToken }: CheckoutFormProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [itemsKey]);
 
-  /* ---------- steps ---------- */
+  // Steps
 
   const scrollToStep = (s: Step) => {
     requestAnimationFrame(() => document.getElementById(`checkout-step-${s}`)?.scrollIntoView({ behavior: "smooth", block: "start" }));
@@ -310,7 +310,7 @@ export function CheckoutForm({ locale, linkToken }: CheckoutFormProps) {
     return 3;
   };
 
-  /* ---------- submit (CHK-07) ---------- */
+  // Submit (CHK-07)
 
   const onValid = async (v: FormValues) => {
     setSubmitError(null);
@@ -397,7 +397,6 @@ export function CheckoutForm({ locale, linkToken }: CheckoutFormProps) {
     toast({ title: t("cartUpdated"), variant: "info" });
   };
 
-  /* ---------- render ---------- */
 
   if (phase === "loading") {
     return (
