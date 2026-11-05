@@ -15,7 +15,8 @@ import { Notice } from "@/components/ui/notice";
 import { AvailabilityLine } from "@/components/store/availability-line";
 import { ProductImage } from "@/components/store/product-image";
 import { QtyStepper } from "@/components/store/qty-stepper";
-import { SizeGuideDialog, type SizeGuideCategory } from "@/components/store/size-guide";
+import { SizeGuideDialog } from "@/components/store/size-guide";
+import { guideCategoryFor } from "@/components/store/size-guide-data";
 import { VariantPicker } from "@/components/store/variant-picker";
 import { resolveVariant, type Selection, type VariantState } from "@/components/store/variant-logic";
 import { WhatsAppButton } from "@/components/store/whatsapp-button";
@@ -28,13 +29,6 @@ function pickerSize(raw: string): string {
   return g ? `${formatSize(raw)} (${g})` : formatSize(raw);
 }
 
-function sizeGuideCategory(p: Pick<ProductDetail, "discipline" | "group">): SizeGuideCategory {
-  if (p.group === "apparel" || p.group === "tights") return "dancewear";
-  if (p.discipline === "Pointe") return "pointe";
-  if (p.discipline === "Tap" || p.discipline === "Character") return "tapCharacter";
-  if (p.discipline === "Latin/Ballroom") return "ballroom";
-  return "balletJazz";
-}
 
 /* ---------- Gallery ---------- */
 
@@ -220,7 +214,13 @@ export function PdpClient({ product, productUrl, initialColor, header, children 
 
         {children}
       </div>
-      <SizeGuideDialog open={guideOpen} onOpenChange={setGuideOpen} waHref={guideHref} defaultCategory={sizeGuideCategory(product)} />
+      <SizeGuideDialog
+        open={guideOpen}
+        onOpenChange={setGuideOpen}
+        waHref={guideHref}
+        defaultCategory={guideCategoryFor(product.discipline, product.group)}
+        highlightSize={state.selection.size ?? null}
+      />
     </div>
   );
 }

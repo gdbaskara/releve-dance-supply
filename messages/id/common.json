@@ -149,7 +149,9 @@
       "height": "Tinggi",
       "chest": "Dada",
       "waist": "Pinggang",
-      "hip": "Pinggul"
+      "hip": "Pinggul",
+      "weight": "Berat (kg)",
+      "us": "Size US"
     },
     "tabs": {
       "balletJazz": "Ballet & Jazz",
@@ -167,7 +169,32 @@
     },
     "pointeCalloutTitle": "Pointe sebaiknya difitting",
     "approxNote": "Tabel perkiraan. Ukuran tiap model bisa berbeda — konsultasikan via WA bila ragu.",
-    "consultBody": "Kirim panjang kakimu (cm) dan foto kaki, kami bantu pilih size & width yang pas."
+    "consultBody": "Kirim panjang kakimu (cm) dan foto kaki, kami bantu pilih size & width yang pas.",
+    "shoeTitle": "Tabel size sepatu",
+    "contemporaryTitle": "Contemporary (half sole, size huruf)",
+    "contemporaryCaption": "Size huruf Contemporary ke size US dan panjang kaki",
+    "apparelTitle": "Leotard, top & rok",
+    "tightsTitle": "Tights",
+    "tightsCaption": "Size tights berdasarkan tinggi dan berat badan",
+    "yourSize": "Pilihanmu",
+    "widthTitle": "Width (lebar sepatu)",
+    "widthCaption": "Arti kode width",
+    "widthCols": {
+      "width": "Width",
+      "fit": "Cocok untuk"
+    },
+    "widthIntro": "Width menunjukkan lebar bagian depan kaki. Huruf makin ke belakang (A → EE) berarti makin lebar.",
+    "widths": {
+      "A": "Kaki sangat ramping",
+      "B": "Kaki ramping",
+      "C": "Lebar standar",
+      "D": "Kaki agak lebar",
+      "E": "Kaki lebar",
+      "EE": "Kaki sangat lebar",
+      "Narrow": "Kaki ramping",
+      "Medium": "Lebar standar",
+      "Wide": "Kaki lebar"
+    }
   },
   "phone": {
     "label": "Nomor WhatsApp",

@@ -149,7 +149,9 @@
       "height": "Height",
       "chest": "Chest",
       "waist": "Waist",
-      "hip": "Hip"
+      "hip": "Hip",
+      "weight": "Weight (kg)",
+      "us": "US size"
     },
     "tabs": {
       "balletJazz": "Ballet & Jazz",
@@ -167,7 +169,32 @@
     },
     "pointeCalloutTitle": "Pointe shoes should be fitted",
     "approxNote": "Approximate chart. Each model can fit differently — ask us on WhatsApp if unsure.",
-    "consultBody": "Send us your foot length (cm) and a photo; we'll help you choose the right size & width."
+    "consultBody": "Send us your foot length (cm) and a photo; we'll help you choose the right size & width.",
+    "shoeTitle": "Shoe size chart",
+    "contemporaryTitle": "Contemporary (half soles, letter sizes)",
+    "contemporaryCaption": "Contemporary letter sizes to US size and foot length",
+    "apparelTitle": "Leotards, tops & skirts",
+    "tightsTitle": "Tights",
+    "tightsCaption": "Tights sizes by height and weight",
+    "yourSize": "Your pick",
+    "widthTitle": "Width",
+    "widthCaption": "What the width codes mean",
+    "widthCols": {
+      "width": "Width",
+      "fit": "Best for"
+    },
+    "widthIntro": "Width describes how wide the front of the foot is. Later letters (A → EE) are wider.",
+    "widths": {
+      "A": "Very slim feet",
+      "B": "Slim feet",
+      "C": "Standard width",
+      "D": "Slightly wide feet",
+      "E": "Wide feet",
+      "EE": "Very wide feet",
+      "Narrow": "Slim feet",
+      "Medium": "Standard width",
+      "Wide": "Wide feet"
+    }
   },
   "phone": {
     "label": "WhatsApp number",
