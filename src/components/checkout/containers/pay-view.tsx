@@ -79,7 +79,8 @@ export function PayView({ order, locale, demo }: PayViewProps) {
   /* ---------- polling (PAY-06) ---------- */
 
   const refresh = React.useCallback(async () => {
-    const s = await getOrderStatusAction(orderNo);
+    // A poll can be aborted by navigation / a redeploy — the next tick retries.
+    const s = await getOrderStatusAction(orderNo).catch(() => null);
     if (!s) return;
     if (PAID_LIKE.includes(s.status)) {
       goSuccess();
@@ -464,10 +465,10 @@ function OrderHeader({ orderNo, totalIdr, children }: { orderNo: string; totalId
           </div>
           <CopyButton value={orderNo} ariaLabel={t("copyOrderNo")} />
         </div>
-        <div className="flex items-end justify-between gap-3 border-t border-border pt-3">
+        <div className="flex flex-wrap items-end justify-between gap-3 border-t border-border pt-3">
           <div className="flex flex-col">
             <span className="eyebrow text-ink-muted">{t("total")}</span>
-            <span className="tabular text-2xl font-semibold">{formatIDR(totalIdr)}</span>
+            <span className="tabular whitespace-nowrap text-2xl font-semibold">{formatIDR(totalIdr)}</span>
           </div>
           {children}
         </div>

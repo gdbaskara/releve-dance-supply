@@ -63,11 +63,11 @@ export function SuccessView({ order, waHref }: SuccessViewProps) {
           <OrderTimeline entries={order.timeline} tracking={order.tracking} />
         </section>
 
-        <div className="flex flex-col gap-3 sm:flex-row">
-          <Button asChild className="sm:flex-1">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <Button asChild>
             <Link href={trackHref}>{t("track")}</Link>
           </Button>
-          <Button asChild variant="secondary" className="sm:flex-1">
+          <Button asChild variant="secondary">
             <Link href="/">{t("shop")}</Link>
           </Button>
         </div>
