@@ -68,7 +68,7 @@ Every action calls `requireAdmin()` first.
   - Size values are the raw data strings (e.g. `"7.5L (adult)"`, `"8.0s (toddler)"`), sorted toddler → child → adult → apparel.
 - `getProduct(slug): Promise<ProductDetail | null>`. Variants are in catalog order, each with `available` and the derived `status`.
 - `getRelated(slug, n = 3): Promise<ProductSummary[]>`. Same discipline first, then the same price group.
-- `getCollections(limit = 8): Promise<{readyStock, kids, disciplineCounts: Facet[]}>`
+- `getCollections(limit = 8): Promise<{readyStock, kids, disciplineCounts: Facet[], disciplineImages, heroImage}>` (photos for the home hero and discipline tiles; empty/null without product photos)
 - `toVariantView(row)` and `compareSizes(a, b)` are helpers.
 
 **Cart / shipping / voucher**
