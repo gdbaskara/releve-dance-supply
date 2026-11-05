@@ -82,6 +82,8 @@ export interface ProductSummary {
   image: ProductImage | null;
   /** Listing colour filter: the filtered colour the card photo shows (PDP link pre-selects it). */
   matchedColor?: string | null;
+  /** Card colour preview: colour -> its first photo (only colours that have one). */
+  colorImages?: Record<string, ProductImage>;
 }
 
 export interface ProductDetail extends ProductSummary {

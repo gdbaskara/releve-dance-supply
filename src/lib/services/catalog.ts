@@ -24,7 +24,7 @@ import {
   type VariantOption,
   type VariantView,
 } from "@/lib/contracts";
-import { imageForColors } from "@/lib/utils/image-for-color";
+import { colorPreviews, imageForColors } from "@/lib/utils/image-for-color";
 import { maybeSweepExpiredOrders } from "./expiry";
 
 /** Disciplines the home hero photo is taken from, in order of preference. */
@@ -70,6 +70,7 @@ function toSummary(p: ProductRow, vs: VariantView[]): ProductSummary {
     colors: p.colors,
     status: aggregateStockStatus(vs.map((v) => v.status)),
     image: images[0] ?? null,
+    colorImages: colorPreviews(images, p.colors),
   };
 }
 

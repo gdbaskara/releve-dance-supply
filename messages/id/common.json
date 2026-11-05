@@ -62,6 +62,7 @@
     "preorderShort": "PO",
     "colorCount": "{n} warna",
     "moreColors": "+{n}",
+    "previewColor": "Lihat warna {color}",
     "whatIs": "Apa itu {term}?",
     "choose": "Pilih {option} dulu"
   },

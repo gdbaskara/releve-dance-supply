@@ -62,7 +62,8 @@ import { PhoneInput, OrderSummary, QRISPanel } from "@/components/checkout";
 | `StockBadge`, `formatLead` | `status`, `available?` (LOW → "Sisa n"; omitted → "Stok terbatas"), `leadWeeks`, `appearance: badge\|inline` | `<StockBadge status="PREORDER" leadWeeks="4-6"/>` |
 | `AvailabilityLine` | `status: StockStatus\|null` (null = no selection), `available`, `leadWeeks` | `<AvailabilityLine status={v?.status ?? null} available={v?.available}/>` |
 | `ProductImage`, `ShoePlaceholderArt` | `src\|null`, `alt`, `modelCode`, `hoverSrc`, `sizes`, `priority`, `aspectClassName` — falls back to placeholder on null/error | `<ProductImage src={img?.url} alt={name} modelCode="SD16"/>` |
-| `ProductCard` | `product: ProductSummary`, `href`, `lowStockCount?`, `hoverImageUrl?`, `priceFrom?`, `tag?`, `linkAs`, `priority` | `<ProductCard product={p} href={`/p/${p.slug}`} linkAs={Link}/>` |
+| `ProductCard` | `product: ProductSummary`, `href`, `lowStockCount?`, `hoverImageUrl?`, `priceFrom?`, `tag?`, `linkAs`, `priority`, `colorPicker?` (rendered outside the link) | `<ProductCard product={p} href={`/p/${p.slug}`} linkAs={Link}/>` |
+| `ColorPreviewCard` (containers) | `product: ProductSummary`, `priority` — card with swatch buttons: hover previews a colour's photo (`product.colorImages`), click/tap keeps it and links to the PDP with `?color=` | `<ColorPreviewCard product={p}/>` |
 | `ColorSwatch`, `ColorSwatches`, `ColorSelector` | swatch: `color`, `size`, `soldOut`; swatches: `colors`, `max=5`; selector: `options[{value,status}]`, `value`, `onChange` | `<ColorSwatches colors={p.colors}/>` |
 | `swatchBackground`, `isLightSwatch` | colour name → CSS background | |
 | `SizeSelector` | `options[{value,status,available,leadWeeks}]`, `value`, `onChange`, `onSizeGuide` or `sizeGuideHref`, `error` | usually via VariantPicker |

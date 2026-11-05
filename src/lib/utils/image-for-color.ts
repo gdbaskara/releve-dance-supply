@@ -18,3 +18,13 @@ export function imageForColors(images: readonly ProductImage[], colors: readonly
   if (match) return { image: match, color: match.color ?? null };
   return { image: images[0] ?? null, color: null };
 }
+
+/** Listing colour preview: each colour on sale -> its first photo. Colours without their own photo are left out. */
+export function colorPreviews(images: readonly ProductImage[], colors: readonly string[]): Record<string, ProductImage> {
+  return Object.fromEntries(
+    colors.flatMap((c) => {
+      const match = images.find((i) => i.color === c);
+      return match ? [[c, match] as const] : [];
+    }),
+  );
+}
