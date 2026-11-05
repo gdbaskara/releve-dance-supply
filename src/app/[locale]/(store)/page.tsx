@@ -1,3 +1,4 @@
+import { connection } from "next/server";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/navigation";
@@ -27,6 +28,7 @@ const TILES = [
 ] as const;
 
 export default async function HomePage({ params }: PageProps<"/[locale]">) {
+  await connection(); // stock shown on home must be fresh (render per request)
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("catalog");
