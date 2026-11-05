@@ -34,5 +34,6 @@ Toko dansa premium yang terasa seperti Só Dança (bersih, monokrom, foto besar,
 | `08-pages-and-flows.md` | Sitemap, spesifikasi per halaman, alur checkout |
 | `09-work-plan.md` | Workstream (siap multi-agent), urutan, dependency, Definition of Done |
 | `10-decisions.md` | Log keputusan + pertanyaan terbuka |
+| `../messages/{id,en}/<namespace>.json` | Teks UI per namespace (owner per namespace: `09`) |
 | `../data/` | Katalog 40 model / 2.903 SKU, wilayah Jawa, tarif ongkir simulasi |
 | `../design-system/` | `tokens.json`, `tokens.css`, `glossary.json` |

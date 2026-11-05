@@ -1,6 +1,5 @@
 import { describe, it, expect } from "vitest";
-import id from "../../messages/id.json";
-import en from "../../messages/en.json";
+import { loadMessages } from "../../messages";
 import glossary from "../../design-system/glossary.json";
 
 function keys(obj: Record<string, unknown>, prefix = ""): string[] {
@@ -14,14 +13,15 @@ function values(obj: unknown): string[] {
   return [];
 }
 
-describe("i18n messages", () => {
+describe("i18n messages", async () => {
+  const id = await loadMessages("id");
+  const en = await loadMessages("en");
   it("id and en have identical keys (I18N-03)", () => {
     expect(keys(en).sort()).toEqual(keys(id).sort());
   });
   it("contain no forbidden strings", () => {
     const all = [...values(id), ...values(en)].join("\n");
     for (const s of glossary.forbidden_strings) {
-      // "Cicilan"/"COD" etc. must never appear as words
       expect(new RegExp(`\\b${s}\\b`).test(all), s).toBe(false);
     }
   });

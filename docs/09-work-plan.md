@@ -66,7 +66,7 @@ WS-3/4/5 boleh mulai dengan komponen primitive minimal + data mock dari kontrak,
 ## Aturan koordinasi multi-agent
 1. Satu agent = satu workstream = satu branch `ws-<n>/…`. Jangan mengedit folder workstream lain; butuh perubahan di sana → buat catatan di PR / issue.
 2. Perubahan **kontrak** (`src/lib/contracts`, `src/db/schema.ts`, `messages/*` key baru di namespace milik orang lain, `design-system/*`) hanya lewat PR kecil terpisah yang disetujui owner WS-0.
-3. Key i18n per namespace: `common`, `nav`, `catalog`, `pdp`, `cart`, `checkout`, `pay`, `order`, `admin`, `wa`. Owner: WS-1 (`common`), WS-3 (`nav`, `catalog`, `pdp`, `cart`), WS-4 (`checkout`, `pay`, `order`), WS-5 (`admin`), WS-2 (`wa`).
+3. Teks i18n dipisah per file `messages/{id,en}/<namespace>.json`. Namespace: `common`, `nav`, `catalog`, `pdp`, `cart`, `checkout`, `pay`, `order`, `admin`, `wa`. Owner: WS-1 (`common`, `designSystem`), WS-3 (`nav`, `catalog`, `pdp`, `cart`), WS-4 (`checkout`, `pay`, `order`), WS-2 (`wa`), WS-3 juga `info`. Admin = Bahasa Indonesia langsung di kode (tanpa i18n).
 4. Rebase ke `main` setiap hari kerja agent; PR kecil (< 500 baris bila bisa).
 5. Setiap PR mencantumkan ID FR yang diselesaikan dan screenshot mobile untuk UI.
 
