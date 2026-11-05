@@ -25,6 +25,11 @@
 | D-19 | 5 Nov 2026 | Auth admin: **session cookie bertanda tangan (jose) + bcryptjs**, bukan Auth.js | 1 admin, lebih sedikit dependensi di Next 16 |
 | D-20 | 5 Nov 2026 | Dev/demo lokal: PostgreSQL 16 di container; `drizzle-kit push` untuk skema (migrasi file saat menuju produksi) | Docker tidak diperlukan |
 | D-21 | 5 Nov 2026 | Next 16: `middleware` → `src/proxy.ts`; layout akar terpisah untuk `[locale]` dan `admin` | Konvensi Next 16 |
+| D-22 | 5 Nov 2026 | Order kedaluwarsa = `expires_at` pembayaran + 5 mnt grace (sama dengan reservasi); webhook EXPIRED langsung expire jika payment itu yang terbaru | `05` §4; webhook PAID dalam masa grace tetap diterima |
+| D-23 | 5 Nov 2026 | Admin tidak bisa memicu PAID/EXPIRED manual (hanya webhook/expiry). Batal dari PAID/PROCESSING → REFUND_PENDING mengembalikan stok (movement `order_cancel`) | Barang belum keluar gudang; refund manual v1 |
+| D-24 | 5 Nov 2026 | Webhook FAILED (kartu tes 4000…0002) → payment FAILED, order tetap PENDING agar pembeli bisa ganti metode | PAY-05/PAY-10 |
+| D-25 | 5 Nov 2026 | Item varian available=0 & pre-order aktif otomatis jadi pre-order saat createOrder (maks 5); varian dengan stok parsial yang kurang → OUT_OF_STOCK | `05` §4 langkah 3 |
+| D-26 | 5 Nov 2026 | Template WA (link & notifikasi) di kode `src/lib/wa` (client-safe), bukan di `messages/*/wa.json` | Dipakai server (outbox) & klien (wa.me) tanpa next-intl |
 
 ## Terbuka (tidak menghalangi demo)
 
