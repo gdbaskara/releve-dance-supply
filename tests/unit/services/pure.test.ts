@@ -59,6 +59,10 @@ describe("labels & order numbers", () => {
     const sizes = ["M", "7.5L (adult)", "1.0s (child)", "10.0s (child)", "8.0s (toddler)", "S", "10.0L (adult)"];
     expect([...sizes].sort(compareSizes)).toEqual(["8.0s (toddler)", "10.0s (child)", "1.0s (child)", "7.5L (adult)", "10.0L (adult)", "S", "M"]);
   });
+  it("child sizes: the s scale comes before child L sizes", () => {
+    const sizes = ["2.0L (child)", "2.0s (child)", "1.0s (child)", "2.5L (child)", "2.5s (child)"];
+    expect([...sizes].sort(compareSizes)).toEqual(["1.0s (child)", "2.0s (child)", "2.5s (child)", "2.0L (child)", "2.5L (child)"]);
+  });
 });
 
 describe("schemas", () => {

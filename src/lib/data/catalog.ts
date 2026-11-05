@@ -1,10 +1,11 @@
 /**
  * Loader for data/catalog/products.json (seed input only — the app reads the catalog from Postgres).
- * Uses fs so the 1 MB file is never bundled into the app.
+ * Uses fs so the 1 MB file is never bundled into the app. Sizes are cleaned with normalizeRawSize (source typos).
  */
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import type { Audience, Discipline, PriceGroup, VariantOption } from "@/lib/contracts";
+import { normalizeRawSize } from "./size-normalize";
 
 export interface RawVariant {
   sku: string;
@@ -38,5 +39,8 @@ export interface RawProduct {
 
 export function loadRawCatalog(file = path.join(process.cwd(), "data/catalog/products.json")): RawProduct[] {
   const json = JSON.parse(readFileSync(file, "utf8")) as { products: RawProduct[] };
-  return json.products;
+  return json.products.map((p) => ({
+    ...p,
+    variants: p.variants.map((v) => ({ ...v, size: normalizeRawSize(v.size) })),
+  }));
 }

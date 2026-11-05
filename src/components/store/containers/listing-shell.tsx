@@ -69,7 +69,11 @@ export function ListingShell({ facets, selected, total, shown, sort, children }:
     });
 
   const active = facets.flatMap((f) =>
-    (selected[f.key] ?? []).map((v) => ({ key: f.key, value: v, label: f.options.find((o) => o.value === v)?.label ?? v })),
+    (selected[f.key] ?? []).map((v) => {
+      const o = f.options.find((x) => x.value === v);
+      const label = o?.label ?? v;
+      return { key: f.key, value: v, label: o?.group ? `${label} · ${o.group}` : label };
+    }),
   );
   const hasFacets = facets.length > 0;
 

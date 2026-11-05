@@ -39,7 +39,7 @@ export function CompareStyles({ items, title, linkAs: LinkComp = "a", className 
             <tr>
               <td className="w-24" />
               {cols.map((c) => (
-                <th key={c.modelCode} scope="col" className="px-3 pb-3 text-left align-top font-normal">
+                <th key={c.href} scope="col" className="px-3 pb-3 text-left align-top font-normal">
                   <LinkComp href={c.href} className="group flex flex-col gap-2 focus-visible:outline-2 focus-visible:outline-focus">
                     <ProductImage src={c.imageUrl} alt={c.name} modelCode={c.modelCode} sizes="180px" />
                     <span className="text-sm font-medium text-ink group-hover:underline">{c.name}</span>
@@ -55,16 +55,16 @@ export function CompareStyles({ items, title, linkAs: LinkComp = "a", className 
           <tbody>
             <tr>
               <th scope="row" className={head}>{t("product.sole")}</th>
-              {cols.map((c) => <td key={c.modelCode} className={rowCls}>{c.sole}</td>)}
+              {cols.map((c) => <td key={c.href} className={rowCls}>{c.sole}</td>)}
             </tr>
             <tr>
               <th scope="row" className={head}>{t("product.material")}</th>
-              {cols.map((c) => <td key={c.modelCode} className={rowCls}>{c.material}</td>)}
+              {cols.map((c) => <td key={c.href} className={rowCls}>{c.material}</td>)}
             </tr>
             <tr>
               <th scope="row" className={head}>{t("product.price")}</th>
               {cols.map((c) => (
-                <td key={c.modelCode} className={cn(rowCls, "tabular font-semibold")}>
+                <td key={c.href} className={cn(rowCls, "tabular font-semibold")}>
                   {formatIDR(c.priceIdr)}
                 </td>
               ))}

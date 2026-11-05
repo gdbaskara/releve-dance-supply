@@ -5,7 +5,8 @@
 import { getCatalog } from "@/lib/services/catalog";
 import type { Audience, CatalogFilters, CatalogResult, Discipline, SortKey } from "@/lib/contracts";
 import type { FilterFacet, FilterSelection } from "@/components/store/filter-panel";
-import { FILTER_KEYS, PRICE_BUCKETS, formatSize, priceRangeFor, sizeGroup, type CollectionDef } from "./format";
+import { FILTER_KEYS, PRICE_BUCKETS, priceRangeFor, type CollectionDef } from "./format";
+import { colorLabel, facetNarrows, sizeOptions, type SizeGroupKey } from "./facet-format";
 
 export const PAGE_SIZE = 24;
 const SORTS: SortKey[] = ["newest", "price_asc", "price_desc"];
@@ -72,18 +73,8 @@ export interface FacetLabels {
   audience: (a: string) => string;
   price: (key: string) => string;
   availability: (a: string) => string;
-}
-
-/** Display labels for raw sizes; colliding short labels (e.g. "3" adult vs child) get their group. */
-function sizeLabels(values: string[]): Map<string, string> {
-  const short = values.map((v) => formatSize(v));
-  return new Map(
-    values.map((v, i) => {
-      const dup = short.filter((s) => s === short[i]).length > 1;
-      const g = sizeGroup(v);
-      return [v, dup && g ? `${short[i]} (${g})` : short[i]];
-    }),
-  );
+  /** Size facet group heading (toddler / child / adult). */
+  sizeGroup: (g: SizeGroupKey) => string;
 }
 
 export async function loadListing(
@@ -139,19 +130,18 @@ export async function loadListing(
     options: availCounts.map((o) => ({ ...o, label: labels.availability(o.value) })),
   });
   if (f.size.length) {
-    const sl = sizeLabels(f.size.map((o) => o.value));
-    facets.push({
-      key: "size",
-      label: labels.facet("size"),
-      kind: "chips",
-      options: f.size.map((o) => ({ value: o.value, label: sl.get(o.value), count: o.count })),
-    });
+    facets.push({ key: "size", label: labels.facet("size"), kind: "chips", options: sizeOptions(f.size, labels.sizeGroup) });
   }
   if (f.width.length) {
     facets.push({ key: "width", label: labels.facet("width"), kind: "chips", options: f.width.map((o) => ({ ...o })) });
   }
   if (f.color.length) {
-    facets.push({ key: "color", label: labels.facet("color"), kind: "swatch", options: f.color.map((o) => ({ ...o })) });
+    facets.push({
+      key: "color",
+      label: labels.facet("color"),
+      kind: "swatch",
+      options: f.color.map((o) => ({ ...o, label: colorLabel(o.value) })),
+    });
   }
   facets.push({
     key: "price",
@@ -160,5 +150,7 @@ export async function loadListing(
     options: priceCounts.map((o) => ({ ...o, label: labels.price(o.value) })),
   });
 
-  return { result, facets, shown: result.items.length };
+  // A facet where every option keeps all products (or none) cannot narrow the list: hide it unless something is picked.
+  const useful = facets.filter((fc) => (selected[fc.key]?.length ?? 0) > 0 || facetNarrows(fc.options, result.total));
+  return { result, facets: useful, shown: result.items.length };
 }

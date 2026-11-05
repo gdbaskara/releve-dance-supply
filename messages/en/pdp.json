@@ -56,7 +56,8 @@
   "gallery": {
     "label": "{name} photo gallery",
     "slide": "Photo {n} of {total}",
-    "goTo": "View photo {n}"
+    "goTo": "View photo {n}",
+    "counter": "{n} / {total}"
   },
   "metaDescription": "{name} ({code}) — original Só Dança product. {price}. Stock per size, shipped from Jakarta, pay with QRIS, VA & e-wallets."
 }

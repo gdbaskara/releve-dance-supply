@@ -16,6 +16,8 @@ export interface FilterFacetOption {
   /** Display label (defaults to value). */
   label?: string;
   count: number;
+  /** Optional heading the option sits under (size: Toddler / Child / Adult). Options arrive already in group order. */
+  group?: string;
 }
 
 export interface FilterFacet {
@@ -41,6 +43,16 @@ export interface FilterPanelProps {
   /** Facet keys open initially. Default: all. */
   defaultOpen?: string[];
   className?: string;
+}
+
+/** Consecutive options sharing a group heading; options without a group form an untitled run. */
+function groupRuns(options: FilterFacetOption[]): { group?: string; options: FilterFacetOption[] }[] {
+  return options.reduce<{ group?: string; options: FilterFacetOption[] }[]>((runs, o) => {
+    const last = runs[runs.length - 1];
+    return last && last.group === o.group
+      ? [...runs.slice(0, -1), { ...last, options: [...last.options, o] }]
+      : [...runs, { group: o.group, options: [o] }];
+  }, []);
 }
 
 function toggle(sel: FilterSelection, key: string, value: string): FilterSelection {
@@ -74,16 +86,23 @@ export function FilterPanel({ facets, selected, onChange, onClear, hideHeader, d
             meta: sel.length ? t("filter.selectedCount", { n: sel.length }) : undefined,
             content:
               f.kind === "chips" ? (
-                <div className="flex flex-wrap gap-2">
-                  {f.options.map((o) => (
-                    <Chip
-                      key={o.value}
-                      selected={sel.includes(o.value)}
-                      disabled={o.count === 0 && !sel.includes(o.value)}
-                      onClick={() => onChange(toggle(selected, f.key, o.value))}
-                    >
-                      {o.label ?? o.value}
-                    </Chip>
+                <div className="flex flex-col gap-3">
+                  {groupRuns(f.options).map((run, i) => (
+                    <div key={run.group ?? `run-${i}`} role={run.group ? "group" : undefined} aria-label={run.group} className="flex flex-col gap-2">
+                      {run.group ? <span className="text-xs font-medium text-ink-muted">{run.group}</span> : null}
+                      <div className="flex flex-wrap gap-2">
+                        {run.options.map((o) => (
+                          <Chip
+                            key={o.value}
+                            selected={sel.includes(o.value)}
+                            disabled={o.count === 0 && !sel.includes(o.value)}
+                            onClick={() => onChange(toggle(selected, f.key, o.value))}
+                          >
+                            {o.label ?? o.value}
+                          </Chip>
+                        ))}
+                      </div>
+                    </div>
                   ))}
                 </div>
               ) : f.kind === "swatch" ? (

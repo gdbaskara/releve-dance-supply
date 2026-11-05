@@ -15,7 +15,8 @@ import { Notice } from "@/components/ui/notice";
 import { AvailabilityLine } from "@/components/store/availability-line";
 import { ProductImage } from "@/components/store/product-image";
 import { QtyStepper } from "@/components/store/qty-stepper";
-import { SizeGuideDialog, type SizeGuideCategory } from "@/components/store/size-guide";
+import { SizeGuideDialog } from "@/components/store/size-guide";
+import { guideCategoryFor } from "@/components/store/size-guide-data";
 import { VariantPicker } from "@/components/store/variant-picker";
 import { resolveVariant, type Selection, type VariantState } from "@/components/store/variant-logic";
 import { WhatsAppButton } from "@/components/store/whatsapp-button";
@@ -28,15 +29,11 @@ function pickerSize(raw: string): string {
   return g ? `${formatSize(raw)} (${g})` : formatSize(raw);
 }
 
-function sizeGuideCategory(p: Pick<ProductDetail, "discipline" | "group">): SizeGuideCategory {
-  if (p.group === "apparel" || p.group === "tights") return "dancewear";
-  if (p.discipline === "Pointe") return "pointe";
-  if (p.discipline === "Tap" || p.discipline === "Character") return "tapCharacter";
-  if (p.discipline === "Latin/Ballroom") return "ballroom";
-  return "balletJazz";
-}
 
 /* ---------- Gallery ---------- */
+
+/** More photos than this: a "3 / 16" counter instead of dots (16 dots do not fit a 375px screen). */
+const MAX_DOTS = 8;
 
 export function PdpGallery({ images, name, modelCode, color }: { images: Img[]; name: string; modelCode: string; color?: string }) {
   const t = useTranslations("pdp.gallery");
@@ -64,7 +61,7 @@ export function PdpGallery({ images, name, modelCode, color }: { images: Img[]; 
           const el = e.currentTarget;
           setIndex(Math.round(el.scrollLeft / el.clientWidth));
         }}
-        className="relative -mx-[var(--gutter)] flex snap-x snap-mandatory overflow-x-auto md:mx-0 lg:grid lg:grid-cols-2 lg:gap-2 lg:overflow-visible"
+        className="relative flex snap-x snap-mandatory overflow-x-auto [scrollbar-width:none] lg:grid [&::-webkit-scrollbar]:hidden lg:grid-cols-2 lg:gap-2 lg:overflow-visible"
       >
         {list.map((img, i) => (
           <li key={img.url} aria-label={t("slide", { n: i + 1, total: list.length })} className="w-full shrink-0 snap-center lg:w-auto">
@@ -72,20 +69,26 @@ export function PdpGallery({ images, name, modelCode, color }: { images: Img[]; 
           </li>
         ))}
       </ul>
-      <div className="flex justify-center gap-1 lg:hidden">
-        {list.map((img, i) => (
-          <button
-            key={img.url}
-            type="button"
-            aria-label={t("goTo", { n: i + 1 })}
-            aria-current={i === index || undefined}
-            onClick={() => scroller.current?.scrollTo({ left: i * scroller.current.clientWidth, behavior: "smooth" })}
-            className="inline-flex size-6 items-center justify-center"
-          >
-            <span className={cn("size-2 rounded-pill", i === index ? "bg-ink" : "bg-border-strong")} />
-          </button>
-        ))}
-      </div>
+      {list.length > MAX_DOTS ? (
+        <p className="tabular text-center text-sm text-ink-muted lg:hidden" aria-live="polite">
+          {t("counter", { n: index + 1, total: list.length })}
+        </p>
+      ) : (
+        <div className="flex justify-center gap-1 lg:hidden">
+          {list.map((img, i) => (
+            <button
+              key={img.url}
+              type="button"
+              aria-label={t("goTo", { n: i + 1 })}
+              aria-current={i === index || undefined}
+              onClick={() => scroller.current?.scrollTo({ left: i * scroller.current.clientWidth, behavior: "smooth" })}
+              className="inline-flex size-6 items-center justify-center"
+            >
+              <span className={cn("size-2 rounded-pill", i === index ? "bg-ink" : "bg-border-strong")} />
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -160,7 +163,7 @@ export function PdpClient({ product, productUrl, initialColor, header, children 
   const guideHref = buildWaLink("sizeGuide", { name: product.name, modelCode: product.modelCode }, locale);
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,440px)] lg:gap-12 xl:gap-16">
+    <div className="grid grid-cols-[minmax(0,1fr)] gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,440px)] lg:gap-12 xl:gap-16">
       <div className="-mx-[var(--gutter)] md:mx-0">
         <div className="lg:sticky lg:top-[calc(var(--header-h)+1.5rem)]">
           {/* key: a new colour remounts the gallery so the slide index and scroll position start at photo 1. */}
@@ -220,7 +223,13 @@ export function PdpClient({ product, productUrl, initialColor, header, children 
 
         {children}
       </div>
-      <SizeGuideDialog open={guideOpen} onOpenChange={setGuideOpen} waHref={guideHref} defaultCategory={sizeGuideCategory(product)} />
+      <SizeGuideDialog
+        open={guideOpen}
+        onOpenChange={setGuideOpen}
+        waHref={guideHref}
+        defaultCategory={guideCategoryFor(product.discipline, product.group)}
+        highlightSize={state.selection.size ?? null}
+      />
     </div>
   );
 }

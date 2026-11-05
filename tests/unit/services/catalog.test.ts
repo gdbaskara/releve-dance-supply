@@ -6,7 +6,8 @@ import { getShippingRates } from "@/lib/services/shipping";
 import { applyVoucher } from "@/lib/services/voucher";
 import { createOrder } from "@/lib/services/order";
 import { db } from "@/db";
-import { vouchers } from "@/db/schema";
+import { products, variants, vouchers } from "@/db/schema";
+import { eq } from "drizzle-orm";
 import { orderInput, resetWithFixture, setupTestDb } from "./helpers/db";
 
 setupTestDb();
@@ -37,6 +38,31 @@ describe("catalog (CAT-02..06)", () => {
     expect(f.facets.discipline).toEqual([{ value: "Ballet", count: 1 }, { value: "Leotards", count: 1 }]);
     expect(f.facets.size.map((s) => s.value)).toEqual(["7.5", "8", "8.5", "9", "9.5"]);
     expect(f.facets.width).toEqual([{ value: "M", count: 1 }]);
+  });
+
+  it("a colour filter swaps the card photo to that colour and remembers it for the PDP link", async () => {
+    await db
+      .update(products)
+      .set({
+        images: [
+          { url: "pink.jpg", alt: "pink", color: "Ballet Pink" },
+          { url: "black.jpg", alt: "black", color: "Black" },
+        ],
+      })
+      .where(eq(products.id, "test-shoe"));
+    const plain = (await getCatalog({ disciplines: ["Ballet"] })).items[0];
+    expect(plain).toMatchObject({ image: { url: "pink.jpg" } });
+    expect(plain.matchedColor ?? null).toBeNull();
+    const black = (await getCatalog({ colors: ["Black"], disciplines: ["Ballet"] })).items[0];
+    expect(black).toMatchObject({ image: { url: "black.jpg" }, matchedColor: "Black" });
+  });
+
+  it("widths sort letters first, then Narrow / Medium / Wide", async () => {
+    await db.update(variants).set({ width: "Wide" }).where(eq(variants.sku, "T-LAST"));
+    await db.update(variants).set({ width: "Narrow" }).where(eq(variants.sku, "T-LOW"));
+    await db.update(variants).set({ width: "Medium" }).where(eq(variants.sku, "T-PRE"));
+    const f = await getCatalog({ disciplines: ["Ballet"] });
+    expect(f.facets.width.map((w) => w.value)).toEqual(["M", "Narrow", "Medium", "Wide"]);
   });
 
   it("getProduct with derived variant status; getRelated; collections", async () => {

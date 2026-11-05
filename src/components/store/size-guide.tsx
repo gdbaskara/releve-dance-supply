@@ -5,80 +5,47 @@ import { useTranslations } from "next-intl";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Notice } from "@/components/ui/notice";
 import { Tabs } from "@/components/ui/segmented-control";
+import { cn } from "@/lib/utils/cn";
 import { WhatsAppButton } from "./whatsapp-button";
+import {
+  APPAREL_ROWS,
+  CONTEMPORARY_ROWS,
+  TIGHTS_ROWS,
+  shoeRows,
+  sizeKey,
+  widthRows,
+  type ShoeGroup,
+  type SizeGuideCategory,
+  type WidthKey,
+} from "./size-guide-data";
 
-export type SizeGuideCategory = "balletJazz" | "pointe" | "tapCharacter" | "ballroom" | "dancewear";
+export type { SizeGuideCategory } from "./size-guide-data";
 
-/*
- * APPROXIMATE — replace with Só Dança chart (Q-06).
- * Generic US women's / kids' shoe size → foot length (cm) conversion, plus EU approximation.
- * Dance shoes can run differently per model; the copy tells shoppers to consult on WhatsApp.
- */
-const SHOE_ADULT: [us: string, cm: number, eu: string][] = [
-  ["4", 20.8, "34.5"],
-  ["4.5", 21.3, "35"],
-  ["5", 21.6, "35.5"],
-  ["5.5", 22.2, "36"],
-  ["6", 22.5, "36.5"],
-  ["6.5", 23.0, "37"],
-  ["7", 23.5, "37.5"],
-  ["7.5", 23.8, "38"],
-  ["8", 24.1, "38.5"],
-  ["8.5", 24.6, "39"],
-  ["9", 25.1, "40"],
-  ["9.5", 25.4, "40.5"],
-  ["10", 25.9, "41"],
-  ["10.5", 26.2, "41.5"],
-  ["11", 26.7, "42"],
-  ["12", 27.6, "43"],
-];
-/* APPROXIMATE — replace with Só Dança chart (Q-06). Kids sizes (s = child). */
-const SHOE_KIDS: [us: string, cm: number, eu: string][] = [
-  ["8s", 15.2, "25"],
-  ["9s", 15.9, "26"],
-  ["10s", 16.5, "27"],
-  ["11s", 17.5, "28"],
-  ["12s", 18.4, "30"],
-  ["13s", 19.1, "31"],
-  ["1s", 19.8, "32"],
-  ["2s", 20.6, "33"],
-  ["3s", 21.6, "34"],
-];
-/* APPROXIMATE — replace with Só Dança chart (Q-06). Dancewear body measurements in cm. */
-const DANCEWEAR: [size: string, height: string, chest: string, waist: string, hip: string][] = [
-  ["4-6", "104–116", "56–61", "53–56", "58–64"],
-  ["8-10", "128–140", "64–71", "57–61", "67–74"],
-  ["12-14", "146–158", "72–79", "61–65", "76–83"],
-  ["XS", "150–158", "76–81", "58–63", "81–86"],
-  ["S", "155–163", "81–86", "63–68", "86–91"],
-  ["M", "160–168", "86–91", "68–73", "91–96"],
-  ["L", "165–173", "91–97", "73–79", "96–102"],
-  ["XL", "168–175", "97–103", "79–85", "102–108"],
-];
+/* Tables are APPROXIMATE (Q-06) — see size-guide-data.ts. */
 
 const th = "eyebrow border-b border-border-strong px-3 py-3 text-left text-ink-muted";
 const td = "tabular border-b border-border px-3 py-2.5 text-sm text-ink";
+const groupTh = "bg-surface-alt px-3 py-2 text-left text-xs font-semibold text-ink";
 
-function ShoeTable() {
+/** Row highlight for the size picked on the PDP. */
+function rowClass(active: boolean) {
+  return cn(active && "bg-surface-alt [&>*]:font-semibold");
+}
+
+function YourSize({ show }: { show: boolean }) {
   const t = useTranslations("common");
-  const rows = (data: typeof SHOE_ADULT, group: string) => (
-    <>
-      <tr>
-        <th colSpan={3} scope="colgroup" className="bg-surface-alt px-3 py-2 text-left text-xs font-semibold text-ink">
-          {group}
-        </th>
-      </tr>
-      {data.map(([us, cm, eu]) => (
-        <tr key={us}>
-          <th scope="row" className={`${td} font-semibold`}>
-            {us}
-          </th>
-          <td className={td}>{cm.toFixed(1)}</td>
-          <td className={`${td} text-ink-muted`}>{eu}</td>
-        </tr>
-      ))}
-    </>
-  );
+  if (!show) return null;
+  return <span className="ml-2 rounded-pill bg-ink px-2 py-0.5 text-xs font-medium text-ink-inverse">{t("sizeGuide.yourSize")}</span>;
+}
+
+function SectionTitle({ children }: { children: React.ReactNode }) {
+  return <h4 className="eyebrow text-ink">{children}</h4>;
+}
+
+function ShoeTable({ category, highlight }: { category: Exclude<SizeGuideCategory, "dancewear">; highlight: string | null }) {
+  const t = useTranslations("common");
+  const rows = shoeRows(category);
+  const groups = (["toddler", "child", "adult"] as ShoeGroup[]).filter((g) => rows.some((r) => r.group === g));
   return (
     <div className="overflow-x-auto">
       <table className="w-full min-w-[280px] border-collapse">
@@ -90,46 +57,145 @@ function ShoeTable() {
             <th scope="col" className={th}>{t("sizeGuide.eu")}</th>
           </tr>
         </thead>
+        {groups.map((g) => (
+          <tbody key={g}>
+            <tr>
+              <th colSpan={3} scope="colgroup" className={groupTh}>
+                {t(`sizeGroups.${g}`)}
+              </th>
+            </tr>
+            {rows
+              .filter((r) => r.group === g)
+              .map((r) => {
+                const active = r.key === highlight;
+                return (
+                  <tr key={r.key} className={rowClass(active)} aria-current={active ? "true" : undefined}>
+                    <th scope="row" className={`${td} font-semibold`}>
+                      {r.label}
+                      <YourSize show={active} />
+                    </th>
+                    <td className={td}>{r.cm.toFixed(1)}</td>
+                    <td className={`${td} text-ink-muted`}>{r.eu}</td>
+                  </tr>
+                );
+              })}
+          </tbody>
+        ))}
+      </table>
+    </div>
+  );
+}
+
+interface SimpleTableProps {
+  caption: string;
+  cols: string[];
+  rows: { key: string; cells: string[] }[];
+  highlight: string | null;
+  minWidth?: string;
+}
+
+function SimpleTable({ caption, cols, rows, highlight, minWidth = "min-w-[280px]" }: SimpleTableProps) {
+  return (
+    <div className="-mx-1 overflow-x-auto px-1">
+      <table className={cn("w-full border-collapse", minWidth)}>
+        <caption className="sr-only">{caption}</caption>
+        <thead>
+          <tr>
+            {cols.map((c) => (
+              <th key={c} scope="col" className={th}>
+                {c}
+              </th>
+            ))}
+          </tr>
+        </thead>
         <tbody>
-          {rows(SHOE_ADULT, t("sizeGroups.adult"))}
-          {rows(SHOE_KIDS, t("sizeGroups.child"))}
+          {rows.map(({ key, cells: [first, ...rest] }) => {
+            const active = key === highlight;
+            return (
+              <tr key={key} className={rowClass(active)} aria-current={active ? "true" : undefined}>
+                <th scope="row" className={`${td} font-semibold`}>
+                  {first}
+                  <YourSize show={active} />
+                </th>
+                {rest.map((v, i) => (
+                  <td key={i} className={td}>
+                    {v}
+                  </td>
+                ))}
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
   );
 }
 
-function DancewearTable() {
+function WidthTable({ widths }: { widths: WidthKey[] }) {
   const t = useTranslations("common");
   return (
-    <div className="-mx-1 overflow-x-auto px-1">
-      <table className="w-full min-w-[420px] border-collapse">
-        <caption className="sr-only">{t("sizeGuide.dancewearCaption")}</caption>
-        <thead>
-          <tr>
-            {(["size", "height", "chest", "waist", "hip"] as const).map((k) => (
-              <th key={k} scope="col" className={th}>
-                {t(`sizeGuide.cols.${k}`)}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {DANCEWEAR.map(([size, ...rest]) => (
-            <tr key={size}>
-              <th scope="row" className={`${td} font-semibold`}>
-                {size}
-              </th>
-              {rest.map((v, i) => (
-                <td key={i} className={td}>
-                  {v}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+    <section className="flex flex-col gap-2">
+      <SectionTitle>{t("sizeGuide.widthTitle")}</SectionTitle>
+      <p className="text-sm text-ink-muted">{t("sizeGuide.widthIntro")}</p>
+      <SimpleTable
+        caption={t("sizeGuide.widthCaption")}
+        cols={[t("sizeGuide.widthCols.width"), t("sizeGuide.widthCols.fit")]}
+        rows={widths.map((w) => ({ key: w, cells: [w, t(`sizeGuide.widths.${w}`)] }))}
+        highlight={null}
+      />
+    </section>
+  );
+}
+
+function ShoeTab({ category, highlight }: { category: Exclude<SizeGuideCategory, "dancewear">; highlight: string | null }) {
+  const t = useTranslations("common");
+  return (
+    <>
+      <section className="flex flex-col gap-2">
+        <SectionTitle>{t("sizeGuide.shoeTitle")}</SectionTitle>
+        <ShoeTable category={category} highlight={highlight} />
+      </section>
+      {category === "balletJazz" ? (
+        <section className="flex flex-col gap-2">
+          <SectionTitle>{t("sizeGuide.contemporaryTitle")}</SectionTitle>
+          <SimpleTable
+            caption={t("sizeGuide.contemporaryCaption")}
+            cols={[t("sizeGuide.cols.size"), t("sizeGuide.cols.us"), t("sizeGuide.footLength")]}
+            rows={CONTEMPORARY_ROWS.map((r) => ({ key: r.size, cells: [r.size, r.us, r.cm] }))}
+            highlight={highlight}
+          />
+        </section>
+      ) : null}
+      <WidthTable widths={widthRows(category)} />
+    </>
+  );
+}
+
+function DancewearTab({ highlight }: { highlight: string | null }) {
+  const t = useTranslations("common");
+  const col = (k: "size" | "height" | "chest" | "waist" | "hip" | "weight") => t(`sizeGuide.cols.${k}`);
+  return (
+    <>
+      <section className="flex flex-col gap-2">
+        <SectionTitle>{t("sizeGuide.apparelTitle")}</SectionTitle>
+        <SimpleTable
+          caption={t("sizeGuide.dancewearCaption")}
+          cols={[col("size"), col("height"), col("chest"), col("waist"), col("hip")]}
+          rows={APPAREL_ROWS.map((r) => ({ key: r.size, cells: [r.size, r.height, r.chest, r.waist, r.hip] }))}
+          highlight={highlight}
+          minWidth="min-w-[420px]"
+        />
+      </section>
+      <section className="flex flex-col gap-2">
+        <SectionTitle>{t("sizeGuide.tightsTitle")}</SectionTitle>
+        <SimpleTable
+          caption={t("sizeGuide.tightsCaption")}
+          cols={[col("size"), col("height"), col("weight")]}
+          rows={TIGHTS_ROWS.map((r) => ({ key: r.size, cells: [r.size, r.height, r.weight] }))}
+          highlight={highlight}
+        />
+      </section>
+    </>
   );
 }
 
@@ -152,12 +218,18 @@ export interface SizeGuideContentProps {
   /** wa.me link with size-guide context (WA "Konsultasi ukuran"). */
   waHref?: string;
   defaultCategory?: SizeGuideCategory;
+  /** Raw size picked on the PDP (e.g. "8.5s (toddler)", "M"): its row is highlighted. */
+  highlightSize?: string | null;
 }
 
-/** Tabs per category (Ballet & Jazz / Pointe / Tap & Character / Ballroom / Dancewear) + how-to-measure + WA CTA. */
-export function SizeGuideContent({ waHref, defaultCategory = "balletJazz" }: SizeGuideContentProps) {
+/**
+ * Tabs per category (Ballet & Jazz / Pointe / Tap & Character / Ballroom / Dancewear), each with its own
+ * size range + width guide (shoes) or body / tights tables (dancewear), how-to-measure and WA CTA.
+ */
+export function SizeGuideContent({ waHref, defaultCategory = "balletJazz", highlightSize }: SizeGuideContentProps) {
   const t = useTranslations("common");
   const cats: SizeGuideCategory[] = ["balletJazz", "pointe", "tapCharacter", "ballroom", "dancewear"];
+  const highlight = highlightSize ? sizeKey(highlightSize) : null;
   return (
     <div className="flex flex-col gap-8">
       <section aria-labelledby="sg-how" className="flex flex-col gap-4 rounded-md bg-surface-alt p-4 md:flex-row md:items-center">
@@ -180,7 +252,7 @@ export function SizeGuideContent({ waHref, defaultCategory = "balletJazz" }: Siz
           value: c,
           label: t(`sizeGuide.tabs.${c}`),
           content: (
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-6">
               {c === "pointe" ? (
                 <Notice tone="info" title={t("sizeGuide.pointeCalloutTitle")}>
                   {t("sizeGuide.notes.pointe")}
@@ -188,7 +260,11 @@ export function SizeGuideContent({ waHref, defaultCategory = "balletJazz" }: Siz
               ) : (
                 <p className="text-sm text-ink-muted">{t(`sizeGuide.notes.${c}`)}</p>
               )}
-              {c === "dancewear" ? <DancewearTable /> : <ShoeTable />}
+              {c === "dancewear" ? (
+                <DancewearTab highlight={c === defaultCategory ? highlight : null} />
+              ) : (
+                <ShoeTab category={c} highlight={c === defaultCategory ? highlight : null} />
+              )}
               <p className="text-xs text-ink-muted">{t("sizeGuide.approxNote")}</p>
             </div>
           ),

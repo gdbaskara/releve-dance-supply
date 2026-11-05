@@ -24,6 +24,7 @@ import {
   type VariantOption,
   type VariantView,
 } from "@/lib/contracts";
+import { imageForColors } from "@/lib/utils/image-for-color";
 import { maybeSweepExpiredOrders } from "./expiry";
 
 /** Disciplines the home hero photo is taken from, in order of preference. */
@@ -90,7 +91,7 @@ async function loadAll(): Promise<LoadedProduct[]> {
 }
 
 /**
- * Size ordering for facets: toddler → child (US kids: 7…13.5 then 1…3.5) → adult (numeric) →
+ * Size ordering for facets: toddler → child (US kids: 7…13.5 then 1…3.5, then child L sizes) → adult (numeric) →
  * apparel ranges/letters. Raw values come straight from data/catalog (e.g. "7.5L (adult)", "8.0s (toddler)").
  */
 const LETTER_SIZES = ["4-6", "6x-7", "8-10", "12-14", "Y-Jr.", "XS", "S", "S-M", "M", "L", "L-XL", "XL", "2XL", "2XL-3XL", "3XL", "4XL"];
@@ -100,7 +101,8 @@ function sizeKey(s: string): [number, number] {
   if (letter !== -1) return [3, letter];
   if (Number.isNaN(n) || /^\d+-\d+$/.test(s)) return [4, 0];
   if (/toddler/i.test(s)) return [0, n];
-  if (/child/i.test(s)) return [1, n >= 7 ? n : n + 20];
+  // child "s" scale first (7s … 13.5s, 1s … 3.5s), then child sizes on the L scale (2L … 3.5L)
+  if (/child/i.test(s)) return [1, (n >= 7 ? n : n + 20) + (/^\d+(?:\.\d+)?L/.test(s) ? 40 : 0)];
   return [2, n];
 }
 export function compareSizes(a: string, b: string): number {
@@ -174,6 +176,20 @@ const DISCIPLINE_ORDER: Discipline[] = [
   "Ballet", "Pointe", "Jazz", "Tap", "Character", "Latin/Ballroom", "Contemporary", "Leotards", "Skirts", "Tops", "Tights",
 ];
 const AUDIENCE_ORDER: Audience[] = ["Adult", "Kids", "Men"];
+/** Width letters (A narrowest … EE widest), then the word scale. */
+const WIDTH_ORDER = ["A", "B", "C", "D", "E", "EE", "Narrow", "Medium", "Wide"];
+function compareWidths(a: string, b: string): number {
+  const rank = (w: string) => (WIDTH_ORDER.includes(w) ? WIDTH_ORDER.indexOf(w) : -1);
+  return rank(a) - rank(b) || a.localeCompare(b);
+}
+
+/** With a colour filter the card shows a photo of a matching colour instead of the lead colour. */
+function listingSummary(p: LoadedProduct, colors: readonly string[] | undefined): ProductSummary {
+  if (!colors?.length) return p.summary;
+  const { image, color } = imageForColors((p.row.images ?? []) as ProductImage[], colors);
+  const matchedColor = color ?? p.variants.find((v) => v.color && colors.includes(v.color))?.color ?? null;
+  return { ...p.summary, image, matchedColor };
+}
 
 export async function getCatalog(filters: CatalogFilters = {}): Promise<CatalogResult> {
   const all = await loadAll();
@@ -193,14 +209,14 @@ export async function getCatalog(filters: CatalogFilters = {}): Promise<CatalogR
   const audience = countFacet(all, filters, "audience", (p) => [p.summary.audience])
     .sort((a, b) => AUDIENCE_ORDER.indexOf(a.value as Audience) - AUDIENCE_ORDER.indexOf(b.value as Audience));
   const size = countFacet(all, filters, "size", (p) => variantValues(p, filters, "size")).sort((a, b) => compareSizes(a.value, b.value));
-  const width = countFacet(all, filters, "width", (p) => variantValues(p, filters, "width")).sort((a, b) => a.value.localeCompare(b.value));
+  const width = countFacet(all, filters, "width", (p) => variantValues(p, filters, "width")).sort((a, b) => compareWidths(a.value, b.value));
   const color = countFacet(all, filters, "color", (p) => variantValues(p, filters, "color")).sort((a, b) => a.value.localeCompare(b.value));
 
   const priceBase = all.filter((p) => matches(p, filters, "price"));
   const prices = (priceBase.length ? priceBase : all).map((p) => p.row.priceIdr);
 
   return {
-    items: matched.slice((page - 1) * pageSize, page * pageSize).map((p) => p.summary),
+    items: matched.slice((page - 1) * pageSize, page * pageSize).map((p) => listingSummary(p, filters.colors)),
     total: matched.length,
     page,
     pageSize,

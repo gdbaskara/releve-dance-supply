@@ -24,6 +24,7 @@ export default async function SearchPage({ params, searchParams }: PageProps<"/[
   setRequestLocale(locale);
   const t = await getTranslations("nav.search");
   const tc = await getTranslations("catalog.listing");
+  const tcommon = await getTranslations("common");
   const query = parseQuery(await searchParams);
   const q = query.q.trim();
 
@@ -53,6 +54,7 @@ export default async function SearchPage({ params, searchParams }: PageProps<"/[
         audience: (a) => tc(`audience.${a as "Adult"}`),
         price: (k) => tc(`price.${k as "under1m"}`),
         availability: (a) => tc(`availability.${a as "READY"}`),
+      sizeGroup: (g) => tcommon(`sizeGroups.${g}`),
       },
       { showDiscipline: true, showAudience: true },
     );
