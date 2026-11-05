@@ -48,7 +48,7 @@ Use the **latest stable version at the time the build starts** for each package 
 │  │  │  ├─ (store)/          # home, c/[discipline], p/[slug], cart, search
 │  │  │  ├─ checkout/         # checkout, pay/[orderNo], success/[orderNo]
 │  │  │  └─ track/
-│  │  ├─ admin/               # not localized (ID only)
+│  │  ├─ admin/               # no locale prefix; id/en via admin_locale cookie (D-31)
 │  │  └─ api/                 # webhooks/payment, webhooks/shipping, cron/expire
 │  ├─ components/
 │  │  ├─ ui/                  # design system components (primitive + pattern)

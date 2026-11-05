@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import type { VariantAdminView } from "@/lib/services/stock";
 import { adjustStockAction } from "@/lib/actions/admin";
 import { cn } from "@/lib/utils/cn";
@@ -20,13 +21,13 @@ interface Group {
 
 const cellKey = (size: string | null, width: string | null) => `${size ?? ""}|${width ?? ""}`;
 
-function buildGroups(variants: VariantAdminView[], widthOrder: string[]): Group[] {
+function buildGroups(variants: VariantAdminView[], widthOrder: string[], fallbackLabel: string): Group[] {
   const groups = new Map<string, Group>();
   for (const v of variants) {
     const key = `${v.color ?? ""}|${v.shank ?? ""}`;
     let g = groups.get(key);
     if (!g) {
-      g = { key, label: [v.color, v.shank].filter(Boolean).join(" · ") || "Semua varian", sizes: [], widths: [], cells: new Map(), skus: [] };
+      g = { key, label: [v.color, v.shank].filter(Boolean).join(" · ") || fallbackLabel, sizes: [], widths: [], cells: new Map(), skus: [] };
       groups.set(key, g);
     }
     const size = v.size ?? "—";
@@ -45,12 +46,6 @@ function buildGroups(variants: VariantAdminView[], widthOrder: string[]): Group[
   return [...groups.values()];
 }
 
-const ERROR_TEXT = {
-  BELOW_RESERVED: (r?: number) => `Min. ${r ?? 0} (sudah dipesan)`,
-  INVALID_QTY: () => "Angka tidak valid",
-  INVALID_INPUT: () => "Angka tidak valid",
-  NOT_FOUND: () => "Varian tidak ditemukan",
-} as const;
 
 /**
  * ADM-03 VariantStockGrid: one grid per color (and shank), rows = size, columns = width.
@@ -59,7 +54,9 @@ const ERROR_TEXT = {
 export function VariantStockGrid({ variants, widthOrder }: { variants: VariantAdminView[]; widthOrder: string[] }) {
   const router = useRouter();
   const { toast } = useToast();
-  const groups = React.useMemo(() => buildGroups(variants, widthOrder), [variants, widthOrder]);
+  const t = useTranslations("admin.stockGrid");
+  const allVariantsLabel = t("allVariants");
+  const groups = React.useMemo(() => buildGroups(variants, widthOrder, allVariantsLabel), [variants, widthOrder, allVariantsLabel]);
   const bySku = React.useMemo(() => new Map(variants.map((v) => [v.sku, v])), [variants]);
   const [groupKey, setGroupKey] = React.useState(groups[0]?.key ?? "");
   const [edits, setEdits] = React.useState<Record<string, string>>({});
@@ -79,8 +76,8 @@ export function VariantStockGrid({ variants, widthOrder }: { variants: VariantAd
   const localError = (v: VariantAdminView, raw: string | undefined): string | null => {
     if (raw === undefined || raw.trim() === "") return null;
     const n = Number(raw);
-    if (!Number.isInteger(n) || n < 0) return "Angka tidak valid";
-    if (n < v.reserved) return ERROR_TEXT.BELOW_RESERVED(v.reserved);
+    if (!Number.isInteger(n) || n < 0) return t("errors.INVALID_QTY");
+    if (n < v.reserved) return t("errors.BELOW_RESERVED", { count: v.reserved });
     return null;
   };
 
@@ -93,7 +90,7 @@ export function VariantStockGrid({ variants, widthOrder }: { variants: VariantAd
     }
     if (Object.keys(pre).length) {
       setErrors(pre);
-      toast({ variant: "error", title: "Periksa sel yang ditandai merah" });
+      toast({ variant: "error", title: t("toastCheckCells") });
       return;
     }
     setSaving(true);
@@ -107,10 +104,10 @@ export function VariantStockGrid({ variants, widthOrder }: { variants: VariantAd
           saved.push(sku);
           notified += res.notified;
         } else {
-          nextErrors[sku] = ERROR_TEXT[res.error]("reserved" in res ? res.reserved : undefined);
+          nextErrors[sku] = t(`errors.${res.error}`, { count: ("reserved" in res ? res.reserved : undefined) ?? 0 });
         }
       } catch {
-        nextErrors[sku] = "Gagal menyimpan";
+        nextErrors[sku] = t("errors.saveFailed");
       }
     }
     setErrors(nextErrors);
@@ -123,15 +120,15 @@ export function VariantStockGrid({ variants, widthOrder }: { variants: VariantAd
     if (saved.length) {
       toast({
         variant: "success",
-        title: `${saved.length} varian disimpan`,
-        description: notified ? `${notified} pembeli dikabari via WA (back-in-stock).` : "Perubahan tercatat di riwayat stok.",
+        title: t("toastSaved", { count: saved.length }),
+        description: notified ? t("toastNotified", { count: notified }) : t("toastLogged"),
       });
     }
-    if (Object.keys(nextErrors).length) toast({ variant: "error", title: `${Object.keys(nextErrors).length} varian gagal disimpan` });
+    if (Object.keys(nextErrors).length) toast({ variant: "error", title: t("toastFailed", { count: Object.keys(nextErrors).length }) });
     router.refresh();
   };
 
-  if (!group) return <p className="text-sm text-ink-muted">Produk ini belum punya varian.</p>;
+  if (!group) return <p className="text-sm text-ink-muted">{t("noVariants")}</p>;
 
   const singleColumn = group.widths.length === 1 && group.widths[0] === null;
 
@@ -139,7 +136,7 @@ export function VariantStockGrid({ variants, widthOrder }: { variants: VariantAd
     <div className="flex flex-col gap-4">
       {groups.length > 1 ? (
         <SegmentedControl
-          label="Warna"
+          label={t("colorLabel")}
           size="sm"
           value={group.key}
           onChange={setGroupKey}
@@ -152,15 +149,15 @@ export function VariantStockGrid({ variants, widthOrder }: { variants: VariantAd
 
       <div className="overflow-x-auto rounded-md border border-border">
         <table className="border-collapse text-sm" data-testid="stock-grid" data-group={group.label}>
-          <caption className="sr-only">Stok {group.label}: baris ukuran, kolom width</caption>
+          <caption className="sr-only">{t("caption", { group: group.label })}</caption>
           <thead>
             <tr className="bg-surface-alt">
               <th scope="col" className="sticky left-0 z-10 bg-surface-alt px-3 py-2 text-left text-xs font-semibold text-ink-muted">
-                Ukuran
+                {t("size")}
               </th>
               {group.widths.map((w) => (
                 <th key={w ?? "_"} scope="col" className="px-2 py-2 text-left text-xs font-semibold text-ink-muted">
-                  {w ?? (singleColumn ? "Stok" : "—")}
+                  {w ?? (singleColumn ? t("stock") : "—")}
                 </th>
               ))}
             </tr>
@@ -195,7 +192,7 @@ export function VariantStockGrid({ variants, widthOrder }: { variants: VariantAd
                             return c;
                           });
                         }}
-                        aria-label={`Stok ${v.label}`}
+                        aria-label={t("cellLabel", { label: v.label })}
                         aria-invalid={err ? true : undefined}
                         data-sku={v.sku}
                         className={cn(
@@ -206,9 +203,9 @@ export function VariantStockGrid({ variants, widthOrder }: { variants: VariantAd
                         )}
                       />
                       <div className="mt-0.5 whitespace-nowrap text-[11px] leading-4 text-ink-muted">
-                        {v.reserved ? `${v.reserved} dipesan · ` : ""}
+                        {v.reserved ? t("reserved", { count: v.reserved }) : ""}
                         <span className={cn(v.available <= 0 ? (v.preorderEnabled ? "text-warning" : "text-error") : v.available <= 3 ? "text-warning" : "")}>
-                          {v.available <= 0 ? (v.preorderEnabled ? "PO" : "habis") : `sisa ${v.available}`}
+                          {v.available <= 0 ? (v.preorderEnabled ? t("preorderShort") : t("soldOut")) : t("left", { count: v.available })}
                         </span>
                       </div>
                       {err ? (
@@ -228,13 +225,15 @@ export function VariantStockGrid({ variants, widthOrder }: { variants: VariantAd
       <div className="sticky bottom-0 z-20 -mx-4 flex items-center gap-3 border-t border-border bg-surface px-4 py-3 md:mx-0 md:rounded-md md:border">
         <p className="flex-1 text-sm text-ink-muted" aria-live="polite">
           {changed.length ? (
-            <>
-              <strong className="font-semibold text-ink">{changed.length}</strong> perubahan<span className="hidden md:inline"> belum disimpan</span>
-            </>
+            t.rich("changes", {
+              count: changed.length,
+              strong: (chunks) => <strong className="font-semibold text-ink">{chunks}</strong>,
+              desktop: (chunks) => <span className="hidden md:inline">{chunks}</span>,
+            })
           ) : (
             <span>
-              <span className="md:hidden">Ubah angka stok (on hand).</span>
-              <span className="hidden md:inline">Ubah angka di sel untuk mengatur stok fisik (on hand).</span>
+              <span className="md:hidden">{t("hintMobile")}</span>
+              <span className="hidden md:inline">{t("hintDesktop")}</span>
             </span>
           )}
         </p>
@@ -247,10 +246,10 @@ export function VariantStockGrid({ variants, widthOrder }: { variants: VariantAd
             setErrors({});
           }}
         >
-          Batal
+          {t("cancel")}
         </Button>
         <Button size="sm" onClick={onSave} disabled={!changed.length} loading={saving}>
-          Simpan stok
+          {t("save")}
         </Button>
       </div>
     </div>

@@ -2,13 +2,15 @@ import type { OutboxRow } from "@/lib/services/outbox";
 import { formatDateTimeWIB, formatPhoneID } from "@/lib/format";
 import Link from "next/link";
 import { CheckCheck, Clock, X } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
+import type { Locale } from "@/lib/contracts";
 import { WhatsAppIcon } from "@/components/store/whatsapp-button";
 import { TemplateBadge } from "./status-badge";
 
 const STATUS = {
-  SENT: { label: "Terkirim", icon: CheckCheck, cls: "text-info" },
-  QUEUED: { label: "Antre", icon: Clock, cls: "text-ink-muted" },
-  FAILED: { label: "Gagal", icon: X, cls: "text-error" },
+  SENT: { icon: CheckCheck, cls: "text-info" },
+  QUEUED: { icon: Clock, cls: "text-ink-muted" },
+  FAILED: { icon: X, cls: "text-error" },
 } as const;
 
 /** Render URLs in a message body as links (bodies are plain text from our own templates). */
@@ -31,7 +33,9 @@ function Linkified({ text }: { text: string }) {
 
 /** ADM-06 OutboxList: each message previewed as a WhatsApp-like chat bubble. */
 export function OutboxList({ items }: { items: OutboxRow[] }) {
-  if (items.length === 0) return <p className="px-4 py-10 text-center text-sm text-ink-muted">Belum ada pesan.</p>;
+  const t = useTranslations("admin");
+  const locale = useLocale() as Locale;
+  if (items.length === 0) return <p className="px-4 py-10 text-center text-sm text-ink-muted">{t("outbox.empty")}</p>;
   return (
     <ul className="flex flex-col gap-4 bg-surface-alt p-3 md:p-5" data-testid="outbox">
       {items.map((m) => {
@@ -58,8 +62,8 @@ export function OutboxList({ items }: { items: OutboxRow[] }) {
                 <Linkified text={m.body} />
               </p>
               <p className="mt-1 flex items-center justify-end gap-1 text-[11px] text-ink-muted">
-                <time dateTime={m.createdAt.toISOString()}>{formatDateTimeWIB(m.createdAt)}</time>
-                <Icon size={14} strokeWidth={2} aria-label={st.label} className={st.cls} />
+                <time dateTime={m.createdAt.toISOString()}>{formatDateTimeWIB(m.createdAt, locale)}</time>
+                <Icon size={14} strokeWidth={2} aria-label={t(`outboxStatus.${m.status}`)} className={st.cls} />
               </p>
             </div>
           </li>

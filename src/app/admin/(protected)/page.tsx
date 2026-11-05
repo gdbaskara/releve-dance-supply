@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import { BellRing, Clock, PackageCheck, TriangleAlert, Truck } from "lucide-react";
 import { getDashboardStats, listOrders } from "@/lib/services/order-admin";
 import { formatIDR } from "@/lib/format";
@@ -7,7 +8,10 @@ import { StatCard } from "@/components/admin/stat-card";
 import { Panel, PageHeader } from "@/components/admin/panel";
 import { OrderTable } from "@/components/admin/order-table";
 
-export const metadata: Metadata = { title: "Dashboard" };
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("admin.dashboard");
+  return { title: t("title") };
+}
 
 export default async function AdminDashboard() {
   const [stats, paid, processing, latest] = await Promise.all([
@@ -16,42 +20,43 @@ export default async function AdminDashboard() {
     listOrders({ status: "PROCESSING", pageSize: 1 }),
     listOrders({ pageSize: 10 }),
   ]);
+  const t = await getTranslations("admin.dashboard");
   const icon = { size: 18, strokeWidth: 1.5, "aria-hidden": true } as const;
   return (
     <>
       <PageHeader
-        title="Dashboard"
-        description={`Hari ini: ${stats.ordersToday} order · omzet ${formatIDR(stats.revenueTodayIdr)}`}
+        title={t("title")}
+        description={t("today", { orders: stats.ordersToday, revenue: formatIDR(stats.revenueTodayIdr) })}
       />
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4" data-testid="stats">
         <StatCard
-          label="Menunggu bayar"
+          label={t("pendingLabel")}
           value={stats.pendingPayment}
-          hint="Order belum dibayar"
+          hint={t("pendingHint")}
           href="/admin/orders?status=PENDING_PAYMENT"
           tone={stats.pendingPayment ? "warning" : "default"}
           icon={<Clock {...icon} />}
         />
         <StatCard
-          label="Perlu diproses"
+          label={t("toProcessLabel")}
           value={paid.total}
-          hint="Sudah dibayar"
+          hint={t("toProcessHint")}
           href="/admin/orders?status=PAID"
           tone={paid.total ? "info" : "default"}
           icon={<PackageCheck {...icon} />}
         />
         <StatCard
-          label="Perlu dikirim"
+          label={t("toShipLabel")}
           value={processing.total}
-          hint="Sedang diproses"
+          hint={t("toShipHint")}
           href="/admin/orders?status=PROCESSING"
           tone={processing.total ? "info" : "default"}
           icon={<Truck {...icon} />}
         />
         <StatCard
-          label="Stok rendah"
+          label={t("lowStockLabel")}
           value={stats.lowStockVariants}
-          hint={`${stats.soldOutVariants} varian habis`}
+          hint={t("lowStockHint", { count: stats.soldOutVariants })}
           href="/admin/low-stock"
           tone={stats.lowStockVariants ? "warning" : "default"}
           icon={<TriangleAlert {...icon} />}
@@ -65,19 +70,22 @@ export default async function AdminDashboard() {
         >
           <BellRing size={18} strokeWidth={1.5} aria-hidden className="text-accent-strong" />
           <span>
-            <strong className="font-semibold">{stats.pendingBackInStock}</strong> permintaan back-in-stock menunggu stok.
+            {t.rich("backInStock", {
+              count: stats.pendingBackInStock,
+              strong: (chunks) => <strong className="font-semibold">{chunks}</strong>,
+            })}
           </span>
-          <span className="ml-auto font-semibold underline underline-offset-4">Lihat</span>
+          <span className="ml-auto font-semibold underline underline-offset-4">{t("view")}</span>
         </Link>
       ) : null}
 
       <Panel
         className="mt-5"
-        title="10 order terbaru"
+        title={t("latest")}
         flush
         actions={
           <Link href="/admin/orders" className="text-sm font-semibold underline underline-offset-4">
-            Semua order
+            {t("allOrders")}
           </Link>
         }
       >

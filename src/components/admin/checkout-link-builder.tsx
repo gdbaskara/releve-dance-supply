@@ -2,11 +2,13 @@
 
 import * as React from "react";
 import { useRouter } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
 import { Plus, Trash2 } from "lucide-react";
 import { createCheckoutLinkAction, getProductAdminAction } from "@/lib/actions/admin";
 import type { ProductAdminDetail, VariantAdminView } from "@/lib/services/stock";
 import { formatDateTimeWIB, formatIDR, normalizePhoneID } from "@/lib/format";
-import { buildWaLinkTo } from "@/lib/wa";
+import { buildWaLinkTo, checkoutLinkShareText } from "@/lib/wa";
+import type { Locale } from "@/lib/contracts";
 import { cn } from "@/lib/utils/cn";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Combobox } from "@/components/ui/combobox";
@@ -39,18 +41,16 @@ interface Line {
 }
 
 type Dim = "color" | "size" | "width" | "shank";
-const DIMS: { key: Dim; option: string; label: string }[] = [
-  { key: "color", option: "Color", label: "Warna" },
-  { key: "size", option: "Size", label: "Ukuran" },
-  { key: "width", option: "Width", label: "Width" },
-  { key: "shank", option: "Shank", label: "Shank" },
+/** Variant dimensions in picking order; `labelKey` is under admin.builder. */
+const DIMS: readonly { key: Dim; labelKey: "dimColor" | "dimSize" | "dimWidth" | "dimShank" }[] = [
+  { key: "color", labelKey: "dimColor" },
+  { key: "size", labelKey: "dimSize" },
+  { key: "width", labelKey: "dimWidth" },
+  { key: "shank", labelKey: "dimShank" },
 ];
 
-const ERRORS: Record<string, string> = {
-  INVALID_INPUT: "Data link tidak valid. Periksa item dan jumlahnya.",
-  UNKNOWN_SKU: "Ada varian yang tidak dikenal. Hapus lalu tambahkan lagi.",
-  INVALID_WA: "Nomor WhatsApp tidak valid.",
-};
+/** Server error codes that have a message in admin.json `builder.errors`. */
+const KNOWN_ERRORS = ["INVALID_INPUT", "UNKNOWN_SKU", "INVALID_WA"] as const;
 
 function maxQty(v: VariantAdminView) {
   return v.available > 0 ? v.available : v.preorderEnabled ? 5 : 0;
@@ -59,6 +59,8 @@ function maxQty(v: VariantAdminView) {
 /** ADM-05 CheckoutLinkBuilder: search product → variant + qty → lines → optional customer → link + Copy + "Kirim via WA". */
 export function CheckoutLinkBuilder({ products }: { products: BuilderProduct[] }) {
   const router = useRouter();
+  const t = useTranslations("admin.builder");
+  const adminLocale = useLocale() as Locale;
   const [productId, setProductId] = React.useState<string | null>(null);
   const [detail, setDetail] = React.useState<ProductAdminDetail | null>(null);
   const [loading, setLoading] = React.useState(false);
@@ -156,7 +158,7 @@ export function CheckoutLinkBuilder({ products }: { products: BuilderProduct[] }
     setError(null);
     setWaError(null);
     if (wa.trim() && !normalizePhoneID(wa)) {
-      setWaError("Nomor WhatsApp tidak valid. Contoh: 0812 3456 7890");
+      setWaError(t("errors.invalidWaExample"));
       return;
     }
     startTransition(async () => {
@@ -170,9 +172,9 @@ export function CheckoutLinkBuilder({ products }: { products: BuilderProduct[] }
         setResult({ url: res.url, expiresAt: res.expiresAt, waLink: res.waLink });
         router.refresh();
       } else if (res.error === "INVALID_WA") {
-        setWaError(ERRORS.INVALID_WA);
+        setWaError(t("errors.INVALID_WA"));
       } else {
-        setError(ERRORS[res.error] ?? "Gagal membuat link.");
+        setError((KNOWN_ERRORS as readonly string[]).includes(res.error) ? t(`errors.${res.error}`) : t("errors.failed"));
       }
     });
   };
@@ -187,28 +189,23 @@ export function CheckoutLinkBuilder({ products }: { products: BuilderProduct[] }
   };
 
   const shareHref = result
-    ? (result.waLink ??
-      buildWaLinkTo(
-        "",
-        locale === "id"
-          ? `Halo${name.trim() ? ` ${name.trim()}` : ""}, ini link checkout pesanan kamu dari Relevé Dance Supply (berlaku 48 jam): ${result.url}`
-          : `Hi${name.trim() ? ` ${name.trim()}` : ""}, here is your checkout link from Relevé Dance Supply (valid for 48 hours): ${result.url}`,
-      ))
+    ? // Written to the buyer, so in the checkout page language (not the admin UI language).
+      (result.waLink ?? buildWaLinkTo("", checkoutLinkShareText(locale, { name, url: result.url })))
     : "";
 
   return (
     <div className="grid gap-4 lg:grid-cols-[1fr_380px]">
       <section className="flex flex-col gap-4 rounded-lg border border-border bg-surface p-4" aria-labelledby="clb-pick">
         <h2 id="clb-pick" className="text-sm font-semibold text-ink">
-          1. Pilih produk & varian
+          {t("step1")}
         </h2>
         <Combobox
-          label="Produk"
+          label={t("product")}
           options={productOptions}
           value={productId}
           onChange={(v) => void loadProduct(v)}
-          placeholder="Cari nama atau kode model…"
-          emptyText={(q) => `Tidak ada produk "${q}"`}
+          placeholder={t("productPlaceholder")}
+          emptyText={(q) => t("noProductMatch", { query: q })}
         />
         {loading ? (
           <div className="grid grid-cols-2 gap-3">
@@ -223,9 +220,9 @@ export function CheckoutLinkBuilder({ products }: { products: BuilderProduct[] }
                 return (
                   <Select
                     key={d.key}
-                    label={d.label}
+                    label={t(d.labelKey)}
                     value={pick[d.key] ?? ""}
-                    placeholder="Pilih"
+                    placeholder={t("pick")}
                     onChange={(e) => {
                       const val = e.target.value;
                       setPick((p) => {
@@ -249,7 +246,7 @@ export function CheckoutLinkBuilder({ products }: { products: BuilderProduct[] }
             </div>
             <div className="flex flex-wrap items-end gap-3">
               <Input
-                label="Qty"
+                label={t("qty")}
                 type="number"
                 inputMode="numeric"
                 min={1}
@@ -267,7 +264,7 @@ export function CheckoutLinkBuilder({ products }: { products: BuilderProduct[] }
                 disabled={!selected || qtyInvalid || selMax === 0}
                 leadingIcon={<Plus size={16} strokeWidth={1.5} aria-hidden />}
               >
-                Tambah item
+                {t("addItem")}
               </Button>
               {selected ? (
                 <span className="flex flex-col items-start gap-1 pb-1 text-sm">
@@ -276,19 +273,19 @@ export function CheckoutLinkBuilder({ products }: { products: BuilderProduct[] }
                 </span>
               ) : null}
             </div>
-            {selected && selMax === 0 ? <Notice tone="warning">Varian ini habis dan tidak menerima pre-order.</Notice> : null}
+            {selected && selMax === 0 ? <Notice tone="warning">{t("soldOutNoPreorder")}</Notice> : null}
             {selected && selMax > 0 && qtyNum > selMax ? (
-              <p className="text-sm text-warning">Maks. {selMax} untuk varian ini — jumlah akan disesuaikan.</p>
+              <p className="text-sm text-warning">{t("maxQty", { max: selMax })}</p>
             ) : null}
           </>
         ) : productId ? (
-          <Notice tone="error">Produk tidak ditemukan.</Notice>
+          <Notice tone="error">{t("productNotFound")}</Notice>
         ) : null}
 
-        <h2 className="mt-2 text-sm font-semibold text-ink">2. Item di link ({lines.length})</h2>
+        <h2 className="mt-2 text-sm font-semibold text-ink">{t("step2", { count: lines.length })}</h2>
         {lines.length === 0 ? (
           <p className="rounded-md border border-dashed border-border-strong px-4 py-6 text-center text-sm text-ink-muted">
-            Belum ada item. Pilih varian lalu klik “Tambah item”.
+            {t("noItems")}
           </p>
         ) : (
           <ul className="divide-y divide-border rounded-md border border-border" data-testid="link-lines">
@@ -299,14 +296,14 @@ export function CheckoutLinkBuilder({ products }: { products: BuilderProduct[] }
                     {l.name} <span className="font-mono font-normal text-ink-muted">{l.modelCode}</span>
                   </span>
                   <span className="text-ink-muted">{l.label}</span>
-                  {l.variant.available <= 0 && l.variant.preorderEnabled ? <span className="text-xs text-warning">Pre-order</span> : null}
+                  {l.variant.available <= 0 && l.variant.preorderEnabled ? <span className="text-xs text-warning">{t("preorder")}</span> : null}
                 </div>
                 <input
                   type="number"
                   min={1}
                   max={maxQty(l.variant) || undefined}
                   value={l.qty}
-                  aria-label={`Qty ${l.name} ${l.label}`}
+                  aria-label={t("lineQty", { name: l.name, label: l.label })}
                   onChange={(e) => {
                     const n = Math.max(1, Math.min(Number(e.target.value) || 1, maxQty(l.variant) || 1));
                     setLines((prev) => prev.map((x) => (x.sku === l.sku ? { ...x, qty: n } : x)));
@@ -321,7 +318,7 @@ export function CheckoutLinkBuilder({ products }: { products: BuilderProduct[] }
                     setLines((prev) => prev.filter((x) => x.sku !== l.sku));
                     setResult(null);
                   }}
-                  aria-label={`Hapus ${l.name} ${l.label}`}
+                  aria-label={t("removeLine", { name: l.name, label: l.label })}
                   className="inline-flex size-9 items-center justify-center rounded-sm text-ink-muted hover:bg-surface-alt hover:text-error"
                 >
                   <Trash2 size={16} strokeWidth={1.5} aria-hidden />
@@ -329,7 +326,7 @@ export function CheckoutLinkBuilder({ products }: { products: BuilderProduct[] }
               </li>
             ))}
             <li className="tabular flex justify-between bg-surface-alt px-3 py-2.5 text-sm font-semibold">
-              <span>Subtotal (harga katalog)</span>
+              <span>{t("subtotal")}</span>
               <span>{formatIDR(subtotal)}</span>
             </li>
           </ul>
@@ -338,11 +335,11 @@ export function CheckoutLinkBuilder({ products }: { products: BuilderProduct[] }
 
       <section className="flex flex-col gap-4 rounded-lg border border-border bg-surface p-4" aria-labelledby="clb-customer">
         <h2 id="clb-customer" className="text-sm font-semibold text-ink">
-          3. Pembeli (opsional)
+          {t("step3")}
         </h2>
-        <Input label="Nama" optional value={name} onChange={(e) => setName(e.target.value)} maxLength={100} className="h-10" autoComplete="off" />
+        <Input label={t("name")} optional value={name} onChange={(e) => setName(e.target.value)} maxLength={100} className="h-10" autoComplete="off" />
         <Input
-          label="Nomor WhatsApp"
+          label={t("whatsapp")}
           optional
           type="tel"
           inputMode="tel"
@@ -353,20 +350,20 @@ export function CheckoutLinkBuilder({ products }: { products: BuilderProduct[] }
           }}
           placeholder="0812 3456 7890"
           error={waError ?? undefined}
-          helper="Nama & nomor mengisi otomatis form checkout."
+          helper={t("whatsappHelper")}
           className="h-10"
           autoComplete="off"
         />
         <div className="flex flex-col gap-1.5">
-          <span className="text-sm font-medium text-ink">Bahasa halaman checkout</span>
+          <span className="text-sm font-medium text-ink">{t("checkoutLanguage")}</span>
           <SegmentedControl
-            label="Bahasa halaman checkout"
+            label={t("checkoutLanguage")}
             size="sm"
             value={locale}
             onChange={(v) => setLocale(v as "id" | "en")}
             options={[
-              { value: "id", label: "Indonesia" },
-              { value: "en", label: "English" },
+              { value: "id", label: t("languageId") },
+              { value: "en", label: t("languageEn") },
             ]}
           />
         </div>
@@ -376,23 +373,23 @@ export function CheckoutLinkBuilder({ products }: { products: BuilderProduct[] }
           </Notice>
         ) : null}
         <Button onClick={create} disabled={lines.length === 0} loading={pending} size="sm" className="h-11">
-          Buat checkout link
+          {t("create")}
         </Button>
-        <p className="text-xs text-ink-muted">Harga mengikuti katalog saat checkout. Link berlaku 48 jam & sekali pakai.</p>
+        <p className="text-xs text-ink-muted">{t("createNote")}</p>
 
         {result ? (
           <div className="flex flex-col gap-3 rounded-md bg-success-bg p-3" role="status" data-testid="link-result">
-            <p className="text-sm font-semibold text-success">Link siap · berlaku s/d {formatDateTimeWIB(result.expiresAt)}</p>
+            <p className="text-sm font-semibold text-success">{t("ready", { date: formatDateTimeWIB(result.expiresAt, adminLocale) })}</p>
             <input
               readOnly
               value={result.url}
-              aria-label="Checkout link"
+              aria-label={t("linkLabel")}
               onFocus={(e) => e.currentTarget.select()}
               data-testid="checkout-link-url"
               className="h-10 w-full rounded-sm border border-border-strong bg-surface px-3 font-mono text-sm text-ink"
             />
             <div className="flex flex-wrap gap-2">
-              <CopyButton value={result.url} appearance="outline" ariaLabel="Salin checkout link" className="h-9 min-h-9 bg-surface text-xs" />
+              <CopyButton value={result.url} appearance="outline" ariaLabel={t("copyLink")} className="h-9 min-h-9 bg-surface text-xs" />
               <a
                 href={shareHref}
                 target="_blank"
@@ -400,12 +397,12 @@ export function CheckoutLinkBuilder({ products }: { products: BuilderProduct[] }
                 className={cn(buttonVariants({ variant: "whatsapp", size: "sm" }))}
                 data-testid="send-wa"
               >
-                <WhatsAppIcon size={18} /> Kirim via WA
+                <WhatsAppIcon size={18} /> {t("sendWa")}
               </a>
             </div>
-            {!result.waLink ? <p className="text-xs text-ink-muted">Tanpa nomor pembeli: pilih kontak di WhatsApp.</p> : null}
+            {!result.waLink ? <p className="text-xs text-ink-muted">{t("noBuyerNumber")}</p> : null}
             <Button size="sm" variant="ghost" onClick={reset} className="self-start">
-              Buat link baru
+              {t("newLink")}
             </Button>
           </div>
         ) : null}

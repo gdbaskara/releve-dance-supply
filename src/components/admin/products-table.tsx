@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useTranslations } from "next-intl";
 import type { ProductAdminRow } from "@/lib/services/stock";
 import { formatIDR } from "@/lib/format";
 import { Badge } from "@/components/ui/badge";
@@ -15,14 +16,15 @@ function norm(s: string) {
 }
 
 function StockSummary({ p }: { p: ProductTableRow }) {
+  const t = useTranslations("admin.products");
   const c = p.statusCounts;
   const sellable = c.READY + c.LOW;
-  if (sellable === 0 && c.PREORDER === 0) return <Badge variant="neutral">Habis</Badge>;
+  if (sellable === 0 && c.PREORDER === 0) return <Badge variant="neutral">{t("soldOut")}</Badge>;
   return (
     <span className="flex flex-wrap gap-1">
-      {sellable ? <Badge variant="success">{sellable} ready</Badge> : null}
-      {c.LOW ? <Badge variant="warning">{c.LOW} rendah</Badge> : null}
-      {c.SOLD_OUT ? <Badge variant="neutral">{c.SOLD_OUT} habis</Badge> : null}
+      {sellable ? <Badge variant="success">{t("readyCount", { count: sellable })}</Badge> : null}
+      {c.LOW ? <Badge variant="warning">{t("lowCount", { count: c.LOW })}</Badge> : null}
+      {c.SOLD_OUT ? <Badge variant="neutral">{t("soldOutCount", { count: c.SOLD_OUT })}</Badge> : null}
     </span>
   );
 }
@@ -30,6 +32,7 @@ function StockSummary({ p }: { p: ProductTableRow }) {
 type SortKey = "name" | "modelCode" | "discipline" | "priceIdr" | "onHand";
 
 export function ProductsTable({ rows, disciplines }: { rows: ProductTableRow[]; disciplines: string[] }) {
+  const t = useTranslations("admin.products");
   const [q, setQ] = React.useState("");
   const [discipline, setDiscipline] = React.useState("");
   const [sort, setSort] = React.useState<{ key: SortKey; dir: "asc" | "desc" } | null>(null);
@@ -54,40 +57,40 @@ export function ProductsTable({ rows, disciplines }: { rows: ProductTableRow[]; 
   const columns: Column<ProductTableRow>[] = [
     {
       key: "name",
-      header: "Nama",
+      header: t("colName"),
       sortable: true,
       cell: (p) => (
         <span className="flex flex-col">
           <span>{p.name}</span>
-          <span className="text-xs font-normal text-ink-muted">{p.audience} · {p.variantCount} varian</span>
+          <span className="text-xs font-normal text-ink-muted">{t("variantsMeta", { audience: p.audience, count: p.variantCount })}</span>
         </span>
       ),
     },
-    { key: "modelCode", header: "Kode", sortable: true, cell: (p) => <span className="font-mono text-sm">{p.modelCode}</span> },
-    { key: "discipline", header: "Disiplin", sortable: true, cell: (p) => p.discipline },
-    { key: "priceIdr", header: "Harga", align: "right", sortable: true, cell: (p) => <span className="tabular">{formatIDR(p.priceIdr)}</span> },
+    { key: "modelCode", header: t("colCode"), sortable: true, cell: (p) => <span className="font-mono text-sm">{p.modelCode}</span> },
+    { key: "discipline", header: t("colDiscipline"), sortable: true, cell: (p) => p.discipline },
+    { key: "priceIdr", header: t("colPrice"), align: "right", sortable: true, cell: (p) => <span className="tabular">{formatIDR(p.priceIdr)}</span> },
     {
       key: "onHand",
-      header: "Total stok",
+      header: t("colStock"),
       align: "right",
       sortable: true,
       cell: (p) => (
         <span className="tabular">
           {p.onHand}
-          {p.reserved ? <span className="text-xs text-ink-muted"> ({p.reserved} dipesan)</span> : null}
+          {p.reserved ? <span className="text-xs text-ink-muted"> {t("reserved", { count: p.reserved })}</span> : null}
         </span>
       ),
     },
-    { key: "status", header: "Status", cell: (p) => <StockSummary p={p} /> },
+    { key: "status", header: t("colStatus"), cell: (p) => <StockSummary p={p} /> },
     {
       key: "preorder",
-      header: "Pre-order",
+      header: t("colPreorder"),
       // variants that are out of stock but sellable as pre-order right now
       cell: (p) =>
         p.statusCounts.PREORDER === 0 ? (
           <span className="text-ink-muted">—</span>
         ) : (
-          <Badge variant="warning">{p.statusCounts.PREORDER === p.variantCount ? "Semua varian" : `${p.statusCounts.PREORDER} varian`}</Badge>
+          <Badge variant="warning">{p.statusCounts.PREORDER === p.variantCount ? t("allVariants") : t("variantCount", { count: p.statusCounts.PREORDER })}</Badge>
         ),
     },
   ];
@@ -96,8 +99,8 @@ export function ProductsTable({ rows, disciplines }: { rows: ProductTableRow[]; 
     <div className="flex flex-col">
       <div className="flex flex-col gap-3 border-b border-border p-4 md:flex-row md:items-end">
         <Input
-          label="Cari"
-          placeholder="Nama, kode model, disiplin…"
+          label={t("searchLabel")}
+          placeholder={t("searchPlaceholder")}
           value={q}
           onChange={(e) => setQ(e.target.value)}
           className="h-10"
@@ -105,15 +108,15 @@ export function ProductsTable({ rows, disciplines }: { rows: ProductTableRow[]; 
           type="search"
         />
         <Select
-          label="Disiplin"
+          label={t("disciplineLabel")}
           value={discipline}
           onChange={(e) => setDiscipline(e.target.value)}
-          options={[{ value: "", label: "Semua disiplin" }, ...disciplines.map((d) => ({ value: d, label: d }))]}
+          options={[{ value: "", label: t("allDisciplines") }, ...disciplines.map((d) => ({ value: d, label: d }))]}
           className="h-10"
           wrapperClassName="md:w-56"
         />
         <p className="text-sm text-ink-muted md:pb-2.5" aria-live="polite">
-          {filtered.length} produk
+          {t("count", { count: filtered.length })}
         </p>
       </div>
       <DataTable
@@ -121,9 +124,9 @@ export function ProductsTable({ rows, disciplines }: { rows: ProductTableRow[]; 
         columns={columns}
         rowKey={(p) => p.id}
         rowHref={(p) => `/admin/products/${p.id}`}
-        rowLinkLabel={(p) => `Kelola stok ${p.name} ${p.modelCode}`}
-        caption="Produk"
-        empty="Tidak ada produk yang cocok."
+        rowLinkLabel={(p) => t("openRow", { name: p.name, modelCode: p.modelCode })}
+        caption={t("caption")}
+        empty={t("empty")}
         sort={sort}
         onSort={(key) =>
           setSort((s) => (s?.key === key ? (s.dir === "asc" ? { key: key as SortKey, dir: "desc" } : null) : { key: key as SortKey, dir: "asc" }))

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Search } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import type { OrderStatus } from "@/lib/contracts";
 import { listOrders } from "@/lib/services/order-admin";
 import { Button } from "@/components/ui/button";
@@ -8,19 +9,24 @@ import { Panel, PageHeader } from "@/components/admin/panel";
 import { ChipLink, ChipRow } from "@/components/admin/chip-link";
 import { OrderTable } from "@/components/admin/order-table";
 import { Pagination } from "@/components/admin/pagination";
-import { ORDER_STATUS_LABEL, ORDER_STATUS_ORDER } from "@/components/admin/labels";
+import { ORDER_STATUS_ORDER } from "@/components/admin/labels";
 
-export const metadata: Metadata = { title: "Order" };
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("admin.orders");
+  return { title: t("title") };
+}
 
 const PAGE_SIZE = 25;
 
 export default async function AdminOrdersPage({ searchParams }: PageProps<"/admin/orders">) {
   const sp = await searchParams;
   const rawStatus = typeof sp.status === "string" ? sp.status : "";
-  const status = (ORDER_STATUS_ORDER as string[]).includes(rawStatus) ? (rawStatus as OrderStatus) : undefined;
+  const status = (ORDER_STATUS_ORDER as readonly string[]).includes(rawStatus) ? (rawStatus as OrderStatus) : undefined;
   const q = typeof sp.q === "string" ? sp.q.slice(0, 60) : "";
   const page = Math.max(1, Number(typeof sp.page === "string" ? sp.page : 1) || 1);
 
+  const t = await getTranslations("admin.orders");
+  const ts = await getTranslations("admin.orderStatus");
   const [result, ...counts] = await Promise.all([
     listOrders({ status, q: q || undefined, page, pageSize: PAGE_SIZE }),
     listOrders({ q: q || undefined, pageSize: 1 }),
@@ -39,36 +45,36 @@ export default async function AdminOrdersPage({ searchParams }: PageProps<"/admi
 
   return (
     <>
-      <PageHeader title="Order" description="Filter status, cari nomor order / nama / nomor WA." />
+      <PageHeader title={t("title")} description={t("description")} />
       <Panel flush>
         <div className="flex flex-col gap-3 border-b border-border p-4">
           <form method="get" action="/admin/orders" className="flex items-end gap-2" role="search">
             {status ? <input type="hidden" name="status" value={status} /> : null}
             <Input
-              label="Cari order"
+              label={t("searchLabel")}
               name="q"
               type="search"
               defaultValue={q}
-              placeholder="RDS-…, nama, atau 0812…"
+              placeholder={t("searchPlaceholder")}
               className="h-10"
               wrapperClassName="flex-1 md:max-w-md"
             />
             <Button type="submit" size="sm" variant="secondary" className="h-10" leadingIcon={<Search size={16} strokeWidth={1.5} aria-hidden />}>
-              Cari
+              {t("searchSubmit")}
             </Button>
           </form>
-          <ChipRow label="Filter status">
+          <ChipRow label={t("filterLabel")}>
             <ChipLink href={href({ q })} selected={!status} count={all}>
-              Semua
+              {t("all")}
             </ChipLink>
             {ORDER_STATUS_ORDER.map((s, i) => (
               <ChipLink key={s} href={href({ status: s, q })} selected={status === s} count={perStatus[i]}>
-                {ORDER_STATUS_LABEL[s]}
+                {ts(s)}
               </ChipLink>
             ))}
           </ChipRow>
         </div>
-        <OrderTable rows={result.items} empty={q || status ? "Tidak ada order yang cocok dengan filter." : "Belum ada order."} />
+        <OrderTable rows={result.items} empty={q || status ? t("emptyFiltered") : t("empty")} />
         <Pagination page={result.page} pageSize={result.pageSize} total={result.total} hrefFor={(p) => href({ status, q, page: p })} />
       </Panel>
     </>

@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { setPreorderAction } from "@/lib/actions/admin";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -22,6 +23,7 @@ export function PreorderPanel({
 }) {
   const router = useRouter();
   const { toast } = useToast();
+  const t = useTranslations("admin.preorder");
   const initialEnabled = enabledCount > 0 && enabledCount === variantCount;
   const [enabled, setEnabled] = React.useState<boolean>(initialEnabled);
   const [leadValue, setLeadValue] = React.useState(lead ?? "4-6");
@@ -33,16 +35,16 @@ export function PreorderPanel({
   const save = () => {
     setError(null);
     if (enabled && !/^\d{1,2}(-\d{1,2})?$/.test(leadValue.trim())) {
-      setError("Format: 4-6 atau 3");
+      setError(t("leadFormat"));
       return;
     }
     startTransition(async () => {
       const res = await setPreorderAction({ target: { productId }, enabled, lead: enabled ? leadValue.trim() : null });
       if (res.ok) {
-        toast({ variant: "success", title: enabled ? "Pre-order aktif" : "Pre-order dimatikan", description: `${res.updated} varian diperbarui.` });
+        toast({ variant: "success", title: enabled ? t("toastEnabled") : t("toastDisabled"), description: t("toastUpdated", { count: res.updated }) });
         router.refresh();
       } else {
-        setError(res.error === "INVALID_LEAD" ? "Format: 4-6 atau 3" : "Gagal menyimpan");
+        setError(res.error === "INVALID_LEAD" ? t("leadFormat") : t("saveFailed"));
       }
     });
   };
@@ -52,29 +54,29 @@ export function PreorderPanel({
       <Checkbox
         checked={enabled}
         onCheckedChange={(v) => setEnabled(v === true)}
-        label="Terima pre-order saat stok habis"
+        label={t("accept")}
         description={
           enabledCount === 0
-            ? "Saat ini tidak aktif."
+            ? t("inactive")
             : enabledCount === variantCount
-              ? `Aktif untuk semua ${variantCount} varian.`
-              : `Aktif untuk ${enabledCount} dari ${variantCount} varian. Simpan untuk menyamakan semua varian.`
+              ? t("activeAll", { count: variantCount })
+              : t("activeSome", { enabled: enabledCount, total: variantCount })
         }
       />
       <Input
-        label="Estimasi (minggu)"
+        label={t("lead")}
         value={leadValue}
         onChange={(e) => setLeadValue(e.target.value)}
         disabled={!enabled}
         error={error ?? undefined}
-        helper="Contoh: 4-6"
+        helper={t("leadHelper")}
         inputMode="numeric"
         className="h-10"
         wrapperClassName="max-w-40"
       />
       <div>
         <Button size="sm" variant="secondary" onClick={save} loading={pending} disabled={!dirty}>
-          Simpan pre-order
+          {t("save")}
         </Button>
       </div>
     </div>

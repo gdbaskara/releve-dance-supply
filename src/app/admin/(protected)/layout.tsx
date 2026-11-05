@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import { requireAdmin } from "@/lib/auth/session";
 import { Wordmark } from "@/components/store/wordmark";
 import { AdminNav } from "@/components/admin/admin-nav";
@@ -5,13 +6,14 @@ import { AdminNav } from "@/components/admin/admin-nav";
 /** Every /admin page except /admin/login: requires the admin session cookie (ADM-01). */
 export default async function ProtectedAdminLayout({ children }: { children: React.ReactNode }) {
   const admin = await requireAdmin();
+  const t = await getTranslations("admin.nav");
   return (
     <div className="min-h-dvh">
       <AdminNav
         brand={
           <span className="flex items-center gap-2">
             <Wordmark size="sm" compact />
-            <span className="rounded-sm bg-accent px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-button text-accent-ink">Admin</span>
+            <span className="rounded-sm bg-accent px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-button text-accent-ink">{t("badge")}</span>
           </span>
         }
         adminName={admin.name}

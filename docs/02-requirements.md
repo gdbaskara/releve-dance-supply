@@ -117,7 +117,7 @@ Every FR has testable acceptance criteria (AC). Agents must reference the FR ID 
 | ORD-03 | M | Order tracking without login: enter order number + last 4 digits of the WA number | Wrong → generic message (does not reveal whether the order exists) |
 | ORD-04 | M | Status timeline (see state machine `05` §3) | — |
 
-## J. Admin (ADM) — Bahasa Indonesia only
+## J. Admin (ADM) — Bahasa Indonesia (default) + English via the `admin_locale` cookie (D-31)
 
 | ID | P | Requirement | Acceptance criteria |
 |---|---|---|---|
