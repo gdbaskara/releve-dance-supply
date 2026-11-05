@@ -19,7 +19,7 @@
   --color-ink: #141414;
   --color-ink-hover: #2B2B2B;
   --color-ink-muted: #5E5852;
-  --color-ink-subtle: #8A837C;
+  --color-ink-subtle: #736C66;
   --color-ink-inverse: #FFFFFF;
   --color-border: #E6E1DB;
   --color-border-strong: #8A837C;
@@ -102,6 +102,10 @@
     outline-offset: 2px;
   }
   input, select, textarea { font-size: 16px; }
+  /* Tailwind 4 preflight leaves buttons on the default arrow; every enabled control shows it is clickable. */
+  button:not(:disabled), [role="button"], select:not(:disabled), summary,
+  label[for], label:has(> input:not(:disabled)) { cursor: pointer; }
+  button:disabled, select:disabled, input:disabled { cursor: not-allowed; }
 }
 
 @utility container-page {

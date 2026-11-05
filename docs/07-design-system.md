@@ -26,7 +26,7 @@ Token source: `design-system/tokens.json` (source of truth) → `design-system/t
 | `surface-alt` | #F7F4F0 | Alternating sections, summary panel, footer | — |
 | `ink` | #141414 | Main text, **primary button**, icons | 18.4:1 |
 | `ink-muted` | #5E5852 | Secondary text, labels, meta | 7.0:1 (6.4 on alt) |
-| `ink-subtle` | #8A837C | Placeholder, non-essential text ≥18px | 3.7:1 ⚠️ not for body |
+| `ink-subtle` | #736C66 | Placeholder, meta, secondary small text | 5.2:1 (4.7:1 on `surface-alt`) |
 | `border` | #E6E1DB | Decorative divider | decorative |
 | `border-strong` | #8A837C | Input/checkbox/size chip border | 3.7:1 (non-text ≥3 ✓) |
 | `accent` | #F3E1DD | Ballet Pink: "Baru" (New) badge background, hero tint, highlight | background only |

@@ -51,7 +51,7 @@ export default async function StoreLayout({ children, params }: LayoutProps<"/[l
     <>
       <a
         href="#main"
-        className="sr-only z-50 bg-ink px-4 py-3 text-sm font-semibold text-ink-inverse focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+        className="sr-only z-50 bg-ink px-4 text-sm font-semibold text-ink-inverse focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:inline-flex focus:min-h-11 focus:items-center"
       >
         {t("skipToContent")}
       </a>

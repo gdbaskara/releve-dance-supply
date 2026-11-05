@@ -52,7 +52,7 @@ export function SegmentedControl({ options, value, onChange, label, size = "md",
           aria-label={o.srHint ? `${typeof o.label === "string" ? o.label : o.value}, ${o.srHint}` : undefined}
           className={cn(
             "relative inline-flex items-center justify-center rounded-sm border px-4 font-medium transition-colors duration-150",
-            size === "md" ? "min-h-12 text-sm" : "min-h-9 text-xs",
+            size === "md" ? "min-h-12 min-w-11 text-sm" : "min-h-9 text-xs",
             fullWidth && "flex-1",
             "border-border-strong bg-surface text-ink hover:bg-surface-alt",
             "data-[state=checked]:border-ink data-[state=checked]:bg-ink data-[state=checked]:text-ink-inverse",
@@ -73,7 +73,7 @@ export function SegmentedControl({ options, value, onChange, label, size = "md",
   );
 }
 
-/* ---------------- Tabs ---------------- */
+// Tabs
 
 export interface TabItem {
   value: string;

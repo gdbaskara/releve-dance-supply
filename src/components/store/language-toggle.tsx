@@ -26,7 +26,7 @@ export function LanguageToggle({ locale, hrefs, onChange, linkAs: LinkComp = "a"
       {LOCALES.map((l, i) => {
         const active = l === locale;
         const cls = cn(
-          "eyebrow inline-flex min-h-11 min-w-9 items-center justify-center rounded-sm px-1.5 transition-colors",
+          "eyebrow inline-flex min-h-11 min-w-11 items-center justify-center rounded-sm px-1.5 transition-colors",
           "focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-focus",
           active ? "text-ink underline decoration-1 underline-offset-[6px]" : "text-ink-muted hover:text-ink",
         );

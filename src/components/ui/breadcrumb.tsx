@@ -29,12 +29,12 @@ export function Breadcrumb({ items, label, linkAs: LinkComp = "a", className }: 
               {it.href && !last ? (
                 <LinkComp
                   href={it.href}
-                  className="eyebrow rounded-sm py-1 text-ink-muted hover:text-ink hover:underline focus-visible:outline-2 focus-visible:outline-focus"
+                  className="eyebrow inline-flex min-h-11 items-center rounded-sm text-ink-muted hover:text-ink hover:underline focus-visible:outline-2 focus-visible:outline-focus"
                 >
                   {it.label}
                 </LinkComp>
               ) : (
-                <span aria-current={last ? "page" : undefined} className={cn("eyebrow py-1", last && "text-ink")}>
+                <span aria-current={last ? "page" : undefined} className={cn("eyebrow inline-flex min-h-11 items-center", last && "text-ink")}>
                   {it.label}
                 </span>
               )}
