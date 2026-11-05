@@ -1,0 +1,26 @@
+# Local Postgres for Relevé Dance Supply (docs/14-backup-and-handover.md).
+# Matches the default DATABASE_URL in .env.example: postgres://releve:releve@localhost:5432/releve
+# Also creates `releve_test` for `pnpm test` (see docker/postgres-init/).
+#   docker compose up -d        # start
+#   docker compose down -v      # stop and wipe data
+services:
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: releve
+      POSTGRES_PASSWORD: releve
+      POSTGRES_DB: releve
+    ports:
+      - "5432:5432"
+    volumes:
+      - releve-pg:/var/lib/postgresql/data
+      - ./docker/postgres-init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U releve -d releve"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  releve-pg:

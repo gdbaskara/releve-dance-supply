@@ -31,6 +31,9 @@
 | D-25 | 5 Nov 2026 | Item varian available=0 & pre-order aktif otomatis jadi pre-order saat createOrder (maks 5); varian dengan stok parsial yang kurang → OUT_OF_STOCK | `05` §4 langkah 3 |
 | D-26 | 5 Nov 2026 | Template WA (link & notifikasi) di kode `src/lib/wa` (client-safe), bukan di `messages/*/wa.json` | Dipakai server (outbox) & klien (wa.me) tanpa next-intl |
 | D-27 | 5 Nov 2026 | Showcase page /[locale]/design-system replaces Storybook for the demo | WS-1; tanpa dependensi Storybook, tampil di app yang sama (ID/EN) |
+| D-28 | 5 Nov 2026 | Vercel Cron `/api/cron/expire` **harian** (`0 20 * * *` = 03:00 WIB) di `vercel.json`; di paket Pro boleh `*/5 * * * *`, tidak tiap menit | Hobby hanya mengizinkan cron harian; order juga di-expire lazy saat dibaca & pada getProduct/validateCart (`12-deploy.md` §7) |
+| D-29 | 5 Nov 2026 | Fungsi Vercel di region `sin1`, Neon di `ap-southeast-1`; app memakai connection string Neon **pooled** tanpa `channel_binding` | Latensi DB rendah dari Indonesia; postgres.js meneruskan parameter URL yang tidak dikenal |
+| D-30 | 5 Nov 2026 | `docker-compose.yml` (postgres:16 + DB `releve_test`) disediakan untuk setup lokal; `.env.example` di-whitelist di `.gitignore`, `*.bundle` di-ignore | Serah terima dari nol (`14-backup-and-handover.md`); D-20 tetap: Docker opsional |
 
 ## Terbuka (tidak menghalangi demo)
 

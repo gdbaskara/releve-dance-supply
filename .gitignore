@@ -40,3 +40,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .next-*
+
+# keep the env template; never commit real env files
+!.env.example
+
+# git backup bundles (docs/14-backup-and-handover.md)
+*.bundle
