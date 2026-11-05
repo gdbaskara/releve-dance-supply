@@ -1,1 +1,360 @@
-{}
+{
+  "meta": {
+    "title": "Design system",
+    "description": "Tokens, components & UI patterns of Relevé Dance Supply."
+  },
+  "nav": {
+    "label": "Design system sections",
+    "top": "Back to top"
+  },
+  "hero": {
+    "eyebrow": "Relevé · Design system v1.0",
+    "title": "The Relevé visual language",
+    "tagline": "Every step begins with the right shoe.",
+    "intro": "Monochrome, precise and calm — the product takes the stage. This page shows every token, component and pattern used by the store, with all states and sample data from the catalogue.",
+    "language": "Language",
+    "principles": {
+      "p1": "The product is the stage",
+      "p2": "Ballet-like precision",
+      "p3": "Honest about stock",
+      "p4": "WhatsApp is one tap away",
+      "p5": "Friendly, dance terms kept"
+    }
+  },
+  "sections": {
+    "foundations": {
+      "title": "Foundations",
+      "description": "Colour, type, spacing, radius and icons. Components use these tokens only."
+    },
+    "primitives": {
+      "title": "Primitives",
+      "description": "Building blocks in src/components/ui — keyboard accessible, touch targets ≥ 44px, always-visible focus."
+    },
+    "store": {
+      "title": "Store components",
+      "description": "Presentational components in src/components/store: product card, variant picker, cart, filters, size guide."
+    },
+    "checkout": {
+      "title": "Checkout components",
+      "description": "One-page, three-step checkout and the pay page — QRIS, Virtual Account, e-wallet, card. Digital payments only."
+    },
+    "patterns": {
+      "title": "Patterns",
+      "description": "How components work together: stock states, price, WhatsApp in every context and the pay page per method."
+    }
+  },
+  "foundations": {
+    "colors": {
+      "title": "Colour",
+      "description": "White background, ink text, Ballet Pink used sparingly. The number in the corner is the WCAG contrast ratio.",
+      "decorative": "Decorative",
+      "onWhite": "text on white",
+      "pair": "text/background pair",
+      "rule": "Rules: at most one primary (ink) button per screen/section · prices are always ink · WhatsApp green only for WhatsApp elements · ink-subtle is never body text.",
+      "usage": {
+        "bg": "Background, cards",
+        "surfaceAlt": "Alternating sections, summary, footer",
+        "ink": "Primary text, primary button, icons",
+        "inkHover": "Primary button hover",
+        "inkMuted": "Secondary text, labels, meta",
+        "inkSubtle": "Placeholder, non-essential ≥ 18px",
+        "border": "Decorative dividers",
+        "borderStrong": "Input, checkbox, size chip borders",
+        "accent": "Ballet Pink: New badge, hero tint",
+        "accentStrong": "Link hover, accent eyebrow",
+        "accentInk": "Text on accent",
+        "success": "Ready, payment successful",
+        "successBg": "Success background",
+        "warning": "Only N left, pre-order, countdown < 5 min",
+        "warningBg": "Warning background",
+        "error": "Form errors, failures",
+        "errorBg": "Error background",
+        "info": "Informative notices, demo mode",
+        "infoBg": "Info background, DemoBanner",
+        "whatsapp": "WhatsApp buttons/icons only",
+        "whatsappInk": "Text on WhatsApp green"
+      }
+    },
+    "type": {
+      "title": "Typography",
+      "description": "Plus Jakarta Sans for UI, Cormorant Garamond only for taglines & quotes. Inputs are always ≥ 16px.",
+      "sampleBody": "A soft stretch-canvas split-sole ballet flat that follows the arch and stays comfortable through long classes.",
+      "sampleCaption": "Relevé Dance Supply is an independent store.",
+      "sampleH2": "Ready in Jakarta",
+      "roles": {
+        "display": "Display",
+        "h1": "H1",
+        "h2": "H2",
+        "h3": "H3",
+        "eyebrow": "Eyebrow / nav",
+        "body": "Body",
+        "small": "Body small",
+        "caption": "Caption",
+        "pricePdp": "PDP price",
+        "mono": "VA / order number"
+      }
+    },
+    "spacing": {
+      "title": "Spacing",
+      "description": "Multiples of 4. Section rhythm 48px mobile, 80px desktop.",
+      "grid": "Grid 4 columns (16 gutter) · 8 (24) · 12 (32). Max container 1280px."
+    },
+    "radius": {
+      "title": "Radius & shadow",
+      "description": "Crisp, ballet-like corners.",
+      "none": "Product photos",
+      "sm": "Buttons, inputs, badges",
+      "md": "Cards, tiles",
+      "lg": "Modals, drawers",
+      "pill": "Swatches, chips, FAB",
+      "shadow": "Shadows only on overlays (drawer, modal, popover). Cards use a border line."
+    },
+    "icons": {
+      "title": "Icons & logos",
+      "description": "lucide, stroke 1.5, 20px (24px in nav). The WhatsApp glyph is reserved for WhatsApp actions.",
+      "placeholder": "Product placeholder",
+      "logos": "Payment & courier tiles",
+      "logosNote": "Neutral text tiles stand in for brand logos in the demo; muted when not selected. Swap for official SVGs once usage rights exist."
+    }
+  },
+  "primitives": {
+    "button": {
+      "description": "48px tall (sm 36px), 14px UPPERCASE label. Focus: 2px ink ring, offset 2.",
+      "variants": "Variants",
+      "states": "States",
+      "addToCart": "Add to Cart",
+      "sizeConsult": "Size Consultation",
+      "seeAll": "See all",
+      "askWa": "Ask on WhatsApp",
+      "danger": "Cancel order",
+      "payNow": "Pay Now",
+      "disabled": "Disabled",
+      "small": "Small",
+      "checkout": "Checkout"
+    },
+    "icon": {
+      "search": "Search",
+      "cart": "Cart, 3 items",
+      "wishlist": "Save",
+      "close": "Close"
+    },
+    "link": {
+      "sentence": "Not sure about sizing? Open the",
+      "inline": "size guide",
+      "subtle": "Privacy policy"
+    },
+    "inputs": {
+      "title": "Inputs, Select & Combobox",
+      "description": "48px tall, label above, helper/error below. Combobox for the 119 regencies/cities of Java.",
+      "states": "Default · error · readOnly · disabled",
+      "adornments": "Prefix · suffix · select · combobox · textarea",
+      "name": "Full name",
+      "email": "Email",
+      "emailError": "Please check the email format",
+      "order": "Order number",
+      "disabled": "Province (locked)",
+      "wa": "WhatsApp number",
+      "waHelp": "Order confirmation & updates go to this number",
+      "foot": "Foot length",
+      "province": "Province",
+      "choose": "Choose…",
+      "city": "Regency/City",
+      "cityHelp": "{n} regencies/cities — type to search",
+      "address": "Full address"
+    },
+    "choice": {
+      "title": "Checkbox, Radio & RadioCard",
+      "description": "20px controls with a 44px hit area.",
+      "waOptIn": "Send order updates on WhatsApp",
+      "waOptInHelp": "You can opt out anytime",
+      "unchecked": "Save address for next time",
+      "indeterminate": "Select all sizes",
+      "disabled": "Not available",
+      "terms": "I agree to the terms & conditions",
+      "termsError": "Required to continue",
+      "radioLegend": "Ship to",
+      "radioA": "Primary address",
+      "radioAHelp": "Jl. Kemang Raya 12, South Jakarta",
+      "radioB": "Studio address",
+      "radioC": "Warehouse pickup (soon)",
+      "etaTomorrow": "Est. 1 business day",
+      "eta2": "Est. 1–2 business days",
+      "instantOff": "Past today's cut-off"
+    },
+    "labels": {
+      "title": "Badge, Chip, Segmented & Tabs",
+      "description": "Small UPPERCASE status labels; pill chips for filters; segmented for width/shank.",
+      "neutral": "Sold out",
+      "failed": "Failed",
+      "new": "New",
+      "soldOut": "Sold out",
+      "tabsLabel": "Product info",
+      "tabDesc": "Description",
+      "tabDescBody": "Satin, medium box, standard vamp — suits Egyptian & Greek feet.",
+      "tabFit": "Fit",
+      "tabFitBody": "Go 1–2 sizes below your street size. Ask us on WhatsApp first.",
+      "tabCare": "Care",
+      "tabCareBody": "Air out after class; do not wash."
+    },
+    "disclosure": {
+      "title": "Accordion & overlays",
+      "description": "Radix: focus trapped, Esc closes. Dialogs on desktop become bottom sheets on mobile.",
+      "description1": "Description",
+      "shipping": "Shipping",
+      "payment": "Payment",
+      "body1": "Leather ballet flat with suede split sole and a drawstring for adjustment.",
+      "body2": "Ships from Jakarta. Instant & same-day within Jabodetabek; all of Java via JNE, J&T, SiCepat.",
+      "body3": "QRIS, e-wallets (GoPay, OVO, DANA, ShopeePay), Virtual Account and credit/debit cards.",
+      "dialogTitle": "Remove from cart?",
+      "dialogDesc": "Claudia Satin · Ballet Pink · 6L · C · Full Normal",
+      "dialogBody": "Stock isn't reserved until you pay.",
+      "dialogCta": "Remove",
+      "sheetTitle": "Bottom sheet (mobile) / modal (desktop)",
+      "sheetBody": "The responsive variant powers SizeGuide and FilterSheet.",
+      "drawerTitle": "Drawer",
+      "drawerBody": "Right 420px on desktop, bottom on mobile — used by CartDrawer.",
+      "toastSuccess": "Added to cart",
+      "toastError": "Not enough stock",
+      "toastErrorBody": "We've updated your cart.",
+      "toastInfo": "VA number copied",
+      "tooltip": "Supplementary info only — never essential",
+      "infoTip": "What is a shank?",
+      "shankExplain": "The stiff insole of a pointe shoe that supports the arch."
+    },
+    "feedback": {
+      "title": "Feedback & navigation",
+      "description": "Inline notices, skeletons (pulse off under reduced motion), breadcrumb, copy, load more.",
+      "pointeTitle": "Pointe shoes should be fitted",
+      "pointeBody": "Ask us on WhatsApp before you buy.",
+      "qtyReduced": "Claudia Satin quantity reduced from 3 to 2 because stock changed.",
+      "stockTitle": "Stock changed",
+      "stockBody": "Not enough stock for Jive III (Black · 7L). We've updated your cart.",
+      "updateCart": "Update cart",
+      "voucher": "Voucher RELEVE10 applied — 10% off.",
+      "loading": "Loading shipping rates…",
+      "breadcrumb": "Breadcrumb",
+      "home": "Home"
+    }
+  },
+  "store": {
+    "identity": {
+      "title": "Identity & page shell",
+      "description": "Our own wordmark (never the Só Dança logo), sticky header, surface-alt footer with the independent-store disclaimer.",
+      "header": "Header — 56px mobile / 72px desktop",
+      "track": "Track order"
+    },
+    "footer": {
+      "shop": "Shop",
+      "help": "Help",
+      "about": "About",
+      "shipping": "Shipping",
+      "payment": "Payment",
+      "aboutUs": "About us",
+      "terms": "Terms",
+      "privacy": "Privacy",
+      "contact": "Contact",
+      "address": "Warehouse: South Jakarta",
+      "hours": "Mon–Sat, 09:00–18:00 WIB"
+    },
+    "product": {
+      "title": "Product",
+      "description": "1:1 cards without an add button — size must be chosen on the PDP. Aggregate stock badge, max 5 swatches + N.",
+      "new": "New"
+    },
+    "picker": {
+      "description": "Colour → Size → Width → Shank per product.options. Non-existent combos are disabled; sold-out ones are struck through but still selectable for “Notify me”. Try pressing the button without a size.",
+      "output": "onChange output",
+      "preorderCta": "Pre-order Now",
+      "qtyNote": "Max = available stock"
+    },
+    "cart": {
+      "title": "Cart",
+      "description": "CartLine with 44px stepper; CartDrawer shows stock and mixed pre-order notices.",
+      "open": "Open cart ({n})",
+      "reset": "Reset sample",
+      "notice": "Farfalla quantity was reduced to 2 because stock changed.",
+      "emptyTitle": "Nothing matches yet",
+      "emptyBody": "Try removing some filters, or ask us — we'll help you find it."
+    },
+    "filter": {
+      "title": "Filters & comparison",
+      "description": "Desktop: 240px sidebar. Mobile: bottom sheet with an accordion per facet + “Show n products”.",
+      "sidebar": "FilterPanel · sidebar",
+      "sheet": "FilterSheet · mobile",
+      "count": "{n} products",
+      "discipline": "Discipline",
+      "availability": "Availability"
+    },
+    "sizeGuide": {
+      "description": "Tabs per category, US ↔ foot length (cm) table, how to measure, pointe callout and WhatsApp consultation. Table values are approximate (Q-06).",
+      "inline": "Content (also used on /size-guide)"
+    }
+  },
+  "checkout": {
+    "flow": {
+      "title": "Checkout flow",
+      "description": "One page, three steps. Completed steps show a summary + “Edit”; upcoming ones are locked.",
+      "step1": "Contact & address",
+      "step2": "Shipping",
+      "step3": "Payment",
+      "name": "Recipient name",
+      "email": "Email",
+      "waOptIn": "Send order updates on WhatsApp",
+      "loading": "Loading rates (skeleton)",
+      "collapsed": "OrderSummary · mobile (collapsible)"
+    },
+    "pay": {
+      "title": "Pay page",
+      "description": "Panels per method, Countdown (warning < 5 minutes, expired → new payment), payment status and demo controls.",
+      "countdownNormal": "Countdown · normal",
+      "countdownWarning": "Countdown · < 5 minutes",
+      "countdownExpired": "Countdown · expired",
+      "renewClicked": "onRenew() called",
+      "track": "Track Order",
+      "orderAgain": "Order again",
+      "changeMethod": "Change payment method"
+    }
+  },
+  "patterns": {
+    "stock": {
+      "title": "Honest stock — 4 states",
+      "description": "Ready · Only N left · Pre-order · Sold out, consistent on cards, PDP and size chips. Sold out → the CTA becomes “Notify Me on WhatsApp”.",
+      "chips": "Size chips — all states"
+    },
+    "price": {
+      "title": "Price",
+      "description": "Always formatIDR (Rp 1.250.000), tabular-nums, ink — never red or accent.",
+      "card": "Card",
+      "pdp": "PDP",
+      "listingFrom": "Listing · from",
+      "total": "Order total",
+      "cartLine": "Cart line (price × qty)"
+    },
+    "wa": {
+      "title": "WhatsApp in every context",
+      "description": "One tap from anywhere. wa.me links are built by WS-2's builder (src/lib/wa) with context-specific text.",
+      "pdp": "PDP · ask about product",
+      "soldOut": "PDP · size sold out",
+      "sizeGuide": "Size guide",
+      "cart": "Cart",
+      "checkout": "Checkout · outside Java",
+      "pay": "Pay page",
+      "sendInstructions": "Send instructions to my WhatsApp",
+      "order": "Order tracking",
+      "fab": "FAB (all store pages except checkout & pay)",
+      "rule": "WhatsApp green is only for WhatsApp elements; text on it is always whatsapp-ink (white fails contrast)."
+    },
+    "pay": {
+      "title": "Pay page × state",
+      "description": "QRIS / Virtual Account / e-wallet / card, each waiting · paid · expired.",
+      "waiting": "Waiting",
+      "paid": "Paid",
+      "expired": "Expired",
+      "orderNo": "Order number",
+      "paidTotal": "Paid"
+    }
+  },
+  "footer": {
+    "note": "Design system demo — all sample data. Relevé Dance Supply is an independent store and is not affiliated with Só Dança."
+  }
+}

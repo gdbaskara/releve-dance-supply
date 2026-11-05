@@ -51,7 +51,7 @@ export function PanelChrome({
   const t = useTranslations("common");
   return (
     <>
-      <div className={cn("flex shrink-0 items-start gap-4 border-b border-border px-5 py-3", hideTitle && "border-b-0 pb-0")}>
+      <div className={cn("flex shrink-0 items-center gap-4 border-b border-border px-5 py-3", hideTitle && "border-b-0 pb-0")}>
         <div className={cn("flex min-w-0 flex-1 flex-col justify-center gap-1 py-2.5", hideTitle && "sr-only")}>
           <RDialog.Title className="eyebrow text-ink">{title}</RDialog.Title>
           {description ? <RDialog.Description className="text-sm text-ink-muted">{description}</RDialog.Description> : null}

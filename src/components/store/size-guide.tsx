@@ -160,7 +160,7 @@ export function SizeGuideContent({ waHref, defaultCategory = "balletJazz" }: Siz
   const cats: SizeGuideCategory[] = ["balletJazz", "pointe", "tapCharacter", "ballroom", "dancewear"];
   return (
     <div className="flex flex-col gap-8">
-      <section aria-labelledby="sg-how" className="flex flex-col gap-4 rounded-md bg-surface-alt p-4 sm:flex-row sm:items-center">
+      <section aria-labelledby="sg-how" className="flex flex-col gap-4 rounded-md bg-surface-alt p-4 md:flex-row md:items-center">
         <MeasureIllustration />
         <div className="flex flex-col gap-2">
           <h3 id="sg-how" className="eyebrow text-ink">

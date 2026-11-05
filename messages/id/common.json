@@ -29,6 +29,7 @@
     "ready": "Ready",
     "readyLong": "Ready · dikirim 1–2 hari kerja",
     "low": "Sisa {n}",
+    "limited": "Stok terbatas",
     "preorder": "Pre-order",
     "preorderWeeks": "Pre-order · {lead} minggu",
     "preorderLong": "Pre-order · estimasi {lead} minggu",
@@ -39,7 +40,7 @@
     "low": "Sisa {n} — segera habis",
     "preorder": "Pre-order · estimasi tiba {lead} minggu",
     "soldout": "Habis untuk ukuran ini",
-    "select": "Pilih ukuran untuk melihat ketersediaan"
+    "select": "Pilih varian untuk melihat ketersediaan"
   },
   "wa": {
     "chat": "Chat",

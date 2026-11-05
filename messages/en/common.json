@@ -29,6 +29,7 @@
     "ready": "Ready",
     "readyLong": "In stock · ships in 1–2 business days",
     "low": "Only {n} left",
+    "limited": "Low stock",
     "preorder": "Pre-order",
     "preorderWeeks": "Pre-order · {lead} weeks",
     "preorderLong": "Pre-order · est. {lead} weeks",
@@ -39,7 +40,7 @@
     "low": "Only {n} left — selling fast",
     "preorder": "Pre-order · estimated arrival in {lead} weeks",
     "soldout": "Sold out in this size",
-    "select": "Choose a size to see availability"
+    "select": "Choose your options to see availability"
   },
   "wa": {
     "chat": "Chat",

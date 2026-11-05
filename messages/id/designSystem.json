@@ -1,1 +1,360 @@
-{}
+{
+  "meta": {
+    "title": "Design system",
+    "description": "Token, komponen & pola UI Relevé Dance Supply."
+  },
+  "nav": {
+    "label": "Bagian design system",
+    "top": "Kembali ke atas"
+  },
+  "hero": {
+    "eyebrow": "Relevé · Design system v1.0",
+    "title": "Bahasa visual Relevé",
+    "tagline": "Setiap langkah dimulai dari sepatu yang tepat.",
+    "intro": "Monokrom, presisi, dan tenang — produk adalah panggungnya. Halaman ini menampilkan semua token, komponen, dan pola yang dipakai toko, lengkap dengan state dan data contoh dari katalog.",
+    "language": "Bahasa",
+    "principles": {
+      "p1": "Produk adalah panggung",
+      "p2": "Presisi seperti balet",
+      "p3": "Jujur soal stok",
+      "p4": "WhatsApp satu ketukan",
+      "p5": "Ramah, istilah dansa tetap"
+    }
+  },
+  "sections": {
+    "foundations": {
+      "title": "Foundations",
+      "description": "Warna, tipografi, spasi, radius, dan ikon. Semua komponen hanya memakai token ini."
+    },
+    "primitives": {
+      "title": "Primitive",
+      "description": "Blok dasar di src/components/ui — dapat diakses keyboard, target sentuh ≥ 44px, fokus selalu terlihat."
+    },
+    "store": {
+      "title": "Komponen toko",
+      "description": "Komponen presentational di src/components/store: kartu produk, pemilih varian, keranjang, filter, panduan ukuran."
+    },
+    "checkout": {
+      "title": "Komponen checkout",
+      "description": "Checkout satu halaman tiga langkah dan halaman bayar — QRIS, Virtual Account, e-wallet, kartu. Tanpa bayar di tempat, tanpa paylater."
+    },
+    "patterns": {
+      "title": "Pola",
+      "description": "Cara komponen bekerja bersama: status stok, harga, WhatsApp di semua konteks, dan halaman bayar per metode."
+    }
+  },
+  "foundations": {
+    "colors": {
+      "title": "Warna",
+      "description": "Latar putih, teks ink, Ballet Pink sebagai aksen yang hemat. Angka di pojok = rasio kontras WCAG.",
+      "decorative": "Dekoratif",
+      "onWhite": "teks di atas putih",
+      "pair": "pasangan teks/latar",
+      "rule": "Aturan: maksimal satu tombol primary (ink) per layar/seksi · harga selalu ink · hijau WhatsApp hanya untuk elemen WA · ink-subtle bukan untuk body text.",
+      "usage": {
+        "bg": "Latar, card",
+        "surfaceAlt": "Section selang-seling, ringkasan, footer",
+        "ink": "Teks utama, tombol primary, ikon",
+        "inkHover": "Hover tombol primary",
+        "inkMuted": "Teks sekunder, label, meta",
+        "inkSubtle": "Placeholder, non-esensial ≥ 18px",
+        "border": "Divider dekoratif",
+        "borderStrong": "Border input, checkbox, size chip",
+        "accent": "Ballet Pink: badge Baru, tint hero",
+        "accentStrong": "Link hover, eyebrow aksen",
+        "accentInk": "Teks di atas accent",
+        "success": "Ready, pembayaran berhasil",
+        "successBg": "Latar status success",
+        "warning": "Sisa N, pre-order, countdown < 5 mnt",
+        "warningBg": "Latar status warning",
+        "error": "Error form, gagal",
+        "errorBg": "Latar status error",
+        "info": "Notice informatif, mode demo",
+        "infoBg": "Latar info, DemoBanner",
+        "whatsapp": "Hanya tombol/ikon WA",
+        "whatsappInk": "Teks di atas hijau WA"
+      }
+    },
+    "type": {
+      "title": "Tipografi",
+      "description": "Plus Jakarta Sans untuk UI, Cormorant Garamond hanya untuk tagline & kutipan. Input selalu ≥ 16px.",
+      "sampleBody": "Sepatu ballet split sole dari kanvas stretch yang lembut, mengikuti lengkung kaki dan nyaman dipakai latihan berjam-jam.",
+      "sampleCaption": "Relevé Dance Supply adalah toko independen.",
+      "sampleH2": "Ready di Jakarta",
+      "roles": {
+        "display": "Display",
+        "h1": "H1",
+        "h2": "H2",
+        "h3": "H3",
+        "eyebrow": "Eyebrow / nav",
+        "body": "Body",
+        "small": "Body small",
+        "caption": "Caption",
+        "pricePdp": "Harga PDP",
+        "mono": "Nomor VA / order"
+      }
+    },
+    "spacing": {
+      "title": "Spasi",
+      "description": "Kelipatan 4. Ritme antar section 48px mobile, 80px desktop.",
+      "grid": "Grid 4 kolom (gutter 16) · 8 (24) · 12 (32). Container maks 1280px."
+    },
+    "radius": {
+      "title": "Radius & bayangan",
+      "description": "Sudut tajam ala balet.",
+      "none": "Foto produk",
+      "sm": "Tombol, input, badge",
+      "md": "Card, tile",
+      "lg": "Modal, drawer",
+      "pill": "Swatch, chip, FAB",
+      "shadow": "Bayangan hanya untuk overlay (drawer, modal, popover). Card memakai garis border."
+    },
+    "icons": {
+      "title": "Ikon & logo",
+      "description": "lucide, stroke 1.5, 20px (24px di nav). Ikon WhatsApp khusus untuk aksi WA.",
+      "placeholder": "Placeholder produk",
+      "logos": "Tile pembayaran & kurir",
+      "logosNote": "Tile teks netral pengganti logo merek untuk demo; abu-abu saat tidak dipilih. Ganti dengan SVG resmi bila hak pakai sudah ada."
+    }
+  },
+  "primitives": {
+    "button": {
+      "description": "Tinggi 48px (sm 36px), label UPPERCASE 14px. Fokus: ring 2px ink offset 2.",
+      "variants": "Varian",
+      "states": "State",
+      "addToCart": "Tambah ke Keranjang",
+      "sizeConsult": "Konsultasi Ukuran",
+      "seeAll": "Lihat semua",
+      "askWa": "Tanya via WA",
+      "danger": "Batalkan pesanan",
+      "payNow": "Bayar Sekarang",
+      "disabled": "Tidak aktif",
+      "small": "Kecil",
+      "checkout": "Checkout"
+    },
+    "icon": {
+      "search": "Cari",
+      "cart": "Keranjang, 3 item",
+      "wishlist": "Simpan",
+      "close": "Tutup"
+    },
+    "link": {
+      "sentence": "Belum yakin ukuran? Buka",
+      "inline": "panduan ukuran",
+      "subtle": "Kebijakan privasi"
+    },
+    "inputs": {
+      "title": "Input, Select & Combobox",
+      "description": "Tinggi 48px, label di atas, helper/error di bawah. Combobox untuk 119 kab/kota Pulau Jawa.",
+      "states": "Default · error · readOnly · disabled",
+      "adornments": "Prefix · suffix · select · combobox · textarea",
+      "name": "Nama lengkap",
+      "email": "Email",
+      "emailError": "Format email belum benar",
+      "order": "Nomor pesanan",
+      "disabled": "Provinsi (terkunci)",
+      "wa": "Nomor WhatsApp",
+      "waHelp": "Konfirmasi & update pesanan dikirim ke nomor ini",
+      "foot": "Panjang kaki",
+      "province": "Provinsi",
+      "choose": "Pilih…",
+      "city": "Kabupaten/Kota",
+      "cityHelp": "{n} kab/kota — ketik untuk mencari",
+      "address": "Alamat lengkap"
+    },
+    "choice": {
+      "title": "Checkbox, Radio & RadioCard",
+      "description": "Kontrol 20px dengan area klik 44px.",
+      "waOptIn": "Kirim update pesanan via WhatsApp",
+      "waOptInHelp": "Bisa berhenti kapan saja",
+      "unchecked": "Simpan alamat untuk berikutnya",
+      "indeterminate": "Pilih semua size",
+      "disabled": "Tidak tersedia",
+      "terms": "Saya setuju dengan syarat & ketentuan",
+      "termsError": "Wajib dicentang untuk lanjut",
+      "radioLegend": "Kirim ke",
+      "radioA": "Alamat utama",
+      "radioAHelp": "Jl. Kemang Raya 12, Jakarta Selatan",
+      "radioB": "Alamat studio",
+      "radioC": "Ambil di gudang (segera)",
+      "etaTomorrow": "Estimasi 1 hari kerja",
+      "eta2": "Estimasi 1–2 hari kerja",
+      "instantOff": "Lewat batas waktu hari ini"
+    },
+    "labels": {
+      "title": "Badge, Chip, Segmented & Tabs",
+      "description": "Label status kecil UPPERCASE; chip pill untuk filter; segmented untuk width/shank.",
+      "neutral": "Habis",
+      "failed": "Gagal",
+      "new": "Baru",
+      "soldOut": "Habis",
+      "tabsLabel": "Info produk",
+      "tabDesc": "Deskripsi",
+      "tabDescBody": "Satin, box sedang, vamp standar — cocok untuk kaki Egyptian & Greek.",
+      "tabFit": "Fitting",
+      "tabFitBody": "Pilih 1–2 size di bawah ukuran sepatu harian. Konsultasi via WA dulu.",
+      "tabCare": "Perawatan",
+      "tabCareBody": "Angin-anginkan setelah latihan; jangan dicuci."
+    },
+    "disclosure": {
+      "title": "Accordion & overlay",
+      "description": "Radix: fokus terkunci, Esc menutup. Dialog di desktop menjadi bottom sheet di mobile.",
+      "description1": "Deskripsi",
+      "shipping": "Pengiriman",
+      "payment": "Pembayaran",
+      "body1": "Ballet flat kulit dengan sol split suede dan drawstring untuk penyesuaian.",
+      "body2": "Dikirim dari Jakarta. Instan & same-day untuk Jabodetabek; seluruh Pulau Jawa via JNE, J&T, SiCepat.",
+      "body3": "QRIS, e-wallet (GoPay, OVO, DANA, ShopeePay), Virtual Account, dan kartu kredit/debit.",
+      "dialogTitle": "Hapus dari keranjang?",
+      "dialogDesc": "Claudia Satin · Ballet Pink · 6L · C · Full Normal",
+      "dialogBody": "Stok tidak dikunci sampai kamu membayar.",
+      "dialogCta": "Hapus",
+      "sheetTitle": "Bottom sheet (mobile) / modal (desktop)",
+      "sheetBody": "Varian responsive dipakai untuk SizeGuide dan FilterSheet.",
+      "drawerTitle": "Drawer",
+      "drawerBody": "Kanan 420px di desktop, dari bawah di mobile — dipakai CartDrawer.",
+      "toastSuccess": "Ditambahkan ke keranjang",
+      "toastError": "Stok tidak cukup",
+      "toastErrorBody": "Kami sudah menyesuaikan keranjangmu.",
+      "toastInfo": "Nomor VA disalin",
+      "tooltip": "Informasi tambahan saja — bukan info wajib",
+      "infoTip": "Apa itu shank?",
+      "shankExplain": "Bagian keras di sol pointe yang menopang lengkung kaki."
+    },
+    "feedback": {
+      "title": "Feedback & navigasi",
+      "description": "Notice inline, skeleton (pulse mati saat reduced-motion), breadcrumb, salin, muat lebih banyak.",
+      "pointeTitle": "Pointe sebaiknya difitting",
+      "pointeBody": "Konsultasikan dulu via WA sebelum membeli.",
+      "qtyReduced": "Jumlah Claudia Satin dikurangi dari 3 ke 2 karena stok berubah.",
+      "stockTitle": "Stok berubah",
+      "stockBody": "Stok Jive III (Black · 7L) tidak cukup. Kami sudah menyesuaikan keranjangmu.",
+      "updateCart": "Perbarui keranjang",
+      "voucher": "Voucher RELEVE10 dipakai — hemat 10%.",
+      "loading": "Memuat ongkir…",
+      "breadcrumb": "Navigasi halaman",
+      "home": "Beranda"
+    }
+  },
+  "store": {
+    "identity": {
+      "title": "Identitas & kerangka halaman",
+      "description": "Wordmark sendiri (bukan logo Só Dança), header sticky, footer surface-alt dengan disclaimer toko independen.",
+      "header": "Header — 56px mobile / 72px desktop",
+      "track": "Lacak pesanan"
+    },
+    "footer": {
+      "shop": "Belanja",
+      "help": "Bantuan",
+      "about": "Tentang",
+      "shipping": "Pengiriman",
+      "payment": "Pembayaran",
+      "aboutUs": "Tentang kami",
+      "terms": "Syarat & ketentuan",
+      "privacy": "Privasi",
+      "contact": "Kontak",
+      "address": "Gudang: Kota Jakarta Selatan",
+      "hours": "Senin–Sabtu, 09.00–18.00 WIB"
+    },
+    "product": {
+      "title": "Produk",
+      "description": "Kartu 1:1 tanpa tombol add — ukuran wajib dipilih di PDP. Badge stok agregat, swatch maks 5 + N.",
+      "new": "Baru"
+    },
+    "picker": {
+      "description": "Warna → Size → Width → Shank sesuai product.options. Kombinasi yang tidak ada dinonaktifkan; yang habis dicoret tapi tetap bisa dipilih untuk “Kabari saya”. Coba tekan tombol tanpa memilih size.",
+      "output": "Output onChange",
+      "preorderCta": "Pre-order Sekarang",
+      "qtyNote": "Maks. = stok tersedia"
+    },
+    "cart": {
+      "title": "Keranjang",
+      "description": "CartLine dengan stepper 44px; CartDrawer menampilkan notice stok & pre-order campur.",
+      "open": "Buka keranjang ({n})",
+      "reset": "Reset contoh",
+      "notice": "Jumlah Farfalla dikurangi menjadi 2 karena stok berubah.",
+      "emptyTitle": "Belum ada yang cocok",
+      "emptyBody": "Coba hapus beberapa filter, atau tanya kami — kami bantu carikan."
+    },
+    "filter": {
+      "title": "Filter & perbandingan",
+      "description": "Desktop: sidebar 240px. Mobile: sheet bawah dengan accordion per facet + “Tampilkan n produk”.",
+      "sidebar": "FilterPanel · sidebar",
+      "sheet": "FilterSheet · mobile",
+      "count": "{n} produk",
+      "discipline": "Disiplin",
+      "availability": "Ketersediaan"
+    },
+    "sizeGuide": {
+      "description": "Tab per kategori, tabel US ↔ panjang kaki (cm), cara mengukur, callout pointe, dan WA konsultasi. Tabel masih perkiraan (Q-06).",
+      "inline": "Konten (juga dipakai di /size-guide)"
+    }
+  },
+  "checkout": {
+    "flow": {
+      "title": "Alur checkout",
+      "description": "Satu halaman, tiga langkah. Langkah selesai menampilkan ringkasan + “Ubah”; yang belum terbuka terkunci.",
+      "step1": "Kontak & alamat",
+      "step2": "Pengiriman",
+      "step3": "Pembayaran",
+      "name": "Nama penerima",
+      "email": "Email",
+      "waOptIn": "Kirim update pesanan via WhatsApp",
+      "loading": "Memuat ongkir (skeleton)",
+      "collapsed": "OrderSummary · mobile (collapsible)"
+    },
+    "pay": {
+      "title": "Halaman bayar",
+      "description": "Panel per metode, Countdown (warning < 5 menit, habis → buat pembayaran baru), status pembayaran, dan kontrol demo.",
+      "countdownNormal": "Countdown · normal",
+      "countdownWarning": "Countdown · < 5 menit",
+      "countdownExpired": "Countdown · habis",
+      "renewClicked": "onRenew() dipanggil",
+      "track": "Lacak Pesanan",
+      "orderAgain": "Pesan lagi",
+      "changeMethod": "Ganti metode pembayaran"
+    }
+  },
+  "patterns": {
+    "stock": {
+      "title": "Stok jujur — 4 status",
+      "description": "Ready · Sisa N · Pre-order · Habis, konsisten di kartu, PDP, dan size chip. Habis → CTA berubah menjadi “Kabari Saya via WA”.",
+      "chips": "Size chip — semua state"
+    },
+    "price": {
+      "title": "Harga",
+      "description": "Selalu formatIDR (Rp 1.250.000), tabular-nums, warna ink — tidak pernah merah/aksen.",
+      "card": "Kartu",
+      "pdp": "PDP",
+      "listingFrom": "Listing · mulai",
+      "total": "Total pesanan",
+      "cartLine": "Baris keranjang (harga × qty)"
+    },
+    "wa": {
+      "title": "WhatsApp di semua konteks",
+      "description": "Satu ketukan dari mana saja. Link wa.me dibuat oleh builder WS-2 (src/lib/wa) dengan teks sesuai konteks.",
+      "pdp": "PDP · tanya produk",
+      "soldOut": "PDP · size habis",
+      "sizeGuide": "Panduan ukuran",
+      "cart": "Keranjang",
+      "checkout": "Checkout · luar Jawa",
+      "pay": "Halaman bayar",
+      "sendInstructions": "Kirim instruksi ke WA saya",
+      "order": "Lacak pesanan",
+      "fab": "FAB (semua halaman toko kecuali checkout & bayar)",
+      "rule": "Hijau WhatsApp hanya untuk elemen WhatsApp; teks di atasnya selalu whatsapp-ink (putih tidak lolos kontras)."
+    },
+    "pay": {
+      "title": "Halaman bayar × status",
+      "description": "QRIS / Virtual Account / e-wallet / kartu, masing-masing menunggu · berhasil · kedaluwarsa.",
+      "waiting": "Menunggu",
+      "paid": "Berhasil",
+      "expired": "Kedaluwarsa",
+      "orderNo": "Nomor pesanan",
+      "paidTotal": "Dibayar"
+    }
+  },
+  "footer": {
+    "note": "Design system demo — semua data contoh. Relevé Dance Supply adalah toko independen dan tidak berafiliasi dengan Só Dança."
+  }
+}

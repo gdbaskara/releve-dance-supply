@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils/cn";
 
 export interface StockBadgeProps {
   status: StockStatus;
-  /** Units available (used for LOW → "Sisa {n}"). */
+  /** Units available (LOW → "Sisa {n}"; omitted/0 → "Stok terbatas", e.g. aggregate on cards). */
   available?: number;
   /** Pre-order lead weeks, e.g. "4-6" → "Pre-order · 4–6 minggu". */
   leadWeeks?: string | null;
@@ -42,7 +42,9 @@ export function StockBadge({ status, available = 0, leadWeeks, appearance = "bad
     status === "READY"
       ? t("stock.ready")
       : status === "LOW"
-        ? t("stock.low", { n: available })
+        ? available > 0
+          ? t("stock.low", { n: available })
+          : t("stock.limited")
         : status === "PREORDER"
           ? leadWeeks
             ? t("stock.preorderWeeks", { lead: formatLead(leadWeeks) })

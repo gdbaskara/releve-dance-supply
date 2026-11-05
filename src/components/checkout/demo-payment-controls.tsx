@@ -25,7 +25,7 @@ export function DemoPaymentControls({ onSimulatePaid, onSimulateExpired, loading
         {t("demo.controlsTitle")}
       </p>
       <p className="-mt-1 text-xs text-ink-muted">{t("demo.controlsNote")}</p>
-      <div className="flex flex-col gap-2 sm:flex-row">
+      <div className="flex flex-col gap-2 md:flex-row">
         <Button variant="secondary" size="sm" className="h-11 flex-1" onClick={onSimulatePaid} loading={loading === "paid"} disabled={disabled || !!loading}>
           {t("demo.simulatePaid")}
         </Button>

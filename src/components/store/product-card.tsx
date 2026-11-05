@@ -11,6 +11,8 @@ export interface ProductCardProps {
   product: ProductSummary;
   /** Link target, e.g. `/p/${slug}` (use with next-intl Link via `linkAs`). */
   href: string;
+  /** Units left when `product.status` is LOW (aggregate) → "Sisa {n}". Omit → "Stok terbatas". */
+  lowStockCount?: number;
   /** Second image for desktop hover. */
   hoverImageUrl?: string | null;
   /** Prefix price with "Mulai". */
@@ -27,7 +29,7 @@ export interface ProductCardProps {
  * Listing card. Whole card is one link; no add-to-cart (size must be chosen on PDP).
  * 1:1 image · eyebrow discipline · name (2 lines) · model code · price · swatches (5 + "+N") · stock badge.
  */
-export function ProductCard({ product, href, hoverImageUrl, priceFrom, tag, linkAs: LinkComp = "a", priority, className }: ProductCardProps) {
+export function ProductCard({ product, href, lowStockCount, hoverImageUrl, priceFrom, tag, linkAs: LinkComp = "a", priority, className }: ProductCardProps) {
   const t = useTranslations("common");
   const discipline = product.audience === "Kids" ? `${product.discipline} · Kids` : product.discipline;
   return (
@@ -49,7 +51,7 @@ export function ProductCard({ product, href, hoverImageUrl, priceFrom, tag, link
         />
         <div className="absolute left-2 top-2 flex flex-col items-start gap-1">
           {tag ? <span className="eyebrow rounded-sm bg-accent px-2 py-1 text-accent-ink">{tag}</span> : null}
-          {product.status !== "READY" ? <StockBadge status={product.status} className={product.status === "SOLD_OUT" ? "bg-surface" : undefined} /> : null}
+          {product.status !== "READY" ? <StockBadge status={product.status} available={lowStockCount} className={product.status === "SOLD_OUT" ? "bg-surface" : undefined} /> : null}
         </div>
       </div>
       <div className="flex flex-col gap-1">

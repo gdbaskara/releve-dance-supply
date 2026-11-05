@@ -48,7 +48,7 @@ function Rows({ items, subtotalIdr, shippingIdr, insuranceIdr = 0, discountIdr =
         {items.map((it, i) => (
           <li key={`${it.name}-${it.variantLabel}-${i}`} className="flex gap-3">
             <div className="relative w-14 shrink-0">
-              <ProductImage src={it.imageUrl} alt={it.name} sizes="56px" />
+              <ProductImage src={it.imageUrl} alt={it.name} sizes="56px" className="border border-border bg-surface" />
               <span className="tabular absolute -right-1.5 -top-1.5 inline-flex size-5 items-center justify-center rounded-pill bg-ink-muted text-[11px] font-semibold text-ink-inverse">
                 {it.qty}
               </span>

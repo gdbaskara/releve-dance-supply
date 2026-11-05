@@ -91,7 +91,7 @@ export function PaymentMethodGroup({ value, onChange, options = PAYMENT_OPTIONS,
         return (
           <div key={g} role="presentation" className="flex flex-col gap-2">
             <h3 className="eyebrow text-ink-muted">{t(`payment.groups.${g}`)}</h3>
-            <div className={cn("grid gap-2", opts.length > 1 && "sm:grid-cols-2")}>
+            <div className={cn("grid gap-2", opts.length > 1 && "md:grid-cols-2")}>
               {opts.map((o) => {
                 const k = paymentKey(o);
                 return <PaymentMethodTile key={k} option={o} selected={k === selectedKey} disabled={disabledKeys.includes(k)} />;

@@ -53,7 +53,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function 
   { className, variant, size, fullWidth, asChild, loading, leadingIcon, trailingIcon, disabled, children, type, ...props },
   ref,
 ) {
-  const classes = cn(buttonVariants({ variant, size, fullWidth }), className);
+  // Loading keeps full opacity (label stays readable) — only truly disabled buttons fade.
+  const classes = cn(buttonVariants({ variant, size, fullWidth }), loading && "disabled:cursor-wait disabled:opacity-100", className);
   if (asChild) {
     return (
       <Slot.Root ref={ref} className={classes} {...props}>

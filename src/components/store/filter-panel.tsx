@@ -36,6 +36,8 @@ export interface FilterPanelProps {
   /** Called with the full next selection. */
   onChange: (next: FilterSelection) => void;
   onClear?: () => void;
+  /** Hide the "Filter / Hapus semua" header row (FilterSheet already has a title). */
+  hideHeader?: boolean;
   /** Facet keys open initially. Default: all. */
   defaultOpen?: string[];
   className?: string;
@@ -48,12 +50,12 @@ function toggle(sel: FilterSelection, key: string, value: string): FilterSelecti
 }
 
 /** Facets as accordion sections. Use directly as the desktop sidebar (240px) or inside `FilterSheet`. */
-export function FilterPanel({ facets, selected, onChange, onClear, defaultOpen, className }: FilterPanelProps) {
+export function FilterPanel({ facets, selected, onChange, onClear, hideHeader, defaultOpen, className }: FilterPanelProps) {
   const t = useTranslations("common");
   const total = Object.values(selected).reduce((n, v) => n + v.length, 0);
   return (
     <div className={cn("flex flex-col gap-2", className)}>
-      <div className="flex min-h-11 items-center justify-between">
+      <div className={cn("flex min-h-11 items-center justify-between", hideHeader && "hidden")}>
         <span className="eyebrow text-ink">{t("filter.title")}</span>
         {onClear && total > 0 ? (
           <button type="button" onClick={onClear} className="min-h-11 text-sm text-ink underline underline-offset-[3px] hover:text-accent-strong">
@@ -155,17 +157,17 @@ export function FilterSheet({ resultCount, open, onOpenChange, trigger, ...panel
         footer={
           <div className="flex gap-3">
             {panel.onClear ? (
-              <Button variant="secondary" onClick={panel.onClear} disabled={total === 0}>
+              <Button variant="ghost" className="px-3" onClick={panel.onClear} disabled={total === 0}>
                 {t("filter.clear")}
               </Button>
             ) : null}
-            <Button fullWidth onClick={() => setOpen(false)} className="flex-1">
+            <Button onClick={() => setOpen(false)} className="min-w-0 flex-1 px-4">
               {t("filter.show", { n: resultCount })}
             </Button>
           </div>
         }
       >
-        <FilterPanel {...panel} onClear={undefined} className="-mt-2" />
+        <FilterPanel {...panel} onClear={undefined} hideHeader className="-mt-5 [&>div:last-child]:border-t-0" />
       </DialogContent>
     </Dialog>
   );

@@ -37,14 +37,29 @@ export function optionKeys(product: Pick<ProductDetail, "options">): OptionKey[]
   return product.options.map((o) => OPTION_KEY[o]);
 }
 
-/** Distinct values of an option in display order (product.colors / product.widths when given, else first appearance). */
+/** Canonical width order (Só Dança uses either Narrow/Medium/Wide or letter widths A–EE). */
+const WIDTH_ORDER = ["Narrow", "Medium", "Wide", "N", "M", "W", "A", "B", "C", "D", "E", "EE"];
+/** Canonical shank order (softest → strongest). */
+const SHANK_ORDER = ["Full Soft", "Full Normal", "Full Reinforced", "Full Extra Reinforced"];
+
+function byCanonical(order: string[]) {
+  return (a: string, b: string) => {
+    const ia = order.indexOf(a);
+    const ib = order.indexOf(b);
+    return (ia === -1 ? 999 : ia) - (ib === -1 ? 999 : ib);
+  };
+}
+
+/** Distinct values of an option in display order (colors: product.colors; width/shank: canonical; size: first appearance). */
 export function optionValues(product: VariantSource, key: OptionKey): string[] {
   const seen: string[] = [];
   for (const v of product.variants) {
     const x = v[key];
     if (x != null && !seen.includes(x)) seen.push(x);
   }
-  const preferred = key === "color" ? product.colors : key === "width" ? product.widths : undefined;
+  if (key === "width") return seen.sort(byCanonical(WIDTH_ORDER));
+  if (key === "shank") return seen.sort(byCanonical(SHANK_ORDER));
+  const preferred = key === "color" ? product.colors : undefined;
   if (preferred?.length) {
     return [...preferred.filter((p) => seen.includes(p)), ...seen.filter((s) => !preferred.includes(s))];
   }

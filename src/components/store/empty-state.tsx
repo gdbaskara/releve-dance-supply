@@ -18,7 +18,7 @@ export function EmptyState({ icon, title, description, actions, className }: Emp
       {icon ? <div className="mb-2 flex size-20 items-center justify-center rounded-pill bg-surface-alt text-ink-muted">{icon}</div> : null}
       <h3 className="text-lg font-semibold text-ink">{title}</h3>
       {description ? <p className="max-w-sm text-sm text-ink-muted">{description}</p> : null}
-      {actions ? <div className="mt-3 flex flex-col items-center gap-3 sm:flex-row">{actions}</div> : null}
+      {actions ? <div className="mt-3 flex flex-col items-center gap-3 md:flex-row">{actions}</div> : null}
     </div>
   );
 }

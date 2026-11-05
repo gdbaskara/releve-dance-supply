@@ -68,5 +68,6 @@ export const controlBase = cn(
   "focus:border-ink focus:shadow-[inset_0_0_0_1px_var(--color-ink)] focus:outline-none",
   "aria-invalid:border-error aria-invalid:focus:shadow-[inset_0_0_0_1px_var(--color-error)]",
   "disabled:cursor-not-allowed disabled:bg-surface-alt disabled:text-ink-muted",
-  "read-only:bg-surface-alt",
 );
+/** readOnly styling — only for input/textarea (a <select> always matches :read-only). */
+export const readOnlyCls = "read-only:bg-surface-alt";

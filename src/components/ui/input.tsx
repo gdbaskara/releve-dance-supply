@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils/cn";
-import { Field, controlBase } from "./field";
+import { Field, controlBase, readOnlyCls } from "./field";
 
 export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "prefix"> {
   label?: React.ReactNode;
@@ -36,14 +36,14 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(function Inp
               ref={ref}
               {...control}
               {...props}
-              className={cn(controlBase, "h-12", prefix ? "pl-[4.25rem]" : "px-3", suffix ? "pr-12" : "pr-3", className)}
+              className={cn(controlBase, readOnlyCls, "h-12", prefix ? "pl-[4.25rem]" : "px-3", suffix ? "pr-12" : "pr-3", className)}
             />
             {suffix ? (
               <span className="absolute inset-y-0 right-0 flex items-center pr-1 text-ink-muted">{suffix}</span>
             ) : null}
           </div>
         ) : (
-          <input ref={ref} {...control} {...props} className={cn(controlBase, "h-12 px-3", className)} />
+          <input ref={ref} {...control} {...props} className={cn(controlBase, readOnlyCls, "h-12 px-3", className)} />
         )
       }
     </Field>
@@ -66,7 +66,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(fun
   return (
     <Field label={label} helper={helper} error={error} optional={optional} id={id} className={wrapperClassName}>
       {(control) => (
-        <textarea ref={ref} rows={rows} {...control} {...props} className={cn(controlBase, "min-h-24 px-3 py-3", className)} />
+        <textarea ref={ref} rows={rows} {...control} {...props} className={cn(controlBase, readOnlyCls, "min-h-24 px-3 py-3", className)} />
       )}
     </Field>
   );

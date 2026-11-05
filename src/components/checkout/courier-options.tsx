@@ -21,7 +21,7 @@ export function CourierOption({ rate, disabled }: CourierOptionProps) {
     <RadioCard
       value={rate.serviceCode}
       disabled={disabled}
-      media={<LogoTile code={rate.courier} />}
+      media={<LogoTile code={rate.courier} size="sm" />}
       title={`${rate.courier} ${rate.service}`}
       description={
         <>
