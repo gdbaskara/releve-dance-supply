@@ -32,6 +32,8 @@ import { variantLabel } from "./labels";
 import { releaseReservations } from "./stock-ops";
 import { expireOrders } from "./expiry";
 import { log, notifyOrder, urls } from "./notify";
+import type { StockChange } from "./low-stock";
+import { notifyLowStock } from "./low-stock-notify";
 import { buildOrderView, loadOrderBundle, toPaymentView } from "./order-view";
 
 /* ---------- order number ---------- */
@@ -125,18 +127,22 @@ export async function createOrder(rawInput: CreateOrderInput | unknown, opts: { 
 
   // 6. Transaction: reservations (atomic conditional UPDATE) + order + items
   let created: typeof orders.$inferSelect;
+  let stockChanges: StockChange[] = [];
   try {
-    created = await db.transaction(async (tx) => {
+    ({ order: created, stockChanges } = await db.transaction(async (tx) => {
       const failing: string[] = [];
       const plan: { sku: string; qty: number; isPreorder: boolean }[] = [];
+      const reservedChanges: StockChange[] = [];
       for (const it of [...items].sort((a, b) => a.sku.localeCompare(b.sku))) {
         const reservedRows = await tx
           .update(variants)
           .set({ reserved: sql`${variants.reserved} + ${it.qty}`, updatedAt: now })
           .where(and(eq(variants.sku, it.sku), sql`${variants.onHand} - ${variants.reserved} >= ${it.qty}`))
-          .returning({ sku: variants.sku });
+          .returning({ sku: variants.sku, onHand: variants.onHand, reserved: variants.reserved });
         if (reservedRows.length === 1) {
           plan.push({ sku: it.sku, qty: it.qty, isPreorder: false });
+          const after = reservedRows[0].onHand - reservedRows[0].reserved;
+          reservedChanges.push({ sku: it.sku, before: after + it.qty, after });
           continue;
         }
         const [cur] = await tx.select().from(variants).where(eq(variants.sku, it.sku)).for("update");
@@ -205,8 +211,8 @@ export async function createOrder(rawInput: CreateOrderInput | unknown, opts: { 
           .returning({ id: checkoutLinks.id });
         if (used.length === 0) throw new LinkExpiredError();
       }
-      return o;
-    });
+      return { order: o, stockChanges: reservedChanges };
+    }));
   } catch (err) {
     if (err instanceof OutOfStockError) {
       log("order.out_of_stock", { skus: err.skus });
@@ -228,6 +234,9 @@ export async function createOrder(rawInput: CreateOrderInput | unknown, opts: { 
     throw err;
   }
   log("order.created", { orderNo: created.orderNo, totalIdr, method: input.method });
+
+  // 7b. Low-stock alert to the admin (STK-09) — only once the order and its payment exist
+  await notifyLowStock(stockChanges);
 
   // 8. ORDER_CREATED (opt-in)
   await notifyOrder({ ...created, locale: created.locale as Locale }, "ORDER_CREATED", instruction);

@@ -147,6 +147,15 @@ This script is for the presenter. The **"Say"** sections are talking points (fee
 - "The 'Dibayar' status can only come from the payment gateway, not clicked by the admin — preventing mistakes and fraud."
 - "Buyers track without logging in: just the order number + the last 4 digits of their WA."
 
+## 8b. D9 — Low-stock alert to the owner via WA (1.5 minutes)
+
+1. Storefront → **Bliss Stretch Canvas SD16** → Light Grey · 9 (toddler) · A shows 4 in stock (seed data).
+2. Buy 1 pair and finish checkout (any method). Available drops 4 → 3, crossing into the low band.
+3. Admin → **WA outbox** → filter **Alert stok menipis**: "Stok menipis: Bliss Stretch Canvas (SD16) Light Grey · 9.0s (toddler) · A, sisa 3. Restock: …".
+4. Click **Buka di WhatsApp** → the alert opens in WhatsApp on the presenter's phone/desktop (sent by hand in demo mode; automatic once the WhatsApp Business API is connected, docs/11).
+5. Click the restock link → product page in admin → set the stock back up → Save.
+6. Point out: no message on ordinary sales, only when a variant crosses into "sisa 1–3" or sells out.
+
 ## 9. D8 — Bilingual (1 minute)
 
 **Steps:** **Phone:** open **Claudia Satin SD09** (or **Toshie SD40VC**) → show the **shank** options (Full Normal / Full Extra Reinforced; Toshie has 4 shanks) → tap **EN** in the header → the UI is in English, prices stay in **Rp** format, the terms *pointe, shank, vamp* are not translated. Switch back to **ID**.

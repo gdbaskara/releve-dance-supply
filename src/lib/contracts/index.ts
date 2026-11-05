@@ -274,7 +274,7 @@ export interface ShippingProvider {
 
 export type MessageTemplate =
   | "ORDER_CREATED" | "PAYMENT_PAID" | "PAYMENT_EXPIRED" | "ORDER_SHIPPED"
-  | "ORDER_DELIVERED" | "BACK_IN_STOCK" | "PAYMENT_INSTRUCTIONS";
+  | "ORDER_DELIVERED" | "BACK_IN_STOCK" | "PAYMENT_INSTRUCTIONS" | "LOW_STOCK_ALERT";
 
 export interface MessagingProvider {
   readonly name: "outbox" | "waba";

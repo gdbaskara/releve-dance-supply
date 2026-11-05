@@ -57,7 +57,8 @@
     "PAYMENT_EXPIRED": "Payment expired",
     "ORDER_SHIPPED": "Shipped",
     "ORDER_DELIVERED": "Delivered",
-    "BACK_IN_STOCK": "Back in stock"
+    "BACK_IN_STOCK": "Back in stock",
+    "LOW_STOCK_ALERT": "Low-stock alert"
   },
   "linkStatus": {
     "ACTIVE": "Active",
@@ -326,13 +327,15 @@
   },
   "outbox": {
     "title": "WA outbox",
-    "description": "Demo mode: WhatsApp messages to buyers are stored here and not actually sent.",
+    "description": "Demo mode: WhatsApp messages to buyers and stock alerts to the admin are stored here and not sent automatically. \"Open in WhatsApp\" sends one by hand from your own WhatsApp.",
     "onlyOrder": "Only messages for order <mono>{orderNo}</mono>.",
     "showAll": "Show all",
     "filterLabel": "Filter by template",
     "all": "All",
     "count": "{count, plural, one {# message} other {# messages}}",
-    "empty": "No messages yet."
+    "empty": "No messages yet.",
+    "openInWa": "Open in WhatsApp",
+    "openInWaLabel": "Open this message in WhatsApp to {to}"
   },
   "checkoutLinks": {
     "title": "Checkout links",

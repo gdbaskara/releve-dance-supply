@@ -57,7 +57,8 @@
     "PAYMENT_EXPIRED": "Pembayaran kedaluwarsa",
     "ORDER_SHIPPED": "Dikirim",
     "ORDER_DELIVERED": "Terkirim",
-    "BACK_IN_STOCK": "Stok ready lagi"
+    "BACK_IN_STOCK": "Stok ready lagi",
+    "LOW_STOCK_ALERT": "Alert stok menipis"
   },
   "linkStatus": {
     "ACTIVE": "Aktif",
@@ -326,13 +327,15 @@
   },
   "outbox": {
     "title": "WA outbox",
-    "description": "Mode demo: pesan WhatsApp ke pembeli disimpan di sini, tidak benar-benar dikirim.",
+    "description": "Mode demo: pesan WhatsApp ke pembeli dan alert stok ke admin disimpan di sini, tidak dikirim otomatis. \"Buka di WhatsApp\" mengirimnya manual dari WA kamu.",
     "onlyOrder": "Hanya pesan untuk order <mono>{orderNo}</mono>.",
     "showAll": "Tampilkan semua",
     "filterLabel": "Filter template",
     "all": "Semua",
     "count": "{count} pesan",
-    "empty": "Belum ada pesan."
+    "empty": "Belum ada pesan.",
+    "openInWa": "Buka di WhatsApp",
+    "openInWaLabel": "Buka pesan ini di WhatsApp ke {to}"
   },
   "checkoutLinks": {
     "title": "Checkout link",

@@ -86,6 +86,7 @@ Every FR has testable acceptance criteria (AC). Agents must reference the FR ID 
 | STK-06 | M | Pre-orders do not reduce stock; recorded as `preorder` on the order item | — |
 | STK-07 | M | Back-in-stock: store WA number + variant; when variant stock > 0 → WA message (outbox) | — |
 | STK-08 | M | All stock changes are recorded in `stock_movements` (who, when, reason) | — |
+| STK-09 | S | Low-stock alert to the admin via WA when a variant crosses into 1–3 available or sells out (order reservation or admin edit) | One message per crossing, none on ordinary sales; recipient `ADMIN_WA_NUMBER` (fallback: store WA); demo: visible in the WA outbox |
 
 ## G. Shipping (SHP)
 
