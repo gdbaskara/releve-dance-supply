@@ -64,7 +64,7 @@ export function Specimen({
       {label || code ? (
         <figcaption className="flex flex-wrap items-center justify-between gap-2 border-t border-border bg-surface px-5 py-2.5">
           {label ? <span className="eyebrow text-ink-muted">{label}</span> : <span />}
-          {code ? <code className="font-mono text-xs text-ink-muted">{code}</code> : null}
+          {code ? <code className="min-w-0 break-all font-mono text-xs text-ink-muted">{code}</code> : null}
         </figcaption>
       ) : null}
     </figure>

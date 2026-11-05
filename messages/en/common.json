@@ -316,7 +316,7 @@
     "cvv": "CVV",
     "brand": "Card type: {brand}",
     "notStored": "Card details are not stored by Relevé.",
-    "testCard": "Demo test card: {number} · any future MM/YY · CVV 123",
+    "testCard": "Demo test cards: {number} (success) · 4000 0000 0000 0002 (declined) · any future MM/YY · CVV 123",
     "invalidNumber": "Invalid card number",
     "invalidExpiry": "Invalid expiry date",
     "invalidCvv": "CVV must be 3–4 digits",

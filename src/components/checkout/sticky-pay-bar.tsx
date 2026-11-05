@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import { formatIDR } from "@/lib/format";
 import { Button } from "@/components/ui/button";
+import { useToastOffset } from "@/components/ui/toast";
 import { cn } from "@/lib/utils/cn";
 
 export interface StickyPayBarProps {
@@ -21,11 +22,12 @@ export interface StickyPayBarProps {
 }
 
 /**
- * Mobile bottom bar: Total + primary "Bayar Sekarang". Fixed; add ~80px bottom padding to the page and
- * pass `mobileOffset={80}` to ToastProvider so toasts sit above it.
+ * Mobile bottom bar: Total + primary "Bayar Sekarang". Fixed; add ~96px bottom padding to the page.
+ * While mounted it lifts toasts above itself (useToastOffset(88)).
  */
 export function StickyPayBar({ totalIdr, onPay, submit, form, loading, disabled, label, mobileOnly = true, className }: StickyPayBarProps) {
   const t = useTranslations("common");
+  useToastOffset(mobileOnly ? 88 : 0);
   return (
     <div
       className={cn(

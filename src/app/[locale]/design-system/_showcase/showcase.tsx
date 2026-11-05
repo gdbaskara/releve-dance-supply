@@ -3,7 +3,6 @@
 import * as React from "react";
 import { useLocale, useTranslations } from "next-intl";
 import type { Locale } from "@/lib/contracts";
-import { ToastProvider } from "@/components/ui/toast";
 import { DemoBanner, LanguageToggle, Wordmark } from "@/components/store";
 import { Section } from "./frame";
 import { Foundations } from "./foundations";
@@ -21,7 +20,8 @@ export function Showcase({ data, nowMs }: { data: ShowcaseData; nowMs: number })
   const hrefs = { id: "/id/design-system", en: "/en/design-system" };
 
   return (
-    <ToastProvider>
+    <>
+      {/* ToastProvider is mounted globally in src/app/[locale]/providers.tsx */}
       <DemoBanner />
       <div className="sticky top-0 z-30 border-b border-border bg-surface">
         <div className="container-page flex h-14 items-center gap-4">
@@ -91,6 +91,6 @@ export function Showcase({ data, nowMs }: { data: ShowcaseData; nowMs: number })
           <p className="max-w-xl text-xs">{t("footer.note")}</p>
         </div>
       </footer>
-    </ToastProvider>
+    </>
   );
 }

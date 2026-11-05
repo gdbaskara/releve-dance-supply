@@ -316,7 +316,7 @@
     "cvv": "CVV",
     "brand": "Jenis kartu: {brand}",
     "notStored": "Data kartu tidak disimpan oleh Relevé.",
-    "testCard": "Kartu uji demo: {number} · MM/YY di masa depan · CVV 123",
+    "testCard": "Kartu uji demo: {number} (berhasil) · 4000 0000 0000 0002 (gagal) · MM/YY di masa depan · CVV 123",
     "invalidNumber": "Nomor kartu tidak valid",
     "invalidExpiry": "Masa berlaku tidak valid",
     "invalidCvv": "CVV harus 3–4 digit",

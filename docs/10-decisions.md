@@ -30,6 +30,7 @@
 | D-24 | 5 Nov 2026 | Webhook FAILED (kartu tes 4000…0002) → payment FAILED, order tetap PENDING agar pembeli bisa ganti metode | PAY-05/PAY-10 |
 | D-25 | 5 Nov 2026 | Item varian available=0 & pre-order aktif otomatis jadi pre-order saat createOrder (maks 5); varian dengan stok parsial yang kurang → OUT_OF_STOCK | `05` §4 langkah 3 |
 | D-26 | 5 Nov 2026 | Template WA (link & notifikasi) di kode `src/lib/wa` (client-safe), bukan di `messages/*/wa.json` | Dipakai server (outbox) & klien (wa.me) tanpa next-intl |
+| D-27 | 5 Nov 2026 | Showcase page /[locale]/design-system replaces Storybook for the demo | WS-1; tanpa dependensi Storybook, tampil di app yang sama (ID/EN) |
 
 ## Terbuka (tidak menghalangi demo)
 

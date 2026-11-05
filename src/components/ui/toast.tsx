@@ -26,11 +26,13 @@ interface ToastItem extends ToastOptions {
 interface ToastApi {
   toast: (opts: ToastOptions) => number;
   dismiss: (id: number) => void;
+  /** Extra bottom offset (px, mobile) — set via `useToastOffset`. */
+  setMobileOffset: (px: number | null) => void;
 }
 
 const ToastContext = React.createContext<ToastApi | null>(null);
 
-const NOOP: ToastApi = { toast: () => -1, dismiss: () => {} };
+const NOOP: ToastApi = { toast: () => -1, dismiss: () => {}, setMobileOffset: () => {} };
 
 /**
  * Access the toast API. Safe outside a provider (returns a no-op), so components such as
@@ -43,8 +45,8 @@ export function useToast(): ToastApi {
 export interface ToastProviderProps {
   children: React.ReactNode;
   /**
-   * Extra bottom offset in px on mobile so toasts sit above a sticky bar (StickyPayBar ≈ 80).
-   * Default 0.
+   * Default extra bottom offset in px on mobile. Pages with a fixed bottom bar can override it at runtime
+   * with `useToastOffset(px)` (StickyPayBar does). Default 0.
    */
   mobileOffset?: number;
 }
@@ -52,11 +54,25 @@ export interface ToastProviderProps {
 const icons = { success: CircleCheck, error: CircleExclamationPoint, info: Info } as const;
 const tone = { success: "text-success", error: "text-error", info: "text-info" } as const;
 
+/**
+ * Lift toasts above a fixed bottom bar while the calling component is mounted (StickyPayBar does this
+ * automatically with 88px).
+ */
+export function useToastOffset(px: number) {
+  const { setMobileOffset } = useToast();
+  React.useEffect(() => {
+    setMobileOffset(px);
+    return () => setMobileOffset(null);
+  }, [px, setMobileOffset]);
+}
+
 /** Mount once near the root (e.g. in src/app/[locale]/layout.tsx inside NextIntlClientProvider). */
 export function ToastProvider({ children, mobileOffset = 0 }: ToastProviderProps) {
   const t = useTranslations("common");
   const [items, setItems] = React.useState<ToastItem[]>([]);
+  const [dynamicOffset, setDynamicOffset] = React.useState<number | null>(null);
   const counter = React.useRef(0);
+  const offset = dynamicOffset ?? mobileOffset;
 
   const api = React.useMemo<ToastApi>(
     () => ({
@@ -67,6 +83,7 @@ export function ToastProvider({ children, mobileOffset = 0 }: ToastProviderProps
         return id;
       },
       dismiss: (id) => setItems((prev) => prev.map((x) => (x.id === id ? { ...x, open: false } : x))),
+      setMobileOffset: setDynamicOffset,
     }),
     [],
   );
@@ -119,10 +136,10 @@ export function ToastProvider({ children, mobileOffset = 0 }: ToastProviderProps
           );
         })}
         <RToast.Viewport
-          style={{ "--toast-mobile-offset": `${mobileOffset}px` } as React.CSSProperties}
+          style={{ "--toast-mobile-offset": `${offset}px` } as React.CSSProperties}
           className={cn(
             "fixed inset-x-0 z-[60] mx-auto flex w-full max-w-[420px] flex-col gap-2 p-4 outline-none",
-            "bottom-[calc(var(--toast-mobile-offset)+env(safe-area-inset-bottom))] md:bottom-0 md:left-auto md:right-0 md:mx-0",
+            "bottom-[calc(var(--toast-mobile-offset)+env(safe-area-inset-bottom))] lg:bottom-0 md:left-auto md:right-0 md:mx-0",
           )}
         />
       </RToast.Provider>
