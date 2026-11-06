@@ -1,7 +1,7 @@
 {
   "collections": {
     "ballet": { "title": "Ballet", "description": "Canvas, leather & stretch ballet flats for daily class, exams and the stage." },
-    "pointe": { "title": "Pointe", "description": "Só Dança pointe shoes with width & shank options — consult us on WhatsApp before you buy." },
+    "pointe": { "title": "Pointe", "description": "Só Dança pointe shoes with width & shank options. Consult us on WhatsApp before you buy." },
     "jazz": { "title": "Jazz", "description": "Lightweight jazz shoes & sneakers with a split sole for quick moves on studio floors." },
     "tap": { "title": "Tap", "description": "Tap shoes with attached taps for a clear, consistent sound." },
     "character": { "title": "Character", "description": "Character shoes with a stable heel for character class and musical theatre." },
@@ -10,10 +10,10 @@
     "leotards": { "title": "Leotards", "description": "Comfortable leotards and body liners for class and performance." },
     "skirts": { "title": "Skirts", "description": "Light skirts that fall beautifully as you move." },
     "tops": { "title": "Tops", "description": "Light, close-fitting tops for class." },
-    "tights": { "title": "Tights", "description": "Smooth, stretchy tights — footed and convertible." },
+    "tights": { "title": "Tights", "description": "Smooth, stretchy tights, footed and convertible." },
     "shoes": { "title": "Shoes", "description": "All Só Dança dance shoes: Ballet, Pointe, Jazz, Tap, Character, Latin/Ballroom & Contemporary." },
     "dancewear": { "title": "Dancewear", "description": "Só Dança leotards, skirts, tops & tights for class and the stage." },
-    "kids": { "title": "Kids", "description": "Dance shoes & dancewear in kids' sizes — from toddler to child." }
+    "kids": { "title": "Kids", "description": "Dance shoes & dancewear in kids' sizes, from toddler to child." }
   },
   "listing": {
     "count": "{n, plural, =0 {No products} one {# product} other {# products}}",
@@ -52,7 +52,7 @@
     "removeFilter": "Remove filter {label}",
     "reset": "Reset filters",
     "emptyTitle": "No matching products",
-    "emptyBody": "Try removing a filter, or ask us on WhatsApp — your size may be available to order.",
+    "emptyBody": "Try removing a filter, or ask us on WhatsApp: your size may be available to order.",
     "loadingMore": "Loading products…"
   },
   "home": {

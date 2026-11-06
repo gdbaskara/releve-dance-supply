@@ -22,7 +22,7 @@
   },
   "ewallet": {
     "screenTitle": "Konfirmasi di {wallet}",
-    "simNote": "Simulasi aplikasi {wallet} — di produksi kamu diarahkan ke aplikasi aslinya.",
+    "simNote": "Simulasi aplikasi {wallet}. Di produksi kamu diarahkan ke aplikasi aslinya.",
     "merchant": "Bayar ke",
     "merchantName": "Relevé Dance Supply",
     "confirm": "Bayar {amount}",

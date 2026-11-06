@@ -11,7 +11,7 @@
     "eyebrow": "Relevé · Design system v1.0",
     "title": "Bahasa visual Relevé",
     "tagline": "Setiap langkah dimulai dari sepatu yang tepat.",
-    "intro": "Monokrom, presisi, dan tenang — produk adalah panggungnya. Halaman ini menampilkan semua token, komponen, dan pola yang dipakai toko, lengkap dengan state dan data contoh dari katalog.",
+    "intro": "Monokrom, presisi, dan tenang: produk adalah panggungnya. Halaman ini menampilkan semua token, komponen, dan pola yang dipakai toko, lengkap dengan state dan data contoh dari katalog.",
     "language": "Bahasa",
     "principles": {
       "p1": "Produk adalah panggung",
@@ -28,7 +28,7 @@
     },
     "primitives": {
       "title": "Primitive",
-      "description": "Blok dasar di src/components/ui — dapat diakses keyboard, target sentuh ≥ 44px, fokus selalu terlihat."
+      "description": "Blok dasar di src/components/ui, dapat diakses keyboard, target sentuh ≥ 44px, fokus selalu terlihat."
     },
     "store": {
       "title": "Komponen toko",
@@ -36,7 +36,7 @@
     },
     "checkout": {
       "title": "Komponen checkout",
-      "description": "Checkout satu halaman tiga langkah dan halaman bayar — QRIS, Virtual Account, e-wallet, kartu. Tanpa bayar di tempat, tanpa paylater."
+      "description": "Checkout satu halaman tiga langkah dan halaman bayar: QRIS, Virtual Account, e-wallet, kartu. Tanpa bayar di tempat, tanpa paylater."
     },
     "patterns": {
       "title": "Pola",
@@ -159,7 +159,7 @@
       "province": "Provinsi",
       "choose": "Pilih…",
       "city": "Kabupaten/Kota",
-      "cityHelp": "{n} kab/kota — ketik untuk mencari",
+      "cityHelp": "{n} kab/kota, ketik untuk mencari",
       "address": "Alamat lengkap"
     },
     "choice": {
@@ -190,7 +190,7 @@
       "soldOut": "Habis",
       "tabsLabel": "Info produk",
       "tabDesc": "Deskripsi",
-      "tabDescBody": "Satin, box sedang, vamp standar — cocok untuk kaki Egyptian & Greek.",
+      "tabDescBody": "Satin, box sedang, vamp standar, cocok untuk kaki Egyptian & Greek.",
       "tabFit": "Fitting",
       "tabFitBody": "Pilih 1–2 size di bawah ukuran sepatu harian. Konsultasi via WA dulu.",
       "tabCare": "Perawatan",
@@ -212,12 +212,12 @@
       "sheetTitle": "Bottom sheet (mobile) / modal (desktop)",
       "sheetBody": "Varian responsive dipakai untuk SizeGuide dan FilterSheet.",
       "drawerTitle": "Drawer",
-      "drawerBody": "Kanan 420px di desktop, dari bawah di mobile — dipakai CartDrawer.",
+      "drawerBody": "Kanan 420px di desktop, dari bawah di mobile. Dipakai CartDrawer.",
       "toastSuccess": "Ditambahkan ke keranjang",
       "toastError": "Stok tidak cukup",
       "toastErrorBody": "Kami sudah menyesuaikan keranjangmu.",
       "toastInfo": "Nomor VA disalin",
-      "tooltip": "Informasi tambahan saja — bukan info wajib",
+      "tooltip": "Informasi tambahan saja, bukan info wajib",
       "infoTip": "Apa itu shank?",
       "shankExplain": "Bagian keras di sol pointe yang menopang lengkung kaki."
     },
@@ -230,7 +230,7 @@
       "stockTitle": "Stok berubah",
       "stockBody": "Stok Jive III (Black · 7L) tidak cukup. Kami sudah menyesuaikan keranjangmu.",
       "updateCart": "Perbarui keranjang",
-      "voucher": "Voucher RELEVE10 dipakai — hemat 10%.",
+      "voucher": "Voucher RELEVE10 dipakai: hemat 10%.",
       "loading": "Memuat ongkir…",
       "breadcrumb": "Navigasi halaman",
       "home": "Beranda"
@@ -240,7 +240,7 @@
     "identity": {
       "title": "Identitas & kerangka halaman",
       "description": "Wordmark sendiri (bukan logo Só Dança), header sticky, footer surface-alt dengan disclaimer toko independen.",
-      "header": "Header — 56px mobile / 72px desktop",
+      "header": "Header: 56px mobile / 72px desktop",
       "track": "Lacak pesanan"
     },
     "footer": {
@@ -258,7 +258,7 @@
     },
     "product": {
       "title": "Produk",
-      "description": "Kartu 1:1 tanpa tombol add — ukuran wajib dipilih di PDP. Badge stok agregat, swatch maks 5 + N.",
+      "description": "Kartu 1:1 tanpa tombol add, ukuran wajib dipilih di PDP. Badge stok agregat, swatch maks 5 + N.",
       "new": "Baru"
     },
     "picker": {
@@ -274,7 +274,7 @@
       "reset": "Reset contoh",
       "notice": "Jumlah Farfalla dikurangi menjadi 2 karena stok berubah.",
       "emptyTitle": "Belum ada yang cocok",
-      "emptyBody": "Coba hapus beberapa filter, atau tanya kami — kami bantu carikan."
+      "emptyBody": "Coba hapus beberapa filter, atau tanya kami, kami bantu carikan."
     },
     "filter": {
       "title": "Filter & perbandingan",
@@ -317,13 +317,13 @@
   },
   "patterns": {
     "stock": {
-      "title": "Stok jujur — 4 status",
+      "title": "Stok jujur: 4 status",
       "description": "Ready · Sisa N · Pre-order · Habis, konsisten di kartu, PDP, dan size chip. Habis → CTA berubah menjadi “Kabari Saya via WA”.",
-      "chips": "Size chip — semua state"
+      "chips": "Size chip: semua state"
     },
     "price": {
       "title": "Harga",
-      "description": "Selalu formatIDR (Rp 1.250.000), tabular-nums, warna ink — tidak pernah merah/aksen.",
+      "description": "Selalu formatIDR (Rp 1.250.000), tabular-nums, warna ink, tidak pernah merah/aksen.",
       "card": "Kartu",
       "pdp": "PDP",
       "listingFrom": "Listing · mulai",
@@ -355,6 +355,6 @@
     }
   },
   "footer": {
-    "note": "Design system demo — semua data contoh. Relevé Dance Supply adalah toko independen dan tidak berafiliasi dengan Só Dança."
+    "note": "Design system demo: semua data contoh. Relevé Dance Supply adalah toko independen dan tidak berafiliasi dengan Só Dança."
   }
 }

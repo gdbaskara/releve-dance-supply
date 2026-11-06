@@ -56,7 +56,7 @@ const COLORS: { token: string; cls: string; hex: string; on: string; text?: bool
   { token: "ink", cls: "bg-ink", hex: "#141414", on: "#FFFFFF", text: true },
   { token: "ink-hover", cls: "bg-ink-hover", hex: "#2B2B2B", on: "#FFFFFF" },
   { token: "ink-muted", cls: "bg-ink-muted", hex: "#5E5852", on: "#FFFFFF", text: true },
-  { token: "ink-subtle", cls: "bg-ink-subtle", hex: "#8A837C", on: "#FFFFFF", text: true },
+  { token: "ink-subtle", cls: "bg-ink-subtle", hex: "#736C66", on: "#FFFFFF", text: true },
   { token: "border", cls: "bg-border", hex: "#E6E1DB", on: "#141414" },
   { token: "border-strong", cls: "bg-border-strong", hex: "#8A837C", on: "#FFFFFF", text: true },
   { token: "accent", cls: "bg-accent", hex: "#F3E1DD", on: "#7E3845" },

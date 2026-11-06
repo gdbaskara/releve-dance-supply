@@ -193,9 +193,9 @@ export function StoreSection({ data }: { data: ShowcaseData }) {
                 <dt className="text-ink-muted">selectedSku</dt>
                 <dd className="break-all font-mono text-xs">{state.sku ?? "null"}</dd>
                 <dt className="text-ink-muted">label</dt>
-                <dd>{v ? variantLabel(v) : "—"}</dd>
+                <dd>{v ? variantLabel(v) : "-"}</dd>
                 <dt className="text-ink-muted">status</dt>
-                <dd>{v ? <StockBadge status={v.status} available={v.available} leadWeeks={v.preorderLeadWeeks} /> : "—"}</dd>
+                <dd>{v ? <StockBadge status={v.status} available={v.available} leadWeeks={v.preorderLeadWeeks} /> : "-"}</dd>
                 <dt className="text-ink-muted">missing</dt>
                 <dd className="font-mono text-xs">[{state.missing.join(", ")}]</dd>
               </dl>

@@ -1,7 +1,7 @@
 {
   "brand": "Relevé",
   "brandSub": "Dance Supply",
-  "demoBanner": "Mode demo — pembayaran & pengiriman disimulasikan.",
+  "demoBanner": "Mode demo: pembayaran & pengiriman disimulasikan.",
   "trust": {
     "original": "Produk original Só Dança",
     "jakarta": "Dikirim dari Jakarta",
@@ -37,7 +37,7 @@
   },
   "availability": {
     "ready": "Ready · dikirim 1–2 hari kerja dari Jakarta",
-    "low": "Sisa {n} — segera habis",
+    "low": "Sisa {n}, segera habis",
     "preorder": "Pre-order · estimasi tiba {lead} minggu",
     "soldout": "Habis untuk ukuran ini",
     "select": "Pilih varian untuk melihat ketersediaan"
@@ -91,7 +91,7 @@
     "shippingNote": "Ongkir dihitung saat checkout.",
     "removeItem": "Hapus {name}",
     "empty": "Keranjangmu masih kosong",
-    "emptyBody": "Pilih sepatu atau dancewear favoritmu — kami bantu pilih ukuran via WA.",
+    "emptyBody": "Pilih sepatu atau dancewear favoritmu, kami bantu pilih ukuran via WA.",
     "mixedPreorder": "Keranjang berisi item pre-order. Semua item dikirim sekaligus setelah item pre-order tiba."
   },
   "empty": {
@@ -116,7 +116,7 @@
     "close": "Tutup notifikasi"
   },
   "header": {
-    "home": "Relevé Dance Supply — beranda",
+    "home": "Relevé Dance Supply, beranda",
     "nav": "Navigasi utama",
     "openMenu": "Buka menu",
     "closeMenu": "Tutup menu",
@@ -169,7 +169,7 @@
       "dancewear": "Pilih berdasarkan ukuran dada dan pinggul. Untuk Leotard, panjang torso juga berpengaruh."
     },
     "pointeCalloutTitle": "Pointe sebaiknya difitting",
-    "approxNote": "Tabel perkiraan. Ukuran tiap model bisa berbeda — konsultasikan via WA bila ragu.",
+    "approxNote": "Tabel perkiraan. Ukuran tiap model bisa berbeda, konsultasikan via WA bila ragu.",
     "consultBody": "Kirim panjang kakimu (cm) dan foto kaki, kami bantu pilih size & width yang pas.",
     "shoeTitle": "Tabel size sepatu",
     "contemporaryTitle": "Contemporary (half sole, size huruf)",
@@ -370,7 +370,7 @@
   },
   "demo": {
     "controlsTitle": "Kontrol demo",
-    "controlsNote": "Hanya tampil di mode demo — mensimulasikan notifikasi dari payment gateway.",
+    "controlsNote": "Hanya tampil di mode demo. Mensimulasikan notifikasi dari payment gateway.",
     "simulatePaid": "Simulasikan Bayar Berhasil",
     "simulateExpired": "Simulasikan Kedaluwarsa"
   },
@@ -393,5 +393,13 @@
       "current": "tahap saat ini",
       "upcoming": "berikutnya"
     }
+  },
+  "errorPage": {
+    "title": "Halaman gagal dimuat",
+    "body": "Ada gangguan di sisi kami, bukan di perangkatmu. Coba lagi sebentar, atau tanya kami via WhatsApp kalau masih gagal.",
+    "retry": "Coba lagi",
+    "home": "Kembali ke beranda",
+    "adminHome": "Kembali ke dashboard",
+    "wa": "Tanya via WhatsApp"
   }
 }

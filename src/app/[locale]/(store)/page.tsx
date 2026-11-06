@@ -17,7 +17,7 @@ import { pageMetadata, jsonLd, siteUrl } from "@/components/store/containers/seo
 export async function generateMetadata({ params }: PageProps<"/[locale]">) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "catalog.home" });
-  return pageMetadata({ locale, path: "/", title: `Relevé Dance Supply — ${t("metaTitle")}`, description: t("metaDescription"), absoluteTitle: true });
+  return pageMetadata({ locale, path: "/", title: `Relevé Dance Supply · ${t("metaTitle")}`, description: t("metaDescription"), absoluteTitle: true });
 }
 
 const TILES = [

@@ -88,7 +88,7 @@ export function ProductsTable({ rows, disciplines }: { rows: ProductTableRow[]; 
       // variants that are out of stock but sellable as pre-order right now
       cell: (p) =>
         p.statusCounts.PREORDER === 0 ? (
-          <span className="text-ink-muted">—</span>
+          <span className="text-ink-muted">-</span>
         ) : (
           <Badge variant="warning">{p.statusCounts.PREORDER === p.variantCount ? t("allVariants") : t("variantCount", { count: p.statusCounts.PREORDER })}</Badge>
         ),

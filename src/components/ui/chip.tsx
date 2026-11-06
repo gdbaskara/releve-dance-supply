@@ -19,7 +19,7 @@ export const Chip = React.forwardRef<HTMLButtonElement, ChipProps>(function Chip
       type={type ?? "button"}
       aria-pressed={selected}
       className={cn(
-        "inline-flex h-9 shrink-0 items-center gap-1.5 rounded-pill border px-4 text-sm font-medium transition-colors duration-150",
+        "inline-flex h-11 shrink-0 items-center gap-1.5 rounded-pill border px-4 text-sm font-medium transition-colors duration-150",
         "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus",
         "disabled:cursor-not-allowed disabled:opacity-40",
         selected

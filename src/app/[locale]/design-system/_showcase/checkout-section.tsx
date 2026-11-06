@@ -68,7 +68,7 @@ export function CheckoutSection({ data, nowMs }: { data: ShowcaseData; nowMs: nu
               number={1}
               title={t("checkout.flow.step1")}
               status={step === 1 ? "active" : "done"}
-              summary={`Rina Wijaya · +62 812-3456-7890 · ${address.city || "—"}`}
+              summary={`Rina Wijaya · +62 812-3456-7890 · ${address.city || "-"}`}
               onEdit={() => setStep(1)}
               footer={
                 <Button className="self-start" onClick={() => setStep(2)}>

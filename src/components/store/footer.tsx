@@ -47,7 +47,7 @@ export function Footer({ columns, contact, bottomSlot, paymentCodes = PAY, couri
                     <LinkComp
                       href={l.href}
                       {...(l.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                      className="inline-flex min-h-9 items-center rounded-sm text-sm text-ink-muted hover:text-ink hover:underline focus-visible:outline-2 focus-visible:outline-focus"
+                      className="inline-flex min-h-11 min-w-11 items-center rounded-sm text-sm text-ink-muted hover:text-ink hover:underline focus-visible:outline-2 focus-visible:outline-focus"
                     >
                       {l.label}
                     </LinkComp>

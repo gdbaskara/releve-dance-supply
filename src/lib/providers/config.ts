@@ -35,7 +35,7 @@ function num(env: Env, name: string): number | undefined {
   return Number.isFinite(n) ? n : undefined;
 }
 
-/* ---------- Xendit ---------- */
+// Xendit
 
 export interface XenditConfig {
   secretKey: string;
@@ -55,7 +55,7 @@ export function xenditConfigFromEnv(env: Env = process.env): XenditConfig {
   };
 }
 
-/* ---------- Biteship ---------- */
+// Biteship
 
 export interface BiteshipConfig {
   apiKey: string;
@@ -90,7 +90,7 @@ export function biteshipConfigFromEnv(env: Env = process.env): BiteshipConfig {
   };
 }
 
-/* ---------- WhatsApp Business (Meta Cloud API) ---------- */
+// WhatsApp Business (Meta Cloud API)
 
 export interface WabaConfig {
   token: string;
@@ -115,7 +115,7 @@ export function wabaConfigFromEnv(env: Env = process.env): WabaConfig {
   };
 }
 
-/* ---------- all at once ---------- */
+// All at once
 
 /** Validates the env for the providers selected by PAYMENT_PROVIDER / SHIPPING_PROVIDER / MESSAGING_PROVIDER. */
 export function validateProviderEnv(env: Env = process.env): { ok: boolean; problems: string[] } {

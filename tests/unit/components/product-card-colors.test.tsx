@@ -63,3 +63,10 @@ describe("ColorPreviewCard", () => {
     expect(link().querySelector("button")).toBeNull();
   });
 });
+
+describe("ColorPreviewCard tap targets (R-03)", () => {
+  it("every swatch button is at least 44px", () => {
+    renderIntl(<ColorPreviewCard product={product} />);
+    for (const b of screen.getAllByRole("button")) expect(b.className).toMatch(/\bsize-11\b/);
+  });
+});

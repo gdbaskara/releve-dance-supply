@@ -51,7 +51,7 @@ export default async function CheckoutLinksPage() {
               cell: (l) => (
                 <span className="flex flex-col">
                   <span className="font-semibold">{l.customerName ?? t("noName")}</span>
-                  <span className="text-xs text-ink-muted">{l.customerWa ? formatPhoneID(l.customerWa) : "—"}</span>
+                  <span className="text-xs text-ink-muted">{l.customerWa ? formatPhoneID(l.customerWa) : "-"}</span>
                 </span>
               ),
             },
@@ -87,7 +87,7 @@ export default async function CheckoutLinksPage() {
               key: "copy",
               header: t("colLink"),
               cell: (l) =>
-                l.status === "ACTIVE" ? <CopyButton value={l.url} ariaLabel={t("copyLink")} className="-ml-2" /> : <span className="text-ink-muted">—</span>,
+                l.status === "ACTIVE" ? <CopyButton value={l.url} ariaLabel={t("copyLink")} className="-ml-2" /> : <span className="text-ink-muted">-</span>,
             },
           ]}
         />

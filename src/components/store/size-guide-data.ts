@@ -121,7 +121,7 @@ export const CONTEMPORARY_ROWS: LetterShoeRow[] = [
   { size: "XL", us: "11.5–13", cm: "27.2–28.5" },
 ];
 
-/* ---------- Widths ---------- */
+// Widths
 
 export type WidthKey = "A" | "B" | "C" | "D" | "E" | "EE" | "Narrow" | "Medium" | "Wide";
 
@@ -137,7 +137,7 @@ export function widthRows(category: SizeGuideCategory): WidthKey[] {
   return category === "dancewear" ? [] : WIDTHS[category];
 }
 
-/* ---------- Dancewear (body measurements, cm / kg) ---------- */
+// Dancewear (body measurements, cm / kg)
 
 export interface ApparelRow {
   size: string;
@@ -177,7 +177,7 @@ export const TIGHTS_ROWS: TightsRow[] = [
   { size: "4XL", height: "160–183", weight: "100–118" },
 ];
 
-/* ---------- Category of a product ---------- */
+// Category of a product
 
 /** Which size-guide tab a product opens on (same rule the PDP uses). */
 export function guideCategoryFor(discipline: string, group: string): SizeGuideCategory {

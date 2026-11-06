@@ -30,10 +30,10 @@ function pickerSize(raw: string): string {
 }
 
 
-/* ---------- Gallery ---------- */
+// Gallery
 
 /** More photos than this: a "3 / 16" counter instead of dots (16 dots do not fit a 375px screen). */
-const MAX_DOTS = 8;
+const MAX_DOTS = 7;
 
 export function PdpGallery({ images, name, modelCode, color }: { images: Img[]; name: string; modelCode: string; color?: string }) {
   const t = useTranslations("pdp.gallery");
@@ -74,7 +74,7 @@ export function PdpGallery({ images, name, modelCode, color }: { images: Img[]; 
           {t("counter", { n: index + 1, total: list.length })}
         </p>
       ) : (
-        <div className="flex justify-center gap-1 lg:hidden">
+        <div className="flex justify-center lg:hidden">
           {list.map((img, i) => (
             <button
               key={img.url}
@@ -82,7 +82,7 @@ export function PdpGallery({ images, name, modelCode, color }: { images: Img[]; 
               aria-label={t("goTo", { n: i + 1 })}
               aria-current={i === index || undefined}
               onClick={() => scroller.current?.scrollTo({ left: i * scroller.current.clientWidth, behavior: "smooth" })}
-              className="inline-flex size-6 items-center justify-center"
+              className="inline-flex size-11 items-center justify-center"
             >
               <span className={cn("size-2 rounded-pill", i === index ? "bg-ink" : "bg-border-strong")} />
             </button>
@@ -93,7 +93,7 @@ export function PdpGallery({ images, name, modelCode, color }: { images: Img[]; 
   );
 }
 
-/* ---------- Buy box ---------- */
+// Buy box
 
 export interface PdpClientProps {
   product: ProductDetail;

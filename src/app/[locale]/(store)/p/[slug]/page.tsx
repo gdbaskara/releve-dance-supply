@@ -98,7 +98,7 @@ export default async function ProductPage({ params, searchParams }: PageProps<"/
 
   const header = (
     <div className="flex flex-col gap-2">
-      <Link href={`/c/${colSlug}`} className="eyebrow self-start text-ink-muted hover:text-ink hover:underline">
+      <Link href={`/c/${colSlug}`} className="eyebrow -my-3.5 inline-flex min-h-11 items-center self-start text-ink-muted hover:text-ink hover:underline">
         {product.discipline}
         {product.audience === "Kids" ? " · Kids" : ""}
       </Link>
@@ -111,9 +111,9 @@ export default async function ProductPage({ params, searchParams }: PageProps<"/
     </div>
   );
 
-  const infoLink = (href: string) => (
+  const infoLink = (href: string, label: string) => (
     <Link href={href} className="mt-2 inline-flex min-h-11 items-center text-sm font-medium text-ink underline underline-offset-[3px]">
-      {t("infoLink")}
+      {label}
     </Link>
   );
 
@@ -179,7 +179,7 @@ export default async function ProductPage({ params, searchParams }: PageProps<"/
                 content: (
                   <div className="text-sm leading-6">
                     <p>{t("shippingInfo")}</p>
-                    {infoLink("/info/shipping")}
+                    {infoLink("/info/shipping", t("infoLinkShipping"))}
                   </div>
                 ),
               },
@@ -189,7 +189,7 @@ export default async function ProductPage({ params, searchParams }: PageProps<"/
                 content: (
                   <div className="text-sm leading-6">
                     <p>{t("paymentInfo")}</p>
-                    {infoLink("/info/payment")}
+                    {infoLink("/info/payment", t("infoLinkPayment"))}
                   </div>
                 ),
               },

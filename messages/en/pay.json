@@ -22,7 +22,7 @@
   },
   "ewallet": {
     "screenTitle": "Confirm in {wallet}",
-    "simNote": "Simulated {wallet} app — in production you'll be taken to the real app.",
+    "simNote": "Simulated {wallet} app. In production you'll be taken to the real app.",
     "merchant": "Pay to",
     "merchantName": "Relevé Dance Supply",
     "confirm": "Pay {amount}",

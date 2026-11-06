@@ -79,7 +79,7 @@ export function ColorSelector({ options, value, onChange, label, className }: Co
     <div className={cn("flex flex-col gap-3", className)}>
       <p className="text-sm text-ink">
         <span className="eyebrow mr-2 text-ink-muted">{groupLabel}</span>
-        <span className="font-medium">{value ?? "—"}</span>
+        <span className="font-medium">{value ?? ""}</span>
       </p>
       <RRadio.Root aria-label={groupLabel} value={value ?? ""} onValueChange={onChange} orientation="horizontal" className="flex flex-wrap gap-1">
         {options.map((o) => (

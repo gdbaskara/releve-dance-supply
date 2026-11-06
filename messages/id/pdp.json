@@ -9,7 +9,7 @@
   "maxQtyNote": "Maks. {n} per pesanan untuk varian ini",
   "preorderNote": "Item pre-order dikirim bersama seluruh pesanan setelah stok tiba.",
   "pointeCalloutTitle": "Pointe sebaiknya dicoba/difitting",
-  "pointeCallout": "Konsultasikan dulu via WA — kirim foto & panjang kakimu, kami bantu pilih size, width & shank.",
+  "pointeCallout": "Konsultasikan dulu via WA: kirim foto & panjang kakimu, kami bantu pilih size, width & shank.",
   "askWa": "Tanya via WA",
   "notify": {
     "cta": "Kabari Saya via WA",
@@ -39,7 +39,8 @@
   },
   "shippingInfo": "Dikirim dari gudang kami di Jakarta ke seluruh Pulau Jawa. Item ready dikirim 1–2 hari kerja; instan & same-day tersedia untuk Jabodetabek. Ongkir dihitung di checkout.",
   "paymentInfo": "Bayar penuh secara digital: QRIS, e-wallet (GoPay, OVO, DANA, ShopeePay), Virtual Account (BCA, Mandiri, BNI, BRI, Permata), atau kartu kredit/debit.",
-  "infoLink": "Selengkapnya",
+  "infoLinkShipping": "Detail pengiriman",
+  "infoLinkPayment": "Detail pembayaran",
   "relatedTitle": "Kamu mungkin suka",
   "compareTitle": "Bandingkan model serupa",
   "sole": {
@@ -48,10 +49,10 @@
     "suede": "Suede sole",
     "rubber": "Rubber sole",
     "pointe": "Shank & platform",
-    "unknown": "—"
+    "unknown": "-"
   },
   "material": {
-    "unknown": "—"
+    "unknown": "-"
   },
   "gallery": {
     "label": "Galeri foto {name}",
@@ -59,5 +60,5 @@
     "goTo": "Lihat foto {n}",
     "counter": "{n} / {total}"
   },
-  "metaDescription": "{name} ({code}) — produk original Só Dança. {price}. Stok per ukuran, dikirim dari Jakarta, bayar QRIS, VA & e-wallet."
+  "metaDescription": "{name} ({code}), produk original Só Dança. {price}. Stok per ukuran, dikirim dari Jakarta, bayar QRIS, VA & e-wallet."
 }

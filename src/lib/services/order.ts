@@ -36,7 +36,7 @@ import type { StockChange } from "./low-stock";
 import { notifyLowStock } from "./low-stock-notify";
 import { buildOrderView, loadOrderBundle, toPaymentView } from "./order-view";
 
-/* ---------- order number ---------- */
+// Order number
 
 const BASE32 = "0123456789ABCDEFGHJKMNPQRSTVWXYZ"; // Crockford (no I, L, O, U)
 
@@ -57,7 +57,7 @@ async function uniqueOrderNo(tx: Tx, now: Date): Promise<string> {
   throw new Error("Could not allocate a unique order number");
 }
 
-/* ---------- createOrder ---------- */
+// CreateOrder
 
 class OutOfStockError extends Error {
   constructor(readonly skus: string[]) {
@@ -286,7 +286,7 @@ async function createPaymentRecord(
   return instruction;
 }
 
-/* ---------- reads ---------- */
+// Reads
 
 /** ORD-03: requires the last 4 digits of the buyer's WA. Mismatch / unknown → null (generic not-found). */
 export async function getOrderPublic(orderNo: string, waLast4: string): Promise<OrderPublicView | null> {
@@ -322,7 +322,7 @@ export async function getOrderStatus(orderNo: string): Promise<OrderStatusView |
   return { orderNo: o.orderNo, status: o.status as OrderStatus, payment: toPaymentView(p) };
 }
 
-/* ---------- payment method change & instructions ---------- */
+// Payment method change & instructions
 
 export type ChangePaymentResult =
   | { ok: true; payment: NonNullable<OrderPublicView["payment"]> }

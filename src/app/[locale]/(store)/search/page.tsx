@@ -34,7 +34,7 @@ export default async function SearchPage({ params, searchParams }: PageProps<"/[
       <ul className="flex flex-wrap gap-2">
         {POPULAR.map((p) => (
           <li key={p}>
-            <Link href={`/search?q=${encodeURIComponent(p)}`} className="inline-flex h-9 items-center rounded-pill border border-border-strong px-4 text-sm text-ink hover:border-ink">
+            <Link href={`/search?q=${encodeURIComponent(p)}`} className="inline-flex h-11 items-center rounded-pill border border-border-strong px-4 text-sm text-ink hover:border-ink">
               {p}
             </Link>
           </li>

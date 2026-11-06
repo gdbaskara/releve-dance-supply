@@ -366,7 +366,7 @@
     "qty": "Qty",
     "addItem": "Add item",
     "soldOutNoPreorder": "This variant is sold out and does not accept pre-orders.",
-    "maxQty": "Max. {max} for this variant — the quantity will be adjusted.",
+    "maxQty": "Max. {max} for this variant. The quantity will be adjusted.",
     "productNotFound": "Product not found.",
     "step2": "2. Items in the link ({count})",
     "noItems": "No items yet. Choose a variant, then click “Add item”.",

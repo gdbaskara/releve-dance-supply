@@ -50,7 +50,7 @@
       "MIN_SUBTOTAL": "Minimum spend {min} for this voucher",
       "INVALID_INPUT": "Check the voucher code"
     },
-    "voucherApplied": "Voucher applied — you save {amount}"
+    "voucherApplied": "Voucher applied: you save {amount}"
   },
   "terms": "By paying, you agree to Relevé's <link>Terms & Conditions</link>.",
   "submitErrors": {

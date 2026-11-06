@@ -366,7 +366,7 @@
     "qty": "Qty",
     "addItem": "Tambah item",
     "soldOutNoPreorder": "Varian ini habis dan tidak menerima pre-order.",
-    "maxQty": "Maks. {max} untuk varian ini — jumlah akan disesuaikan.",
+    "maxQty": "Maks. {max} untuk varian ini. Jumlah akan disesuaikan.",
     "productNotFound": "Produk tidak ditemukan.",
     "step2": "2. Item di link ({count})",
     "noItems": "Belum ada item. Pilih varian lalu klik “Tambah item”.",
